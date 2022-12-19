@@ -1,7 +1,7 @@
 // Components
 import ImageComponent from "../../image/Image";
+import HDiv from "../../typography/HDiv";
 import BodyText from "../../typography/BodyText";
-import H4 from "../../typography/H4";
 
 // Utilities
 import { formatDate } from "../../../utilities/formatDate";
@@ -21,7 +21,7 @@ export default function Card<
         alt={data.title}
       />
       <div className="content">
-        <H4 heading={data.title} />
+        <HDiv heading={data.title} variant="heading--h4" />
         <BodyText text={formatDate(data.release_date)} />
       </div>
     </div>
