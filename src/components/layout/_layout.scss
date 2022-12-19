@@ -5,6 +5,10 @@
 
     &--sidebar {
       grid-template-columns: 30rem 1fr;
+
+      @media (max-width: $tablet) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
