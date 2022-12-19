@@ -1,5 +1,6 @@
 .article {
   display: flex;
   justify-content: center;
-  border: 1px solid green;
+  @include vertical-padding;
+  @include horizontal-padding;
 }

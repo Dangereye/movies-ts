@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { pages } from "../../data/pages";
 import Container from "../container/Container";
 import MobileMenuIcon from "../mobile_menu_icon/MobileMenuIcon";
@@ -7,7 +8,9 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <Container>
-        <div className="navbar__logo">Movies</div>
+        <Link to="/" className="navbar__logo">
+          Movies
+        </Link>
         <Navigation list={pages} variant="horizontal" />
         <MobileMenuIcon />
       </Container>

@@ -9,6 +9,7 @@
   justify-content: center;
 
   padding: 2rem 0;
+  @include horizontal-padding;
 
   .container {
     display: flex;
