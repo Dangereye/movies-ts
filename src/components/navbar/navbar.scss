@@ -1,0 +1,47 @@
+.navbar {
+  width: 100%;
+  background-color: #000;
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-size: $base-font-size;
+    font-weight: 500;
+    color: $heading-text-light;
+  }
+
+  .navigation {
+    @media (max-width: $tablet) {
+      display: none;
+    }
+
+    &__link {
+      color: $body-text-light;
+
+      @media (hover: hover) {
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+  }
+
+  .mobile-menu-icon {
+    display: none;
+    @media (max-width: $tablet) {
+      display: flex;
+    }
+  }
+}

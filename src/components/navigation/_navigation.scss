@@ -1,0 +1,22 @@
+.navigation {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &.horizontal {
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+
+  &__item {
+  }
+
+  &__link {
+    text-transform: capitalize;
+    font-size: $base-font-size;
+    font-weight: 300;
+    transition: color 0.3s ease-out;
+  }
+}

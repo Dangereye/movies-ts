@@ -10,6 +10,7 @@ import "./sass/styles.scss";
 
 // Pages
 import LandingPage from "./pages/LandingPage";
+import Navbar from "./components/navbar/Navbar";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+          <Navbar />
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
