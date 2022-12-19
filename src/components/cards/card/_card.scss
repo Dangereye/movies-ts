@@ -1,0 +1,25 @@
+.card {
+  min-width: 35rem;
+  scroll-snap-align: start;
+  background-color: $grey-color;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .heading--h4 {
+    color: $heading-text-dark;
+  }
+
+  .body-text {
+    color: $body-text-dark;
+  }
+}

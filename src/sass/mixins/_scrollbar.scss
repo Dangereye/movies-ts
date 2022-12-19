@@ -1,0 +1,14 @@
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: darken($grey-color, 15%);
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $grey-color;
+  }
+}

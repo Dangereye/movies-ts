@@ -1,0 +1,9 @@
+.cards {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 4rem 0;
+  display: flex;
+  gap: 1rem;
+
+  @include scrollbar;
+}
