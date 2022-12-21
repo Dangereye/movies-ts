@@ -1,30 +1,25 @@
-import Card from "./card/Card";
+import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
-interface IMovie {
-  adult: boolean;
-  poster_path: string | null;
-  overview: string;
-  release_date: string;
-  genre_ids: number[];
-  original_title: string;
-  original_language: string;
-  title: string;
-  backdrop_path: string | null;
-  popularity: number;
-  vote_count: number;
-  video: boolean;
-  vote_average: number;
-}
-
-type CardsProps = {
-  list: IMovie[];
+type CardsProps<T> = {
+  getID: (item: T) => number;
+  renderItem: (item: T) => ReactNode;
+  renderLink: (item: T) => string;
+  data: T[];
 };
 
-export default function Cards({ list }: CardsProps) {
+export default function Cards<T extends {}>({
+  getID,
+  renderItem,
+  renderLink,
+  data,
+}: CardsProps<T>) {
   return (
     <div className="cards">
-      {list.map((card, i) => (
-        <Card data={card} />
+      {data.map((item) => (
+        <Link key={getID(item)} to={renderLink(item)} className="card">
+          {renderItem(item)}
+        </Link>
       ))}
     </div>
   );

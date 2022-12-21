@@ -5,5 +5,9 @@
   display: flex;
   gap: 1rem;
 
+  @media (max-width: $mobile) {
+    gap: 0.5rem;
+  }
+
   @include scrollbar;
 }
