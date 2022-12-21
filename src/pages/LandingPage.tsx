@@ -1,6 +1,3 @@
-// React Query
-import { useQuery } from "@tanstack/react-query";
-
 import Main from "../components/main/Main";
 import Article from "../components/article/Article";
 import Container from "../components/container/Container";
@@ -11,46 +8,33 @@ import CardContent from "../components/cards/card/CardContent";
 
 // Interfaces
 import { IMovie } from "../interfaces/IMovie";
-
-// Utilities
-import { formatDate } from "../utilities/formatDate";
 import { IPerson } from "../interfaces/IPerson";
 import { ITVShow } from "../interfaces/ITVShow";
 
-const fetchData = async (endpoint: string) => {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/${endpoint}?api_key=2f965fedbcdec55779f7e2e60eb62e59`
-  );
-  return res.json();
-};
+// Utilities
+import { formatDate } from "../utilities/formatDate";
+
+// Hooks
+import useMakeQuery from "../hooks/useMakeQuery";
 
 export default function LandingPage() {
   const {
     data: movies,
     isLoading: moviesIsLoading,
     isError: moviesIsError,
-  } = useQuery({
-    queryKey: ["trending movies"],
-    queryFn: () => fetchData("trending/movie/week"),
-  });
+  } = useMakeQuery("trending movies", "trending/movie/week");
 
   const {
     data: people,
     isLoading: peopleIsLoading,
     isError: peopleIsError,
-  } = useQuery({
-    queryKey: ["trending people"],
-    queryFn: () => fetchData("trending/person/week"),
-  });
+  } = useMakeQuery("trending people", "trending/person/week");
 
   const {
     data: tvshows,
     isLoading: tvshowsIsLoading,
     isError: tvshowsIsError,
-  } = useQuery({
-    queryKey: ["trending tv shows"],
-    queryFn: () => fetchData("trending/tv/week"),
-  });
+  } = useMakeQuery("trending tvshows", "trending/tv/week");
 
   if (moviesIsLoading || peopleIsLoading || tvshowsIsLoading) {
     return <H2 heading="Loading" />;
