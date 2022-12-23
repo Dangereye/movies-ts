@@ -62,6 +62,7 @@ export default function LandingPage() {
                     alt={item.title}
                   />
                   <CardContent
+                    vote={item.vote_average}
                     heading={item.title}
                     body={formatDate(item.release_date)}
                   />
