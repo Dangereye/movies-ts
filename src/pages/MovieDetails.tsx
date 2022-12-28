@@ -3,6 +3,7 @@ import Article from "../components/article/Article";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
 import Main from "../components/main/Main";
+import Navigation from "../components/navigation/Navigation";
 import BodyText from "../components/typography/BodyText";
 import H1 from "../components/typography/H1";
 import H2 from "../components/typography/H2";
@@ -11,14 +12,9 @@ import { IMovie } from "../interfaces/IMovie";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
-  const {
-    data: movie,
-    isError,
-    isLoading,
-  } = useMakeQuery(
+  const { data, isError, isLoading } = useMakeQuery<IMovie>(
     `movie-${movieId}`,
-    `movie/${movieId}`,
-    `&append_to_response=release_dates`
+    `movie/${movieId}`
   );
 
   if (isLoading) {
@@ -32,7 +28,7 @@ export default function MovieDetails() {
     <>
       <Header>
         <Container>
-          <H1 heading={movie.title} />
+          <H1 heading={data?.title} />
         </Container>
       </Header>
     </>

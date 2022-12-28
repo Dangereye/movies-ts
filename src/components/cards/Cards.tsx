@@ -5,7 +5,7 @@ type CardsProps<T> = {
   getID: (item: T) => number;
   renderItem: (item: T) => ReactNode;
   renderLink: (item: T) => string;
-  data: T[];
+  data: T[] | undefined;
 };
 
 export default function Cards<T extends {}>({
@@ -16,7 +16,7 @@ export default function Cards<T extends {}>({
 }: CardsProps<T>) {
   return (
     <div className="cards">
-      {data.map((item) => (
+      {data?.map((item) => (
         <Link key={getID(item)} to={renderLink(item)} className="card">
           {renderItem(item)}
         </Link>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-export default function useMakeQuery(
+export default function useMakeQuery<T>(
   key: string | undefined,
   endpoint: string | undefined,
   append?: string
@@ -12,7 +12,7 @@ export default function useMakeQuery(
     return res.json();
   };
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery<T>({
     queryKey: [key],
     queryFn: () => fetchData(endpoint, append),
   });

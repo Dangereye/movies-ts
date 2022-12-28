@@ -7,6 +7,7 @@ import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
 
 // Interfaces
+import { IPage } from "../interfaces/IPage";
 import { IMovie } from "../interfaces/IMovie";
 import { IPerson } from "../interfaces/IPerson";
 import { ITVShow } from "../interfaces/ITVShow";
@@ -22,19 +23,19 @@ export default function LandingPage() {
     data: movies,
     isLoading: moviesIsLoading,
     isError: moviesIsError,
-  } = useMakeQuery("trending movies", "trending/movie/week");
+  } = useMakeQuery<IPage<IMovie>>("trending movies", "trending/movie/week");
 
   const {
     data: people,
     isLoading: peopleIsLoading,
     isError: peopleIsError,
-  } = useMakeQuery("trending people", "trending/person/week");
+  } = useMakeQuery<IPage<IPerson>>("trending people", "trending/person/week");
 
   const {
     data: tvshows,
     isLoading: tvshowsIsLoading,
     isError: tvshowsIsError,
-  } = useMakeQuery("trending tvshows", "trending/tv/week");
+  } = useMakeQuery<IPage<ITVShow>>("trending tvshows", "trending/tv/week");
 
   if (moviesIsLoading || peopleIsLoading || tvshowsIsLoading) {
     return <H2 heading="Loading" />;
@@ -68,7 +69,7 @@ export default function LandingPage() {
                   />
                 </>
               )}
-              data={movies.results}
+              data={movies?.results}
             />
           </Container>
         </Article>
@@ -93,7 +94,7 @@ export default function LandingPage() {
                   />
                 </>
               )}
-              data={people.results}
+              data={people?.results}
             />
           </Container>
         </Article>
@@ -119,7 +120,7 @@ export default function LandingPage() {
                   />
                 </>
               )}
-              data={tvshows.results}
+              data={tvshows?.results}
             />
           </Container>
         </Article>
