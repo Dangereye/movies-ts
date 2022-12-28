@@ -11,7 +11,13 @@ export default function Navbar() {
         <Link to="/" className="navbar__logo">
           Movies
         </Link>
-        <Navigation list={pages} variant="horizontal" />
+        <Navigation
+          data={pages}
+          getID={(item) => item.name}
+          getLink={(item) => item.link}
+          renderItem={(item) => <>{item.name}</>}
+          variant="horizontal"
+        />
         <MobileMenuIcon />
       </Container>
     </div>

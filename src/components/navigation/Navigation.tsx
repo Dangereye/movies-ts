@@ -1,18 +1,28 @@
+import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-type NavigationProps = {
-  variant?: "horizontal";
-  list: { name: string; link: string }[];
+type NavigationProps<T> = {
+  variant?: "horizontal" | "comma-separated";
+  getID: (item: T) => string;
+  getLink: (item: T) => string;
+  renderItem: (item: T) => ReactNode;
+  data: T[] | undefined;
 };
 
-export default function Navigation({ variant, list }: NavigationProps) {
+export default function Navigation<T>({
+  variant,
+  getID,
+  getLink,
+  renderItem,
+  data,
+}: NavigationProps<T>) {
   return (
     <nav className="navigation">
       <ul className={`navigation__list ${variant}`}>
-        {list.map((page, i) => (
-          <li key={`navigation-${page.name}`} className="navigation__item">
-            <Link to={page.link} className="navigation__link">
-              {page.name}
+        {data?.map((page) => (
+          <li key={getID(page)} className="navigation__item">
+            <Link to={getLink(page)} className="navigation__link">
+              {renderItem(page)}
             </Link>
           </li>
         ))}
