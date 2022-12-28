@@ -5,6 +5,6 @@ type ArticleProps = {
   children: ReactNode;
 };
 
-export default function Article({ variant, children }: ArticleProps) {
+export default function Article({ variant = "", children }: ArticleProps) {
   return <article className={`article ${variant}`}>{children}</article>;
 }

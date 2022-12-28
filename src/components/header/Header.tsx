@@ -5,6 +5,6 @@ type HeaderProps = {
   children: ReactNode;
 };
 
-export default function Header({ variant, children }: HeaderProps) {
+export default function Header({ variant = "", children }: HeaderProps) {
   return <header className={`header ${variant}`}>{children}</header>;
 }

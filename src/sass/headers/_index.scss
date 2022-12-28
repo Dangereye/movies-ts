@@ -3,4 +3,9 @@
   justify-content: center;
   @include vertical-padding;
   @include horizontal-padding;
+
+  .container {
+    display: flex;
+    gap: 4rem;
+  }
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 type ImageComponentProps = {
   src: string;
   fallback: string;
-  alt: string;
+  alt: string | undefined;
   width?: number;
   height?: number;
 };

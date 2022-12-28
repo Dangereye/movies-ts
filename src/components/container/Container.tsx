@@ -5,6 +5,6 @@ type ContainerProps = {
   children: ReactNode;
 };
 
-export default function Container({ variant, children }: ContainerProps) {
+export default function Container({ variant = "", children }: ContainerProps) {
   return <div className={`container ${variant}`}>{children}</div>;
 }
