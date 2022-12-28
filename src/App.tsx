@@ -11,6 +11,7 @@ import "./sass/styles.scss";
 // Pages
 import LandingPage from "./pages/LandingPage";
 import Navbar from "./components/navbar/Navbar";
+import MovieDetails from "./pages/MovieDetails";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/movies/:movieId" element={<MovieDetails />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
