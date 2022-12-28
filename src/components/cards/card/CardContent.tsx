@@ -5,7 +5,7 @@ import VoteCountPercentage from "../../vote_count_percentage/VoteCountPercentage
 type CardContentProps = {
   vote?: number;
   heading: string;
-  body: string;
+  body: string | undefined;
 };
 
 export default function CardContent({ vote, heading, body }: CardContentProps) {

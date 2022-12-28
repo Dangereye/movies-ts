@@ -8,11 +8,19 @@
       flex-direction: row;
       gap: 2rem;
     }
-  }
 
-  &__item {
-  }
+    &.comma-separated {
+      flex-direction: row;
+      gap: 5px;
 
+      .navigation__item {
+        &:not(:last-child)::after {
+          content: ",";
+          font-size: $base-font-size;
+        }
+      }
+    }
+  }
   &__link {
     text-transform: capitalize;
     font-size: $base-font-size;

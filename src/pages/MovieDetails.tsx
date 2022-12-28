@@ -18,6 +18,8 @@ import useMakeQuery from "../hooks/useMakeQuery";
 // Interfaces
 import { IMovie } from "../interfaces/IMovie";
 import { IMovieCredits } from "../interfaces/IMovieCredits";
+import { formatDate } from "../utilities/formatDate";
+import { formatRuntime } from "../utilities/formatRuntime";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -51,6 +53,18 @@ export default function MovieDetails() {
           />
           <div className="header__content">
             <H1 heading={movie?.title} />
+            <div className="info-bar">
+              <BodyText text={formatDate(movie?.release_date)} />
+              <Navigation
+                data={movie?.genres}
+                getID={(item) => item.id}
+                getLink={(item) => `/genre/${item.id}`}
+                renderItem={(item) => item.name}
+                variant="comma-separated"
+              />
+              <BodyText text={formatRuntime(movie?.runtime)} />
+            </div>
+
             <HDiv variant="heading--h4" heading="overview" />
             <BodyText text={movie?.overview} />
             <div>
