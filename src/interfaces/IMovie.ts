@@ -1,3 +1,5 @@
+import { IMovieCredits } from "./IMovieCredits";
+
 export interface IMovie {
   adult: boolean;
   backdrop_path: string | null;
@@ -29,4 +31,5 @@ export interface IMovie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: IMovieCredits;
 }
