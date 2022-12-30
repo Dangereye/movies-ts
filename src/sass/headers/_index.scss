@@ -4,6 +4,14 @@
   @include vertical-padding;
   @include horizontal-padding;
 
+  .heading {
+    color: $heading-text-dark;
+  }
+
+  .body-text {
+    color: $body-text-dark;
+  }
+
   .container {
     display: flex;
     gap: 4rem;
