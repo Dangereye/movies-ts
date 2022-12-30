@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Article from "../components/article/Article";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
-import InfoBar from "../components/header/InfoBar";
+import HeaderOverview from "../components/header/HeaderOverview";
 import ImageComponent from "../components/image/Image";
 import Main from "../components/main/Main";
 import Navigation from "../components/navigation/Navigation";
@@ -12,6 +12,7 @@ import BodyText from "../components/typography/BodyText";
 import H1 from "../components/typography/H1";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
+import { Wrapper } from "../components/wrapper/Wrapper";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -54,7 +55,7 @@ export default function MovieDetails() {
           />
           <div className="header__content">
             <H1 heading={movie?.title} />
-            <InfoBar>
+            <Wrapper name="info-bar" variant="flex">
               <BodyText text={formatDate(movie?.release_date)} />
               <Navigation
                 data={movie?.genres}
@@ -64,28 +65,28 @@ export default function MovieDetails() {
                 variant="comma-separated"
               />
               <BodyText text={formatRuntime(movie?.runtime)} />
-            </InfoBar>
-
-            <HDiv variant="heading--h4" heading="overview" />
-            <BodyText text={movie?.overview} />
-            <div>
-              <HDiv variant="heading--h4" heading="Directors" />
-              {movie?.credits.crew.map((person) => {
-                if (person.job === "Director") {
-                  return <BodyText text={person.name} />;
-                }
-                return <></>;
-              })}
-            </div>
-            <div>
-              <HDiv variant="heading--h4" heading="Producers" />
-              {movie?.credits.crew.map((person) => {
-                if (person.job === "Producer") {
-                  return <BodyText text={person.name} />;
-                }
-                return <></>;
-              })}
-            </div>
+            </Wrapper>
+            <HeaderOverview text={movie?.overview} />
+            <Wrapper name="crew" variant="flex">
+              <div>
+                <HDiv variant="heading--h4" heading="Directors" />
+                {movie?.credits.crew.map((person) => {
+                  if (person.job === "Director") {
+                    return <BodyText text={person.name} />;
+                  }
+                  return <></>;
+                })}
+              </div>
+              <div>
+                <HDiv variant="heading--h4" heading="Producers" />
+                {movie?.credits.crew.map((person) => {
+                  if (person.job === "Producer") {
+                    return <BodyText text={person.name} />;
+                  }
+                  return <></>;
+                })}
+              </div>
+            </Wrapper>
           </div>
         </Container>
       </Header>

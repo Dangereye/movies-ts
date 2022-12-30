@@ -1,0 +1,19 @@
+.wrapper {
+  margin: 4rem 0;
+  width: 100%;
+
+  &.block {
+    display: block;
+  }
+
+  &.flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  &.grid {
+    display: grid;
+  }
+}

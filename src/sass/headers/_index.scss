@@ -4,21 +4,20 @@
   @include vertical-padding;
   @include horizontal-padding;
 
-  .info-bar {
-    margin: 1rem 0 4rem;
+  .container {
     display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    align-items: center;
+    gap: 4rem;
+  }
 
+  .info-bar {
+    margin-top: 2rem;
     > * {
       display: flex;
       align-items: center;
     }
   }
 
-  .container {
-    display: flex;
-    gap: 4rem;
+  .crew {
+    align-items: flex-start;
   }
 }
