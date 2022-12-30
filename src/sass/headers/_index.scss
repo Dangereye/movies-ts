@@ -5,10 +5,16 @@
   @include horizontal-padding;
 
   .info-bar {
-    margin: 2rem 0 4rem;
+    margin: 1rem 0 4rem;
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
     align-items: center;
+
+    > * {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .container {

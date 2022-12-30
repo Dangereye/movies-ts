@@ -11,9 +11,12 @@
 
     &.comma-separated {
       flex-direction: row;
+      flex-wrap: wrap;
       gap: 5px;
+      row-gap: 1rem;
 
       .navigation__item {
+        min-width: max-content;
         &:not(:last-child)::after {
           content: ",";
           font-size: $base-font-size;
@@ -21,6 +24,7 @@
       }
     }
   }
+
   &__link {
     text-transform: capitalize;
     font-size: $base-font-size;

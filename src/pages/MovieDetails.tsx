@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Article from "../components/article/Article";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
+import InfoBar from "../components/header/InfoBar";
 import ImageComponent from "../components/image/Image";
 import Main from "../components/main/Main";
 import Navigation from "../components/navigation/Navigation";
@@ -53,7 +54,7 @@ export default function MovieDetails() {
           />
           <div className="header__content">
             <H1 heading={movie?.title} />
-            <div className="info-bar">
+            <InfoBar>
               <BodyText text={formatDate(movie?.release_date)} />
               <Navigation
                 data={movie?.genres}
@@ -63,7 +64,7 @@ export default function MovieDetails() {
                 variant="comma-separated"
               />
               <BodyText text={formatRuntime(movie?.runtime)} />
-            </div>
+            </InfoBar>
 
             <HDiv variant="heading--h4" heading="overview" />
             <BodyText text={movie?.overview} />
