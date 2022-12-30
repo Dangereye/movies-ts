@@ -17,6 +17,40 @@
     }
   }
 
+  .vote {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .heading {
+      margin: 0;
+    }
+
+    .vote-count-percentage {
+      position: relative;
+      top: 0;
+      left: 0;
+
+      svg {
+        position: relative;
+        width: 10rem;
+        height: 10rem;
+
+        & circle {
+          stroke-width: 4;
+        }
+      }
+
+      .number {
+        font-size: 2.8rem;
+
+        sup {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+
   .crew {
     align-items: flex-start;
   }

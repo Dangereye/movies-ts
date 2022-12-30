@@ -6,6 +6,7 @@ import Container from "../components/container/Container";
 import Header from "../components/header/Header";
 import HeaderOverview from "../components/header/HeaderOverview";
 import ImageComponent from "../components/image/Image";
+import VoteCountPercentage from "../components/vote_count_percentage/VoteCountPercentage";
 import Main from "../components/main/Main";
 import Navigation from "../components/navigation/Navigation";
 import BodyText from "../components/typography/BodyText";
@@ -65,6 +66,12 @@ export default function MovieDetails() {
                 variant="comma-separated"
               />
               <BodyText text={formatRuntime(movie?.runtime)} />
+            </Wrapper>
+            <Wrapper name="actions" variant="flex">
+              <div className="vote">
+                <VoteCountPercentage vote={movie?.vote_average} size="header" />
+                <HDiv variant="heading--h4" heading="user score" />
+              </div>
             </Wrapper>
             <HeaderOverview text={movie?.overview} />
             <Wrapper name="crew" variant="flex">

@@ -1,10 +1,24 @@
 type VoteCountPercentageProps = {
-  vote?: number;
+  vote: number | undefined;
+  size?: "card" | "header";
 };
 
 export default function VoteCountPercentage({
   vote,
+  size = "card",
 }: VoteCountPercentageProps) {
+  let cx = 25,
+    cy = 25,
+    r = 20,
+    strokeDashArray = 123;
+
+  if (size === "header") {
+    cx = cx * 2;
+    cy = cy * 2;
+    r = r * 2;
+    strokeDashArray = strokeDashArray * 2;
+  }
+
   const formatAvgVotePercentage = (vote: number) => {
     return +vote.toFixed(1) * 10;
   };
@@ -12,13 +26,13 @@ export default function VoteCountPercentage({
   return (
     <>
       {vote && (
-        <div className="vote-average">
+        <div className="vote-count-percentage">
           <svg>
-            <circle cx="25" cy="25" r="20" />
+            <circle cx={cx} cy={cy} r={r} />
             <circle
-              cx="25"
-              cy="25"
-              r="20"
+              cx={cx}
+              cy={cy}
+              r={r}
               style={{
                 stroke:
                   vote >= 7
@@ -26,9 +40,10 @@ export default function VoteCountPercentage({
                     : vote < 7 && vote > 5.1
                     ? "orange"
                     : "red",
-                strokeDasharray: 123,
+                strokeDasharray: strokeDashArray,
                 strokeDashoffset:
-                  123 - (123 * formatAvgVotePercentage(vote)) / 100,
+                  strokeDashArray -
+                  (strokeDashArray * formatAvgVotePercentage(vote)) / 100,
               }}
             />
           </svg>
