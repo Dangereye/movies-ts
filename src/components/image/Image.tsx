@@ -11,7 +11,7 @@ type ImageComponentProps = {
 export default function ImageComponent({
   src,
   fallback,
-  alt,
+  alt = "Image text",
   width = 300,
   height = 450,
 }: ImageComponentProps) {

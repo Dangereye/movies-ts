@@ -1,5 +1,4 @@
 .header {
-  min-height: 100rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -22,9 +21,21 @@
 
   .container {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(25rem, 50rem) minmax(35rem, 1fr);
     align-items: flex-start;
     gap: 4rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .image-component {
+    justify-self: center;
+    width: 100%;
+    max-width: 50rem;
+    height: auto;
   }
 
   .info-bar {
@@ -84,11 +95,14 @@
     align-items: flex-start;
 
     .profile {
-      min-width: 26rem;
-      max-width: 40rem;
+      max-width: 35rem;
       margin: 0;
       align-items: flex-start;
       gap: 1rem;
+
+      @media (max-width: 900px) {
+        max-width: 30rem;
+      }
 
       a.heading {
         margin-bottom: 1rem;
@@ -107,9 +121,13 @@
       }
 
       .jobs {
-        max-width: 30rem;
+        max-width: 25rem;
         margin: 0;
         gap: 5px;
+
+        @media (max-width: 900px) {
+          max-width: 20rem;
+        }
 
         .body-text {
           margin: 0;
