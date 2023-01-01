@@ -1,19 +1,25 @@
 .header {
+  height: 100rem;
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: #000;
   @include vertical-padding;
   @include horizontal-padding;
 
   .heading {
-    color: $heading-text-dark;
+    color: $heading-text-light;
   }
 
   .body-text {
-    color: $body-text-dark;
+    color: $body-text-light;
   }
 
   .container {
+    position: relative;
     display: flex;
+    align-items: center;
     gap: 4rem;
   }
 
@@ -60,16 +66,23 @@
   }
 
   .crew {
+    margin: 8rem 0 4rem;
     align-items: flex-start;
     .profile {
       min-width: 26rem;
-      max-width: 36rem;
+      max-width: 40rem;
       margin: 0;
       align-items: flex-start;
       gap: 1rem;
+
       .heading {
-        margin-bottom: 5px;
+        margin-bottom: 1rem;
       }
+      .body-text {
+        font-size: $small-font-size;
+        line-height: 1.2;
+      }
+
       .jobs {
         max-width: 30rem;
         margin: 0;
@@ -80,6 +93,7 @@
         }
       }
     }
+
     .image-component {
       width: 5rem;
       height: 5rem;

@@ -21,9 +21,9 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IMovie } from "../interfaces/IMovie";
-import { IMovieCredits } from "../interfaces/IMovieCredits";
 import { formatDate } from "../utilities/formatDate";
 import { formatRuntime } from "../utilities/formatRuntime";
+import BackgroundImage from "../components/background_image/BackgroundImage";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -48,6 +48,9 @@ export default function MovieDetails() {
   return (
     <>
       <Header>
+        <BackgroundImage
+          path={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+        />
         <Container>
           <ImageComponent
             src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
