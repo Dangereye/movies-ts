@@ -61,5 +61,30 @@
 
   .crew {
     align-items: flex-start;
+    .profile {
+      min-width: 26rem;
+      max-width: 40rem;
+      margin: 0;
+      align-items: flex-start;
+      gap: 1rem;
+      .heading {
+        margin-bottom: 5px;
+      }
+      .jobs {
+        max-width: 30rem;
+        margin: 0;
+        gap: 5px;
+
+        > *:not(:last-child)::after {
+          content: ",";
+        }
+      }
+    }
+    .image-component {
+      width: 5rem;
+      height: 5rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
   }
 }

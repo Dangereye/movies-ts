@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // Components
 import Article from "../components/article/Article";
@@ -14,6 +14,7 @@ import H1 from "../components/typography/H1";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import { Wrapper } from "../components/wrapper/Wrapper";
+import CrewJobs from "../components/header/CrewJobs";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -43,6 +44,7 @@ export default function MovieDetails() {
   if (isError) {
     return <H2 heading="Error" />;
   }
+
   return (
     <>
       <Header>
@@ -74,44 +76,7 @@ export default function MovieDetails() {
               </div>
             </Wrapper>
             <HeaderOverview text={movie?.overview} />
-            <Wrapper name="crew" variant="flex">
-              <div>
-                <HDiv variant="heading--h4" heading="Directors" />
-                {movie?.credits.crew.map((person) => {
-                  if (person.job === "Director") {
-                    return <BodyText text={person.name} />;
-                  }
-                  return <></>;
-                })}
-              </div>
-              <div>
-                <HDiv variant="heading--h4" heading="Producers" />
-                {movie?.credits.crew.map((person) => {
-                  if (person.job === "Producer") {
-                    return <BodyText text={person.name} />;
-                  }
-                  return <></>;
-                })}
-              </div>
-              <div>
-                <HDiv variant="heading--h4" heading="Screenplay" />
-                {movie?.credits.crew.map((person) => {
-                  if (person.job === "Screenplay") {
-                    return <BodyText text={person.name} />;
-                  }
-                  return <></>;
-                })}
-              </div>
-              <div>
-                <HDiv variant="heading--h4" heading="Story" />
-                {movie?.credits.crew.map((person) => {
-                  if (person.job === "Story") {
-                    return <BodyText text={person.name} />;
-                  }
-                  return <></>;
-                })}
-              </div>
-            </Wrapper>
+            <CrewJobs credits={movie?.credits} />
           </div>
         </Container>
       </Header>
