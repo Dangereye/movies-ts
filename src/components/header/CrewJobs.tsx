@@ -47,15 +47,20 @@ export default function CrewJobs({ credits }: CrewJobProps) {
           ignoreList.push(person.name);
           return (
             <Wrapper name="profile" variant="flex" key={person.name}>
-              <ImageComponent
-                src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                fallback="/images/error_100x100.webp"
-                width={500}
-                height={750}
-                alt={person.name}
-              />
+              <Link to={`/people/${person.id}`}>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                  fallback="/images/error_100x100.webp"
+                  width={500}
+                  height={750}
+                  alt={person.name}
+                />
+              </Link>
               <div>
-                <Link to={`/`} className="heading heading--h4">
+                <Link
+                  to={`/people/${person.id}`}
+                  className="heading heading--h4"
+                >
                   {person.name}
                 </Link>
                 <Wrapper name="jobs" variant="flex">
