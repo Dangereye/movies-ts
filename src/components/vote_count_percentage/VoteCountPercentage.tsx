@@ -13,10 +13,10 @@ export default function VoteCountPercentage({
     strokeDashArray = 123;
 
   if (size === "header") {
-    cx = cx * 2;
-    cy = cy * 2;
-    r = r * 2;
-    strokeDashArray = strokeDashArray * 2;
+    cx = cx * 1.5;
+    cy = cy * 1.5;
+    r = r * 1.5;
+    strokeDashArray = strokeDashArray * 1.5;
   }
 
   const formatAvgVotePercentage = (vote: number) => {

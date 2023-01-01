@@ -93,6 +93,24 @@ export default function MovieDetails() {
                   return <></>;
                 })}
               </div>
+              <div>
+                <HDiv variant="heading--h4" heading="Screenplay" />
+                {movie?.credits.crew.map((person) => {
+                  if (person.job === "Screenplay") {
+                    return <BodyText text={person.name} />;
+                  }
+                  return <></>;
+                })}
+              </div>
+              <div>
+                <HDiv variant="heading--h4" heading="Story" />
+                {movie?.credits.crew.map((person) => {
+                  if (person.job === "Story") {
+                    return <BodyText text={person.name} />;
+                  }
+                  return <></>;
+                })}
+              </div>
             </Wrapper>
           </div>
         </Container>
