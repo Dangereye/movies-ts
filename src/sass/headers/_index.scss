@@ -1,5 +1,5 @@
 .header {
-  height: 100rem;
+  min-height: 100rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -12,6 +12,10 @@
     color: $heading-text-light;
   }
 
+  .caption-text {
+    color: $heading-text-light;
+  }
+
   .body-text {
     color: $body-text-light;
   }
@@ -19,12 +23,22 @@
   .container {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 4rem;
   }
 
   .info-bar {
     margin-top: 2rem;
+
+    .body-text {
+      margin: 0;
+      color: $heading-text-light;
+    }
+
+    .navigation__item::after {
+      color: $heading-text-light;
+    }
+
     > * {
       display: flex;
       align-items: center;
@@ -68,6 +82,7 @@
   .crew {
     margin: 8rem 0 4rem;
     align-items: flex-start;
+
     .profile {
       min-width: 26rem;
       max-width: 40rem;
@@ -75,9 +90,17 @@
       align-items: flex-start;
       gap: 1rem;
 
-      .heading {
+      a.heading {
         margin-bottom: 1rem;
+        transition: color 0.3s ease-out;
+
+        @media (hover: hover) {
+          &:hover {
+            color: $accent-color;
+          }
+        }
       }
+
       .body-text {
         font-size: $small-font-size;
         line-height: 1.2;
@@ -87,6 +110,10 @@
         max-width: 30rem;
         margin: 0;
         gap: 5px;
+
+        .body-text {
+          margin: 0;
+        }
 
         > *:not(:last-child)::after {
           content: ",";

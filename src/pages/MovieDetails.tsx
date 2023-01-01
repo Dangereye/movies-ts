@@ -78,7 +78,7 @@ export default function MovieDetails() {
                 <HDiv variant="heading--h4" heading="user score" />
               </div>
             </Wrapper>
-            <HeaderOverview text={movie?.overview} />
+            <HeaderOverview caption={movie?.tagline} text={movie?.overview} />
             <CrewJobs credits={movie?.credits} />
           </div>
         </Container>
