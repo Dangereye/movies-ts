@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { IMovieCredits } from "../../interfaces/IMovieCredits";
+import { ICredits } from "../../interfaces/ICredits";
 import ImageComponent from "../image/Image";
 import BodyText from "../typography/BodyText";
 import Wrapper from "../wrapper/Wrapper";
 
 type CrewJobProps = {
-  credits: IMovieCredits | undefined;
+  credits: ICredits | undefined;
 };
 
 export default function CrewJobs({ credits }: CrewJobProps) {
@@ -18,7 +18,8 @@ export default function CrewJobs({ credits }: CrewJobProps) {
         person.job === "Director" ||
         person.job === "Producer" ||
         person.job === "Screenplay" ||
-        person.job === "Story"
+        person.job === "Story" ||
+        person.job === "Executive Producer"
       ) {
         array.push(person.name);
       }

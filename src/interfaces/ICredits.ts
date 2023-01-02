@@ -1,4 +1,4 @@
-export interface IMovieCredits {
+export interface ICredits {
   id: number;
   cast: {
     adult: boolean;

@@ -1,3 +1,5 @@
+import { ICredits } from "./ICredits";
+
 export interface ITVShow {
   backdrop_path: string | null;
   created_by: {
@@ -65,4 +67,5 @@ export interface ITVShow {
   type: string;
   vote_average: number;
   vote_count: number;
+  credits: ICredits;
 }

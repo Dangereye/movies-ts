@@ -12,6 +12,7 @@ import "./sass/styles.scss";
 import Home from "./pages/Home";
 import Navbar from "./components/navbar/Navbar";
 import MovieDetails from "./pages/MovieDetails";
+import TvDetails from "./pages/TvDetails";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movies/:movieId" element={<MovieDetails />} />
+            <Route path="/tv/:tvId" element={<TvDetails />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
