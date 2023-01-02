@@ -16,10 +16,10 @@ export default function CrewJobs({ credits }: CrewJobProps) {
     credits?.crew.forEach((person) => {
       if (
         person.job === "Director" ||
-        person.job === "Producer" ||
-        person.job === "Screenplay" ||
-        person.job === "Story" ||
-        person.job === "Executive Producer"
+        (person.job === "Producer" && person.popularity > 5) ||
+        (person.job === "Screenplay" && person.popularity > 5) ||
+        (person.job === "Story" && person.popularity > 5) ||
+        (person.job === "Executive Producer" && person.popularity > 5)
       ) {
         array.push(person.name);
       }
