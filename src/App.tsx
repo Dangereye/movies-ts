@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./sass/styles.scss";
 
 // Pages
-import LandingPage from "./pages/LandingPage";
+import Home from "./pages/Home";
 import Navbar from "./components/navbar/Navbar";
 import MovieDetails from "./pages/MovieDetails";
 
@@ -22,7 +22,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<Home />} />
             <Route path="/movies/:movieId" element={<MovieDetails />} />
           </Routes>
         </BrowserRouter>

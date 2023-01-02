@@ -6,6 +6,10 @@ type WrapperProps = {
   children: ReactNode;
 };
 
-export function Wrapper({ name, variant = "block", children }: WrapperProps) {
+export default function Wrapper({
+  name,
+  variant = "block",
+  children,
+}: WrapperProps) {
   return <div className={`wrapper ${name} ${variant}`}>{children}</div>;
 }

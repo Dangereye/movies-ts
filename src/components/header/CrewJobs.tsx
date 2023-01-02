@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { IMovieCredits } from "../../interfaces/IMovieCredits";
 import ImageComponent from "../image/Image";
 import BodyText from "../typography/BodyText";
-import { Wrapper } from "../wrapper/Wrapper";
+import Wrapper from "../wrapper/Wrapper";
 
 type CrewJobProps = {
   credits: IMovieCredits | undefined;
