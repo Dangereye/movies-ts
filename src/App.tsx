@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/navbar/Navbar";
 import MovieDetails from "./pages/MovieDetails";
 import TvDetails from "./pages/TvDetails";
+import PersonDetails from "./pages/PersonDetails";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/movies/:movieId" element={<MovieDetails />} />
             <Route path="/tv/:tvId" element={<TvDetails />} />
+            <Route path="/person/:personId" element={<PersonDetails />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />

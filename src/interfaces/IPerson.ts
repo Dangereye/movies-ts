@@ -1,3 +1,5 @@
+import { ICombinedCredits } from "./ICombinedCredits";
+
 export interface IPerson {
   birthday: string | null;
   known_for_department: string;
@@ -13,4 +15,5 @@ export interface IPerson {
   adult: boolean;
   imdb_id: string;
   homepage: string | null;
+  combined_credits: ICombinedCredits;
 }
