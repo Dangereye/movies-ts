@@ -9,17 +9,18 @@ type CrewJobProps = {
 };
 
 export default function CrewJobs({ credits }: CrewJobProps) {
-  let ignoreList: string[] = [];
+  const ignoreList: string[] = [];
+  let count: number = 0;
 
   const getPeople = () => {
     let array: string[] = [];
     credits?.crew.forEach((person) => {
       if (
         person.job === "Director" ||
-        (person.job === "Producer" && person.popularity > 5) ||
-        (person.job === "Screenplay" && person.popularity > 5) ||
-        (person.job === "Story" && person.popularity > 5) ||
-        (person.job === "Executive Producer" && person.popularity > 5)
+        person.job === "Producer" ||
+        person.job === "Screenplay" ||
+        person.job === "Story" ||
+        person.job === "Executive Producer"
       ) {
         array.push(person.name);
       }
@@ -42,43 +43,50 @@ export default function CrewJobs({ credits }: CrewJobProps) {
 
   return (
     <Wrapper name="crew" variant="flex">
-      {credits?.crew.map((person, i) => {
-        const list = getPeople();
-        if (list.includes(person.name) && !ignoreList.includes(person.name)) {
-          ignoreList.push(person.name);
-          return (
-            <Wrapper name="profile" variant="flex" key={person.name}>
-              <Link to={`/person/${person.id}`}>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                  fallback="/images/error_100x100.webp"
-                  width={100}
-                  height={100}
-                  alt={person.name}
-                />
-              </Link>
-              <div>
-                <Link
-                  to={`/person/${person.id}`}
-                  className="heading heading--h4"
-                >
-                  {person.name}
+      {credits?.crew
+        .sort((a, b) => b.popularity - a.popularity)
+        .map((person) => {
+          const list = getPeople();
+          if (
+            list.includes(person.name) &&
+            !ignoreList.includes(person.name) &&
+            count < 6
+          ) {
+            ignoreList.push(person.name);
+            count = count + 1;
+            return (
+              <Wrapper name="profile" variant="flex" key={person.name}>
+                <Link to={`/person/${person.id}`}>
+                  <ImageComponent
+                    src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                    fallback="/images/error_100x100.webp"
+                    width={100}
+                    height={100}
+                    alt={person.name}
+                  />
                 </Link>
-                <Wrapper name="jobs" variant="flex">
-                  {getJobs(person.name).map((job, i) => (
-                    <BodyText
-                      key={`${person.job}-${i}`}
-                      text={job}
-                      variant="job"
-                    />
-                  ))}
-                </Wrapper>
-              </div>
-            </Wrapper>
-          );
-        }
-        return null;
-      })}
+                <div>
+                  <Link
+                    to={`/person/${person.id}`}
+                    className="heading heading--h4"
+                  >
+                    {person.name}
+                  </Link>
+                  <Wrapper name="jobs" variant="flex">
+                    {getJobs(person.name).map((job, i) => (
+                      <BodyText
+                        key={`${person.job}-${i}`}
+                        text={job}
+                        variant="job"
+                      />
+                    ))}
+                  </Wrapper>
+                </div>
+              </Wrapper>
+            );
+          }
+          return null;
+        })}
     </Wrapper>
   );
 }
