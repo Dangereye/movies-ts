@@ -97,7 +97,7 @@ export default function MovieDetails() {
           <H2 heading="Top billed cast" />
           <Cards
             getID={(item: ICast) => item.id}
-            renderLink={(item) => `/people/${item.id}`}
+            renderLink={(item) => `/person/${item.id}`}
             renderItem={(item: ICast) => (
               <>
                 <ImageComponent

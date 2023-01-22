@@ -25,7 +25,7 @@ export default function VoteCountPercentage({
 
   return (
     <>
-      {vote ? (
+      {vote && vote > 0 ? (
         <div
           className={
             large
@@ -58,7 +58,7 @@ export default function VoteCountPercentage({
             <sup>%</sup>
           </div>
         </div>
-      ) : (
+      ) : vote === 0 ? (
         <div
           className={
             large
@@ -81,7 +81,7 @@ export default function VoteCountPercentage({
           </svg>
           <div className="number">NR</div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
