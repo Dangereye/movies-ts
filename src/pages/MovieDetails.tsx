@@ -109,6 +109,8 @@ export default function MovieDetails() {
               </>
             )}
             data={movie?.credits.cast}
+            sort={(a, b) => b.popularity - a.popularity}
+            limit
           />
         </Container>
       </Article>
