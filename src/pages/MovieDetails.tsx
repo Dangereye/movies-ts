@@ -24,6 +24,13 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import Article from "../components/article/Article";
+import Container from "../components/container/Container";
+import Cards from "../components/cards/Cards";
+import ImageComponent from "../components/image/Image";
+import CardContent from "../components/cards/card/CardContent";
+import { ICredits } from "../interfaces/ICredits";
+import { ICast } from "../interfaces/ICast";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -56,6 +63,7 @@ export default function MovieDetails() {
           variant="horizontal"
         />
       </SubNavbar>
+
       <Header
         bgImage={movie?.backdrop_path}
         image={movie?.poster_path}
@@ -82,6 +90,28 @@ export default function MovieDetails() {
         <Overview caption={movie?.tagline} text={movie?.overview} />
         <CrewJobs credits={movie?.credits} />
       </Header>
+
+      {/* Top Billed Cast */}
+      <Article>
+        <Container>
+          <H2 heading="Top billed cast" />
+          <Cards
+            getID={(item: ICast) => item.id}
+            renderLink={(item) => `/people/${item.id}`}
+            renderItem={(item: ICast) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.name}
+                />
+                <CardContent heading={item.name} body={item.character} />
+              </>
+            )}
+            data={movie?.credits.cast}
+          />
+        </Container>
+      </Article>
     </>
   );
 }
