@@ -1,0 +1,38 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  font-family: "Montserrat", sans-serif;
+  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 500;
+
+  padding: 1.6rem 3.2rem;
+  border: none;
+
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+
+  &--primary {
+    background-color: $accent-color;
+    color: $heading-text-light;
+  }
+
+  &--secondary {
+    border: 1px solid $accent-color;
+    background-color: transparent;
+  }
+
+  &--tertiary {
+    min-height: 4rem;
+    min-width: 4rem;
+    padding: 0;
+    @media (hover: hover) {
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+}

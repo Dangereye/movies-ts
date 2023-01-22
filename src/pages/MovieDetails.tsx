@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 
 // Components
+import SubNavbar from "../components/sub_navbar/SubNavbar";
 import Header from "../components/header/Header";
 import Overview from "../components/header/Overview";
 import VoteCountPercentage from "../components/vote_count_percentage/VoteCountPercentage";
@@ -20,6 +21,9 @@ import { IMovie } from "../interfaces/IMovie";
 // Utilities
 import { formatDate } from "../utilities/formatDate";
 import { formatRuntime } from "../utilities/formatRuntime";
+
+// Data
+import { moviePages } from "../data/moviePages";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -43,6 +47,15 @@ export default function MovieDetails() {
 
   return (
     <>
+      <SubNavbar>
+        <Navigation
+          data={moviePages}
+          getID={(item) => item.name}
+          getLink={(item) => item.link}
+          renderItem={(item) => item.name}
+          variant="horizontal"
+        />
+      </SubNavbar>
       <Header
         bgImage={movie?.backdrop_path}
         image={movie?.poster_path}

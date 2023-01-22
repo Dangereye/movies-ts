@@ -1,0 +1,27 @@
+.sub-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $grey-color;
+  @include horizontal-padding;
+  color: $heading-text-dark;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .navigation {
+    &__link {
+      color: $heading-text-dark;
+      @media (hover: hover) {
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+  }
+}
