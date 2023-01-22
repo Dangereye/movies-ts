@@ -61,7 +61,7 @@ export default function TvDetails() {
         </Wrapper>
         <Wrapper name="actions" variant="flex">
           <div className="vote">
-            <VoteCountPercentage vote={tv?.vote_average} size="header" />
+            <VoteCountPercentage vote={tv?.vote_average} large />
             <HDiv variant="heading--h4" heading="user score" />
           </div>
         </Wrapper>

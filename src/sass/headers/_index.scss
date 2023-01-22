@@ -64,34 +64,10 @@
     .heading {
       margin: 0;
     }
-
-    .vote-count-percentage {
-      position: relative;
-      top: 0;
-      left: 0;
-
-      svg {
-        position: relative;
-        width: 7.5rem;
-        height: 7.5rem;
-
-        & circle {
-          stroke-width: 4;
-        }
-      }
-
-      .number {
-        font-size: calc(1.6rem * 1.5);
-
-        sup {
-          font-size: calc(0.8rem * 1.5);
-        }
-      }
-    }
   }
 
   .crew {
-    margin: 8rem 0 4rem;
+    margin-top: 8rem;
     align-items: flex-start;
 
     .profile {

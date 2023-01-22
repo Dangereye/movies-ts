@@ -62,7 +62,7 @@ export default function MovieDetails() {
         </Wrapper>
         <Wrapper name="actions" variant="flex">
           <div className="vote">
-            <VoteCountPercentage vote={movie?.vote_average} size="header" />
+            <VoteCountPercentage vote={movie?.vote_average} large />
             <HDiv variant="heading--h4" heading="user score" />
           </div>
         </Wrapper>
