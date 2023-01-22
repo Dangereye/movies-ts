@@ -1,7 +1,7 @@
 export const moviePages = [
   {
     name: "popular",
-    link: "/movies",
+    link: "/movies/popular",
   },
   {
     name: "Now playing",

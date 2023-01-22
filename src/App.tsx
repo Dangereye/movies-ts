@@ -8,9 +8,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Sass
 import "./sass/styles.scss";
 
+// Components
+import Navbar from "./components/navbar/Navbar";
+
 // Pages
 import Home from "./pages/Home";
-import Navbar from "./components/navbar/Navbar";
+import MoviesPopular from "./pages/MoviesPopular";
+import MoviesNowPlaying from "./pages/MoviesNowPlaying";
+import MoviesUpcoming from "./pages/MoviesUpcoming";
+import MoviesTopRated from "./pages/MoviesTopRated";
 import MovieDetails from "./pages/MovieDetails";
 import TvDetails from "./pages/TvDetails";
 import PersonDetails from "./pages/PersonDetails";
@@ -25,6 +31,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/movies/popular" element={<MoviesPopular />} />
+            <Route path="/movies/now-playing" element={<MoviesNowPlaying />} />
+            <Route path="/movies/upcoming" element={<MoviesUpcoming />} />
+            <Route path="/movies/top-rated" element={<MoviesTopRated />} />
             <Route path="/movies/:movieId" element={<MovieDetails />} />
             <Route path="/tv/:tvId" element={<TvDetails />} />
             <Route path="/person/:personId" element={<PersonDetails />} />

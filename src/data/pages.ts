@@ -1,7 +1,7 @@
 export const pages = [
   {
     name: "movies",
-    link: "/movies",
+    link: "/movies/popular",
   },
   {
     name: "tv shows",
