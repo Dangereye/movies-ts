@@ -46,8 +46,18 @@
       color: $heading-text-light;
     }
 
-    .navigation__item::after {
-      color: $heading-text-light;
+    .navigation {
+      &__link {
+        color: $heading-text-light;
+        @media (hover: hover) {
+          &:hover {
+            color: $accent-color;
+          }
+        }
+      }
+      &::after {
+        color: $heading-text-light;
+      }
     }
 
     > * {
