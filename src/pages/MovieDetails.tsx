@@ -29,11 +29,22 @@ import Container from "../components/container/Container";
 import Cards from "../components/cards/Cards";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
-import { ICredits } from "../interfaces/ICredits";
 import { ICast } from "../interfaces/ICast";
+import Video from "../components/video/Video";
+import Button from "../components/buttons/Button";
+import { useState } from "react";
+
+type VideoProps =
+  | "Trailer"
+  | "Teaser"
+  | "Clip"
+  | "Behind the Scenes"
+  | "Blooper"
+  | "Featurette";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
+  const [videos, setVideos] = useState<VideoProps>("Trailer");
   const {
     data: movie,
     isError,
@@ -41,7 +52,7 @@ export default function MovieDetails() {
   } = useMakeQuery<IMovie>(
     `movie-${movieId}`,
     `movie/${movieId}`,
-    `&append_to_response=release_dates,credits`
+    `&append_to_response=release_dates,credits,videos`
   );
 
   if (isLoading) {
@@ -51,6 +62,11 @@ export default function MovieDetails() {
   if (isError) {
     return <H2 heading="Error" />;
   }
+
+  const updateVideos = (value: VideoProps) => {
+    console.log("Updating State");
+    setVideos(value);
+  };
 
   return (
     <>
@@ -112,6 +128,50 @@ export default function MovieDetails() {
             sort={(a, b) => b.popularity - a.popularity}
             limit
           />
+        </Container>
+      </Article>
+      <Article>
+        <Container>
+          <H2 heading={`Movie ${videos}`} />
+          <Wrapper name="video-options" variant="flex">
+            <Button
+              name="Trailers"
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("Trailer")}
+            />
+            <Button
+              name="Teasers"
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("Teaser")}
+            />
+            <Button
+              name="Clips"
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("Clip")}
+            />
+            <Button
+              name="Behind the Scenes"
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("Behind the Scenes")}
+            />
+            <Button
+              name="Bloopers"
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("Blooper")}
+            />
+            <Button
+              name="Featurettes"
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("Featurette")}
+            />
+          </Wrapper>
+          <Wrapper name="videos" variant="flex">
+            {movie?.videos.results.map((video) => {
+              if (video.type === videos) {
+                return <Video video={video} />;
+              }
+            })}
+          </Wrapper>
         </Container>
       </Article>
     </>

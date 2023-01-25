@@ -1,4 +1,5 @@
 import { ICredits } from "./ICredits";
+import { IVideos } from "./IVideos";
 
 export interface IMovie {
   adult: boolean;
@@ -32,4 +33,5 @@ export interface IMovie {
   vote_average: number;
   vote_count: number;
   credits: ICredits;
+  videos: IVideos;
 }
