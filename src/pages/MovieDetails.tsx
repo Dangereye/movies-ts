@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Components
@@ -11,12 +12,21 @@ import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
+import Article from "../components/article/Article";
+import Container from "../components/container/Container";
+import Cards from "../components/cards/Cards";
+import ImageComponent from "../components/image/Image";
+import CardContent from "../components/cards/card/CardContent";
+import Video from "../components/video/Video";
+import Button from "../components/buttons/Button";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IMovie } from "../interfaces/IMovie";
+import { ICast } from "../interfaces/ICast";
+import { IVideo } from "../interfaces/IVideo";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
@@ -24,27 +34,38 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
-import Article from "../components/article/Article";
-import Container from "../components/container/Container";
-import Cards from "../components/cards/Cards";
-import ImageComponent from "../components/image/Image";
-import CardContent from "../components/cards/card/CardContent";
-import { ICast } from "../interfaces/ICast";
-import Video from "../components/video/Video";
-import Button from "../components/buttons/Button";
-import { useState } from "react";
 
-type VideoProps =
-  | "Trailer"
-  | "Teaser"
-  | "Clip"
-  | "Behind the Scenes"
-  | "Blooper"
-  | "Featurette";
+type ActiveProps =
+  | "trailer"
+  | "teaser"
+  | "clip"
+  | "behind_the_scenes"
+  | "blooper"
+  | "featurette";
+
+type VideosProps = {
+  trailer: IVideo[];
+  teaser: IVideo[];
+  clip: IVideo[];
+  behind_the_scenes: IVideo[];
+  blooper: IVideo[];
+  featurette: IVideo[];
+};
+
+const initialVideos = {
+  trailer: [],
+  teaser: [],
+  clip: [],
+  behind_the_scenes: [],
+  blooper: [],
+  featurette: [],
+} as VideosProps;
 
 export default function MovieDetails() {
   const { movieId } = useParams();
-  const [videos, setVideos] = useState<VideoProps>("Trailer");
+  const [videos, setVideos] = useState(initialVideos);
+  const [active, setActive] = useState<ActiveProps>("behind_the_scenes");
+
   const {
     data: movie,
     isError,
@@ -55,6 +76,44 @@ export default function MovieDetails() {
     `&append_to_response=release_dates,credits,videos`
   );
 
+  useEffect(() => {
+    let obj = initialVideos;
+
+    const organiseVideos = () => {
+      const trailer: IVideo[] = [];
+      const teaser: IVideo[] = [];
+      const clip: IVideo[] = [];
+      const behind_the_scenes: IVideo[] = [];
+      const blooper: IVideo[] = [];
+      const featurette: IVideo[] = [];
+
+      movie?.videos.results.forEach((video) => {
+        if (video.type === "Trailer") {
+          trailer.push(video);
+        }
+        if (video.type === "Teaser") {
+          teaser.push(video);
+        }
+        if (video.type === "Clip") {
+          clip.push(video);
+        }
+        if (video.type === "Behind the Scenes") {
+          behind_the_scenes.push(video);
+        }
+        if (video.type === "Blooper") {
+          blooper.push(video);
+        }
+        if (video.type === "Featurette") {
+          featurette.push(video);
+        }
+        obj = { trailer, teaser, clip, behind_the_scenes, blooper, featurette };
+        return obj;
+      });
+    };
+    organiseVideos();
+    setVideos(obj);
+  }, [movie]);
+
   if (isLoading) {
     return <H2 heading="Loading" />;
   }
@@ -63,9 +122,8 @@ export default function MovieDetails() {
     return <H2 heading="Error" />;
   }
 
-  const updateVideos = (value: VideoProps) => {
-    console.log("Updating State");
-    setVideos(value);
+  const updateVideos = (value: ActiveProps) => {
+    setActive(value);
   };
 
   return (
@@ -132,45 +190,43 @@ export default function MovieDetails() {
       </Article>
       <Article>
         <Container>
-          <H2 heading={`Movie ${videos}`} />
+          <H2 heading={`Movie ${active}`} />
           <Wrapper name="video-options" variant="flex">
             <Button
-              name="Trailers"
+              name={`Trailers ${videos.trailer.length}`}
               variant="btn--tertiary"
-              onClick={(e) => updateVideos("Trailer")}
+              onClick={(e) => updateVideos("trailer")}
             />
             <Button
-              name="Teasers"
+              name={`Teasers ${videos.teaser.length}`}
               variant="btn--tertiary"
-              onClick={(e) => updateVideos("Teaser")}
+              onClick={(e) => updateVideos("teaser")}
             />
             <Button
-              name="Clips"
+              name={`Clips ${videos.clip.length}`}
               variant="btn--tertiary"
-              onClick={(e) => updateVideos("Clip")}
+              onClick={(e) => updateVideos("clip")}
             />
             <Button
-              name="Behind the Scenes"
+              name={`Behind the Scenes ${videos.behind_the_scenes.length}`}
               variant="btn--tertiary"
-              onClick={(e) => updateVideos("Behind the Scenes")}
+              onClick={(e) => updateVideos("behind_the_scenes")}
             />
             <Button
-              name="Bloopers"
+              name={`Bloopers ${videos.blooper.length}`}
               variant="btn--tertiary"
-              onClick={(e) => updateVideos("Blooper")}
+              onClick={(e) => updateVideos("blooper")}
             />
             <Button
-              name="Featurettes"
+              name={`Featurettes ${videos.featurette.length}`}
               variant="btn--tertiary"
-              onClick={(e) => updateVideos("Featurette")}
+              onClick={(e) => updateVideos("featurette")}
             />
           </Wrapper>
           <Wrapper name="videos" variant="flex">
-            {movie?.videos.results.map((video) => {
-              if (video.type === videos) {
-                return <Video video={video} />;
-              }
-            })}
+            {videos[active].map((video) => (
+              <Video video={video} />
+            ))}
           </Wrapper>
         </Container>
       </Article>
