@@ -224,9 +224,15 @@ export default function MovieDetails() {
             />
           </Wrapper>
           <Wrapper name="videos" variant="flex">
-            {videos[active].map((video) => (
-              <Video video={video} />
-            ))}
+            {videos[active].length > 0 ? (
+              videos[active].map((video) => (
+                <Video key={video.id} data={video} />
+              ))
+            ) : (
+              <BodyText
+                text={`We don't seem to have any ${active} videos at this time.`}
+              />
+            )}
           </Wrapper>
         </Container>
       </Article>

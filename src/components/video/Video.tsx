@@ -3,19 +3,19 @@ import ImageComponent from "../image/Image";
 import HDiv from "../typography/HDiv";
 
 type VideoProps = {
-  video: IVideo;
+  data: IVideo;
 };
 
-export default function Video({ video }: VideoProps) {
+export default function Video({ data }: VideoProps) {
   return (
     <div className="video">
       <ImageComponent
         width={500}
-        src={`https://i.ytimg.com/vi/${video.key}/hqdefault.jpg`}
-        fallback={`https://i.ytimg.com/vi/${video.key}/hqdefault.jpg`}
-        alt={video.name}
+        src={`https://i.ytimg.com/vi/${data.key}/hqdefault.jpg`}
+        fallback="/images/error_600x450.webp"
+        alt={data.name}
       />
-      <HDiv variant="heading--h4" heading={video.name} />
+      <HDiv variant="heading--h4" heading={data.name} />
     </div>
   );
 }
