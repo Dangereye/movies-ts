@@ -64,7 +64,7 @@ const initialVideos = {
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [videos, setVideos] = useState(initialVideos);
-  const [active, setActive] = useState<ActiveProps>("behind_the_scenes");
+  const [active, setActive] = useState<ActiveProps>("trailer");
 
   const {
     data: movie,
@@ -225,9 +225,13 @@ export default function MovieDetails() {
           </Wrapper>
           <Wrapper name="videos" variant="flex">
             {videos[active].length > 0 ? (
-              videos[active].map((video) => (
-                <Video key={video.id} data={video} />
-              ))
+              videos[active]
+                .sort(function (a, b) {
+                  return (
+                    Date.parse(a.published_at) - Date.parse(b.published_at)
+                  );
+                })
+                .map((video) => <Video key={video.id} data={video} />)
             ) : (
               <BodyText
                 text={`We don't seem to have any ${active} videos at this time.`}

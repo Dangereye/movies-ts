@@ -7,6 +7,6 @@ export interface IVideo {
   size: number;
   type: string;
   official: boolean;
-  published: string;
+  published_at: string;
   id: string;
 }

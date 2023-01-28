@@ -1,5 +1,7 @@
 import { IVideo } from "../../interfaces/IVideo";
+import { formatDate } from "../../utilities/formatDate";
 import ImageComponent from "../image/Image";
+import BodyText from "../typography/BodyText";
 import HDiv from "../typography/HDiv";
 
 type VideoProps = {
@@ -16,6 +18,7 @@ export default function Video({ data }: VideoProps) {
         alt={data.name}
       />
       <HDiv variant="heading--h4" heading={data.name} />
+      <BodyText text={formatDate(data.published_at)} />
     </div>
   );
 }
