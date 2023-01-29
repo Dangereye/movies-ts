@@ -103,36 +103,48 @@ export default function VideosArticle({ data }: VideoArticleProps) {
       <Container>
         <H2 heading={`Movie ${makePlural(active)}`} />
         <Wrapper name="video-options" variant="flex">
-          <Button
-            name={`Trailers ${videos.trailer.length}`}
-            variant="btn--tertiary"
-            onClick={(e) => updateVideos("trailer")}
-          />
-          <Button
-            name={`Teasers ${videos.teaser.length}`}
-            variant="btn--tertiary"
-            onClick={(e) => updateVideos("teaser")}
-          />
-          <Button
-            name={`Clips ${videos.clip.length}`}
-            variant="btn--tertiary"
-            onClick={(e) => updateVideos("clip")}
-          />
-          <Button
-            name={`Behind the Scenes ${videos.behind_the_scenes.length}`}
-            variant="btn--tertiary"
-            onClick={(e) => updateVideos("behind_the_scenes")}
-          />
-          <Button
-            name={`Bloopers ${videos.blooper.length}`}
-            variant="btn--tertiary"
-            onClick={(e) => updateVideos("blooper")}
-          />
-          <Button
-            name={`Featurettes ${videos.featurette.length}`}
-            variant="btn--tertiary"
-            onClick={(e) => updateVideos("featurette")}
-          />
+          {videos.trailer.length > 0 && (
+            <Button
+              name={`Trailers ${videos.trailer.length}`}
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("trailer")}
+            />
+          )}
+          {videos.teaser.length > 0 && (
+            <Button
+              name={`Teasers ${videos.teaser.length}`}
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("teaser")}
+            />
+          )}
+          {videos.clip.length > 0 && (
+            <Button
+              name={`Clips ${videos.clip.length}`}
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("clip")}
+            />
+          )}
+          {videos.behind_the_scenes.length > 0 && (
+            <Button
+              name={`Behind the Scenes ${videos.behind_the_scenes.length}`}
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("behind_the_scenes")}
+            />
+          )}
+          {videos.blooper.length > 0 && (
+            <Button
+              name={`Bloopers ${videos.blooper.length}`}
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("blooper")}
+            />
+          )}
+          {videos.featurette.length > 0 && (
+            <Button
+              name={`Featurettes ${videos.featurette.length}`}
+              variant="btn--tertiary"
+              onClick={(e) => updateVideos("featurette")}
+            />
+          )}
         </Wrapper>
         <div className="videos">
           {videos[active].length > 0 ? (
