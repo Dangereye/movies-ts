@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 type ButtonProps = {
-  variant?: "btn--primary" | "btn--secondary" | "btn--tertiary";
+  variant?: "btn--primary" | "btn--secondary" | "btn--tertiary" | "btn--close";
   name: string | ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 // Components
@@ -34,6 +34,7 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import { VideoContext } from "../contexts/VideoContext";
 
 type ActiveProps =
   | "trailer"
@@ -65,6 +66,7 @@ export default function MovieDetails() {
   const { movieId } = useParams();
   const [videos, setVideos] = useState(initialVideos);
   const [active, setActive] = useState<ActiveProps>("trailer");
+  const { videoPlayer } = useContext(VideoContext);
 
   const {
     data: movie,

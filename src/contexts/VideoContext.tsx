@@ -1,11 +1,24 @@
 import { useState, createContext, ReactNode } from "react";
 
 const initial = {
-  playerIsOpen: false,
+  isOpen: false,
   key: "",
 };
 
-export const VideoContext = createContext({});
+type VideoContextType = {
+  videoPlayer: {
+    isOpen: boolean;
+    key: string;
+  };
+  setVideoPlayer: React.Dispatch<
+    React.SetStateAction<{
+      isOpen: boolean;
+      key: string;
+    }>
+  >;
+};
+
+export const VideoContext = createContext({} as VideoContextType);
 
 type VideoContextProps = {
   children: ReactNode;

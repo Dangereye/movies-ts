@@ -1,18 +1,25 @@
+import { useContext } from "react";
 import { IVideo } from "../../interfaces/IVideo";
 import { formatDate } from "../../utilities/formatDate";
 import ImageComponent from "../image/Image";
 import BodyText from "../typography/BodyText";
 import HDiv from "../typography/HDiv";
 import { GoPlay } from "react-icons/go";
+import { VideoContext } from "../../contexts/VideoContext";
 
 type VideoProps = {
   data: IVideo;
 };
 
 export default function Video({ data }: VideoProps) {
+  const { videoPlayer, setVideoPlayer } = useContext(VideoContext);
+
+  const openPlayer = () => {
+    setVideoPlayer({ isOpen: true, key: data.key });
+  };
   return (
     <div className="video">
-      <div className="video-image">
+      <div className="video-image" onClick={openPlayer}>
         <ImageComponent
           width={500}
           src={`https://i.ytimg.com/vi/${data.key}/hqdefault.jpg`}

@@ -20,6 +20,8 @@ import MoviesTopRated from "./pages/MoviesTopRated";
 import MovieDetails from "./pages/MovieDetails";
 import TvDetails from "./pages/TvDetails";
 import PersonDetails from "./pages/PersonDetails";
+import VideoContextComponent from "./contexts/VideoContext";
+import VideoPlayer from "./components/video/video_player/VideoPlayer";
 
 const queryClient = new QueryClient();
 
@@ -29,16 +31,22 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/movies/popular" element={<MoviesPopular />} />
-            <Route path="/movies/now-playing" element={<MoviesNowPlaying />} />
-            <Route path="/movies/upcoming" element={<MoviesUpcoming />} />
-            <Route path="/movies/top-rated" element={<MoviesTopRated />} />
-            <Route path="/movies/:movieId" element={<MovieDetails />} />
-            <Route path="/tv/:tvId" element={<TvDetails />} />
-            <Route path="/person/:personId" element={<PersonDetails />} />
-          </Routes>
+          <VideoContextComponent>
+            <VideoPlayer />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/movies/popular" element={<MoviesPopular />} />
+              <Route
+                path="/movies/now-playing"
+                element={<MoviesNowPlaying />}
+              />
+              <Route path="/movies/upcoming" element={<MoviesUpcoming />} />
+              <Route path="/movies/top-rated" element={<MoviesTopRated />} />
+              <Route path="/movies/:movieId" element={<MovieDetails />} />
+              <Route path="/tv/:tvId" element={<TvDetails />} />
+              <Route path="/person/:personId" element={<PersonDetails />} />
+            </Routes>
+          </VideoContextComponent>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
