@@ -17,7 +17,7 @@ import Container from "../components/container/Container";
 import Cards from "../components/cards/Cards";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
-import Video from "../components/video/Video";
+import Video from "../components/videos/video/Video";
 import Button from "../components/buttons/Button";
 
 // Hooks
@@ -230,7 +230,7 @@ export default function MovieDetails() {
               onClick={(e) => updateVideos("featurette")}
             />
           </Wrapper>
-          <Wrapper name="videos" variant="flex">
+          <div className="videos">
             {videos[active].length > 0 ? (
               videos[active]
                 .sort(function (a, b) {
@@ -244,7 +244,7 @@ export default function MovieDetails() {
                 text={`We don't seem to have any ${active} videos at this time.`}
               />
             )}
-          </Wrapper>
+          </div>
         </Container>
       </Article>
     </>

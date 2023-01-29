@@ -1,0 +1,13 @@
+.videos {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 4rem 0;
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: $mobile) {
+    gap: 0.5rem;
+  }
+
+  @include scrollbar;
+}

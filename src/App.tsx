@@ -21,7 +21,7 @@ import MovieDetails from "./pages/MovieDetails";
 import TvDetails from "./pages/TvDetails";
 import PersonDetails from "./pages/PersonDetails";
 import VideoContextComponent from "./contexts/VideoContext";
-import VideoPlayer from "./components/video/video_player/VideoPlayer";
+import VideoPlayer from "./components/videos/video_player/VideoPlayer";
 
 const queryClient = new QueryClient();
 

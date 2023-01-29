@@ -1,6 +1,8 @@
 .video {
   width: 100%;
+  min-width: 50rem;
   max-width: 60rem;
+  scroll-snap-align: start;
 
   .video-image {
     position: relative;
