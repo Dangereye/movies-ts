@@ -1,8 +1,9 @@
 .btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 1rem;
 
   font-family: "Montserrat", sans-serif;
   text-transform: capitalize;
@@ -26,9 +27,29 @@
   }
 
   &--tertiary {
+    background-color: transparent;
     min-height: 4rem;
     min-width: 4rem;
     padding: 0;
+
+    .qty {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.5rem;
+      color: #000;
+      background-color: $grey-color;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+    }
+
+    &.active {
+      .qty {
+        background-color: $accent-color;
+        color: #fff;
+      }
+    }
+
     @media (hover: hover) {
       &:hover {
         color: $accent-color;

@@ -82,12 +82,10 @@ export default function MovieDetails() {
           />
           <BodyText text={formatRuntime(movie?.runtime)} />
         </Wrapper>
-        <Wrapper name="actions" variant="flex">
-          <div className="vote">
-            <VoteCountPercentage vote={movie?.vote_average} large />
-            <HDiv variant="heading--h4" heading="user score" />
-          </div>
-        </Wrapper>
+        <div className="vote">
+          <VoteCountPercentage vote={movie?.vote_average} large />
+          <HDiv variant="heading--h4" heading="user score" />
+        </div>
         <Overview caption={movie?.tagline} text={movie?.overview} />
         <CrewJobs credits={movie?.credits} />
       </Header>
