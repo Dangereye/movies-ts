@@ -10,6 +10,7 @@
 
   padding: 2rem 0;
   @include horizontal-padding;
+  z-index: 100;
 
   .container {
     display: flex;
