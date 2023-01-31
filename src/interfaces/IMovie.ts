@@ -1,4 +1,5 @@
 import { ICredits } from "./ICredits";
+import { IExternalIds } from "./IExternalIds";
 import { IVideos } from "./IVideos";
 
 export interface IMovie {
@@ -34,4 +35,5 @@ export interface IMovie {
   vote_count: number;
   credits: ICredits;
   videos: IVideos;
+  external_ids: IExternalIds;
 }
