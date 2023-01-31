@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  background-color: #000;
+  background-color: $primary-color;
   position: sticky;
   top: 0;
 
@@ -30,7 +30,7 @@
     }
 
     &__link {
-      color: $body-text-light;
+      color: $heading-text-light;
 
       @media (hover: hover) {
         &:hover {
