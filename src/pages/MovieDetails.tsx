@@ -16,9 +16,8 @@ import Container from "../components/container/Container";
 import Cards from "../components/cards/Cards";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
-
-// Icons
-import { BsFacebook, BsTwitter, BsInstagram, BsGlobe } from "react-icons/bs";
+import VideosArticle from "../components/articles/VideosArticle";
+import Statistics from "../components/statistics/Statistics";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -33,7 +32,6 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
-import VideosArticle from "../components/articles/VideosArticle";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -92,71 +90,9 @@ export default function MovieDetails() {
         <Overview caption={movie?.tagline} text={movie?.overview} />
         <CrewJobs credits={movie?.credits} />
       </Header>
+
       {/* Statistics */}
-      <div className="statistics">
-        <Container>
-          <Wrapper name="stats" variant="flex">
-            {movie?.status ? (
-              <div className="statistic">
-                <HDiv variant="heading--h3" heading={movie.status} />
-                <BodyText text="Status" />
-              </div>
-            ) : null}
-            {movie?.budget ? (
-              <div className="statistic">
-                <HDiv
-                  variant="heading--h3"
-                  heading={`$${movie.budget.toLocaleString()}`}
-                />
-                <BodyText text="Budget" />
-              </div>
-            ) : null}
-            {movie?.revenue ? (
-              <div className="statistic">
-                <HDiv
-                  variant="heading--h3"
-                  heading={`$${movie?.revenue.toLocaleString()}`}
-                />
-                <BodyText text="Revenue" />
-              </div>
-            ) : null}
-          </Wrapper>
-          <Wrapper name="social-icons" variant="flex">
-            {movie?.external_ids.facebook_id ? (
-              <a
-                href={`https://www.facebook.com/${movie?.external_ids.facebook_id}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <BsFacebook />
-              </a>
-            ) : null}
-            {movie?.external_ids.twitter_id ? (
-              <a
-                href={`https://www.twitter.com/${movie.external_ids.twitter_id}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <BsTwitter />
-              </a>
-            ) : null}
-            {movie?.external_ids.instagram_id ? (
-              <a
-                href={`https://www.twitter.com/${movie.external_ids.instagram_id}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <BsInstagram />
-              </a>
-            ) : null}
-            {movie?.homepage ? (
-              <a href={movie.homepage} rel="noreferrer" target="_blank">
-                <BsGlobe />
-              </a>
-            ) : null}
-          </Wrapper>
-        </Container>
-      </div>
+      <Statistics movie={movie} />
 
       {/* Top Billed Cast */}
       <Article>

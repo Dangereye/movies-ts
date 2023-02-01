@@ -1,12 +1,60 @@
-import HDiv from "../typography/HDiv";
-type StatisticsProps<T> = { data: T };
+import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from "react-icons/bs";
+import { IMovie } from "../../interfaces/IMovie";
+import { ITVShow } from "../../interfaces/ITVShow";
 
-export default function Statistics<T>({ data }: StatisticsProps<T>) {
-  return (
-    <div className="statistics">
-      <div className="status">
-        {/* <HDiv variant="heading--h2" heading={data} /> */}
+// Components
+import Container from "../container/Container";
+import Wrapper from "../wrapper/Wrapper";
+import SocialIcon from "./social_icon/SocialIcon";
+import Statistic from "./Statistic/Statistic";
+
+type StatisticsProps = {
+  movie?: IMovie;
+  tv?: ITVShow;
+};
+
+export default function Statistics({ movie, tv }: StatisticsProps) {
+  if (movie) {
+    return (
+      <div className="statistics">
+        <Container>
+          <Wrapper name="stats" variant="flex">
+            <Statistic
+              heading={movie.status ? movie.status : "n/a"}
+              text="Status"
+            />
+            <Statistic
+              heading={
+                movie.budget ? `$${movie.budget.toLocaleString()}` : "n/a"
+              }
+              text="Budget"
+            />
+            <Statistic
+              heading={
+                movie.revenue ? `$${movie?.revenue.toLocaleString()}` : "n/a"
+              }
+              text="Revenue"
+            />
+          </Wrapper>
+          <Wrapper name="social-icons" variant="flex">
+            <SocialIcon
+              anchor={`https://www.facebook.com/${movie?.external_ids.facebook_id}`}
+              icon={<BsFacebook />}
+            />
+            <SocialIcon
+              anchor={`https://www.twitter.com/${movie?.external_ids.twitter_id}`}
+              icon={<BsTwitter />}
+            />
+            <SocialIcon
+              anchor={`https://www.instagram.com/${movie?.external_ids.instagram_id}`}
+              icon={<BsInstagram />}
+            />
+            <SocialIcon anchor={movie?.homepage} icon={<BsGlobe />} />
+          </Wrapper>
+        </Container>
       </div>
-    </div>
-  );
+    );
+  }
+
+  return null;
 }
