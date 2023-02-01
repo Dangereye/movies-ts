@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // Components
 import SubNavbar from "../components/sub_navbar/SubNavbar";
@@ -32,6 +32,8 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import BackgroundImage from "../components/background_image/BackgroundImage";
+import Collection from "../components/collection/Collection";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -120,6 +122,13 @@ export default function MovieDetails() {
 
       {/* Videos */}
       <VideosArticle data={movie?.videos.results} />
+
+      {/* Collection */}
+      <Collection
+        name={movie?.belongs_to_collection?.name}
+        image={movie?.belongs_to_collection?.backdrop_path}
+        id={movie?.belongs_to_collection?.id}
+      />
     </>
   );
 }

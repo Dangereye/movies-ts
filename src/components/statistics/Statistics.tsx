@@ -1,4 +1,7 @@
+// Icons
 import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from "react-icons/bs";
+
+// Interfaces
 import { IMovie } from "../../interfaces/IMovie";
 import { ITVShow } from "../../interfaces/ITVShow";
 

@@ -1,0 +1,21 @@
+.collection {
+  display: grid;
+  place-content: center;
+  @include horizontal-padding;
+  @include vertical-padding;
+  position: relative;
+  background-color: $primary-color;
+  min-height: 50rem;
+  color: #fff;
+
+  .container {
+    position: relative;
+    text-align: center;
+  }
+
+  .btn {
+    margin-top: 4rem;
+    display: inline-block;
+    max-width: max-content;
+  }
+}
