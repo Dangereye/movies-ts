@@ -97,7 +97,7 @@ export default function MovieDetails() {
       <Statistics movie={movie} />
 
       {/* Top Billed Cast */}
-      <Article>
+      <Article name="article__top-billed-cast">
         <Container>
           <H2 heading="Top billed cast" />
           <Cards

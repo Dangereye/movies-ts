@@ -1,8 +1,15 @@
 .video {
   width: 100%;
-  min-width: 50rem;
-  max-width: 60rem;
-  scroll-snap-align: start;
+  min-width: 60rem;
+  max-width: 70rem;
+
+  @media (max-width: $laptop) {
+    min-width: 40rem;
+  }
+
+  @media (max-width: $tablet) {
+    min-width: 30rem;
+  }
 
   .video-image {
     position: relative;

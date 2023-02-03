@@ -49,7 +49,7 @@ export default function LandingPage() {
     <>
       <Main>
         {/* Trending Movies */}
-        <Article>
+        <Article name="article__trending-movies">
           <Container>
             <H2 heading="trending movies" />
             <Cards
@@ -75,7 +75,7 @@ export default function LandingPage() {
         </Article>
 
         {/* Trending People */}
-        <Article>
+        <Article name="article__trending-people">
           <Container>
             <H2 heading="trending people" />
             <Cards
@@ -100,7 +100,7 @@ export default function LandingPage() {
         </Article>
 
         {/* Trending TV Shows */}
-        <Article>
+        <Article name="article__trending-people">
           <Container>
             <H2 heading="trending tv shows" />
             <Cards

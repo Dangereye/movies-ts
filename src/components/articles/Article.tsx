@@ -1,10 +1,15 @@
 import { ReactNode } from "react";
 
 type ArticleProps = {
+  name: string;
   variant?: string;
   children: ReactNode;
 };
 
-export default function Article({ variant = "", children }: ArticleProps) {
-  return <article className={`article ${variant}`}>{children}</article>;
+export default function Article({
+  name,
+  variant = "",
+  children,
+}: ArticleProps) {
+  return <article className={`article ${name} ${variant}`}>{children}</article>;
 }

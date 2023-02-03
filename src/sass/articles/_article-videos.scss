@@ -1,0 +1,7 @@
+.article__videos {
+  .video-options {
+    @media (max-width: 883px) {
+      @include scroll-x;
+    }
+  }
+}

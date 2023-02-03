@@ -16,9 +16,17 @@
   }
 
   .navigation {
-    @media (max-width: $tablet) {
-      @include scroll-x;
+    overflow: hidden;
+    &__list {
+      @media (max-width: $tablet) {
+        @include scroll-x;
+      }
     }
+
+    &__item {
+      margin: 0;
+    }
+
     &__link {
       min-width: max-content;
       color: $heading-text-dark;

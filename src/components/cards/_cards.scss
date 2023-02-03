@@ -1,18 +1,16 @@
 .cards {
-  padding: 4rem 0;
+  position: relative;
   display: flex;
   gap: 1rem;
 
   @include scroll-x;
 
-  @media (max-width: $mobile) {
-    gap: 0.5rem;
-  }
-
-  @include scrollbar;
-
   @media (max-width: $tablet) {
     padding: 0;
     @include scrollbar-hidden;
+  }
+
+  @media (max-width: $mobile) {
+    gap: 0.5rem;
   }
 }

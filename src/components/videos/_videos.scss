@@ -1,16 +1,14 @@
 .videos {
-  padding: 4rem 0;
   display: flex;
   gap: 1rem;
 
-  @media (max-width: $mobile) {
-    gap: 0.5rem;
-  }
-
-  @include scrollbar;
   @include scroll-x;
 
   @media (max-width: $tablet) {
     padding: 0;
+  }
+
+  @media (max-width: $mobile) {
+    gap: 0.5rem;
   }
 }
