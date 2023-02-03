@@ -1,6 +1,7 @@
 .statistics {
   display: flex;
   align-items: center;
+  justify-content: center;
   @include horizontal-padding;
   background-color: $grey-color;
 
