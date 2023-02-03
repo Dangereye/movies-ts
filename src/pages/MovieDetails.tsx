@@ -33,6 +33,7 @@ import { formatRuntime } from "../utilities/formatRuntime";
 // Data
 import { moviePages } from "../data/moviePages";
 import Collection from "../components/collection/Collection";
+import { ISimilar } from "../interfaces/ISimilar";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -44,7 +45,7 @@ export default function MovieDetails() {
   } = useMakeQuery<IMovie>(
     `movie-${movieId}`,
     `movie/${movieId}`,
-    `&append_to_response=release_dates,credits,videos,external_ids,recommendations`
+    `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar`
   );
 
   if (isLoading) {
@@ -128,6 +129,58 @@ export default function MovieDetails() {
         image={movie?.belongs_to_collection?.backdrop_path}
         id={movie?.belongs_to_collection?.id}
       />
+
+      {/* Recommended Movies */}
+      <Article name="article__recommended">
+        <Container>
+          <H2 heading="Recommendations" />
+          <Cards
+            getID={(item: ISimilar) => item.id}
+            renderLink={(item) => `/movies/${item.id}`}
+            renderItem={(item: ISimilar) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.title}
+                />
+                <CardContent
+                  heading={item.title}
+                  body={formatDate(item.release_date)}
+                />
+              </>
+            )}
+            data={movie?.recommendations.results}
+            sort={(a, b) => b.popularity - a.popularity}
+          />
+        </Container>
+      </Article>
+
+      {/* Similar Movies */}
+      <Article name="article__similar-movies">
+        <Container>
+          <H2 heading="You may also like..." />
+          <Cards
+            getID={(item: ISimilar) => item.id}
+            renderLink={(item) => `/movies/${item.id}`}
+            renderItem={(item: ISimilar) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.title}
+                />
+                <CardContent
+                  heading={item.title}
+                  body={formatDate(item.release_date)}
+                />
+              </>
+            )}
+            data={movie?.similar.results}
+            sort={(a, b) => b.popularity - a.popularity}
+          />
+        </Container>
+      </Article>
     </>
   );
 }

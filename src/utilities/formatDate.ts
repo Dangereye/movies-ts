@@ -1,8 +1,11 @@
 export const formatDate = (date: string | undefined) => {
-  const d = date ? new Date(date) : null;
-  return d?.toLocaleDateString("en-gb", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  if (date) {
+    const d = new Date(date);
+    return d.toLocaleDateString("en-gb", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
+  return "Date N/A";
 };

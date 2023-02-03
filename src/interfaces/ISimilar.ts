@@ -1,4 +1,4 @@
-export interface IRecommendation {
+export interface ISimilar {
   poster_path: string | null;
   adult: boolean;
   overview: string;

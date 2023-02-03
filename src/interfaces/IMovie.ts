@@ -1,6 +1,6 @@
 import { ICredits } from "./ICredits";
 import { IExternalIds } from "./IExternalIds";
-import { IRecommendations } from "./IRecommendations";
+import { ISimilarMovies } from "./ISimilarMovies";
 import { IVideos } from "./IVideos";
 
 export interface IMovie {
@@ -42,5 +42,6 @@ export interface IMovie {
   credits: ICredits;
   videos: IVideos;
   external_ids: IExternalIds;
-  recommendations: IRecommendations;
+  recommendations: ISimilarMovies;
+  similar: ISimilarMovies;
 }
