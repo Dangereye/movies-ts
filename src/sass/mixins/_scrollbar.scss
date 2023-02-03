@@ -12,3 +12,9 @@
     background: $grey-color;
   }
 }
+
+@mixin scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
