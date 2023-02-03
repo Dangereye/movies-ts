@@ -1,6 +1,4 @@
 .videos {
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
   padding: 4rem 0;
   display: flex;
   gap: 1rem;
@@ -10,9 +8,9 @@
   }
 
   @include scrollbar;
+  @include scroll-x;
 
   @media (max-width: $tablet) {
     padding: 0;
-    @include scrollbar-hidden;
   }
 }

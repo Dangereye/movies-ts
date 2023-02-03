@@ -1,0 +1,13 @@
+@mixin scroll-x {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+
+  & > * {
+    scroll-snap-align: start;
+  }
+
+  @media (max-width: $tablet) {
+    @include scrollbar-hidden;
+  }
+}

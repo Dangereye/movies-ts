@@ -17,12 +17,7 @@
 
   .navigation {
     @media (max-width: $tablet) {
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      @include scrollbar-hidden;
-    }
-    &__item {
-      scroll-snap-align: start;
+      @include scroll-x;
     }
     &__link {
       min-width: max-content;
