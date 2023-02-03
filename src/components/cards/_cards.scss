@@ -10,6 +10,7 @@
   }
 
   @include scrollbar;
+
   @media (max-width: $tablet) {
     padding: 0;
     @include scrollbar-hidden;
