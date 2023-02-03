@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Components
 import SubNavbar from "../components/sub_navbar/SubNavbar";
@@ -32,7 +32,6 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
-import BackgroundImage from "../components/background_image/BackgroundImage";
 import Collection from "../components/collection/Collection";
 
 export default function MovieDetails() {
@@ -45,7 +44,7 @@ export default function MovieDetails() {
   } = useMakeQuery<IMovie>(
     `movie-${movieId}`,
     `movie/${movieId}`,
-    `&append_to_response=release_dates,credits,videos,external_ids`
+    `&append_to_response=release_dates,credits,videos,external_ids,recommendations`
   );
 
   if (isLoading) {
