@@ -102,7 +102,7 @@ export default function VideosArticle({ data }: VideoArticleProps) {
     <Article>
       <Container>
         <H2 heading={`Movie ${makePlural(active)}`} />
-        <Wrapper name="video-options" variant="flex">
+        <Wrapper name="video-options" variant="scroll">
           {videos.trailer.length > 0 && (
             <Button
               name={

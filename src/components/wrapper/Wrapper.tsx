@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 type WrapperProps = {
   name: string;
-  variant?: "block" | "flex" | "grid";
+  variant?: "block" | "flex" | "grid" | "scroll";
   children: ReactNode;
 };
 

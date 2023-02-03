@@ -16,4 +16,21 @@
   &.grid {
     display: grid;
   }
+
+  &.scroll {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+
+    & > * {
+      scroll-snap-align: start;
+    }
+
+    @media (max-width: $tablet) {
+      @include scrollbar-hidden;
+    }
+  }
 }
