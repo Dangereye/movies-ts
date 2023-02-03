@@ -145,6 +145,7 @@ export default function MovieDetails() {
                   alt={item.title}
                 />
                 <CardContent
+                  vote={item.vote_average}
                   heading={item.title}
                   body={formatDate(item.release_date)}
                 />
@@ -171,6 +172,7 @@ export default function MovieDetails() {
                   alt={item.title}
                 />
                 <CardContent
+                  vote={item.vote_average}
                   heading={item.title}
                   body={formatDate(item.release_date)}
                 />
