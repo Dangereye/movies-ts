@@ -16,8 +16,10 @@ import Container from "../components/container/Container";
 import Cards from "../components/cards/Cards";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
-import VideosArticle from "../components/articles/VideosArticle";
 import Statistics from "../components/statistics/Statistics";
+
+// Articles
+import ArticleVideos from "../components/articles/ArticleVideos";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -34,6 +36,7 @@ import { formatRuntime } from "../utilities/formatRuntime";
 // Data
 import { moviePages } from "../data/moviePages";
 import Collection from "../components/collection/Collection";
+import ArticleTopBilledCast from "../components/articles/ArticleTopBilledCast";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -93,37 +96,9 @@ export default function MovieDetails() {
         <CrewJobs credits={movie?.credits} />
       </Header>
 
-      {/* Statistics */}
       <Statistics movie={movie} />
-
-      {/* Top Billed Cast */}
-      <Article name="article__top-billed-cast">
-        <Container>
-          <H2 heading="Top billed cast" />
-          <Cards
-            getID={(item: ICast) => item.id}
-            renderLink={(item) => `/person/${item.id}`}
-            renderItem={(item: ICast) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                  fallback="/images/error_500x750.webp"
-                  alt={item.name}
-                />
-                <CardContent heading={item.name} body={item.character} />
-              </>
-            )}
-            data={movie?.credits.cast}
-            sort={(a, b) => b.popularity - a.popularity}
-            limit
-          />
-        </Container>
-      </Article>
-
-      {/* Videos */}
-      <VideosArticle data={movie?.videos.results} />
-
-      {/* Collection */}
+      <ArticleTopBilledCast data={movie?.credits.cast} />
+      <ArticleVideos data={movie?.videos.results} />
       <Collection
         name={movie?.belongs_to_collection?.name}
         image={movie?.belongs_to_collection?.backdrop_path}

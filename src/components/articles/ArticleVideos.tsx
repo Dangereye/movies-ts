@@ -38,7 +38,7 @@ type VideoArticleProps = {
   data: IVideo[] | undefined;
 };
 
-export default function VideosArticle({ data }: VideoArticleProps) {
+export default function ArticleVideos({ data }: VideoArticleProps) {
   const [videos, setVideos] = useState(initialVideos);
   const [active, setActive] = useState<ActiveProps>("trailer");
 
