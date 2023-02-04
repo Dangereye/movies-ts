@@ -23,7 +23,8 @@ import Statistics from "../components/statistics/Statistics";
 import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
-import { IMovie } from "../interfaces/IMovie";
+import { IMovieFull } from "../interfaces/IMovieFull";
+import { IMovieMin } from "../interfaces/IMovieMin";
 import { ICast } from "../interfaces/ICast";
 
 // Utilities
@@ -33,7 +34,6 @@ import { formatRuntime } from "../utilities/formatRuntime";
 // Data
 import { moviePages } from "../data/moviePages";
 import Collection from "../components/collection/Collection";
-import { ISimilar } from "../interfaces/ISimilar";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -42,7 +42,7 @@ export default function MovieDetails() {
     data: movie,
     isError,
     isLoading,
-  } = useMakeQuery<IMovie>(
+  } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
     `movie/${movieId}`,
     `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar`
@@ -135,9 +135,9 @@ export default function MovieDetails() {
         <Container>
           <H2 heading="Recommendations" />
           <Cards
-            getID={(item: ISimilar) => item.id}
+            getID={(item: IMovieMin) => item.id}
             renderLink={(item) => `/movies/${item.id}`}
-            renderItem={(item: ISimilar) => (
+            renderItem={(item: IMovieMin) => (
               <>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
@@ -162,9 +162,9 @@ export default function MovieDetails() {
         <Container>
           <H2 heading="You may also like..." />
           <Cards
-            getID={(item: ISimilar) => item.id}
+            getID={(item: IMovieMin) => item.id}
             renderLink={(item) => `/movies/${item.id}`}
-            renderItem={(item: ISimilar) => (
+            renderItem={(item: IMovieMin) => (
               <>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}

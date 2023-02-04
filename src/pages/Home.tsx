@@ -1,3 +1,4 @@
+// Components
 import Main from "../components/main/Main";
 import Article from "../components/articles/Article";
 import Container from "../components/container/Container";
@@ -8,7 +9,7 @@ import CardContent from "../components/cards/card/CardContent";
 
 // Interfaces
 import { IPage } from "../interfaces/IPage";
-import { IMovie } from "../interfaces/IMovie";
+import { IMovieMin } from "../interfaces/IMovieMin";
 import { IPerson } from "../interfaces/IPerson";
 import { ITVShow } from "../interfaces/ITVShow";
 
@@ -23,7 +24,7 @@ export default function LandingPage() {
     data: movies,
     isLoading: moviesIsLoading,
     isError: moviesIsError,
-  } = useMakeQuery<IPage<IMovie>>("trending movies", "trending/movie/week");
+  } = useMakeQuery<IPage<IMovieMin>>("trending movies", "trending/movie/week");
 
   const {
     data: people,
@@ -53,9 +54,9 @@ export default function LandingPage() {
           <Container>
             <H2 heading="trending movies" />
             <Cards
-              getID={(item: IMovie) => item.id}
+              getID={(item: IMovieMin) => item.id}
               renderLink={(item) => `/movies/${item.id}`}
-              renderItem={(item: IMovie) => (
+              renderItem={(item: IMovieMin) => (
                 <>
                   <ImageComponent
                     src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}

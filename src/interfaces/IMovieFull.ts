@@ -1,9 +1,10 @@
+import { IPage } from "./IPage";
+import { IMovieMin } from "./IMovieMin";
 import { ICredits } from "./ICredits";
-import { IExternalIds } from "./IExternalIds";
-import { ISimilarMovies } from "./ISimilarMovies";
 import { IVideos } from "./IVideos";
+import { IExternalIds } from "./IExternalIds";
 
-export interface IMovie {
+export interface IMovieFull {
   adult: boolean;
   backdrop_path: string | null;
   belongs_to_collection: {
@@ -42,6 +43,6 @@ export interface IMovie {
   credits: ICredits;
   videos: IVideos;
   external_ids: IExternalIds;
-  recommendations: ISimilarMovies;
-  similar: ISimilarMovies;
+  recommendations: IPage<IMovieMin>;
+  similar: IPage<IMovieMin>;
 }

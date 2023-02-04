@@ -1,4 +1,4 @@
-export interface ISimilar {
+export interface IMovieMin {
   poster_path: string | null;
   adult: boolean;
   overview: string;

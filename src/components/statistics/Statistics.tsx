@@ -2,7 +2,7 @@
 import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from "react-icons/bs";
 
 // Interfaces
-import { IMovie } from "../../interfaces/IMovie";
+import { IMovieFull } from "../../interfaces/IMovieFull";
 import { ITVShow } from "../../interfaces/ITVShow";
 
 // Components
@@ -12,7 +12,7 @@ import SocialIcon from "./social_icon/SocialIcon";
 import Statistic from "./Statistic/Statistic";
 
 type StatisticsProps = {
-  movie?: IMovie;
+  movie?: IMovieFull;
   tv?: ITVShow;
 };
 
