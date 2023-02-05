@@ -11,11 +11,6 @@ import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
-import Article from "../components/articles/Article";
-import Container from "../components/container/Container";
-import Cards from "../components/cards/Cards";
-import ImageComponent from "../components/image/Image";
-import CardContent from "../components/cards/card/CardContent";
 import Statistics from "../components/statistics/Statistics";
 
 // Articles
@@ -26,8 +21,6 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IMovieFull } from "../interfaces/IMovieFull";
-import { IMovieMin } from "../interfaces/IMovieMin";
-import { ICast } from "../interfaces/ICast";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
@@ -37,6 +30,7 @@ import { formatRuntime } from "../utilities/formatRuntime";
 import { moviePages } from "../data/moviePages";
 import Collection from "../components/collection/Collection";
 import ArticleTopBilledCast from "../components/articles/ArticleTopBilledCast";
+import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -48,7 +42,7 @@ export default function MovieDetails() {
   } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
     `movie/${movieId}`,
-    `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar`
+    `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar,reviews`
   );
 
   if (isLoading) {
@@ -106,58 +100,17 @@ export default function MovieDetails() {
       />
 
       {/* Recommended Movies */}
-      <Article name="article__recommended">
-        <Container>
-          <H2 heading="Recommendations" />
-          <Cards
-            getID={(item: IMovieMin) => item.id}
-            renderLink={(item) => `/movies/${item.id}`}
-            renderItem={(item: IMovieMin) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  fallback="/images/error_500x750.webp"
-                  alt={item.title}
-                />
-                <CardContent
-                  vote={item.vote_average}
-                  heading={item.title}
-                  body={formatDate(item.release_date)}
-                />
-              </>
-            )}
-            data={movie?.recommendations.results}
-            sort={(a, b) => b.popularity - a.popularity}
-          />
-        </Container>
-      </Article>
-
+      <ArticleMoviesScrollX
+        data={movie?.recommendations.results}
+        name="recommended-movies"
+        title="recommendations"
+      />
       {/* Similar Movies */}
-      <Article name="article__similar-movies">
-        <Container>
-          <H2 heading="You may also like..." />
-          <Cards
-            getID={(item: IMovieMin) => item.id}
-            renderLink={(item) => `/movies/${item.id}`}
-            renderItem={(item: IMovieMin) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  fallback="/images/error_500x750.webp"
-                  alt={item.title}
-                />
-                <CardContent
-                  vote={item.vote_average}
-                  heading={item.title}
-                  body={formatDate(item.release_date)}
-                />
-              </>
-            )}
-            data={movie?.similar.results}
-            sort={(a, b) => b.popularity - a.popularity}
-          />
-        </Container>
-      </Article>
+      <ArticleMoviesScrollX
+        data={movie?.similar.results}
+        name="similar-movies"
+        title="You may also enjoy..."
+      />
     </>
   );
 }
