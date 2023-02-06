@@ -13,6 +13,8 @@ import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
 import Statistics from "../components/statistics/Statistics";
 
+import { GiRoundStar } from "react-icons/gi";
+
 // Articles
 import ArticleVideos from "../components/articles/ArticleVideos";
 
@@ -31,6 +33,11 @@ import { moviePages } from "../data/moviePages";
 import Collection from "../components/collection/Collection";
 import ArticleTopBilledCast from "../components/articles/ArticleTopBilledCast";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
+import Article from "../components/articles/Article";
+import Container from "../components/container/Container";
+import H3 from "../components/typography/H3";
+import ImageComponent from "../components/image/Image";
+import Review from "../components/reviews/review/Review";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -93,6 +100,16 @@ export default function MovieDetails() {
       <Statistics movie={movie} />
       <ArticleTopBilledCast data={movie?.credits.cast} />
       <ArticleVideos data={movie?.videos.results} />
+      <Article name="reviews">
+        <Container>
+          <H2 heading="Reviews" />
+          <div className="reviews">
+            {movie?.reviews.results.map((item) => (
+              <Review data={item} />
+            ))}
+          </div>
+        </Container>
+      </Article>
       <Collection
         name={movie?.belongs_to_collection?.name}
         image={movie?.belongs_to_collection?.backdrop_path}

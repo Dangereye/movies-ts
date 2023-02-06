@@ -1,4 +1,4 @@
-export interface IReviews {
+export interface IReview {
   author: string;
   author_details: {
     name: string;

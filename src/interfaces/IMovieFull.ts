@@ -3,6 +3,7 @@ import { IMovieMin } from "./IMovieMin";
 import { ICredits } from "./ICredits";
 import { IVideos } from "./IVideos";
 import { IExternalIds } from "./IExternalIds";
+import { IReview } from "./IReview";
 
 export interface IMovieFull {
   adult: boolean;
@@ -45,4 +46,5 @@ export interface IMovieFull {
   external_ids: IExternalIds;
   recommendations: IPage<IMovieMin>;
   similar: IPage<IMovieMin>;
+  reviews: IPage<IReview>;
 }
