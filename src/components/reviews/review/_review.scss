@@ -6,7 +6,34 @@
   border-radius: 1rem;
   box-shadow: 0 0 20px rgba(#000, 0.1);
 
+  .avatar-wrapper {
+    margin: 0;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .heading {
+    color: $heading-text-dark;
+  }
+
+  .small-text {
+    margin-bottom: 4rem;
+    color: $body-text-dark;
+  }
+
   .body-text {
+    margin: 0;
     white-space: pre-wrap;
+    color: $body-text-dark;
+
+    .lead {
+      font-weight: 500;
+      font-style: italic;
+
+      &::after {
+        content: " ";
+      }
+    }
   }
 }

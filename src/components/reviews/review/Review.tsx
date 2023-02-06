@@ -15,9 +15,9 @@ type ReviewProps = {
 export default function Review({ data }: ReviewProps) {
   const formatContent = (content: string) => {
     const formatted = content
-      .replace(/\*\*[.\s]/g, "</strong>")
-      .replace(/\*\*/g, "<Strong>")
-      .replace(/[_|]/g, " ");
+      .replace(/\*\*[.\s]/g, "</span>")
+      .replace(/\*\*/g, `<span className="lead-text">`)
+      .replace(/[_|]/g, "");
     return <p className="body-text">{parse(formatted)}</p>;
   };
 
@@ -40,8 +40,8 @@ export default function Review({ data }: ReviewProps) {
         <SmallText
           text={
             data.updated_at
-              ? `Updated - ${formatDate(data.updated_at)}`
-              : `Created -${formatDate(data.created_at)}`
+              ? `Updated ${formatDate(data.updated_at)}`
+              : `Created ${formatDate(data.created_at)}`
           }
         />
         {formatContent(data.content)}
