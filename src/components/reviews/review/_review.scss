@@ -13,7 +13,14 @@
     border-radius: 50%;
     overflow: hidden;
   }
+  .review-title {
+    margin: 0;
+    margin-bottom: 2rem;
+    gap: 2rem;
+  }
+
   .heading {
+    margin: 0;
     color: $heading-text-dark;
   }
 
@@ -27,10 +34,7 @@
     white-space: pre-wrap;
     color: $body-text-dark;
 
-    .lead {
-      font-weight: 500;
-      font-style: italic;
-
+    .lead-text {
       &::after {
         content: " ";
       }

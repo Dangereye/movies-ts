@@ -1,12 +1,17 @@
-import { GiRoundStar } from "react-icons/gi";
-import { IReview } from "../../../interfaces/IReview";
-import { formatDate } from "../../../utilities/formatDate";
+import parse from "html-react-parser";
+
+// Components
 import ImageComponent from "../../image/Image";
-import BodyText from "../../typography/BodyText";
 import H3 from "../../typography/H3";
 import SmallText from "../../typography/SmallText";
 import Wrapper from "../../wrapper/Wrapper";
-import parse from "html-react-parser";
+import StarRating from "../../star_rating/StarRating";
+
+// Interfaces
+import { IReview } from "../../../interfaces/IReview";
+
+// Utilities
+import { formatDate } from "../../../utilities/formatDate";
 
 type ReviewProps = {
   data: IReview;
@@ -35,7 +40,14 @@ export default function Review({ data }: ReviewProps) {
         </Wrapper>
       </div>
       <div className="content">
-        <H3 heading={`A Review By ${data.author}`} />
+        <Wrapper name="review-title" variant="flex">
+          <H3 heading={`${data.author}`} />
+          <div className="rating">
+            <div className="content">
+              <StarRating rating={data.author_details.rating} />
+            </div>
+          </div>
+        </Wrapper>
 
         <SmallText
           text={
@@ -45,12 +57,6 @@ export default function Review({ data }: ReviewProps) {
           }
         />
         {formatContent(data.content)}
-      </div>
-      <div className="rating">
-        <span>
-          <GiRoundStar />
-        </span>
-        <span>{data.author_details.rating}</span>
       </div>
     </div>
   );
