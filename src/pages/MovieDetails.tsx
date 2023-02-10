@@ -100,12 +100,12 @@ export default function MovieDetails() {
       <Statistics movie={movie} />
       <ArticleTopBilledCast data={movie?.credits.cast} />
       <ArticleVideos data={movie?.videos.results} />
-      <Article name="reviews">
+      <Article name="article__reviews">
         <Container>
           <H2 heading="Reviews" />
           <div className="reviews">
             {movie?.reviews.results.map((item) => (
-              <Review data={item} />
+              <Review key={item.id} data={item} />
             ))}
           </div>
         </Container>

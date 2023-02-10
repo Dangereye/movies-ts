@@ -42,6 +42,7 @@ html {
   margin-bottom: 2rem;
   font-size: $base-font-size;
   font-weight: 400;
+  overflow-wrap: anywhere;
   max-width: 83ch;
   line-height: 1.618;
 }

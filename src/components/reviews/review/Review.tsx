@@ -12,6 +12,7 @@ import { IReview } from "../../../interfaces/IReview";
 
 // Utilities
 import { formatDate } from "../../../utilities/formatDate";
+import BodyText from "../../typography/BodyText";
 
 type ReviewProps = {
   data: IReview;
@@ -23,6 +24,7 @@ export default function Review({ data }: ReviewProps) {
       .replace(/\*\*[.\s]/g, "</span>")
       .replace(/\*\*/g, `<span className="lead-text">`)
       .replace(/[_|]/g, "");
+
     return <p className="body-text">{parse(formatted)}</p>;
   };
 
@@ -48,7 +50,6 @@ export default function Review({ data }: ReviewProps) {
             </div>
           </div>
         </Wrapper>
-
         <SmallText
           text={
             data.updated_at
