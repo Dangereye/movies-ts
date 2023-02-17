@@ -2,19 +2,19 @@ import { useState } from "react";
 import parse from "html-react-parser";
 
 // Components
-import ImageComponent from "../../image/Image";
-import H3 from "../../typography/H3";
-import SmallText from "../../typography/SmallText";
-import Wrapper from "../../wrapper/Wrapper";
-import StarRating from "../../star_rating/StarRating";
+import ImageComponent from "../image/Image";
+import H3 from "../typography/H3";
+import SmallText from "../typography/SmallText";
+import Wrapper from "../wrapper/Wrapper";
+import StarRating from "../star_rating/StarRating";
 
 // Interfaces
-import { IReview } from "../../../interfaces/IReview";
+import { IReview } from "../../interfaces/IReview";
 
 // Utilities
-import { formatDate } from "../../../utilities/formatDate";
-import BodyText from "../../typography/BodyText";
-import Button from "../../buttons/Button";
+import { formatDate } from "../../utilities/formatDate";
+import BodyText from "../typography/BodyText";
+import Button from "../buttons/Button";
 
 type ReviewProps = {
   data: IReview;

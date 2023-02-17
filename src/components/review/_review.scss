@@ -64,16 +64,12 @@
   }
 
   &.expanded {
-    @media (min-width: 1100px) {
+    @media (min-width: 1100px) and (max-width: 1420px) {
       grid-column: span 2;
     }
 
     .body-text {
       display: block;
     }
-  }
-
-  .buttons {
-    margin-top: 4rem;
   }
 }
