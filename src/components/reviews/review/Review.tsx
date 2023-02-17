@@ -1,3 +1,4 @@
+import { useState } from "react";
 import parse from "html-react-parser";
 
 // Components
@@ -13,12 +14,19 @@ import { IReview } from "../../../interfaces/IReview";
 // Utilities
 import { formatDate } from "../../../utilities/formatDate";
 import BodyText from "../../typography/BodyText";
+import Button from "../../buttons/Button";
 
 type ReviewProps = {
   data: IReview;
 };
 
 export default function Review({ data }: ReviewProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
   const formatContent = (content: string) => {
     const formatted = content
       .replace(/\*\*[.\s]/g, "</span>")
@@ -29,7 +37,7 @@ export default function Review({ data }: ReviewProps) {
   };
 
   return (
-    <div className="review">
+    <div className={expanded ? "review expanded" : "review"}>
       <div className="avatar">
         <Wrapper name="avatar-wrapper">
           <ImageComponent
@@ -42,14 +50,10 @@ export default function Review({ data }: ReviewProps) {
         </Wrapper>
       </div>
       <div className="content">
-        <Wrapper name="review-title" variant="flex">
-          <H3 heading={`${data.author}`} />
-          <div className="rating">
-            <div className="content">
-              <StarRating rating={data.author_details.rating} />
-            </div>
-          </div>
-        </Wrapper>
+        <H3 heading={`${data.author}`} />
+        <div className="rating">
+          <StarRating rating={data.author_details.rating} />
+        </div>
         <SmallText
           text={
             data.updated_at
@@ -58,6 +62,13 @@ export default function Review({ data }: ReviewProps) {
           }
         />
         {formatContent(data.content)}
+        <div className="buttons">
+          <Button
+            name={expanded ? "Read Less" : "Read More"}
+            variant="btn--tertiary"
+            onClick={toggleExpanded}
+          />
+        </div>
       </div>
     </div>
   );

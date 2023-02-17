@@ -118,5 +118,13 @@ export default function StarRating({ rating }: StarRatingProps) {
       );
     }
   }
-  return null;
+  return (
+    <span className="star-rating unrated">
+      <MdStarBorder />
+      <MdStarBorder />
+      <MdStarBorder />
+      <MdStarBorder />
+      <MdStarBorder />
+    </span>
+  );
 }
