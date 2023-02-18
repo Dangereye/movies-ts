@@ -16,7 +16,7 @@ import Collection from "../components/collection/Collection";
 
 // Articles
 import ArticleVideos from "../components/articles/ArticleVideos";
-import ArticleTopBilledCast from "../components/articles/ArticleTopBilledCast";
+import ArticleCastMembers from "../components/articles/ArticleCastMembers";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleReviews from "../components/articles/ArticleReviews";
 
@@ -92,7 +92,11 @@ export default function MovieDetails() {
       </Header>
 
       <Statistics movie={movie} />
-      <ArticleTopBilledCast data={movie?.credits.cast} />
+      <ArticleCastMembers
+        name="top-billed-cast"
+        heading="Top billed cast"
+        data={movie?.credits.cast}
+      />
       <ArticleVideos data={movie?.videos.results} />
       <ArticleReviews data={movie?.reviews.results} />
       <Collection

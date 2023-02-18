@@ -9,16 +9,22 @@ import Article from "./Article";
 // Interfaces
 import { ICast } from "../../interfaces/ICast";
 
-type TopBilledCastProps = {
+type ArticleCastMembersProps = {
+  name: string;
+  heading: string;
   data: ICast[] | undefined;
 };
 
-export default function ArticleTopBilledCast({ data }: TopBilledCastProps) {
+export default function ArticleCastMembers({
+  name,
+  heading,
+  data,
+}: ArticleCastMembersProps) {
   if (data && data.length > 0) {
     return (
-      <Article name="article__top-billed-cast">
+      <Article name={`article__${name}`}>
         <Container>
-          <H2 heading="Top billed cast" />
+          <H2 heading={heading} />
           <Cards
             getID={(item: ICast) => item.id}
             renderLink={(item) => `/person/${item.id}`}
@@ -40,5 +46,6 @@ export default function ArticleTopBilledCast({ data }: TopBilledCastProps) {
       </Article>
     );
   }
+
   return null;
 }

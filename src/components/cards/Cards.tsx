@@ -23,7 +23,7 @@ export default function Cards<T>({
   }
 
   if (data && data.length > 9 && limit) {
-    data = data?.slice(0, 10);
+    data = data.slice(0, 10);
   }
 
   if (data && data.length > 0) {
