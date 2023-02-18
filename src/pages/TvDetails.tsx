@@ -25,6 +25,7 @@ import Cards from "../components/cards/Cards";
 import { IAggregateCast } from "../interfaces/IAggregateCast";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
+import Statistics from "../components/statistics/Statistics";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -35,7 +36,7 @@ export default function TvDetails() {
   } = useMakeQuery<ITVShow>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=credits,aggregate_credits`
+    `&append_to_response=credits,aggregate_credits,external_ids`
   );
 
   if (isLoading) {
@@ -73,6 +74,7 @@ export default function TvDetails() {
         <Overview caption={tv?.tagline} text={tv?.overview} />
         <CrewJobs credits={tv?.credits} />
       </Header>
+      <Statistics tv={tv} />
       <Article name="article__series-cast">
         <Container>
           <H2 heading="Series cast" />

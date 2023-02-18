@@ -1,5 +1,6 @@
 import { IAggregateCredits } from "./IAggregateCredits";
 import { ICredits } from "./ICredits";
+import { IExternalIds } from "./IExternalIds";
 
 export interface ITVShow {
   backdrop_path: string | null;
@@ -70,4 +71,5 @@ export interface ITVShow {
   vote_count: number;
   credits: ICredits;
   aggregate_credits: IAggregateCredits;
+  external_ids: IExternalIds;
 }
