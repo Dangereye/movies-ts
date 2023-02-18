@@ -19,7 +19,12 @@ import { ITVShow } from "../interfaces/ITVShow";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
-import ArticleCastMembers from "../components/articles/ArticleCastMembers";
+import Container from "../components/container/Container";
+import Article from "../components/articles/Article";
+import Cards from "../components/cards/Cards";
+import { IAggregateCast } from "../interfaces/IAggregateCast";
+import ImageComponent from "../components/image/Image";
+import CardContent from "../components/cards/card/CardContent";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -30,7 +35,7 @@ export default function TvDetails() {
   } = useMakeQuery<ITVShow>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=aggregate_credits`
+    `&append_to_response=credits,aggregate_credits`
   );
 
   if (isLoading) {
@@ -58,7 +63,6 @@ export default function TvDetails() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
-          {/* <BodyText text={formatRuntime(tv?.runtime)} /> */}
         </Wrapper>
         <Wrapper name="actions" variant="flex">
           <div className="vote">
@@ -69,11 +73,31 @@ export default function TvDetails() {
         <Overview caption={tv?.tagline} text={tv?.overview} />
         <CrewJobs credits={tv?.credits} />
       </Header>
-      <ArticleCastMembers
-        name="series-cast"
-        heading="Series cast"
-        data={tv?.credits.cast}
-      />
+      <Article name="article__series-cast">
+        <Container>
+          <H2 heading="Series cast" />
+          <Cards
+            getID={(item: IAggregateCast) => item.id}
+            renderLink={(item: IAggregateCast) => `/person/${item.id}`}
+            renderItem={(item: IAggregateCast) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.name}
+                />
+                <CardContent
+                  heading={item.name}
+                  body={item.roles[0].character}
+                />
+              </>
+            )}
+            data={tv?.aggregate_credits.cast}
+            sort={(a, b) => b.popularity - a.popularity}
+            limit
+          />
+        </Container>
+      </Article>
     </>
   );
 }

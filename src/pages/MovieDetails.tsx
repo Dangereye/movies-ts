@@ -16,7 +16,6 @@ import Collection from "../components/collection/Collection";
 
 // Articles
 import ArticleVideos from "../components/articles/ArticleVideos";
-import ArticleCastMembers from "../components/articles/ArticleCastMembers";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleReviews from "../components/articles/ArticleReviews";
 
@@ -32,6 +31,12 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import Article from "../components/articles/Article";
+import Container from "../components/container/Container";
+import Cards from "../components/cards/Cards";
+import { ICast } from "../interfaces/ICast";
+import ImageComponent from "../components/image/Image";
+import CardContent from "../components/cards/card/CardContent";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -92,11 +97,29 @@ export default function MovieDetails() {
       </Header>
 
       <Statistics movie={movie} />
-      <ArticleCastMembers
-        name="top-billed-cast"
-        heading="Top billed cast"
-        data={movie?.credits.cast}
-      />
+      {/* Top billed cast */}
+      <Article name="article__top-billed-cast">
+        <Container>
+          <H2 heading="Top billed cast" />
+          <Cards
+            getID={(item: ICast) => item.id}
+            renderLink={(item: ICast) => `/person/${item.id}`}
+            renderItem={(item: ICast) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.name}
+                />
+                <CardContent heading={item.name} body={item.character} />
+              </>
+            )}
+            data={movie?.credits.cast}
+            sort={(a, b) => b.popularity - a.popularity}
+            limit
+          />
+        </Container>
+      </Article>
       <ArticleVideos data={movie?.videos.results} />
       <ArticleReviews data={movie?.reviews.results} />
       <Collection
