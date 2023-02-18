@@ -18,27 +18,25 @@ export default function Cards<T>({
   limit = false,
   data,
 }: CardsProps<T>) {
-  if (limit) {
+  if (data && sort) {
+    data = data.sort(sort);
+  }
+
+  if (data && data.length > 9 && limit) {
+    data = data?.slice(0, 10);
+  }
+
+  if (data && data.length > 0) {
     return (
       <div className="cards">
-        {data
-          ?.sort(sort)
-          .slice(0, 10)
-          .map((item) => (
-            <Link key={getID(item)} to={renderLink(item)} className="card">
-              {renderItem(item)}
-            </Link>
-          ))}
+        {data.map((item) => (
+          <Link key={getID(item)} to={renderLink(item)} className="card">
+            {renderItem(item)}
+          </Link>
+        ))}
       </div>
     );
   }
-  return (
-    <div className="cards">
-      {data?.sort(sort).map((item) => (
-        <Link key={getID(item)} to={renderLink(item)} className="card">
-          {renderItem(item)}
-        </Link>
-      ))}
-    </div>
-  );
+
+  return null;
 }
