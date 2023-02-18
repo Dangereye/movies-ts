@@ -70,7 +70,7 @@ export default function Statistics({ movie, tv }: StatisticsProps) {
             />
             <Statistic
               heading={tv.number_of_episodes ? tv.number_of_episodes : "n/a"}
-              text="Episodes"
+              text="Episode(s)"
             />
           </Wrapper>
           <Wrapper name="social-icons" variant="flex">

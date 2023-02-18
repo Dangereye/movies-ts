@@ -10,22 +10,26 @@ import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
+import Container from "../components/container/Container";
+import Article from "../components/articles/Article";
+import Cards from "../components/cards/Cards";
+import ImageComponent from "../components/image/Image";
+import CardContent from "../components/cards/card/CardContent";
+import Statistics from "../components/statistics/Statistics";
+import SubNavbar from "../components/sub_navbar/SubNavbar";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { ITVShow } from "../interfaces/ITVShow";
+import { IAggregateCast } from "../interfaces/IAggregateCast";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
-import Container from "../components/container/Container";
-import Article from "../components/articles/Article";
-import Cards from "../components/cards/Cards";
-import { IAggregateCast } from "../interfaces/IAggregateCast";
-import ImageComponent from "../components/image/Image";
-import CardContent from "../components/cards/card/CardContent";
-import Statistics from "../components/statistics/Statistics";
+
+// Data
+import { tvPages } from "../data/tvPages";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -49,6 +53,15 @@ export default function TvDetails() {
 
   return (
     <>
+      <SubNavbar>
+        <Navigation
+          data={tvPages}
+          getID={(item) => item.name}
+          getLink={(item) => item.link}
+          renderItem={(item) => item.name}
+          variant="horizontal"
+        />
+      </SubNavbar>
       <Header
         bgImage={tv?.backdrop_path}
         image={tv?.poster_path}
@@ -77,7 +90,7 @@ export default function TvDetails() {
       <Statistics tv={tv} />
       <Article name="article__series-cast">
         <Container>
-          <H2 heading="Series cast" />
+          <H2 heading="Top billed cast" />
           <Cards
             getID={(item: IAggregateCast) => item.id}
             renderLink={(item: IAggregateCast) => `/person/${item.id}`}

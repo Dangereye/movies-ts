@@ -12,6 +12,11 @@ import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
 import Statistics from "../components/statistics/Statistics";
+import Cards from "../components/cards/Cards";
+import Article from "../components/articles/Article";
+import Container from "../components/container/Container";
+import ImageComponent from "../components/image/Image";
+import CardContent from "../components/cards/card/CardContent";
 import Collection from "../components/collection/Collection";
 
 // Articles
@@ -24,6 +29,7 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IMovieFull } from "../interfaces/IMovieFull";
+import { ICast } from "../interfaces/ICast";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
@@ -31,12 +37,6 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
-import Article from "../components/articles/Article";
-import Container from "../components/container/Container";
-import Cards from "../components/cards/Cards";
-import { ICast } from "../interfaces/ICast";
-import ImageComponent from "../components/image/Image";
-import CardContent from "../components/cards/card/CardContent";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
