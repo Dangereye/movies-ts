@@ -1,3 +1,4 @@
+import { IAggregateCredits } from "./IAggregateCredits";
 import { ICredits } from "./ICredits";
 
 export interface ITVShow {
@@ -68,4 +69,5 @@ export interface ITVShow {
   vote_average: number;
   vote_count: number;
   credits: ICredits;
+  aggregate_credits: IAggregateCredits;
 }

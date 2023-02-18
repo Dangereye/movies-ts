@@ -19,6 +19,7 @@ import { ITVShow } from "../interfaces/ITVShow";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
+import ArticleCastMembers from "../components/articles/ArticleCastMembers";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -29,7 +30,7 @@ export default function TvDetails() {
   } = useMakeQuery<ITVShow>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=credits`
+    `&append_to_response=aggregate_credits`
   );
 
   if (isLoading) {
@@ -68,6 +69,11 @@ export default function TvDetails() {
         <Overview caption={tv?.tagline} text={tv?.overview} />
         <CrewJobs credits={tv?.credits} />
       </Header>
+      <ArticleCastMembers
+        name="series-cast"
+        heading="Series cast"
+        data={tv?.credits.cast}
+      />
     </>
   );
 }
