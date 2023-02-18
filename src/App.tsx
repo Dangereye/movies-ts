@@ -8,8 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Sass
 import "./sass/styles.scss";
 
+// Contexts
+import VideoContextComponent from "./contexts/VideoContext";
+
 // Components
 import Navbar from "./components/navbar/Navbar";
+
+// Components
+import VideoPlayer from "./components/videos/video_player/VideoPlayer";
 
 // Pages
 import Home from "./pages/Home";
@@ -18,10 +24,12 @@ import MoviesNowPlaying from "./pages/MoviesNowPlaying";
 import MoviesUpcoming from "./pages/MoviesUpcoming";
 import MoviesTopRated from "./pages/MoviesTopRated";
 import MovieDetails from "./pages/MovieDetails";
+import TvPopular from "./pages/TvPopular";
+import TvAiringToday from "./pages/TvAiringToday";
+import TvOnTv from "./pages/TvOnTv";
+import TvTopRated from "./pages/TvTopRated";
 import TvDetails from "./pages/TvDetails";
 import PersonDetails from "./pages/PersonDetails";
-import VideoContextComponent from "./contexts/VideoContext";
-import VideoPlayer from "./components/videos/video_player/VideoPlayer";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +51,10 @@ function App() {
               <Route path="/movies/upcoming" element={<MoviesUpcoming />} />
               <Route path="/movies/top-rated" element={<MoviesTopRated />} />
               <Route path="/movies/:movieId" element={<MovieDetails />} />
+              <Route path="/tv/popular" element={<TvPopular />} />
+              <Route path="/tv/airing-today" element={<TvAiringToday />} />
+              <Route path="/tv/on-tv" element={<TvOnTv />} />
+              <Route path="/tv/top-rated" element={<TvTopRated />} />
               <Route path="/tv/:tvId" element={<TvDetails />} />
               <Route path="/person/:personId" element={<PersonDetails />} />
             </Routes>
