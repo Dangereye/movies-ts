@@ -30,6 +30,7 @@ import { formatDate } from "../utilities/formatDate";
 
 // Data
 import { tvPages } from "../data/tvPages";
+import ArticleVideos from "../components/articles/ArticleVideos";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -40,7 +41,7 @@ export default function TvDetails() {
   } = useMakeQuery<ITVShow>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=credits,aggregate_credits,external_ids`
+    `&append_to_response=credits,aggregate_credits,external_ids,videos`
   );
 
   if (isLoading) {
@@ -113,6 +114,7 @@ export default function TvDetails() {
           />
         </Container>
       </Article>
+      <ArticleVideos data={tv?.videos.results} />
     </>
   );
 }

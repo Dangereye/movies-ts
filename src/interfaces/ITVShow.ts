@@ -1,6 +1,7 @@
 import { IAggregateCredits } from "./IAggregateCredits";
 import { ICredits } from "./ICredits";
 import { IExternalIds } from "./IExternalIds";
+import { IVideos } from "./IVideos";
 
 export interface ITVShow {
   backdrop_path: string | null;
@@ -72,4 +73,5 @@ export interface ITVShow {
   credits: ICredits;
   aggregate_credits: IAggregateCredits;
   external_ids: IExternalIds;
+  videos: IVideos;
 }
