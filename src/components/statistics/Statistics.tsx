@@ -3,6 +3,7 @@ import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from "react-icons/bs";
 
 // Interfaces
 import { IMovieFull } from "../../interfaces/IMovieFull";
+import { IPerson } from "../../interfaces/IPerson";
 import { ITVShowFull } from "../../interfaces/ITVShowFull";
 
 // Components
@@ -14,9 +15,10 @@ import Statistic from "./Statistic/Statistic";
 type StatisticsProps = {
   movie?: IMovieFull;
   tv?: ITVShowFull;
+  person?: IPerson;
 };
 
-export default function Statistics({ movie, tv }: StatisticsProps) {
+export default function Statistics({ movie, tv, person }: StatisticsProps) {
   if (movie) {
     return (
       <div className="statistics">
@@ -41,15 +43,27 @@ export default function Statistics({ movie, tv }: StatisticsProps) {
           </Wrapper>
           <Wrapper name="social-icons" variant="flex">
             <SocialIcon
-              anchor={`https://www.facebook.com/${movie?.external_ids.facebook_id}`}
+              anchor={
+                movie.external_ids.facebook_id
+                  ? `https://www.facebook.com/${movie.external_ids.facebook_id}`
+                  : null
+              }
               icon={<BsFacebook />}
             />
             <SocialIcon
-              anchor={`https://www.twitter.com/${movie?.external_ids.twitter_id}`}
+              anchor={
+                movie.external_ids.twitter_id
+                  ? `https://www.twitter.com/${movie.external_ids.twitter_id}`
+                  : null
+              }
               icon={<BsTwitter />}
             />
             <SocialIcon
-              anchor={`https://www.instagram.com/${movie?.external_ids.instagram_id}`}
+              anchor={
+                movie.external_ids.instagram_id
+                  ? `https://www.instagram.com/${movie.external_ids.instagram_id}`
+                  : null
+              }
               icon={<BsInstagram />}
             />
             <SocialIcon anchor={movie?.homepage} icon={<BsGlobe />} />
@@ -58,6 +72,7 @@ export default function Statistics({ movie, tv }: StatisticsProps) {
       </div>
     );
   }
+
   if (tv) {
     return (
       <div className="statistics">
@@ -75,18 +90,92 @@ export default function Statistics({ movie, tv }: StatisticsProps) {
           </Wrapper>
           <Wrapper name="social-icons" variant="flex">
             <SocialIcon
-              anchor={`https://www.facebook.com/${tv?.external_ids.facebook_id}`}
+              anchor={
+                tv.external_ids.facebook_id
+                  ? `https://www.facebook.com/${tv.external_ids.facebook_id}`
+                  : null
+              }
               icon={<BsFacebook />}
             />
             <SocialIcon
-              anchor={`https://www.twitter.com/${tv?.external_ids.twitter_id}`}
+              anchor={
+                tv.external_ids.twitter_id
+                  ? `https://www.twitter.com/${tv.external_ids.twitter_id}`
+                  : null
+              }
               icon={<BsTwitter />}
             />
             <SocialIcon
-              anchor={`https://www.instagram.com/${tv?.external_ids.instagram_id}`}
+              anchor={
+                tv.external_ids.instagram_id
+                  ? `https://www.instagram.com/${tv.external_ids.instagram_id}`
+                  : null
+              }
               icon={<BsInstagram />}
             />
             <SocialIcon anchor={tv?.homepage} icon={<BsGlobe />} />
+          </Wrapper>
+        </Container>
+      </div>
+    );
+  }
+
+  if (person) {
+    return (
+      <div className="statistics">
+        <Container>
+          <Wrapper name="stats" variant="flex">
+            <Statistic
+              heading={
+                person.known_for_department
+                  ? person.known_for_department
+                  : "n/a"
+              }
+              text="Known for"
+            />
+            <Statistic
+              heading={
+                person.movie_credits.cast.length > 0
+                  ? person.movie_credits.cast.length
+                  : "n/a"
+              }
+              text="Movie credits"
+            />
+            <Statistic
+              heading={
+                person.tv_credits.cast.length > 0
+                  ? person.tv_credits.cast.length
+                  : "n/a"
+              }
+              text="TV credits"
+            />
+          </Wrapper>
+          <Wrapper name="social-icons" variant="flex">
+            <SocialIcon
+              anchor={
+                person.external_ids.facebook_id
+                  ? `https://www.facebook.com/${person?.external_ids.facebook_id}`
+                  : null
+              }
+              icon={<BsFacebook />}
+            />
+            <SocialIcon
+              anchor={
+                person.external_ids.twitter_id
+                  ? `https://www.twitter.com/${person.external_ids.twitter_id}`
+                  : null
+              }
+              icon={<BsTwitter />}
+            />
+            <SocialIcon
+              anchor={
+                person.external_ids.instagram_id
+                  ? `https://www.instagram.com/${person.external_ids.instagram_id}`
+                  : null
+              }
+              icon={<BsInstagram />}
+            />
+            <SocialIcon anchor={person?.homepage} icon={<BsGlobe />} />
           </Wrapper>
         </Container>
       </div>

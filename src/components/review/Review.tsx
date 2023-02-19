@@ -1,13 +1,10 @@
-import { useState } from "react";
-import parse from "html-react-parser";
-
 // Components
 import ImageComponent from "../image/Image";
 import H3 from "../typography/H3";
 import SmallText from "../typography/SmallText";
 import Wrapper from "../wrapper/Wrapper";
 import StarRating from "../star_rating/StarRating";
-import Button from "../buttons/Button";
+import ExpandableText from "../typography/ExpandableText";
 
 // Interfaces
 import { IReview } from "../../interfaces/IReview";
@@ -20,23 +17,8 @@ type ReviewProps = {
 };
 
 export default function Review({ data }: ReviewProps) {
-  const [expanded, setExpanded] = useState(false);
-
-  const toggleExpanded = () => {
-    setExpanded(!expanded);
-  };
-
-  const formatContent = (content: string) => {
-    const formatted = content
-      .replace(/\*\*[.\s]/g, "</span>")
-      .replace(/\*\*/g, `<span className="lead-text">`)
-      .replace(/[_|]/g, "");
-
-    return <p className="body-text">{parse(formatted)}</p>;
-  };
-
   return (
-    <div className={expanded ? "review expanded" : "review"}>
+    <div className="review">
       <div className="avatar">
         <Wrapper name="avatar-wrapper">
           <ImageComponent
@@ -60,16 +42,7 @@ export default function Review({ data }: ReviewProps) {
               : `Created ${formatDate(data.created_at)}`
           }
         />
-        {formatContent(data.content)}
-        {data.content.length > 60 && (
-          <div className="buttons">
-            <Button
-              name={expanded ? "Read Less" : "Read More"}
-              variant="btn--tertiary"
-              onClick={toggleExpanded}
-            />
-          </div>
-        )}
+        <ExpandableText text={data.content} lines={3} />
       </div>
     </div>
   );

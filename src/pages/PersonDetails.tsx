@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 // Components
 import Header from "../components/header/Header";
 import Navigation from "../components/navigation/Navigation";
+import Statistics from "../components/statistics/Statistics";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import BodyText from "../components/typography/BodyText";
 import ExpandableText from "../components/typography/ExpandableText";
@@ -27,7 +28,7 @@ export default function TvDetails() {
   } = useMakeQuery<IPerson>(
     `person-${personId}`,
     `person/${personId}`,
-    `&append_to_response=combined_credits`
+    `&append_to_response=combined_credits,movie_credits,tv_credits,external_ids`
   );
 
   if (isLoading) {
@@ -56,11 +57,15 @@ export default function TvDetails() {
       >
         <Wrapper name="info-bar" variant="flex">
           <BodyText text={`Born: ${formatDate(person?.birthday)}`} />
+          {person?.deathday && (
+            <BodyText text={`Died: ${formatDate(person.deathday)}`} />
+          )}
           <BodyText text={person?.place_of_birth} />
         </Wrapper>
         <HDiv variant="heading--h4" heading="Biography" />
         <ExpandableText text={person?.biography} lines={8} />
       </Header>
+      <Statistics person={person} />
     </>
   );
 }

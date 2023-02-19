@@ -6,18 +6,12 @@ type SocialIconProps = {
 };
 
 export default function SocialIcon({ anchor, icon }: SocialIconProps) {
-  return (
-    <>
-      {anchor && icon ? (
-        <a
-          className="social-icon"
-          href={anchor}
-          rel="noreferrer"
-          target="_blank"
-        >
-          {icon}
-        </a>
-      ) : null}
-    </>
-  );
+  if (anchor && icon) {
+    return (
+      <a className="social-icon" href={anchor} rel="noreferrer" target="_blank">
+        {icon}
+      </a>
+    );
+  }
+  return null;
 }

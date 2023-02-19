@@ -1,4 +1,7 @@
 import { ICombinedCredits } from "./ICombinedCredits";
+import { IExternalIds } from "./IExternalIds";
+import { IPersonMovieCredits } from "./IPersonMovieCredits";
+import { IPersonTvCredits } from "./IPersonTvCredits";
 
 export interface IPerson {
   birthday: string | null;
@@ -16,4 +19,7 @@ export interface IPerson {
   imdb_id: string;
   homepage: string | null;
   combined_credits: ICombinedCredits;
+  movie_credits: IPersonMovieCredits;
+  tv_credits: IPersonTvCredits;
+  external_ids: IExternalIds;
 }
