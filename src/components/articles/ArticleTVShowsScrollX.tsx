@@ -1,5 +1,5 @@
 // Interfaces
-import { IMovieMin } from "../../interfaces/IMovieMin";
+import { ITVShowMin } from "../../interfaces/ITVShowMin";
 
 // Utilities
 import { formatDate } from "../../utilities/formatDate";
@@ -12,36 +12,36 @@ import ImageComponent from "../image/Image";
 import H2 from "../typography/H2";
 import Article from "./Article";
 
-type ArticleMoviesScrollXProps = {
-  data: IMovieMin[] | undefined;
+type ArticleITVShowScrollXProps = {
+  data: ITVShowMin[] | undefined;
   name: string;
   heading: string;
 };
 
-export default function ArticleMoviesScrollX({
+export default function ArticleTVShowsScrollX({
   data,
   name,
   heading,
-}: ArticleMoviesScrollXProps) {
+}: ArticleITVShowScrollXProps) {
   if (data && data.length > 0) {
     return (
       <Article name={`article__${name}`}>
         <Container>
           <H2 heading={heading} />
           <Cards
-            getID={(item: IMovieMin) => item.id}
-            renderLink={(item) => `/movies/${item.id}`}
-            renderItem={(item: IMovieMin) => (
+            getID={(item: ITVShowMin) => item.id}
+            renderLink={(item) => `/tv/${item.id}`}
+            renderItem={(item: ITVShowMin) => (
               <>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                   fallback="/images/error_500x750.webp"
-                  alt={item.title}
+                  alt={item.name}
                 />
                 <CardContent
                   vote={item.vote_average}
-                  heading={item.title}
-                  body={formatDate(item.release_date)}
+                  heading={item.name}
+                  body={formatDate(item.first_air_date)}
                 />
               </>
             )}

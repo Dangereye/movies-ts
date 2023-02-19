@@ -31,6 +31,7 @@ import { formatDate } from "../utilities/formatDate";
 // Data
 import { tvPages } from "../data/tvPages";
 import ArticleVideos from "../components/articles/ArticleVideos";
+import ArticleReviews from "../components/articles/ArticleReviews";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -115,6 +116,7 @@ export default function TvDetails() {
         </Container>
       </Article>
       <ArticleVideos data={tv?.videos.results} />
+      <ArticleReviews data={tv?.reviews.results} />
     </>
   );
 }
