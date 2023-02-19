@@ -4,7 +4,7 @@ import { useState } from "react";
 import Article from "./Article";
 import Container from "../container/Container";
 import H2 from "../typography/H2";
-import Review from "../review/Reviews";
+import Review from "../review/Review";
 import Button from "../buttons/Button";
 
 // Interfaces
@@ -35,7 +35,7 @@ export default function ArticleReviews({ data }: ArticlesReviewsProps) {
               <Review key={item.id} data={item} />
             ))}
           </div>
-          {data.length > 2 && (
+          {data.length > 1 && (
             <div className="buttons">
               <Button
                 name={expanded ? "Show Less" : "Show More"}

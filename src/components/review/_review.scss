@@ -8,6 +8,7 @@
   background-color: #fff;
   box-shadow: 0 0 20px rgba(#000, 0.1);
   height: max-content;
+  min-height: 38rem;
 
   @media (max-width: 650px) {
     grid-template-columns: 1fr;

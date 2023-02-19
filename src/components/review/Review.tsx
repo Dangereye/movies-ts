@@ -7,14 +7,13 @@ import H3 from "../typography/H3";
 import SmallText from "../typography/SmallText";
 import Wrapper from "../wrapper/Wrapper";
 import StarRating from "../star_rating/StarRating";
+import Button from "../buttons/Button";
 
 // Interfaces
 import { IReview } from "../../interfaces/IReview";
 
 // Utilities
 import { formatDate } from "../../utilities/formatDate";
-import BodyText from "../typography/BodyText";
-import Button from "../buttons/Button";
 
 type ReviewProps = {
   data: IReview;
@@ -62,13 +61,15 @@ export default function Review({ data }: ReviewProps) {
           }
         />
         {formatContent(data.content)}
-        <div className="buttons">
-          <Button
-            name={expanded ? "Read Less" : "Read More"}
-            variant="btn--tertiary"
-            onClick={toggleExpanded}
-          />
-        </div>
+        {data.content.length > 250 && (
+          <div className="buttons">
+            <Button
+              name={expanded ? "Read Less" : "Read More"}
+              variant="btn--tertiary"
+              onClick={toggleExpanded}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
