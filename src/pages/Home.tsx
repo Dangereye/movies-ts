@@ -81,7 +81,7 @@ export default function LandingPage() {
             <H2 heading="trending people" />
             <Cards
               getID={(item: IPerson) => item.id}
-              renderLink={(item) => `/person/${item.id}`}
+              renderLink={(item) => `/people/${item.id}`}
               renderItem={(item: IPerson) => (
                 <>
                   <ImageComponent

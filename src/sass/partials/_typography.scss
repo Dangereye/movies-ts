@@ -42,7 +42,8 @@ html {
 }
 
 .body-text,
-.caption-text {
+.caption-text,
+.expandable-text {
   margin-bottom: 2rem;
   font-size: $base-font-size;
   font-weight: 400;
@@ -58,4 +59,17 @@ html {
 .small-text {
   font-size: $small-font-size;
   font-weight: 300;
+}
+
+.expandable-text {
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+
+  &.active {
+    display: block;
+  }
 }

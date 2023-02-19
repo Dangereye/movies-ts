@@ -15,7 +15,9 @@
     color: $heading-text-light;
   }
 
-  .body-text {
+  .body-text,
+  .small-text,
+  .expandable-text {
     color: $body-text-light;
   }
 
@@ -131,5 +133,9 @@
       object-fit: cover;
       border-radius: 50%;
     }
+  }
+
+  .btn--tertiary {
+    color: $heading-text-light;
   }
 }

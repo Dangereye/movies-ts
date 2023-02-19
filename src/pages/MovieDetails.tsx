@@ -97,13 +97,14 @@ export default function MovieDetails() {
       </Header>
 
       <Statistics movie={movie} />
+
       {/* Top billed cast */}
       <Article name="article__top-billed-cast">
         <Container>
           <H2 heading="Top billed cast" />
           <Cards
             getID={(item: ICast) => item.id}
-            renderLink={(item: ICast) => `/person/${item.id}`}
+            renderLink={(item: ICast) => `/people/${item.id}`}
             renderItem={(item: ICast) => (
               <>
                 <ImageComponent

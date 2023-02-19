@@ -60,7 +60,7 @@ function App() {
               <Route path="/tv/:tvId" element={<TvDetails />} />
               <Route path="/tv/:tvId/season/:seasonId" element={<TvSeason />} />
               <Route path="/people/popular" element={<PeoplePopular />} />
-              <Route path="/person/:personId" element={<PersonDetails />} />
+              <Route path="/people/:personId" element={<PersonDetails />} />
             </Routes>
           </VideoContextComponent>
         </BrowserRouter>

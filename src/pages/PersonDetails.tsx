@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 import Header from "../components/header/Header";
 import Navigation from "../components/navigation/Navigation";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
+import BodyText from "../components/typography/BodyText";
+import ExpandableText from "../components/typography/ExpandableText";
 import H2 from "../components/typography/H2";
+import HDiv from "../components/typography/HDiv";
+import Wrapper from "../components/wrapper/Wrapper";
 import { peoplePages } from "../data/peoplePages";
 
 // Hooks
@@ -12,6 +16,7 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IPerson } from "../interfaces/IPerson";
+import { formatDate } from "../utilities/formatDate";
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -49,7 +54,12 @@ export default function TvDetails() {
         alt={person?.name}
         title={person?.name}
       >
-        <div>content</div>
+        <Wrapper name="info-bar" variant="flex">
+          <BodyText text={`Born: ${formatDate(person?.birthday)}`} />
+          <BodyText text={person?.place_of_birth} />
+        </Wrapper>
+        <HDiv variant="heading--h4" heading="Biography" />
+        <ExpandableText text={person?.biography} lines={8} />
       </Header>
     </>
   );

@@ -96,7 +96,7 @@ export default function TvDetails() {
           <H2 heading="Top billed cast" />
           <Cards
             getID={(item: IAggregateCast) => item.id}
-            renderLink={(item: IAggregateCast) => `/person/${item.id}`}
+            renderLink={(item: IAggregateCast) => `/people/${item.id}`}
             renderItem={(item: IAggregateCast) => (
               <>
                 <ImageComponent
