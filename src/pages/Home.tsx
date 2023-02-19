@@ -11,7 +11,7 @@ import CardContent from "../components/cards/card/CardContent";
 import { IPage } from "../interfaces/IPage";
 import { IMovieMin } from "../interfaces/IMovieMin";
 import { IPerson } from "../interfaces/IPerson";
-import { ITVShow } from "../interfaces/ITVShow";
+import { ITVShowMin } from "../interfaces/ITVShowMin";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
@@ -36,7 +36,7 @@ export default function LandingPage() {
     data: tvshows,
     isLoading: tvshowsIsLoading,
     isError: tvshowsIsError,
-  } = useMakeQuery<IPage<ITVShow>>("trending tvshows", "trending/tv/week");
+  } = useMakeQuery<IPage<ITVShowMin>>("trending tvshows", "trending/tv/week");
 
   if (moviesIsLoading || peopleIsLoading || tvshowsIsLoading) {
     return <H2 heading="Loading" />;
@@ -105,9 +105,9 @@ export default function LandingPage() {
           <Container>
             <H2 heading="trending tv shows" />
             <Cards
-              getID={(item: ITVShow) => item.id}
+              getID={(item: ITVShowMin) => item.id}
               renderLink={(item) => `/tv/${item.id}`}
-              renderItem={(item: ITVShow) => (
+              renderItem={(item: ITVShowMin) => (
                 <>
                   <ImageComponent
                     src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}

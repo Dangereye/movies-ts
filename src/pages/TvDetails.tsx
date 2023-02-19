@@ -22,7 +22,7 @@ import SubNavbar from "../components/sub_navbar/SubNavbar";
 import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
-import { ITVShow } from "../interfaces/ITVShow";
+import { ITVShowFull } from "../interfaces/ITVShowFull";
 import { IAggregateCast } from "../interfaces/IAggregateCast";
 
 // Utilities
@@ -38,10 +38,10 @@ export default function TvDetails() {
     data: tv,
     isError,
     isLoading,
-  } = useMakeQuery<ITVShow>(
+  } = useMakeQuery<ITVShowFull>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=credits,aggregate_credits,external_ids,videos`
+    `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar`
   );
 
   if (isLoading) {

@@ -1,9 +1,12 @@
 import { IAggregateCredits } from "./IAggregateCredits";
 import { ICredits } from "./ICredits";
 import { IExternalIds } from "./IExternalIds";
+import { IPage } from "./IPage";
+import { IReview } from "./IReview";
+import { ITVShowMin } from "./ITVShowMin";
 import { IVideos } from "./IVideos";
 
-export interface ITVShow {
+export interface ITVShowFull {
   backdrop_path: string | null;
   created_by: {
     id: number;
@@ -74,4 +77,7 @@ export interface ITVShow {
   aggregate_credits: IAggregateCredits;
   external_ids: IExternalIds;
   videos: IVideos;
+  reviews: IPage<IReview>;
+  recommendations: IPage<ITVShowMin>;
+  similar: IPage<ITVShowMin>;
 }

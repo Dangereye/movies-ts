@@ -3,7 +3,7 @@ import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from "react-icons/bs";
 
 // Interfaces
 import { IMovieFull } from "../../interfaces/IMovieFull";
-import { ITVShow } from "../../interfaces/ITVShow";
+import { ITVShowFull } from "../../interfaces/ITVShowFull";
 
 // Components
 import Container from "../container/Container";
@@ -13,7 +13,7 @@ import Statistic from "./Statistic/Statistic";
 
 type StatisticsProps = {
   movie?: IMovieFull;
-  tv?: ITVShow;
+  tv?: ITVShowFull;
 };
 
 export default function Statistics({ movie, tv }: StatisticsProps) {
