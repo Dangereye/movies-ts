@@ -2,7 +2,10 @@ import { useParams } from "react-router-dom";
 
 // Components
 import Header from "../components/header/Header";
+import Navigation from "../components/navigation/Navigation";
+import SubNavbar from "../components/sub_navbar/SubNavbar";
 import H2 from "../components/typography/H2";
+import { peoplePages } from "../data/peoplePages";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -32,6 +35,15 @@ export default function TvDetails() {
 
   return (
     <>
+      <SubNavbar>
+        <Navigation
+          data={peoplePages}
+          getID={(item) => item.name}
+          getLink={(item) => item.link}
+          renderItem={(item) => item.name}
+          variant="horizontal"
+        />
+      </SubNavbar>
       <Header
         image={person?.profile_path}
         alt={person?.name}

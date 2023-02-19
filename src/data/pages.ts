@@ -5,10 +5,10 @@ export const pages = [
   },
   {
     name: "tv shows",
-    link: "/tv",
+    link: "/tv/popular",
   },
   {
     name: "people",
-    link: "/people",
+    link: "/people/popular",
   },
 ];

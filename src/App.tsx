@@ -28,9 +28,10 @@ import TvPopular from "./pages/TvPopular";
 import TvAiringToday from "./pages/TvAiringToday";
 import TvOnTv from "./pages/TvOnTv";
 import TvTopRated from "./pages/TvTopRated";
-import TvDetails from "./pages/TvDetails";
-import PersonDetails from "./pages/PersonDetails";
 import TvSeason from "./pages/TvSeason";
+import TvDetails from "./pages/TvDetails";
+import PeoplePopular from "./pages/PeoplePopular";
+import PersonDetails from "./pages/PersonDetails";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ function App() {
               <Route path="/tv/top-rated" element={<TvTopRated />} />
               <Route path="/tv/:tvId" element={<TvDetails />} />
               <Route path="/tv/:tvId/season/:seasonId" element={<TvSeason />} />
+              <Route path="/people/popular" element={<PeoplePopular />} />
               <Route path="/person/:personId" element={<PersonDetails />} />
             </Routes>
           </VideoContextComponent>
