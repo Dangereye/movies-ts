@@ -118,6 +118,29 @@ export default function TvDetails() {
       </Article>
       <ArticleVideos data={tv?.videos.results} />
       <ArticleReviews data={tv?.reviews.results} />
+      <Article name="tv-show-seasons">
+        <Container>
+          <H2 heading="Seasons" />
+          <Cards
+            getID={(item) => item.id}
+            renderLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
+            renderItem={(item) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.name}
+                />
+                <CardContent
+                  heading={item.name}
+                  body={formatDate(item.air_date)}
+                />
+              </>
+            )}
+            data={tv?.seasons}
+          />
+        </Container>
+      </Article>
       <ArticleTVShowsScrollX
         name="recommended-tv-shows"
         heading="Recommended"

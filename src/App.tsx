@@ -30,6 +30,7 @@ import TvOnTv from "./pages/TvOnTv";
 import TvTopRated from "./pages/TvTopRated";
 import TvDetails from "./pages/TvDetails";
 import PersonDetails from "./pages/PersonDetails";
+import TvSeason from "./pages/TvSeason";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ function App() {
               <Route path="/tv/on-tv" element={<TvOnTv />} />
               <Route path="/tv/top-rated" element={<TvTopRated />} />
               <Route path="/tv/:tvId" element={<TvDetails />} />
+              <Route path="/tv/:tvId/season/:seasonId" element={<TvSeason />} />
               <Route path="/person/:personId" element={<PersonDetails />} />
             </Routes>
           </VideoContextComponent>
