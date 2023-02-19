@@ -61,7 +61,7 @@ export default function Review({ data }: ReviewProps) {
           }
         />
         {formatContent(data.content)}
-        {data.content.length > 250 && (
+        {data.content.length > 60 && (
           <div className="buttons">
             <Button
               name={expanded ? "Read Less" : "Read More"}

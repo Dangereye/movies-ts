@@ -132,7 +132,7 @@ export default function MovieDetails() {
       <ArticleMoviesScrollX
         data={movie?.recommendations.results}
         name="recommended-movies"
-        heading="recommendations"
+        heading="recommended"
       />
       {/* Similar Movies */}
       <ArticleMoviesScrollX

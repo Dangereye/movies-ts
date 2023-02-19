@@ -32,6 +32,7 @@ import { formatDate } from "../utilities/formatDate";
 import { tvPages } from "../data/tvPages";
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
+import ArticleTVShowsScrollX from "../components/articles/ArticleTVShowsScrollX";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -117,6 +118,16 @@ export default function TvDetails() {
       </Article>
       <ArticleVideos data={tv?.videos.results} />
       <ArticleReviews data={tv?.reviews.results} />
+      <ArticleTVShowsScrollX
+        name="recommended-tv-shows"
+        heading="Recommended"
+        data={tv?.recommendations.results}
+      />
+      <ArticleTVShowsScrollX
+        name="similar-tv-shows"
+        heading="You may also enjoy..."
+        data={tv?.similar.results}
+      />
     </>
   );
 }

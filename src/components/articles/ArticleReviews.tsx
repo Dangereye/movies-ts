@@ -35,7 +35,7 @@ export default function ArticleReviews({ data }: ArticlesReviewsProps) {
               <Review key={item.id} data={item} />
             ))}
           </div>
-          {data.length > 1 && (
+          {data.length >= 2 && (
             <div className="buttons">
               <Button
                 name={expanded ? "Show Less" : "Show More"}
