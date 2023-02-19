@@ -19,6 +19,8 @@
 
   .stats {
     flex-grow: 2;
+    column-gap: 8rem;
+    row-gap: 4rem;
     .body-text {
       margin: 0;
     }

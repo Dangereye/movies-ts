@@ -56,7 +56,7 @@ export default function CrewJobs({ credits }: CrewJobProps) {
             count = count + 1;
             return (
               <Wrapper name="profile" variant="flex" key={person.name}>
-                <Link to={`/person/${person.id}`}>
+                <Link to={`/people/${person.id}`}>
                   <ImageComponent
                     src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
                     fallback="/images/error_100x100.webp"
@@ -67,7 +67,7 @@ export default function CrewJobs({ credits }: CrewJobProps) {
                 </Link>
                 <div>
                   <Link
-                    to={`/person/${person.id}`}
+                    to={`/people/${person.id}`}
                     className="heading heading--h4"
                   >
                     {person.name}
