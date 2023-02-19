@@ -16,6 +16,7 @@ type ArticlesReviewsProps = {
 
 export default function ArticleReviews({ data }: ArticlesReviewsProps) {
   const [expanded, setExpanded] = useState(false);
+  const reviewQty = data?.length;
 
   if (data && data.length > 2 && !expanded) {
     data = data.slice(0, 2);
@@ -35,7 +36,7 @@ export default function ArticleReviews({ data }: ArticlesReviewsProps) {
               <Review key={item.id} data={item} />
             ))}
           </div>
-          {data.length >= 2 && (
+          {reviewQty && reviewQty > 2 && (
             <div className="buttons">
               <Button
                 name={expanded ? "Show Less" : "Show More"}
