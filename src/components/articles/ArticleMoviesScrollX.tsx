@@ -16,13 +16,19 @@ type ArticleMoviesScrollXProps = {
   data: IMovieMin[] | undefined;
   name: string;
   heading: string;
+  sort?: (a: IMovieMin, b: IMovieMin) => number;
 };
 
 export default function ArticleMoviesScrollX({
   data,
   name,
   heading,
+  sort,
 }: ArticleMoviesScrollXProps) {
+  if (data && sort) {
+    data = data.sort(sort);
+  }
+
   if (data && data.length > 0) {
     return (
       <Article name={`article__${name}`}>

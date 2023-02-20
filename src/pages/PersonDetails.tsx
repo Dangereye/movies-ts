@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
+import ArticleTVShowsScrollX from "../components/articles/ArticleTVShowsScrollX";
 
 // Components
 import Header from "../components/header/Header";
@@ -66,6 +68,24 @@ export default function TvDetails() {
         <ExpandableText text={person?.biography} lines={8} />
       </Header>
       <Statistics person={person} />
+      <ArticleMoviesScrollX
+        name="movie-credits"
+        heading="Movie credits"
+        data={person?.movie_credits.cast}
+        sort={(a, b) =>
+          +new Date(b.release_date ? b.release_date : 0) -
+          +new Date(a.release_date ? a.release_date : 0)
+        }
+      />
+      <ArticleTVShowsScrollX
+        name="tv-credits"
+        heading="Tv Credits"
+        data={person?.tv_credits.cast}
+        sort={(a, b) =>
+          +new Date(b.first_air_date ? b.first_air_date : 0) -
+          +new Date(a.first_air_date ? a.first_air_date : 0)
+        }
+      />
     </>
   );
 }

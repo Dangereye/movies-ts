@@ -16,13 +16,19 @@ type ArticleITVShowScrollXProps = {
   data: ITVShowMin[] | undefined;
   name: string;
   heading: string;
+  sort?: (a: ITVShowMin, b: ITVShowMin) => number;
 };
 
 export default function ArticleTVShowsScrollX({
   data,
   name,
   heading,
+  sort,
 }: ArticleITVShowScrollXProps) {
+  if (data && sort) {
+    data = data.sort(sort);
+  }
+
   if (data && data.length > 0) {
     return (
       <Article name={`article__${name}`}>
