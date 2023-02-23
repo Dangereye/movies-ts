@@ -69,18 +69,36 @@ export default function TvDetails() {
       </Header>
       <Statistics person={person} />
       <ArticleMoviesScrollX
-        name="movie-credits"
-        heading="Movie credits"
+        name="movie-acting-credits"
+        heading="Movie acting credits"
         data={person?.movie_credits.cast}
         sort={(a, b) =>
           +new Date(b.release_date ? b.release_date : 0) -
           +new Date(a.release_date ? a.release_date : 0)
         }
       />
+      <ArticleMoviesScrollX
+        name="movie-production-credits"
+        heading="Movie production credits"
+        data={person?.movie_credits.crew}
+        sort={(a, b) =>
+          +new Date(b.release_date ? b.release_date : 0) -
+          +new Date(a.release_date ? a.release_date : 0)
+        }
+      />
       <ArticleTVShowsScrollX
-        name="tv-credits"
-        heading="Tv Credits"
+        name="tv-acting-credits"
+        heading="Tv acting credits"
         data={person?.tv_credits.cast}
+        sort={(a, b) =>
+          +new Date(b.first_air_date ? b.first_air_date : 0) -
+          +new Date(a.first_air_date ? a.first_air_date : 0)
+        }
+      />
+      <ArticleTVShowsScrollX
+        name="tv-production-credits"
+        heading="Tv production credits"
+        data={person?.tv_credits.crew}
         sort={(a, b) =>
           +new Date(b.first_air_date ? b.first_air_date : 0) -
           +new Date(a.first_air_date ? a.first_air_date : 0)

@@ -5,7 +5,7 @@ export interface IPersonTvCrew {
   episode_count: number;
   job: string;
   overview: string;
-  original_country: string[];
+  origin_country: string[];
   original_name: string;
   genre_ids: number[];
   name: string;
