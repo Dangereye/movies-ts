@@ -1,9 +1,14 @@
 import { useParams } from "react-router-dom";
+import Article from "../components/articles/Article";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleTVShowsScrollX from "../components/articles/ArticleTVShowsScrollX";
+import CardContent from "../components/cards/card/CardContent";
+import Cards from "../components/cards/Cards";
+import Container from "../components/container/Container";
 
 // Components
 import Header from "../components/header/Header";
+import ImageComponent from "../components/image/Image";
 import Navigation from "../components/navigation/Navigation";
 import Statistics from "../components/statistics/Statistics";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
@@ -11,6 +16,7 @@ import BodyText from "../components/typography/BodyText";
 import ExpandableText from "../components/typography/ExpandableText";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
+import SmallText from "../components/typography/SmallText";
 import Wrapper from "../components/wrapper/Wrapper";
 import { peoplePages } from "../data/peoplePages";
 
@@ -19,6 +25,7 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IPerson } from "../interfaces/IPerson";
+import { IPersonMovieCast } from "../interfaces/IPersonMovieCast";
 import { formatDate } from "../utilities/formatDate";
 
 export default function TvDetails() {
@@ -68,7 +75,39 @@ export default function TvDetails() {
         <ExpandableText text={person?.biography} lines={8} />
       </Header>
       <Statistics person={person} />
-      <ArticleMoviesScrollX
+
+      <Article name="movie-acting-credits">
+        <Container>
+          <H2 heading="Movie acting credits" />
+          <BodyText
+            text={`Found ${person?.movie_credits.cast.length} Results`}
+          />
+          <Cards
+            getID={(item: IPersonMovieCast) => item.id}
+            renderLink={(item) => `/movies/${item.id}`}
+            renderItem={(item: IPersonMovieCast) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                  fallback="/images/error_500x750.webp"
+                  alt={item.title}
+                />
+                <CardContent vote={item.vote_average} heading={item.title}>
+                  <BodyText text={item.character && `As ${item.character}`} />
+                  <SmallText
+                    text={item.release_date && formatDate(item.release_date)}
+                  />
+                </CardContent>
+              </>
+            )}
+            data={person?.movie_credits.cast}
+            sort={(a, b) =>
+              +new Date(b.release_date) - +new Date(a.release_date)
+            }
+          />
+        </Container>
+      </Article>
+      {/* <ArticleMoviesScrollX
         name="movie-acting-credits"
         heading="Movie acting credits"
         data={person?.movie_credits.cast}
@@ -103,7 +142,7 @@ export default function TvDetails() {
           +new Date(b.first_air_date ? b.first_air_date : 0) -
           +new Date(a.first_air_date ? a.first_air_date : 0)
         }
-      />
+      /> */}
     </>
   );
 }

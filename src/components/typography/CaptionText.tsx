@@ -3,5 +3,8 @@ type CaptionTextProps = {
 };
 
 export default function CaptionText({ caption }: CaptionTextProps) {
-  return <>{caption && <div className="caption-text">{caption}</div>}</>;
+  if (caption) {
+    return <div className="caption-text">{caption}</div>;
+  }
+  return null;
 }
