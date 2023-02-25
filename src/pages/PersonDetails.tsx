@@ -79,36 +79,11 @@ export default function TvDetails() {
       </Header>
       <Statistics person={person} />
 
-      <Article name="movie-credits">
-        <Container>
-          <H2 heading="Movie credits" />
-          <BodyText
-            text={`Cast for ${person?.movie_credits.cast.length} Movies`}
-          />
-          <Cards
-            getID={(item: IPersonMovieCast) => item.id}
-            renderLink={(item) => `/movies/${item.id}`}
-            renderItem={(item: IPersonMovieCast) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  fallback="/images/error_500x750.webp"
-                  alt={item.title}
-                />
-                <CardContent vote={item.vote_average} heading={item.title}>
-                  <BodyText
-                    text={item.release_date && formatDate(item.release_date)}
-                  />
-                </CardContent>
-              </>
-            )}
-            data={person?.movie_credits.cast}
-            sort={(a, b) =>
-              +new Date(b.release_date) - +new Date(a.release_date)
-            }
-          />
-        </Container>
-      </Article>
+      <ArticleMoviesScrollX
+        name=""
+        heading=""
+        data={person?.movie_credits.cast}
+      />
       <ArticleTvCredits data={person?.tv_credits.cast} />
       {/* <ArticleMoviesScrollX
         name="movie-acting-credits"

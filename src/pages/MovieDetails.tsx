@@ -70,7 +70,6 @@ export default function MovieDetails() {
           variant="horizontal"
         />
       </SubNavbar>
-
       <Header
         bgImage={movie?.backdrop_path}
         image={movie?.poster_path}
@@ -95,9 +94,7 @@ export default function MovieDetails() {
         <Overview caption={movie?.tagline} text={movie?.overview} />
         <CrewJobs credits={movie?.credits} />
       </Header>
-
       <Statistics movie={movie} />
-
       {/* Top billed cast */}
       <Article name="article__top-billed-cast">
         <Container>
@@ -128,19 +125,18 @@ export default function MovieDetails() {
         image={movie?.belongs_to_collection?.backdrop_path}
         id={movie?.belongs_to_collection?.id}
       />
-
-      {/* Recommended Movies */}
-      <ArticleMoviesScrollX
+      Recommended Movies
+      {/* <ArticleMoviesScrollX
         data={movie?.recommendations.results}
         name="recommended-movies"
         heading="recommended"
-      />
+      /> */}
       {/* Similar Movies */}
-      <ArticleMoviesScrollX
+      {/* <ArticleMoviesScrollX
         data={movie?.similar.results}
         name="similar-movies"
         heading="You may also enjoy..."
-      />
+      /> */}
     </>
   );
 }
