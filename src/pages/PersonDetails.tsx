@@ -1,15 +1,9 @@
 import { useParams } from "react-router-dom";
-import Article from "../components/articles/Article";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
-import ArticleTvCredits from "../components/articles/ArticleTvCredits";
-import ArticleTVShowsScrollX from "../components/articles/ArticleTVShowsScrollX";
-import CardContent from "../components/cards/card/CardContent";
-import Cards from "../components/cards/Cards";
-import Container from "../components/container/Container";
+import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 
 // Components
 import Header from "../components/header/Header";
-import ImageComponent from "../components/image/Image";
 import Navigation from "../components/navigation/Navigation";
 import Statistics from "../components/statistics/Statistics";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
@@ -17,7 +11,6 @@ import BodyText from "../components/typography/BodyText";
 import ExpandableText from "../components/typography/ExpandableText";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
-import SmallText from "../components/typography/SmallText";
 import Wrapper from "../components/wrapper/Wrapper";
 import { peoplePages } from "../data/peoplePages";
 
@@ -80,11 +73,15 @@ export default function TvDetails() {
       <Statistics person={person} />
 
       <ArticleMoviesScrollX
-        name=""
-        heading=""
+        name="movie-credits"
+        heading="Movie Credits"
         data={person?.movie_credits.cast}
       />
-      <ArticleTvCredits data={person?.tv_credits.cast} />
+      <ArticleTvScrollX
+        name="tv-credits"
+        heading="TV Credits"
+        data={person?.tv_credits.cast}
+      />
       {/* <ArticleMoviesScrollX
         name="movie-acting-credits"
         heading="Movie acting credits"

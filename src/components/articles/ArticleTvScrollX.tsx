@@ -14,22 +14,32 @@ import BodyText from "../typography/BodyText";
 import H2 from "../typography/H2";
 import Article from "./Article";
 
-type ArticleTvCreditsProps = {
-  data: IPersonTvCast[] | undefined;
+type ArticleTvScrollXProps<T> = {
+  name: string;
+  heading: string;
+  data: T[] | undefined;
 };
 
-export default function ArticleTvCredits({ data }: ArticleTvCreditsProps) {
+export default function ArticleTvScrollX<
+  T extends {
+    id: number;
+    poster_path: string | null;
+    name: string;
+    vote_average: number;
+    first_air_date: string;
+  }
+>({ name, heading, data }: ArticleTvScrollXProps<T>) {
   if (data && data.length > 0) {
     const filtered = removeDuplicatesById(data);
     return (
-      <Article name="tv-credits">
+      <Article name={name}>
         <Container>
-          <H2 heading="TV credits" />
-          <BodyText text={`Cast for ${filtered.length} TV Shows`} />
+          <H2 heading={heading} />
+          <BodyText text={`Found ${filtered.length} TV Shows`} />
           <Cards
-            getID={(item: IPersonTvCast) => item.id}
+            getID={(item: T) => item.id}
             renderLink={(item) => `/tv/${item.id}`}
-            renderItem={(item: IPersonTvCast) => (
+            renderItem={(item: T) => (
               <>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
