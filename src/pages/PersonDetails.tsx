@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import Article from "../components/articles/Article";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
+import ArticleTvCredits from "../components/articles/ArticleTvCredits";
 import ArticleTVShowsScrollX from "../components/articles/ArticleTVShowsScrollX";
 import CardContent from "../components/cards/card/CardContent";
 import Cards from "../components/cards/Cards";
@@ -26,6 +27,8 @@ import useMakeQuery from "../hooks/useMakeQuery";
 // Interfaces
 import { IPerson } from "../interfaces/IPerson";
 import { IPersonMovieCast } from "../interfaces/IPersonMovieCast";
+import { IPersonMovieCrew } from "../interfaces/IPersonMovieCrew";
+import { IPersonTvCast } from "../interfaces/IPersonTvCast";
 import { formatDate } from "../utilities/formatDate";
 
 export default function TvDetails() {
@@ -76,11 +79,11 @@ export default function TvDetails() {
       </Header>
       <Statistics person={person} />
 
-      <Article name="movie-acting-credits">
+      <Article name="movie-credits">
         <Container>
-          <H2 heading="Movie acting credits" />
+          <H2 heading="Movie credits" />
           <BodyText
-            text={`Found ${person?.movie_credits.cast.length} Results`}
+            text={`Cast for ${person?.movie_credits.cast.length} Movies`}
           />
           <Cards
             getID={(item: IPersonMovieCast) => item.id}
@@ -93,8 +96,7 @@ export default function TvDetails() {
                   alt={item.title}
                 />
                 <CardContent vote={item.vote_average} heading={item.title}>
-                  <BodyText text={item.character && `As ${item.character}`} />
-                  <SmallText
+                  <BodyText
                     text={item.release_date && formatDate(item.release_date)}
                   />
                 </CardContent>
@@ -107,6 +109,7 @@ export default function TvDetails() {
           />
         </Container>
       </Article>
+      <ArticleTvCredits data={person?.tv_credits.cast} />
       {/* <ArticleMoviesScrollX
         name="movie-acting-credits"
         heading="Movie acting credits"
