@@ -49,7 +49,9 @@ export default function ArticleTvScrollX<
                 <CardContent vote={item.vote_average} heading={item.name}>
                   <BodyText
                     text={
-                      item.first_air_date && formatDate(item.first_air_date)
+                      item.first_air_date
+                        ? formatDate(item.first_air_date)
+                        : "TBC"
                     }
                   />
                 </CardContent>

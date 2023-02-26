@@ -51,8 +51,18 @@ export default function ArticlePeopleScrollX<
                   alt={item.name}
                 />
                 <CardContent heading={item.name}>
-                  {character && <BodyText text={item.character} />}
-                  {department && <BodyText text={item.known_for_department} />}
+                  {character && (
+                    <BodyText text={item.character ? item.character : "TBC"} />
+                  )}
+                  {department && (
+                    <BodyText
+                      text={
+                        item.known_for_department
+                          ? item.known_for_department
+                          : "TBC"
+                      }
+                    />
+                  )}
                 </CardContent>
               </>
             )}
