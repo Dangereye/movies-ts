@@ -18,6 +18,9 @@ import { formatDate } from "../utilities/formatDate";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
+import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
+import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
+import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 
 export default function LandingPage() {
   const {
@@ -50,81 +53,25 @@ export default function LandingPage() {
     <>
       <Main>
         {/* Trending Movies */}
-        <Article name="article__trending-movies">
-          <Container>
-            <H2 heading="trending movies" />
-            <Cards
-              getID={(item: IMovieMin) => item.id}
-              renderLink={(item) => `/movies/${item.id}`}
-              renderItem={(item: IMovieMin) => (
-                <>
-                  <ImageComponent
-                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                    fallback="/images/error_500x750.webp"
-                    alt={item.title}
-                  />
-                  <CardContent
-                    vote={item.vote_average}
-                    heading={item.title}
-                    body={formatDate(item.release_date)}
-                  />
-                </>
-              )}
-              data={movies?.results}
-            />
-          </Container>
-        </Article>
+        <ArticleMoviesScrollX
+          name="trending-movies"
+          heading="Trending movies"
+          data={movies?.results}
+        />
 
         {/* Trending People */}
-        <Article name="article__trending-people">
-          <Container>
-            <H2 heading="trending people" />
-            <Cards
-              getID={(item: IPerson) => item.id}
-              renderLink={(item) => `/people/${item.id}`}
-              renderItem={(item: IPerson) => (
-                <>
-                  <ImageComponent
-                    src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                    fallback="/images/error_500x750.webp"
-                    alt={item.name}
-                  />
-                  <CardContent
-                    heading={item.name}
-                    body={item.known_for_department}
-                  />
-                </>
-              )}
-              data={people?.results}
-            />
-          </Container>
-        </Article>
+        <ArticlePeopleScrollX
+          name="trending-people"
+          heading="Trending People"
+          data={people?.results}
+        />
 
         {/* Trending TV Shows */}
-        <Article name="article__trending-people">
-          <Container>
-            <H2 heading="trending tv shows" />
-            <Cards
-              getID={(item: ITVShowMin) => item.id}
-              renderLink={(item) => `/tv/${item.id}`}
-              renderItem={(item: ITVShowMin) => (
-                <>
-                  <ImageComponent
-                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                    fallback="/images/error_500x750.webp"
-                    alt={item.name}
-                  />
-                  <CardContent
-                    vote={item.vote_average}
-                    heading={item.name}
-                    body={formatDate(item.first_air_date)}
-                  />
-                </>
-              )}
-              data={tvshows?.results}
-            />
-          </Container>
-        </Article>
+        <ArticleTvScrollX
+          name="trending-tv-shows"
+          heading="Trending TV Shows"
+          data={tvshows?.results}
+        />
       </Main>
     </>
   );

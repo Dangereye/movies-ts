@@ -35,7 +35,7 @@ export default function ArticleTvScrollX<
       <Article name={name}>
         <Container>
           <H2 heading={heading} />
-          <BodyText text={`Found ${filtered.length} TV Shows`} />
+          <BodyText text={`Showing ${filtered.length} TV shows`} />
           <Cards
             getID={(item: T) => item.id}
             renderLink={(item) => `/tv/${item.id}`}

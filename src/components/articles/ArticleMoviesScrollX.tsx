@@ -29,7 +29,7 @@ export default function ArticleMoviesScrollX<
       <Article name={name}>
         <Container>
           <H2 heading={heading} />
-          <BodyText text={`Found ${filtered.length} Movies`} />
+          <BodyText text={`Showing ${filtered.length} movies`} />
           <Cards
             getID={(item: T) => item.id}
             renderLink={(item) => `/movies/${item.id}`}
