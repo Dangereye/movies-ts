@@ -1,3 +1,4 @@
+import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
 import CardContent from "../cards/card/CardContent";
 import Cards from "../cards/Cards";
 import Container from "../container/Container";
@@ -9,6 +10,9 @@ import Article from "./Article";
 type ArticlePeopleScrollXProps<T> = {
   name: string;
   heading: string;
+  department?: boolean;
+  character?: boolean;
+  limit?: boolean;
   data: T[] | undefined;
 };
 
@@ -19,14 +23,23 @@ export default function ArticlePeopleScrollX<
     profile_path: string | null;
     character?: string;
     known_for_department?: string;
+    popularity: number;
   }
->({ name, heading, data }: ArticlePeopleScrollXProps<T>) {
+>({
+  name,
+  heading,
+  department = false,
+  character = false,
+  limit = false,
+  data,
+}: ArticlePeopleScrollXProps<T>) {
   if (data && data.length > 0) {
+    const filtered = removeDuplicatesById(data);
     return (
       <Article name={name}>
         <Container>
           <H2 heading={heading} />
-          <BodyText text={`Showing ${data.length} people`} />
+          <BodyText text={`Showing ${limit ? 10 : filtered.length} people`} />
           <Cards
             getID={(item: T) => item.id}
             renderLink={(item) => `/people/${item.id}`}
@@ -38,12 +51,17 @@ export default function ArticlePeopleScrollX<
                   alt={item.name}
                 />
                 <CardContent heading={item.name}>
-                  <BodyText text={item.character} />
-                  <BodyText text={item.known_for_department} />
+                  {character && <BodyText text={item.character} />}
+                  {department && <BodyText text={item.known_for_department} />}
                 </CardContent>
               </>
             )}
-            data={data}
+            data={filtered}
+            sort={(a, b) =>
+              (b.popularity ? b.popularity : 0) -
+              (a.popularity ? a.popularity : 0)
+            }
+            limit={limit}
           />
         </Container>
       </Article>

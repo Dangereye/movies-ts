@@ -64,6 +64,7 @@ export default function LandingPage() {
           name="trending-people"
           heading="Trending People"
           data={people?.results}
+          department
         />
 
         {/* Trending TV Shows */}

@@ -1,6 +1,6 @@
 type BodyTextProps = {
   variant?: string;
-  text: string | null | undefined;
+  text: string | number | null | undefined;
 };
 
 export default function BodyText({ variant = "", text }: BodyTextProps) {

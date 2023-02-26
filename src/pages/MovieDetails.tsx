@@ -37,6 +37,7 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -96,7 +97,14 @@ export default function MovieDetails() {
       </Header>
       <Statistics movie={movie} />
       {/* Top billed cast */}
-      <Article name="article__top-billed-cast">
+      <ArticlePeopleScrollX
+        name="top-billed-cast"
+        heading="Top billed cast"
+        data={movie?.credits.cast}
+        character
+        limit
+      />
+      {/* <Article name="article__top-billed-cast">
         <Container>
           <H2 heading="Top billed cast" />
           <Cards
@@ -117,7 +125,7 @@ export default function MovieDetails() {
             limit
           />
         </Container>
-      </Article>
+      </Article> */}
       <ArticleVideos data={movie?.videos.results} />
       <ArticleReviews data={movie?.reviews.results} />
       <Collection

@@ -57,7 +57,8 @@ export default function ArticleTvScrollX<
             )}
             data={filtered}
             sort={(a, b) =>
-              +new Date(b.first_air_date) - +new Date(a.first_air_date)
+              (b.first_air_date ? +new Date(b.first_air_date) : 0) -
+              (a.first_air_date ? +new Date(a.first_air_date) : 0)
             }
           />
         </Container>

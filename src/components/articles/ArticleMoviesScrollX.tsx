@@ -42,14 +42,17 @@ export default function ArticleMoviesScrollX<
                 />
                 <CardContent vote={item.vote_average} heading={item.title}>
                   <BodyText
-                    text={item.release_date && formatDate(item.release_date)}
+                    text={
+                      item.release_date ? formatDate(item.release_date) : "TBC"
+                    }
                   />
                 </CardContent>
               </>
             )}
             data={filtered}
             sort={(a, b) =>
-              +new Date(b.release_date) - +new Date(a.release_date)
+              (b.release_date ? +new Date(b.release_date) : 0) -
+              (a.release_date ? +new Date(a.release_date) : 0)
             }
           />
         </Container>
