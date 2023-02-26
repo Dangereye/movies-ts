@@ -32,6 +32,8 @@ import { formatDate } from "../utilities/formatDate";
 import { tvPages } from "../data/tvPages";
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
+import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
+import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -90,31 +92,13 @@ export default function TvDetails() {
         <CrewJobs credits={tv?.credits} />
       </Header>
       <Statistics tv={tv} />
-      <Article name="article__series-cast">
-        <Container>
-          <H2 heading="Top billed cast" />
-          <Cards
-            getID={(item: IAggregateCast) => item.id}
-            renderLink={(item: IAggregateCast) => `/people/${item.id}`}
-            renderItem={(item: IAggregateCast) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                  fallback="/images/error_500x750.webp"
-                  alt={item.name}
-                />
-                <CardContent
-                  heading={item.name}
-                  body={item.roles[0].character}
-                />
-              </>
-            )}
-            data={tv?.aggregate_credits.cast}
-            sort={(a, b) => b.popularity - a.popularity}
-            limit
-          />
-        </Container>
-      </Article>
+      <ArticlePeopleScrollX
+        name="tv-show-top-billed-cast"
+        heading="Top billed cast"
+        data={tv?.credits.cast}
+        character
+      />
+
       <ArticleVideos data={tv?.videos.results} />
       <ArticleReviews data={tv?.reviews.results} />
       <Article name="tv-show-seasons">
@@ -130,26 +114,27 @@ export default function TvDetails() {
                   fallback="/images/error_500x750.webp"
                   alt={item.name}
                 />
-                <CardContent
-                  heading={item.name}
-                  body={formatDate(item.air_date)}
-                />
+                <CardContent heading={item.name}>
+                  <BodyText
+                    text={item.air_date ? formatDate(item.air_date) : "TBC"}
+                  />
+                </CardContent>
               </>
             )}
             data={tv?.seasons}
           />
         </Container>
       </Article>
-      {/* <ArticleTVShowsScrollX
+      <ArticleTvScrollX
         name="recommended-tv-shows"
         heading="Recommended"
         data={tv?.recommendations.results}
       />
-      <ArticleTVShowsScrollX
+      <ArticleTvScrollX
         name="similar-tv-shows"
         heading="You may also enjoy..."
         data={tv?.similar.results}
-      /> */}
+      />
     </>
   );
 }

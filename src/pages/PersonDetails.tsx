@@ -61,14 +61,25 @@ export default function TvDetails() {
         title={person?.name}
       >
         <Wrapper name="info-bar" variant="flex">
-          <BodyText text={`Born: ${formatDate(person?.birthday)}`} />
+          <BodyText
+            text={`Born: ${
+              person?.birthday ? formatDate(person?.birthday) : "TBC"
+            }`}
+          />
           {person?.deathday && (
-            <BodyText text={`Died: ${formatDate(person.deathday)}`} />
+            <BodyText
+              text={`Died: ${
+                person?.deathday ? formatDate(person.deathday) : "TBC"
+              }`}
+            />
           )}
           <BodyText text={person?.place_of_birth} />
         </Wrapper>
         <HDiv variant="heading--h4" heading="Biography" />
-        <ExpandableText text={person?.biography} lines={8} />
+        <ExpandableText
+          text={person?.biography ? person?.biography : "Unavailable"}
+          lines={8}
+        />
       </Header>
       <Statistics person={person} />
 

@@ -21,11 +21,13 @@ export default function ExpandableText({ text, lines }: ExpandableTextProps) {
         >
           {text}
         </p>
-        <Button
-          name={expanded ? "Read Less" : "Read More"}
-          variant={"btn--tertiary"}
-          onClick={toggleExpanded}
-        />
+        {text !== "Unavailable" && (
+          <Button
+            name={expanded ? "Read Less" : "Read More"}
+            variant={"btn--tertiary"}
+            onClick={toggleExpanded}
+          />
+        )}
       </>
     );
   }
