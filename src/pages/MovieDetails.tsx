@@ -104,28 +104,6 @@ export default function MovieDetails() {
         character
         limit
       />
-      {/* <Article name="article__top-billed-cast">
-        <Container>
-          <H2 heading="Top billed cast" />
-          <Cards
-            getID={(item: ICast) => item.id}
-            renderLink={(item: ICast) => `/people/${item.id}`}
-            renderItem={(item: ICast) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                  fallback="/images/error_500x750.webp"
-                  alt={item.name}
-                />
-                <CardContent heading={item.name} body={item.character} />
-              </>
-            )}
-            data={movie?.credits.cast}
-            sort={(a, b) => b.popularity - a.popularity}
-            limit
-          />
-        </Container>
-      </Article> */}
       <ArticleVideos data={movie?.videos.results} />
       <ArticleReviews data={movie?.reviews.results} />
       <Collection
@@ -133,18 +111,16 @@ export default function MovieDetails() {
         image={movie?.belongs_to_collection?.backdrop_path}
         id={movie?.belongs_to_collection?.id}
       />
-      Recommended Movies
-      {/* <ArticleMoviesScrollX
-        data={movie?.recommendations.results}
+      <ArticleMoviesScrollX
         name="recommended-movies"
-        heading="recommended"
-      /> */}
-      {/* Similar Movies */}
-      {/* <ArticleMoviesScrollX
-        data={movie?.similar.results}
+        heading="Recommended"
+        data={movie?.recommendations.results}
+      />
+      <ArticleMoviesScrollX
         name="similar-movies"
         heading="You may also enjoy..."
-      /> */}
+        data={movie?.similar.results}
+      />
     </>
   );
 }
