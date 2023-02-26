@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+
+// Articles
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 
@@ -12,6 +14,8 @@ import ExpandableText from "../components/typography/ExpandableText";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
+
+// Data
 import { peoplePages } from "../data/peoplePages";
 
 // Hooks
@@ -19,9 +23,8 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { IPerson } from "../interfaces/IPerson";
-import { IPersonMovieCast } from "../interfaces/IPersonMovieCast";
-import { IPersonMovieCrew } from "../interfaces/IPersonMovieCrew";
-import { IPersonTvCast } from "../interfaces/IPersonTvCast";
+
+// Utilities
 import { formatDate } from "../utilities/formatDate";
 
 export default function TvDetails() {

@@ -23,17 +23,18 @@ import useMakeQuery from "../hooks/useMakeQuery";
 
 // Interfaces
 import { ITVShowFull } from "../interfaces/ITVShowFull";
-import { IAggregateCast } from "../interfaces/IAggregateCast";
 
 // Utilities
 import { formatDate } from "../utilities/formatDate";
 
-// Data
-import { tvPages } from "../data/tvPages";
+// Articles
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
+
+// Data
+import { tvPages } from "../data/tvPages";
 
 export default function TvDetails() {
   const { tvId } = useParams();

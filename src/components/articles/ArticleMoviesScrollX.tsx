@@ -1,5 +1,8 @@
+// Utilities
 import { formatDate } from "../../utilities/formatDate";
 import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
+
+// Components
 import CardContent from "../cards/card/CardContent";
 import Cards from "../cards/Cards";
 import Container from "../container/Container";

@@ -1,6 +1,3 @@
-// Interfaces
-import { IPersonTvCast } from "../../interfaces/IPersonTvCast";
-
 // Utilities
 import { formatDate } from "../../utilities/formatDate";
 import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
