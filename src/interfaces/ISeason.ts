@@ -1,3 +1,5 @@
+import { IAggregateCredits } from "./IAggregateCredits";
+import { ICredits } from "./ICredits";
 import { IEpisodes } from "./IEpisodes";
 
 export interface ISeason {
@@ -9,4 +11,6 @@ export interface ISeason {
   id: number;
   poster_path: string | null;
   season_number: number;
+  credits: ICredits;
+  aggregate_credits: IAggregateCredits;
 }

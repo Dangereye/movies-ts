@@ -4,7 +4,7 @@ import HDiv from "../typography/HDiv";
 import Wrapper from "../wrapper/Wrapper";
 
 type OverviewProps = {
-  caption: string | null | undefined;
+  caption?: string | null | undefined;
   text: string | null | undefined;
 };
 
