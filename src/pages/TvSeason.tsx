@@ -25,18 +25,14 @@ export default function TvSeason() {
   } = useMakeQuery<ISeason>(
     `season-${tvId}-${seasonId}`,
     `tv/${tvId}/season/${seasonId}`,
-    `&append_to_response=`
+    `&append_to_response=credits,aggregate_credits`
   );
 
   const {
     data: tv,
     isError: tvIsError,
     isLoading: tvIsLoading,
-  } = useMakeQuery<ITVShowFull>(
-    `tv-${tvId}`,
-    `tv/${tvId}`,
-    `&append_to_response=credits,aggregate_credits`
-  );
+  } = useMakeQuery<ITVShowFull>(`tv-${tvId}`, `tv/${tvId}`);
 
   if (isLoading || tvIsLoading) {
     return <H2 heading="Loading" />;
