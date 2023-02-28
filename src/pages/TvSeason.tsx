@@ -88,7 +88,7 @@ export default function TvSeason() {
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
                   alt={episode.name}
-                  fallback="/images/error_600x450.webp"
+                  fallback="/images/error_1039x584.webp"
                 />
                 <div className="content">
                   <Wrapper name="episode-header" variant="flex">
@@ -98,11 +98,17 @@ export default function TvSeason() {
                     />
                     <BodyText text={formatRuntime(episode.runtime)} />
                   </Wrapper>
-                  <SmallText text={formatDate(episode.air_date)} />
+                  <SmallText
+                    variant="episode-date"
+                    text={formatDate(episode.air_date)}
+                  />
                   <BodyText text={episode.overview} />
                   <Wrapper name="episode-votes" variant="flex">
                     <StarRating rating={episode.vote_average} />
-                    <SmallText text={`${episode.vote_count} votes`} />
+                    <SmallText
+                      variant="season-vote-count"
+                      text={`${episode.vote_count} votes`}
+                    />
                   </Wrapper>
                 </div>
               </div>
