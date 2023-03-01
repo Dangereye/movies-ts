@@ -73,7 +73,6 @@ export default function TvSeason() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
-          <BodyText text={`${season?.episodes.length} Episodes`} />
         </Wrapper>
         <Overview text={season?.overview} />
         <CrewJobs credits={season?.credits} />
@@ -86,6 +85,8 @@ export default function TvSeason() {
               <div className="episode" key={episode.id}>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
+                  width={539}
+                  height={303}
                   alt={episode.name}
                   fallback="/images/error_1039x584.webp"
                 />

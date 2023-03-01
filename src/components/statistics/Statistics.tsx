@@ -81,11 +81,11 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             <Statistic heading={tv.status ? tv.status : "n/a"} text="Status" />
             <Statistic
               heading={tv.number_of_seasons ? tv.number_of_seasons : "n/a"}
-              text="Season(s)"
+              text="Seasons"
             />
             <Statistic
               heading={tv.number_of_episodes ? tv.number_of_episodes : "n/a"}
-              text="Episode(s)"
+              text="Episodes"
             />
           </Wrapper>
           <Wrapper name="social-icons" variant="flex">

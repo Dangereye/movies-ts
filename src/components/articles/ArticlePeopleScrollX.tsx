@@ -57,8 +57,8 @@ export default function ArticlePeopleScrollX<
                 />
                 <CardContent heading={item.name}>
                   {/* Movie character */}
-                  {character && (
-                    <BodyText text={character ? item.character : "TBC"} />
+                  {character && item.character && (
+                    <BodyText text={item.character ? item.character : "TBC"} />
                   )}
 
                   {/* Tv character */}
