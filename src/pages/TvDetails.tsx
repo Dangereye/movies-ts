@@ -96,8 +96,9 @@ export default function TvDetails() {
       <ArticlePeopleScrollX
         name="tv-show-top-billed-cast"
         heading="Top billed cast"
-        data={tv?.credits?.cast}
+        data={tv?.aggregate_credits?.cast}
         character
+        limit
       />
 
       <ArticleVideos data={tv?.videos?.results} />

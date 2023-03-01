@@ -8,6 +8,7 @@ import Container from "../container/Container";
 import ImageComponent from "../image/Image";
 import BodyText from "../typography/BodyText";
 import H2 from "../typography/H2";
+import SmallText from "../typography/SmallText";
 import Article from "./Article";
 
 type ArticlePeopleScrollXProps<T> = {
@@ -25,6 +26,7 @@ export default function ArticlePeopleScrollX<
     name: string;
     profile_path: string | null;
     character?: string;
+    roles?: { credit_id: string; character: string; episode_count: number }[];
     known_for_department?: string;
     popularity: number;
   }
@@ -54,9 +56,36 @@ export default function ArticlePeopleScrollX<
                   alt={item.name}
                 />
                 <CardContent heading={item.name}>
+                  {/* Movie character */}
                   {character && (
-                    <BodyText text={item.character ? item.character : "TBC"} />
+                    <BodyText text={character ? item.character : "TBC"} />
                   )}
+
+                  {/* Tv character */}
+                  {character && item.roles && (
+                    <>
+                      <BodyText
+                        text={
+                          item.roles.length > 0
+                            ? item?.roles?.map((role) => role.character)
+                            : "TBC"
+                        }
+                      />
+                      <SmallText
+                        text={
+                          item.roles.length > 0
+                            ? `${item.roles[0].episode_count} ${
+                                item.roles[0].episode_count > 1
+                                  ? `episodes`
+                                  : `episode`
+                              }`
+                            : ""
+                        }
+                      />
+                    </>
+                  )}
+
+                  {/* Acting / Crew */}
                   {department && (
                     <BodyText
                       text={
