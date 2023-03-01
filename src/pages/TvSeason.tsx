@@ -12,7 +12,6 @@ import BodyText from "../components/typography/BodyText";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import SmallText from "../components/typography/SmallText";
-import VoteCountPercentage from "../components/vote_count_percentage/VoteCountPercentage";
 import Wrapper from "../components/wrapper/Wrapper";
 import { tvPages } from "../data/tvPages";
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -84,7 +83,7 @@ export default function TvSeason() {
           <H2 heading="Episodes" />
           <div className="episodes">
             {season?.episodes.map((episode) => (
-              <div className="episode">
+              <div className="episode" key={episode.id}>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
                   alt={episode.name}

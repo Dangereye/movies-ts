@@ -91,7 +91,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
           <Wrapper name="social-icons" variant="flex">
             <SocialIcon
               anchor={
-                tv.external_ids.facebook_id
+                tv?.external_ids?.facebook_id
                   ? `https://www.facebook.com/${tv.external_ids.facebook_id}`
                   : null
               }
@@ -99,7 +99,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <SocialIcon
               anchor={
-                tv.external_ids.twitter_id
+                tv?.external_ids?.twitter_id
                   ? `https://www.twitter.com/${tv.external_ids.twitter_id}`
                   : null
               }
@@ -107,7 +107,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <SocialIcon
               anchor={
-                tv.external_ids.instagram_id
+                tv?.external_ids?.instagram_id
                   ? `https://www.instagram.com/${tv.external_ids.instagram_id}`
                   : null
               }
@@ -127,7 +127,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
           <Wrapper name="stats" variant="flex">
             <Statistic
               heading={
-                person.known_for_department
+                person?.known_for_department
                   ? person.known_for_department
                   : "n/a"
               }
@@ -135,7 +135,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <Statistic
               heading={
-                person.movie_credits.cast.length > 0
+                person?.movie_credits?.cast.length > 0
                   ? person.movie_credits.cast.length
                   : "n/a"
               }
@@ -143,7 +143,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <Statistic
               heading={
-                person.tv_credits.cast.length > 0
+                person?.tv_credits?.cast.length > 0
                   ? person.tv_credits.cast.length
                   : "n/a"
               }
@@ -153,7 +153,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
           <Wrapper name="social-icons" variant="flex">
             <SocialIcon
               anchor={
-                person.external_ids.facebook_id
+                person?.external_ids?.facebook_id
                   ? `https://www.facebook.com/${person?.external_ids.facebook_id}`
                   : null
               }
@@ -161,7 +161,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <SocialIcon
               anchor={
-                person.external_ids.twitter_id
+                person?.external_ids?.twitter_id
                   ? `https://www.twitter.com/${person.external_ids.twitter_id}`
                   : null
               }
@@ -169,7 +169,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <SocialIcon
               anchor={
-                person.external_ids.instagram_id
+                person?.external_ids?.instagram_id
                   ? `https://www.instagram.com/${person.external_ids.instagram_id}`
                   : null
               }

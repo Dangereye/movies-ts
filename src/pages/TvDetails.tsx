@@ -96,12 +96,12 @@ export default function TvDetails() {
       <ArticlePeopleScrollX
         name="tv-show-top-billed-cast"
         heading="Top billed cast"
-        data={tv?.credits.cast}
+        data={tv?.credits?.cast}
         character
       />
 
-      <ArticleVideos data={tv?.videos.results} />
-      <ArticleReviews data={tv?.reviews.results} />
+      <ArticleVideos data={tv?.videos?.results} />
+      <ArticleReviews data={tv?.reviews?.results} />
       <Article name="tv-show-seasons">
         <Container>
           <H2 heading="Seasons" />
@@ -129,12 +129,12 @@ export default function TvDetails() {
       <ArticleTvScrollX
         name="recommended-tv-shows"
         heading="Recommended"
-        data={tv?.recommendations.results}
+        data={tv?.recommendations?.results}
       />
       <ArticleTvScrollX
         name="similar-tv-shows"
         heading="You may also enjoy..."
-        data={tv?.similar.results}
+        data={tv?.similar?.results}
       />
     </>
   );
