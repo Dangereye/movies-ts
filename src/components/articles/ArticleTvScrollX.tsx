@@ -4,7 +4,7 @@ import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
 
 // Components
 import CardContent from "../cards/card/CardContent";
-import Cards from "../cards/Cards";
+import CardsScrollX from "../cards/CardsScrollX";
 import Container from "../container/Container";
 import ImageComponent from "../image/Image";
 import BodyText from "../typography/BodyText";
@@ -33,7 +33,7 @@ export default function ArticleTvScrollX<
         <Container>
           <H2 heading={heading} />
           <BodyText text={`Showing ${filtered.length} TV shows`} />
-          <Cards
+          <CardsScrollX
             getID={(item: T) => item.id}
             renderLink={(item) => `/tv/${item.id}`}
             renderItem={(item: T) => (

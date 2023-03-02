@@ -12,7 +12,7 @@ import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
 import Container from "../components/container/Container";
 import Article from "../components/articles/Article";
-import Cards from "../components/cards/Cards";
+import CardsScrollX from "../components/cards/CardsScrollX";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
 import Statistics from "../components/statistics/Statistics";
@@ -106,7 +106,7 @@ export default function TvDetails() {
       <Article name="tv-show-seasons">
         <Container>
           <H2 heading="Seasons" />
-          <Cards
+          <CardsScrollX
             getID={(item) => item.id}
             renderLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
             renderItem={(item) => (

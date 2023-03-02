@@ -6,7 +6,7 @@ import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
 
 // Components
 import CardContent from "../cards/card/CardContent";
-import Cards from "../cards/Cards";
+import CardsScrollX from "../cards/CardsScrollX";
 import Container from "../container/Container";
 import ImageComponent from "../image/Image";
 import BodyText from "../typography/BodyText";
@@ -50,7 +50,7 @@ export default function ArticlePeopleScrollX<
         <Container>
           <H2 heading={heading} />
           <BodyText text={`Showing ${limit ? 10 : filtered.length} people`} />
-          <Cards
+          <CardsScrollX
             getID={(item: T) => item.id}
             renderLink={(item) => `/people/${item.id}`}
             renderItem={(item: T) => (

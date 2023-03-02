@@ -3,7 +3,7 @@ import Main from "../components/main/Main";
 import Article from "../components/articles/Article";
 import Container from "../components/container/Container";
 import H2 from "../components/typography/H2";
-import Cards from "../components/cards/Cards";
+import Cards from "../components/cards/CardsScrollX";
 import ImageComponent from "../components/image/Image";
 import CardContent from "../components/cards/card/CardContent";
 

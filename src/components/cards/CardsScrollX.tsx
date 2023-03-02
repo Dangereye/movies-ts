@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-type CardsProps<T> = {
+type CardsScrollXProps<T> = {
   getID: (item: T) => number;
   renderItem: (item: T) => ReactNode;
   renderLink: (item: T) => string;
@@ -10,14 +10,14 @@ type CardsProps<T> = {
   data: T[] | undefined;
 };
 
-export default function Cards<T>({
+export default function CardsScrollX<T>({
   getID,
   renderItem,
   renderLink,
   sort,
   limit = false,
   data,
-}: CardsProps<T>) {
+}: CardsScrollXProps<T>) {
   if (data && sort) {
     data = data.sort(sort);
   }
