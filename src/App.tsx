@@ -24,12 +24,14 @@ import MoviesNowPlaying from "./pages/MoviesNowPlaying";
 import MoviesUpcoming from "./pages/MoviesUpcoming";
 import MoviesTopRated from "./pages/MoviesTopRated";
 import MovieDetails from "./pages/MovieDetails";
+import MovieCastCrew from "./pages/MovieCastCrew";
 import TvPopular from "./pages/TvPopular";
 import TvAiringToday from "./pages/TvAiringToday";
 import TvOnTv from "./pages/TvOnTv";
 import TvTopRated from "./pages/TvTopRated";
 import TvSeason from "./pages/TvSeason";
 import TvDetails from "./pages/TvDetails";
+import TvCastCrew from "./pages/TvCastCrew";
 import PeoplePopular from "./pages/PeoplePopular";
 import PersonDetails from "./pages/PersonDetails";
 
@@ -53,11 +55,16 @@ function App() {
               <Route path="/movies/upcoming" element={<MoviesUpcoming />} />
               <Route path="/movies/top-rated" element={<MoviesTopRated />} />
               <Route path="/movies/:movieId" element={<MovieDetails />} />
+              <Route
+                path="/movies/:movieId/cast-crew"
+                element={<MovieCastCrew />}
+              />
               <Route path="/tv/popular" element={<TvPopular />} />
               <Route path="/tv/airing-today" element={<TvAiringToday />} />
               <Route path="/tv/on-tv" element={<TvOnTv />} />
               <Route path="/tv/top-rated" element={<TvTopRated />} />
               <Route path="/tv/:tvId" element={<TvDetails />} />
+              <Route path="/tv/:tvId/cast-crew" element={<TvCastCrew />} />
               <Route path="/tv/:tvId/season/:seasonId" element={<TvSeason />} />
               <Route path="/people/popular" element={<PeoplePopular />} />
               <Route path="/people/:personId" element={<PersonDetails />} />
