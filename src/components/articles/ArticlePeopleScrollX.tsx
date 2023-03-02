@@ -1,4 +1,7 @@
+import { useLocation } from "react-router-dom";
+
 // Utilities
+import { Link } from "react-router-dom";
 import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
 
 // Components
@@ -38,6 +41,8 @@ export default function ArticlePeopleScrollX<
   limit = false,
   data,
 }: ArticlePeopleScrollXProps<T>) {
+  const { pathname } = useLocation();
+
   if (data && data.length > 0) {
     const filtered = removeDuplicatesById(data);
     return (
@@ -105,6 +110,11 @@ export default function ArticlePeopleScrollX<
             }
             limit={limit}
           />
+          <div className="buttons">
+            <Link to={`${pathname}/cast-crew`} className="btn btn--secondary">
+              Full cast & crew
+            </Link>
+          </div>
         </Container>
       </Article>
     );
