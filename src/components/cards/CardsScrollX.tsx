@@ -28,7 +28,7 @@ export default function CardsScrollX<T>({
 
   if (data && data.length > 0) {
     return (
-      <div className="cards">
+      <div className="cards-scroll-x">
         {data.map((item) => (
           <Link key={getID(item)} to={renderLink(item)} className="card">
             {renderItem(item)}
