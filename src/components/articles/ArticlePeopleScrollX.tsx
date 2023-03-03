@@ -110,11 +110,13 @@ export default function ArticlePeopleScrollX<
             }
             limit={limit}
           />
-          <div className="buttons">
-            <Link to={`${pathname}/cast-crew`} className="btn btn--secondary">
-              Full cast & crew
-            </Link>
-          </div>
+          {(pathname.includes("movies") || pathname.includes("tv")) && (
+            <div className="buttons">
+              <Link to={`${pathname}/cast-crew`} className="btn btn--secondary">
+                Full cast & crew
+              </Link>
+            </div>
+          )}
         </Container>
       </Article>
     );
