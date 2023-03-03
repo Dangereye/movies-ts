@@ -1,17 +1,13 @@
 .cards-scroll-x {
   position: relative;
   display: flex;
-  gap: 1rem;
 
   @include scroll-x;
+  @include column-gap;
 
   @media (max-width: $tablet) {
     padding: 0;
     @include scrollbar-hidden;
-  }
-
-  @media (max-width: $mobile) {
-    gap: 0.5rem;
   }
 
   .card {

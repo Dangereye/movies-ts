@@ -1,28 +1,17 @@
 .card {
+  overflow: hidden;
   position: relative;
-  transition: background-color 0.3s ease-out;
 
   @media (hover: hover) {
-    &:hover {
-      background-color: $grey-color;
+    &:hover img {
+      transform: scale(1.025) translateY(-0.7rem);
     }
-  }
-
-  @media (max-width: $laptop) {
-    min-width: 24rem;
-  }
-
-  @media (max-width: $tablet) {
-    min-width: 20rem;
-  }
-
-  @media (max-width: $mobile) {
-    min-width: 15rem;
   }
 
   img {
     width: 100%;
     height: auto;
+    transition: all 0.3s ease-out;
   }
 
   .content {

@@ -1,0 +1,7 @@
+@mixin column-gap {
+  column-gap: 1rem;
+
+  @media (max-width: $mobile) {
+    column-gap: 0.5rem;
+  }
+}
