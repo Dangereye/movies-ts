@@ -1,13 +1,4 @@
 @mixin horizontal-padding {
-  padding-left: 6.4rem;
-  padding-right: 6.4rem;
-
-  @media (max-width: $tablet) {
-    padding-left: 3.2rem;
-    padding-right: 3.2rem;
-  }
-  @media (max-width: $mobile) {
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-  }
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }

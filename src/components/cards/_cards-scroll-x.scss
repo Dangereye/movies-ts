@@ -13,4 +13,9 @@
   @media (max-width: $mobile) {
     gap: 0.5rem;
   }
+
+  .card {
+    min-width: 35rem;
+    max-width: 35rem;
+  }
 }

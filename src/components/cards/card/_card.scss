@@ -1,7 +1,5 @@
 .card {
   position: relative;
-  min-width: 35rem;
-  max-width: 35rem;
   transition: background-color 0.3s ease-out;
 
   @media (hover: hover) {
@@ -11,11 +9,15 @@
   }
 
   @media (max-width: $laptop) {
-    min-width: 25rem;
+    min-width: 24rem;
   }
 
   @media (max-width: $tablet) {
-    min-width: 22.5rem;
+    min-width: 20rem;
+  }
+
+  @media (max-width: $mobile) {
+    min-width: 15rem;
   }
 
   img {

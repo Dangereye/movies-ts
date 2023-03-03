@@ -1,13 +1,13 @@
 @mixin vertical-padding {
-  padding-top: 6.4rem;
-  padding-bottom: 6.4rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 
   @media (max-width: $tablet) {
-    padding-top: 3.2rem;
-    padding-bottom: 3.2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
   @media (max-width: $mobile) {
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }

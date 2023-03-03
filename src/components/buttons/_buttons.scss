@@ -30,12 +30,13 @@
   &--secondary {
     border: 1px solid $accent-color;
     background-color: transparent;
+    color: $heading-text-dark;
   }
 
   &--tertiary {
     background-color: transparent;
     padding: 0;
-
+    color: $heading-text-dark;
     .qty {
       display: block;
       width: 3rem;
