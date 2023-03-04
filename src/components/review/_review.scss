@@ -1,18 +1,13 @@
 .review {
-  width: 100%;
-  padding: 4rem 9rem 4rem 2rem;
-  display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: 2rem;
+  padding: 4rem 2rem;
   border-radius: 1rem;
   background-color: #fff;
   box-shadow: 0 0 20px rgba(#000, 0.1);
   height: max-content;
-  min-height: 38rem;
 
-  @media (max-width: 650px) {
-    grid-template-columns: 1fr;
-    padding: 4rem 2rem;
+  .review-heading {
+    margin: 0;
+    gap: 1rem;
   }
 
   .avatar-wrapper {

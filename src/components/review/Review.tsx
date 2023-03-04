@@ -11,6 +11,7 @@ import { IReview } from "../../interfaces/IReview";
 
 // Utilities
 import { formatDate } from "../../utilities/formatDate";
+import HDiv from "../typography/HDiv";
 
 type ReviewProps = {
   data: IReview;
@@ -20,18 +21,11 @@ export default function Review({ data }: ReviewProps) {
   return (
     <div className="review">
       <div className="avatar">
-        <Wrapper name="avatar-wrapper">
-          <ImageComponent
-            width={50}
-            height={50}
-            src={`https://image.tmdb.org/t/p/w500/${data.author_details.avatar_path}`}
-            fallback="/images/error_100x100.webp"
-            alt={data.author}
-          />
+        <Wrapper name="review-heading" variant="flex">
+          <HDiv variant="heading--h4" heading={`${data.author}`} />
         </Wrapper>
       </div>
       <div className="content">
-        <H3 heading={`${data.author}`} />
         <div className="rating">
           <StarRating rating={data.author_details.rating} />
         </div>

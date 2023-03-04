@@ -14,25 +14,22 @@ html {
   text-transform: capitalize;
   margin-bottom: 2rem;
   line-height: 1.2;
+  font-weight: 700;
 
   &--h1 {
     font-size: $h1-font-size;
-    font-weight: 800;
   }
 
   &--h2 {
     font-size: $h2-font-size;
-    font-weight: 700;
   }
 
   &--h3 {
     font-size: $h3-font-size;
-    font-weight: 600;
   }
 
   &--h4 {
     font-size: $h4-font-size;
-    font-weight: 600;
   }
 }
 

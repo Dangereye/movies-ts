@@ -4,12 +4,12 @@ $tablet: 820px;
 $mobile: 450px;
 
 // Font Sizes
-$h1-font-size: 4.4rem;
-$h2-font-size: 3.6rem;
-$h3-font-size: 2.8rem;
+$h1-font-size: clamp(3.8rem, 3.5vw, 6.6rem);
+$h2-font-size: 3.2rem;
+$h3-font-size: 2.6rem;
 $h4-font-size: 2rem;
-$base-font-size: 2rem;
-$small-font-size: 1.5rem;
+$base-font-size: 1.6rem;
+$small-font-size: 1.4rem;
 
 // Colors
 $heading-text-dark: hsl(0, 0%, 10%);
