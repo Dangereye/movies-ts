@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 
+import { RxCalendar, RxClock } from "react-icons/rx";
+
 // Components
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import Header from "../components/header/Header";
@@ -72,7 +74,21 @@ export default function MovieDetails() {
         title={movie?.title}
       >
         <Wrapper name="info-bar" variant="flex">
-          <BodyText text={formatDate(movie?.release_date)} />
+          <div className="certificate">
+            {movie?.release_dates.results.map((item) => {
+              let certificate = null;
+              if (item.iso_3166_1 === "GB") {
+                certificate = item.release_dates.map((item) => {
+                  if (item.type === 3 || item.type === 4) {
+                    return item.certification;
+                  }
+                  return null;
+                });
+              }
+              return certificate;
+            })}
+          </div>
+
           <Navigation
             data={movie?.genres}
             getID={(item) => item.id}
@@ -80,7 +96,14 @@ export default function MovieDetails() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
-          <BodyText text={formatRuntime(movie?.runtime)} />
+          <div>
+            <RxCalendar />
+            <BodyText text={formatDate(movie?.release_date)} />
+          </div>
+          <div>
+            <RxClock />
+            <BodyText text={formatRuntime(movie?.runtime)} />
+          </div>
         </Wrapper>
         <div className="vote">
           <VoteCountPercentage vote={movie?.vote_average} large />

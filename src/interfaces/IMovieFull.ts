@@ -4,6 +4,7 @@ import { ICredits } from "./ICredits";
 import { IVideos } from "./IVideos";
 import { IExternalIds } from "./IExternalIds";
 import { IReview } from "./IReview";
+import { IMovieReleaseDates } from "./IMovieReleaseDates";
 
 export interface IMovieFull {
   adult: boolean;
@@ -41,6 +42,7 @@ export interface IMovieFull {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  release_dates: IMovieReleaseDates;
   credits: ICredits;
   videos: IVideos;
   external_ids: IExternalIds;
