@@ -82,7 +82,6 @@ export default function MovieDetails() {
                   if (item.type === 3 || item.type === 4) {
                     return item.certification;
                   }
-                  return null;
                 });
               }
               return certificate;
