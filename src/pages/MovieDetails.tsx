@@ -1,20 +1,20 @@
 import { useParams } from "react-router-dom";
 
-import { RxCalendar, RxClock } from "react-icons/rx";
-
 // Components
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import Header from "../components/header/Header";
 import Overview from "../components/header/Overview";
 import VoteCountPercentage from "../components/vote_count_percentage/VoteCountPercentage";
 import Navigation from "../components/navigation/Navigation";
-import BodyText from "../components/typography/BodyText";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
 import Statistics from "../components/statistics/Statistics";
 import Collection from "../components/collection/Collection";
+import Certificate from "../components/header/Certificate";
+import DateComponent from "../components/header/DateComponent";
+import RunTime from "../components/header/RunTime";
 
 // Articles
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
@@ -28,13 +28,8 @@ import useMakeQuery from "../hooks/useMakeQuery";
 // Interfaces
 import { IMovieFull } from "../interfaces/IMovieFull";
 
-// Utilities
-import { formatDate } from "../utilities/formatDate";
-import { formatRuntime } from "../utilities/formatRuntime";
-
 // Data
 import { moviePages } from "../data/moviePages";
-import Certificate from "../components/header/Certificate";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -83,14 +78,8 @@ export default function MovieDetails() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
-          <div>
-            <RxCalendar />
-            <BodyText text={formatDate(movie?.release_date)} />
-          </div>
-          <div>
-            <RxClock />
-            <BodyText text={formatRuntime(movie?.runtime)} />
-          </div>
+          <DateComponent date={movie?.release_date} />
+          <RunTime time={movie?.runtime} />
         </Wrapper>
         <div className="vote">
           <VoteCountPercentage vote={movie?.vote_average} large />
