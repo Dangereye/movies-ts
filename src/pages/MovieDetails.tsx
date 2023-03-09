@@ -34,6 +34,7 @@ import { formatRuntime } from "../utilities/formatRuntime";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import Certificate from "../components/header/Certificate";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -74,20 +75,7 @@ export default function MovieDetails() {
         title={movie?.title}
       >
         <Wrapper name="info-bar" variant="flex">
-          <div className="certificate">
-            {movie?.release_dates.results.map((item) => {
-              let certificate = null;
-              if (item.iso_3166_1 === "GB") {
-                certificate = item.release_dates.map((item) => {
-                  if (item.type === 3 || item.type === 4) {
-                    return item.certification;
-                  }
-                });
-              }
-              return certificate;
-            })}
-          </div>
-
+          <Certificate data={movie?.release_dates.results} />
           <Navigation
             data={movie?.genres}
             getID={(item) => item.id}

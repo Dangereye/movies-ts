@@ -42,7 +42,10 @@ export interface IMovieFull {
   video: boolean;
   vote_average: number;
   vote_count: number;
-  release_dates: IMovieReleaseDates;
+  release_dates: {
+    id: number;
+    results: IMovieReleaseDates[];
+  };
   credits: ICredits;
   videos: IVideos;
   external_ids: IExternalIds;
