@@ -3,6 +3,7 @@ import { ICredits } from "./ICredits";
 import { IExternalIds } from "./IExternalIds";
 import { IPage } from "./IPage";
 import { IReview } from "./IReview";
+import { ITVShowContentRatings } from "./ITVShowContentRatings";
 import { ITVShowMin } from "./ITVShowMin";
 import { IVideos } from "./IVideos";
 
@@ -80,4 +81,8 @@ export interface ITVShowFull {
   reviews: IPage<IReview>;
   recommendations: IPage<ITVShowMin>;
   similar: IPage<ITVShowMin>;
+  content_ratings: {
+    id: number;
+    results: ITVShowContentRatings[];
+  };
 }

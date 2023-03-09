@@ -75,7 +75,7 @@ export default function MovieDetails() {
         title={movie?.title}
       >
         <Wrapper name="info-bar" variant="flex">
-          <Certificate data={movie?.release_dates.results} />
+          <Certificate movie={movie?.release_dates.results} />
           <Navigation
             data={movie?.genres}
             getID={(item) => item.id}

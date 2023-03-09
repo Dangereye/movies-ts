@@ -35,6 +35,8 @@ import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 
 // Data
 import { tvPages } from "../data/tvPages";
+import Certificate from "../components/header/Certificate";
+import { RxCalendar } from "react-icons/rx";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -45,7 +47,7 @@ export default function TvDetails() {
   } = useMakeQuery<ITVShowFull>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar`
+    `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar,content_ratings`
   );
 
   if (isLoading) {
@@ -74,7 +76,7 @@ export default function TvDetails() {
         title={tv?.name}
       >
         <Wrapper name="info-bar" variant="flex">
-          <BodyText text={formatDate(tv?.first_air_date)} />
+          <Certificate tv={tv?.content_ratings.results} />
           <Navigation
             data={tv?.genres}
             getID={(item) => item.id}
@@ -82,6 +84,10 @@ export default function TvDetails() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
+          <div>
+            <RxCalendar />
+            <BodyText text={formatDate(tv?.first_air_date)} />
+          </div>
         </Wrapper>
         <Wrapper name="actions" variant="flex">
           <div className="vote">
