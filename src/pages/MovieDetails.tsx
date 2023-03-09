@@ -4,10 +4,8 @@ import { useParams } from "react-router-dom";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import Header from "../components/header/Header";
 import Overview from "../components/header/Overview";
-import VoteCountPercentage from "../components/vote_count_percentage/VoteCountPercentage";
 import Navigation from "../components/navigation/Navigation";
 import H2 from "../components/typography/H2";
-import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
 import CrewJobs from "../components/header/CrewJobs";
 import Statistics from "../components/statistics/Statistics";
@@ -30,6 +28,7 @@ import { IMovieFull } from "../interfaces/IMovieFull";
 
 // Data
 import { moviePages } from "../data/moviePages";
+import UserScore from "../components/header/UserScore";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -81,10 +80,7 @@ export default function MovieDetails() {
           <DateComponent date={movie?.release_date} />
           <RunTime time={movie?.runtime} />
         </Wrapper>
-        <div className="vote">
-          <VoteCountPercentage vote={movie?.vote_average} large />
-          <HDiv variant="heading--h4" heading="user score" />
-        </div>
+        <UserScore rating={movie?.vote_average} />
         <Overview caption={movie?.tagline} text={movie?.overview} />
         <CrewJobs credits={movie?.credits} />
       </Header>
