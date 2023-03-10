@@ -1,21 +1,23 @@
 import { useParams } from "react-router-dom";
 
+// Icons
+import { GiHastyGrave } from "react-icons/gi";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { RiCake2Line } from "react-icons/ri";
+
 // Articles
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
-import Birthday from "../components/header/Birthday";
-import Deathday from "../components/header/Deathday";
 
 // Components
 import Header from "../components/header/Header";
-import PlaceOfBirth from "../components/header/PlaceOfBirth";
 import Navigation from "../components/navigation/Navigation";
 import Statistics from "../components/statistics/Statistics";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
-import BodyText from "../components/typography/BodyText";
 import ExpandableText from "../components/typography/ExpandableText";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
+import IconText from "../components/typography/IconText";
 import Wrapper from "../components/wrapper/Wrapper";
 
 // Data
@@ -67,9 +69,21 @@ export default function TvDetails() {
         title={person?.name}
       >
         <Wrapper name="info-bar" variant="flex">
-          <Birthday date={person?.birthday} />
-          <PlaceOfBirth location={person?.place_of_birth} />
-          <Deathday date={person?.deathday} />
+          <IconText
+            name="birthday"
+            icon={<RiCake2Line />}
+            text={formatDate(person?.birthday)}
+          />
+          <IconText
+            name="place-of-birth"
+            icon={<HiOutlineLocationMarker />}
+            text={person?.place_of_birth}
+          />
+          <IconText
+            name="deathday"
+            icon={<GiHastyGrave />}
+            text={formatDate(person?.deathday)}
+          />
         </Wrapper>
         <HDiv variant="heading--h4" heading="Biography" />
         <ExpandableText
@@ -89,42 +103,6 @@ export default function TvDetails() {
         heading="TV Credits"
         data={person?.tv_credits.cast}
       />
-      {/* <ArticleMoviesScrollX
-        name="movie-acting-credits"
-        heading="Movie acting credits"
-        data={person?.movie_credits.cast}
-        sort={(a, b) =>
-          +new Date(b.release_date ? b.release_date : 0) -
-          +new Date(a.release_date ? a.release_date : 0)
-        }
-      />
-      <ArticleMoviesScrollX
-        name="movie-production-credits"
-        heading="Movie production credits"
-        data={person?.movie_credits.crew}
-        sort={(a, b) =>
-          +new Date(b.release_date ? b.release_date : 0) -
-          +new Date(a.release_date ? a.release_date : 0)
-        }
-      />
-      <ArticleTVShowsScrollX
-        name="tv-acting-credits"
-        heading="Tv acting credits"
-        data={person?.tv_credits.cast}
-        sort={(a, b) =>
-          +new Date(b.first_air_date ? b.first_air_date : 0) -
-          +new Date(a.first_air_date ? a.first_air_date : 0)
-        }
-      />
-      <ArticleTVShowsScrollX
-        name="tv-production-credits"
-        heading="Tv production credits"
-        data={person?.tv_credits.crew}
-        sort={(a, b) =>
-          +new Date(b.first_air_date ? b.first_air_date : 0) -
-          +new Date(a.first_air_date ? a.first_air_date : 0)
-        }
-      /> */}
     </>
   );
 }
