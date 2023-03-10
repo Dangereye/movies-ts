@@ -16,7 +16,8 @@ import CardContent from "../components/cards/card/CardContent";
 import Statistics from "../components/statistics/Statistics";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import Certificate from "../components/header/Certificate";
-import DateComponent from "../components/header/DateComponent";
+import UserScore from "../components/header/UserScore";
+import IconText from "../components/typography/IconText";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -35,7 +36,9 @@ import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 
 // Data
 import { tvPages } from "../data/tvPages";
-import UserScore from "../components/header/UserScore";
+
+// Icons
+import { RxCalendar } from "react-icons/rx";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -83,7 +86,11 @@ export default function TvDetails() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
-          <DateComponent date={tv?.first_air_date} />
+          <IconText
+            name="first-air-date"
+            icon={<RxCalendar />}
+            text={formatDate(tv?.first_air_date)}
+          />
         </Wrapper>
         <UserScore rating={tv?.vote_average} />
         <Overview caption={tv?.tagline} text={tv?.overview} />
