@@ -1,11 +1,19 @@
 .article__reviews {
   .reviews {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
     gap: 1rem;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1060px) {
+      grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    }
+
+    @media (max-width: 860px) {
       grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     }
   }
 }
