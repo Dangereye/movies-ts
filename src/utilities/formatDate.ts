@@ -7,5 +7,5 @@ export const formatDate = (date: string | null | undefined) => {
       day: "numeric",
     });
   }
-  return "TBC";
+  return null;
 };
