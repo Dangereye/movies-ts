@@ -11,8 +11,8 @@ import CrewJobs from "../components/header/CrewJobs";
 import Statistics from "../components/statistics/Statistics";
 import Collection from "../components/collection/Collection";
 import Certificate from "../components/header/Certificate";
-import DateComponent from "../components/header/DateComponent";
-import RunTime from "../components/header/RunTime";
+import UserScore from "../components/header/UserScore";
+import IconText from "../components/typography/IconText";
 
 // Articles
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
@@ -26,9 +26,13 @@ import useMakeQuery from "../hooks/useMakeQuery";
 // Interfaces
 import { IMovieFull } from "../interfaces/IMovieFull";
 
+// Icons
+import { RxCalendar, RxClock } from "react-icons/rx";
+
 // Data
 import { moviePages } from "../data/moviePages";
-import UserScore from "../components/header/UserScore";
+import { formatDate } from "../utilities/formatDate";
+import { formatRuntime } from "../utilities/formatRuntime";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -77,8 +81,16 @@ export default function MovieDetails() {
             renderItem={(item) => item.name}
             variant="comma-separated"
           />
-          <DateComponent date={movie?.release_date} />
-          <RunTime time={movie?.runtime} />
+          <IconText
+            name="release-date"
+            icon={<RxCalendar />}
+            text={formatDate(movie?.release_date)}
+          />
+          <IconText
+            name="run-time"
+            icon={<RxClock />}
+            text={formatRuntime(movie?.runtime)}
+          />
         </Wrapper>
         <UserScore rating={movie?.vote_average} />
         <Overview caption={movie?.tagline} text={movie?.overview} />
