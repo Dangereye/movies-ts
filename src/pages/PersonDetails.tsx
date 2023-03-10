@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom";
 // Articles
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
+import Birthday from "../components/header/Birthday";
+import Deathday from "../components/header/Deathday";
 
 // Components
 import Header from "../components/header/Header";
+import PlaceOfBirth from "../components/header/PlaceOfBirth";
 import Navigation from "../components/navigation/Navigation";
 import Statistics from "../components/statistics/Statistics";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
@@ -64,19 +67,9 @@ export default function TvDetails() {
         title={person?.name}
       >
         <Wrapper name="info-bar" variant="flex">
-          <BodyText
-            text={`Born: ${
-              person?.birthday ? formatDate(person?.birthday) : "TBC"
-            }`}
-          />
-          {person?.deathday && (
-            <BodyText
-              text={`Died: ${
-                person?.deathday ? formatDate(person.deathday) : "TBC"
-              }`}
-            />
-          )}
-          <BodyText text={person?.place_of_birth} />
+          <Birthday date={person?.birthday} />
+          <PlaceOfBirth location={person?.place_of_birth} />
+          <Deathday date={person?.deathday} />
         </Wrapper>
         <HDiv variant="heading--h4" heading="Biography" />
         <ExpandableText
