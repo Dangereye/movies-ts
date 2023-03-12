@@ -77,7 +77,7 @@ export default function MovieDetails() {
           <Navigation
             data={movie?.genres}
             getID={(item) => item.id}
-            getLink={(item) => `/genre/${item.id}`}
+            getLink={(item) => `/genre/${item.id}/movie`}
             renderItem={(item) => item.name}
             variant="comma-separated"
           />

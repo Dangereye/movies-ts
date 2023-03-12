@@ -34,6 +34,7 @@ import TvDetails from "./pages/TvDetails";
 import TvCastCrew from "./pages/TvCastCrew";
 import PeoplePopular from "./pages/PeoplePopular";
 import PersonDetails from "./pages/PersonDetails";
+import MovieGenre from "./pages/MovieGenre";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,7 @@ function App() {
                 path="/movies/:movieId/cast-crew"
                 element={<MovieCastCrew />}
               />
+              <Route path="/genre/:genreId/movie" element={<MovieGenre />} />
               <Route path="/tv/popular" element={<TvPopular />} />
               <Route path="/tv/airing-today" element={<TvAiringToday />} />
               <Route path="/tv/on-tv" element={<TvOnTv />} />
