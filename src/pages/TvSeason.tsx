@@ -59,6 +59,7 @@ export default function TvSeason() {
         />
       </SubNavbar>
       <Header
+        variant="header__full"
         bgImage={tv?.backdrop_path}
         image={season?.poster_path}
         alt={season?.name}

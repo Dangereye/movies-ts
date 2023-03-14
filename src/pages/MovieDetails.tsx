@@ -67,6 +67,7 @@ export default function MovieDetails() {
         />
       </SubNavbar>
       <Header
+        variant="header__full"
         bgImage={movie?.backdrop_path}
         image={movie?.poster_path}
         alt={movie?.title}

@@ -64,6 +64,7 @@ export default function TvDetails() {
         />
       </SubNavbar>
       <Header
+        variant="header__full"
         image={person?.profile_path}
         alt={person?.name}
         title={person?.name}

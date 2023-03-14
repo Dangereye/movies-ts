@@ -5,16 +5,16 @@ import ImageComponent from "../image/Image";
 import H1 from "../typography/H1";
 
 type HeaderProps = {
-  variant?: string;
+  variant: "header__full" | "header__min";
   bgImage?: string | null | undefined;
-  image: string | null | undefined;
-  alt: string | undefined;
-  title: string | undefined;
-  children: ReactNode;
+  image?: string | null | undefined;
+  alt?: string | null | undefined;
+  title: string | null | undefined;
+  children?: ReactNode;
 };
 
 export default function Header({
-  variant = "",
+  variant,
   bgImage,
   image,
   alt,
@@ -29,16 +29,18 @@ export default function Header({
         />
       )}
       <Container>
-        <ImageComponent
-          src={`https://image.tmdb.org/t/p/w500/${image}`}
-          fallback="/images/error_500x750.webp"
-          width={500}
-          height={750}
-          alt={alt}
-        />
+        {image && alt && (
+          <ImageComponent
+            src={`https://image.tmdb.org/t/p/w500/${image}`}
+            fallback="/images/error_500x750.webp"
+            width={500}
+            height={750}
+            alt={alt}
+          />
+        )}
         <div className="header__content">
           <H1 heading={title} />
-          {children}
+          {children && children}
         </div>
       </Container>
     </header>

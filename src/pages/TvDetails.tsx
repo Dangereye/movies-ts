@@ -72,6 +72,7 @@ export default function TvDetails() {
         />
       </SubNavbar>
       <Header
+        variant="header__full"
         bgImage={tv?.backdrop_path}
         image={tv?.poster_path}
         alt={tv?.name}

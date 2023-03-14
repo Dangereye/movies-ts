@@ -1,6 +1,6 @@
 type H1Props = {
   variant?: string;
-  heading: string | undefined;
+  heading: string | null | undefined;
 };
 
 export default function H1({ variant = "", heading }: H1Props) {

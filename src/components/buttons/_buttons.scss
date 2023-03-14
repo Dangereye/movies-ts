@@ -2,6 +2,11 @@
   margin-top: 4rem;
 }
 
+.wrapper.tags.flex {
+  margin: 0;
+  gap: 8px;
+}
+
 .btn {
   position: relative;
   display: flex;
@@ -61,5 +66,12 @@
         color: $accent-color;
       }
     }
+  }
+
+  &--tag {
+    color: $heading-text-dark;
+    font-size: 1.4rem;
+    padding: 4px 8px;
+    border: 1px solid $accent-color;
   }
 }
