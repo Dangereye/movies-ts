@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Article from "../components/articles/Article";
-import Button from "../components/buttons/Button";
 import CardContent from "../components/cards/card/CardContent";
+import CardsList from "../components/cards/CardsList";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
 import ImageComponent from "../components/image/Image";
@@ -12,7 +12,6 @@ import Navigation from "../components/navigation/Navigation";
 import Sidebar from "../components/sidebar/Sidebar";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import BodyText from "../components/typography/BodyText";
-import H1 from "../components/typography/H1";
 import H2 from "../components/typography/H2";
 import HDiv from "../components/typography/HDiv";
 import Wrapper from "../components/wrapper/Wrapper";
@@ -49,7 +48,7 @@ export default function MovieGenre() {
         setGenre(g.name);
       }
     });
-  }, [genreId]);
+  }, [genreId, genre]);
 
   if (isLoading || genreListIsLoading) {
     return <H2 heading="Loading" />;
@@ -85,24 +84,23 @@ export default function MovieGenre() {
               </Wrapper>
             </Sidebar>
             <Main>
-              <div className="cards-list">
-                {movie?.results.map((movie) => (
-                  <Link
-                    key={movie.id}
-                    to={`/movies/${movie.id}`}
-                    className="card"
-                  >
+              <CardsList
+                data={movie?.results}
+                getId={(item) => item.id}
+                renderLink={(item) => `movies/${item?.id}`}
+                renderItem={(item) => (
+                  <>
                     <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                       fallback="/images/error_500x750.webp"
-                      alt={movie.title}
+                      alt={item.title}
                     />
-                    <CardContent heading={movie.title}>
-                      <BodyText text={`${formatDate(movie.release_date)}`} />
+                    <CardContent heading={item.title}>
+                      <BodyText text={`${formatDate(item.release_date)}`} />
                     </CardContent>
-                  </Link>
-                ))}
-              </div>
+                  </>
+                )}
+              />
             </Main>
           </Layout>
         </Container>
