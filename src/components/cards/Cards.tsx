@@ -7,9 +7,9 @@ type CardsProps<T> = {
   getId: (item: T) => number;
   getLink: (item: T) => string;
   renderContent: (item: T) => ReactNode;
-  data: T[];
-  sort: (a: T, b: T) => number;
-  limit: boolean;
+  data: T[] | undefined;
+  sort?: (a: T, b: T) => number;
+  limit?: boolean;
 };
 
 export default function Cards<T>({
@@ -30,7 +30,7 @@ export default function Cards<T>({
   }
   if (data && data.length > 0) {
     return (
-      <div className={`cards ${variant}`}>
+      <div className={`cards cards__${variant}`}>
         {data.map((item) => (
           <Link key={getId(item)} to={getLink(item)} className="card">
             {renderContent(item)}

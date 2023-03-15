@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Article from "../components/articles/Article";
 import CardContent from "../components/cards/card/CardContent";
+import Cards from "../components/cards/Cards";
 import CardsList from "../components/cards/CardsList";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
@@ -84,11 +85,12 @@ export default function MovieGenre() {
               </Wrapper>
             </Sidebar>
             <Main>
-              <CardsList
+              <Cards
+                variant="list"
                 data={movie?.results}
                 getId={(item) => item.id}
-                renderLink={(item) => `movies/${item?.id}`}
-                renderItem={(item) => (
+                getLink={(item) => `movies/${item?.id}`}
+                renderContent={(item) => (
                   <>
                     <ImageComponent
                       src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
