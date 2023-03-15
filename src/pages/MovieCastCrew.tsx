@@ -2,23 +2,15 @@ import { Link, useParams } from "react-router-dom";
 import Article from "../components/articles/Article";
 import CardContent from "../components/cards/card/CardContent";
 import Container from "../components/container/Container";
-import CrewJobs from "../components/header/CrewJobs";
-import Header from "../components/header/Header";
-import Overview from "../components/header/Overview";
 import ImageComponent from "../components/image/Image";
 import Navigation from "../components/navigation/Navigation";
 import SubNavbar from "../components/sub_navbar/SubNavbar";
 import BodyText from "../components/typography/BodyText";
 import H1 from "../components/typography/H1";
 import H2 from "../components/typography/H2";
-import HDiv from "../components/typography/HDiv";
-import VoteCountPercentage from "../components/vote_count_percentage/VoteCountPercentage";
-import Wrapper from "../components/wrapper/Wrapper";
 import { moviePages } from "../data/moviePages";
 import useMakeQuery from "../hooks/useMakeQuery";
 import { IMovieFull } from "../interfaces/IMovieFull";
-import { formatDate } from "../utilities/formatDate";
-import { formatRuntime } from "../utilities/formatRuntime";
 export default function MovieCastCrew() {
   const { movieId } = useParams();
 
