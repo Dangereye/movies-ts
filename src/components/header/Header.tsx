@@ -25,17 +25,17 @@ export default function Header({
     <header className={`header ${variant}`}>
       {bgImage && (
         <BackgroundImage
-          path={`https://image.tmdb.org/t/p/original/${bgImage}`}
+          path={`https://image.tmdb.org/t/p/original/${bgImage}`} 
         />
       )}
       <Container>
-        {image && alt && (
+        {variant==="header__full" && (
           <ImageComponent
             src={`https://image.tmdb.org/t/p/w500/${image}`}
             fallback="/images/error_500x750.webp"
             width={500}
             height={750}
-            alt={alt}
+            alt={alt?alt:"Product image"}
           />
         )}
         <div className="header__content">

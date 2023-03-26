@@ -71,7 +71,7 @@ export default function ArticlePeople<T extends{
                           <SmallText
                             text={
                               item.roles.length > 0
-                                ? `${item.roles[0].episode_count} ${
+                                ? `${item.roles[0].episode_count.toLocaleString()} ${
                                     item.roles[0].episode_count > 1
                                       ? `episodes`
                                       : `episode`

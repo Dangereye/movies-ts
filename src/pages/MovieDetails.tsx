@@ -76,7 +76,7 @@ export default function MovieDetails() {
         title={movie?.title}
       >
         <Wrapper name="info-bar" variant="flex">
-          <Certificate movie={movie?.release_dates.results} />
+          <Certificate movie={movie?.release_dates?.results} />
           <Navigation
             data={movie?.genres}
             getID={(item) => item.id}
@@ -101,17 +101,17 @@ export default function MovieDetails() {
       </Header>
       <Statistics movie={movie} />
       
-      <ArticlePeople variant="scroll-x" name="top-billed-cast"heading="Top billed cast"data={movie?.credits.cast} character limit/>
+      <ArticlePeople variant="scroll-x" name="top-billed-cast"heading="Top billed cast"data={movie?.credits?.cast} character limit/>
       
-      <ArticleVideos data={movie?.videos.results} />
-      <ArticleReviews data={movie?.reviews.results} />
+      <ArticleVideos data={movie?.videos?.results} />
+      <ArticleReviews data={movie?.reviews?.results} />
       <Collection
         name={movie?.belongs_to_collection?.name}
         image={movie?.belongs_to_collection?.backdrop_path}
         id={movie?.belongs_to_collection?.id}
       />
-      <ArticleMoviesMin variant="scroll-x" name="recommended-movies" heading="Recommended" data={movie?.recommendations.results}/>
-      <ArticleMoviesMin variant="scroll-x" name="similar-movies" heading="You may also enjoy..." data={movie?.similar.results}/>
+      <ArticleMoviesMin variant="scroll-x" name="recommended-movies" heading="Recommended" data={movie?.recommendations?.results}/>
+      <ArticleMoviesMin variant="scroll-x" name="similar-movies" heading="You may also enjoy..." data={movie?.similar?.results}/>
       
     </>
   );

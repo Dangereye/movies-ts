@@ -80,7 +80,7 @@ export default function TvDetails() {
         title={tv?.name}
       >
         <Wrapper name="info-bar" variant="flex">
-          <Certificate tv={tv?.content_ratings.results} />
+          <Certificate tv={tv?.content_ratings?.results} />
           <Navigation
             data={tv?.genres}
             getID={(item) => item.id}
@@ -99,7 +99,7 @@ export default function TvDetails() {
         <CrewJobs credits={tv?.credits} />
       </Header>
       <Statistics tv={tv} />
-      <ArticlePeople variant="scroll-x" name="tv-show-top-billed-cast" heading="Top billed cast"data={tv?.aggregate_credits.cast}character limit/>
+      <ArticlePeople variant="scroll-x" name="tv-show-top-billed-cast" heading="Top billed cast"data={tv?.aggregate_credits?.cast}character limit/>
       <ArticleVideos data={tv?.videos?.results} /> 
       <ArticleReviews data={tv?.reviews?.results} />
       <Article name="tv-show-seasons">
@@ -124,11 +124,14 @@ export default function TvDetails() {
               </>
             )}
             data={tv?.seasons}
+            sort={(a, b) =>
+              (b.air_date ? +new Date(b.air_date) : 0) -
+              (a.air_date ? +new Date(a.air_date) : 0)}
           />
         </Container>
       </Article>
-      <ArticleTvMin variant="scroll-x"name="recommended-tv-shows"heading="Recommended"data={tv?.recommendations.results}/>
-      <ArticleTvMin variant="scroll-x"name="similar-tv-shows"heading="You may also enjoy..."data={tv?.similar.results}/>
+      <ArticleTvMin variant="scroll-x"name="recommended-tv-shows"heading="Recommended"data={tv?.recommendations?.results}/>
+      <ArticleTvMin variant="scroll-x"name="similar-tv-shows"heading="You may also enjoy..."data={tv?.similar?.results}/>
       
       
     </>
