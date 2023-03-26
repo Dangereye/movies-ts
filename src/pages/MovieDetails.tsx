@@ -17,7 +17,6 @@ import IconText from "../components/typography/IconText";
 // Articles
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 import ArticleVideos from "../components/articles/ArticleVideos";
-import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleReviews from "../components/articles/ArticleReviews";
 
 // Hooks
@@ -33,6 +32,7 @@ import { RxCalendar, RxClock } from "react-icons/rx";
 import { moviePages } from "../data/moviePages";
 import { formatDate } from "../utilities/formatDate";
 import { formatRuntime } from "../utilities/formatRuntime";
+import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -112,16 +112,9 @@ export default function MovieDetails() {
         image={movie?.belongs_to_collection?.backdrop_path}
         id={movie?.belongs_to_collection?.id}
       />
-      <ArticleMoviesScrollX
-        name="recommended-movies"
-        heading="Recommended"
-        data={movie?.recommendations.results}
-      />
-      <ArticleMoviesScrollX
-        name="similar-movies"
-        heading="You may also enjoy..."
-        data={movie?.similar.results}
-      />
+      <ArticleMoviesMin variant="scroll-x" name="recommended-movies" heading="Recommended" data={movie?.recommendations.results}/>
+      <ArticleMoviesMin variant="scroll-x" name="similar-movies" heading="You may also enjoy..." data={movie?.similar.results}/>
+      
     </>
   );
 }

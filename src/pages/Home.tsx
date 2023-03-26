@@ -1,26 +1,16 @@
 // Components
 import Main from "../components/main/Main";
-import Article from "../components/articles/Article";
-import Container from "../components/container/Container";
 import H2 from "../components/typography/H2";
-import Cards from "../components/cards/CardsScrollX";
-import ImageComponent from "../components/image/Image";
-import CardContent from "../components/cards/card/CardContent";
 
 // Interfaces
 import { IPage } from "../interfaces/IPage";
 import { IMovieMin } from "../interfaces/IMovieMin";
 import { IPerson } from "../interfaces/IPerson";
 import { ITVShowMin } from "../interfaces/ITVShowMin";
-
-// Utilities
-import { formatDate } from "../utilities/formatDate";
-
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
-import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
 import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 
 export default function LandingPage() {
