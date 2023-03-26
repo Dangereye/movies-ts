@@ -18,6 +18,7 @@ import IconText from "../components/typography/IconText";
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
+import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -32,7 +33,6 @@ import { RxCalendar, RxClock } from "react-icons/rx";
 import { moviePages } from "../data/moviePages";
 import { formatDate } from "../utilities/formatDate";
 import { formatRuntime } from "../utilities/formatRuntime";
-import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 
 export default function MovieDetails() {
   const { movieId } = useParams();

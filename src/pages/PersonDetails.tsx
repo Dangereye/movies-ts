@@ -6,7 +6,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RiCake2Line } from "react-icons/ri";
 
 // Articles
-import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
+import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 
 // Components
@@ -94,11 +94,8 @@ export default function TvDetails() {
       </Header>
       <Statistics person={person} />
 
-      <ArticleMoviesScrollX
-        name="movie-credits"
-        heading="Movie Credits"
-        data={person?.movie_credits.cast}
-      />
+      
+      <ArticleMoviesMin variant="scroll-x" name="movie-credits"heading="Movie credits" data={person?.movie_credits.cast}/>
       <ArticleTvScrollX
         name="tv-credits"
         heading="TV Credits"
