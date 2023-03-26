@@ -33,6 +33,7 @@ import { RxCalendar, RxClock } from "react-icons/rx";
 import { moviePages } from "../data/moviePages";
 import { formatDate } from "../utilities/formatDate";
 import { formatRuntime } from "../utilities/formatRuntime";
+import ArticlePeople from "../components/articles/ArticlePeople";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -98,13 +99,8 @@ export default function MovieDetails() {
         <CrewJobs credits={movie?.credits} />
       </Header>
       <Statistics movie={movie} />
-      <ArticlePeopleScrollX
-        name="top-billed-cast"
-        heading="Top billed cast"
-        data={movie?.credits.cast}
-        character
-        limit
-      />
+      
+      <ArticlePeople variant="scroll-x" name="top-billed-cast"heading="Top billed cast"data={movie?.credits.cast} character limit/>
       <ArticleVideos data={movie?.videos.results} />
       <ArticleReviews data={movie?.reviews.results} />
       <Collection
