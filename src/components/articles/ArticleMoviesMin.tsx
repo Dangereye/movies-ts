@@ -9,8 +9,8 @@ import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
 import Article from "./Article";
 import Container from "../container/Container";
 import H2 from "../typography/H2";
-import BodyText from "../typography/BodyText";
 import Cards from "../cards/Cards";
+import BodyText from "../typography/BodyText";
 import ImageComponent from "../image/Image";
 import CardContent from "../cards/card/CardContent";
 

@@ -21,6 +21,7 @@ import useMakeQuery from "../hooks/useMakeQuery";
 import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 import ArticleMoviesScrollX from "../components/articles/ArticleMoviesScrollX";
+import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 
 export default function LandingPage() {
   const {
@@ -52,12 +53,8 @@ export default function LandingPage() {
   return (
     <>
       <Main>
-        {/* Trending Movies */}
-        <ArticleMoviesScrollX
-          name="trending-movies"
-          heading="Trending movies"
-          data={movies?.results}
-        />
+        
+        <ArticleMoviesMin variant="scroll-x" name="trending-movies" heading="Trending movies" data={movies?.results}/>
 
         {/* Trending People */}
         <ArticlePeopleScrollX

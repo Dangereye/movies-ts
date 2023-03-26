@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import Article from "../components/articles/Article";
 import CardContent from "../components/cards/card/CardContent";
 import Cards from "../components/cards/Cards";
-import CardsList from "../components/cards/CardsList";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
 import ImageComponent from "../components/image/Image";
@@ -49,7 +48,7 @@ export default function MovieGenre() {
         setGenre(g.name);
       }
     });
-  }, [genreId, genre]);
+  }, [genreId, genreList, genre]);
 
   if (isLoading || genreListIsLoading) {
     return <H2 heading="Loading" />;
@@ -89,7 +88,7 @@ export default function MovieGenre() {
                 variant="list"
                 data={movie?.results}
                 getId={(item) => item.id}
-                getLink={(item) => `movies/${item?.id}`}
+                getLink={(item) => `/movies/${item?.id}`}
                 renderContent={(item) => (
                   <>
                     <ImageComponent
