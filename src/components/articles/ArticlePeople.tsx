@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import { IPerson } from "../../interfaces/IPerson";
+
+// Utilities
 import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
+
+// Components
 import CardContent from "../cards/card/CardContent";
 import Cards from "../cards/Cards";
 import Container from "../container/Container";
@@ -12,13 +15,13 @@ import Article from "./Article";
 
 
 type ArticlePeopleProps<T>={
-    variant:"scroll-x"|"list"; 
+    variant:"scroll-x"|"list";  
     name:string;
     heading:string;
     department?:boolean;
     character?:boolean;
     limit?:boolean;
-    data:T[]|undefined;
+    data:T[]|undefined; 
 }
 
 export default function ArticlePeople<T extends{

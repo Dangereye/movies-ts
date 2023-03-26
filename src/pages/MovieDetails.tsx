@@ -15,10 +15,10 @@ import UserScore from "../components/header/UserScore";
 import IconText from "../components/typography/IconText";
 
 // Articles
-import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
 import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
+import ArticlePeople from "../components/articles/ArticlePeople";
 
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
@@ -31,9 +31,10 @@ import { RxCalendar, RxClock } from "react-icons/rx";
 
 // Data
 import { moviePages } from "../data/moviePages";
+
+// Utilities
 import { formatDate } from "../utilities/formatDate";
 import { formatRuntime } from "../utilities/formatRuntime";
-import ArticlePeople from "../components/articles/ArticlePeople";
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -101,6 +102,7 @@ export default function MovieDetails() {
       <Statistics movie={movie} />
       
       <ArticlePeople variant="scroll-x" name="top-billed-cast"heading="Top billed cast"data={movie?.credits.cast} character limit/>
+      
       <ArticleVideos data={movie?.videos.results} />
       <ArticleReviews data={movie?.reviews.results} />
       <Collection

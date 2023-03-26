@@ -7,11 +7,14 @@ import { IPage } from "../interfaces/IPage";
 import { IMovieMin } from "../interfaces/IMovieMin";
 import { IPerson } from "../interfaces/IPerson";
 import { ITVShowMin } from "../interfaces/ITVShowMin";
+
 // Hooks
 import useMakeQuery from "../hooks/useMakeQuery";
-import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
+
+// Articles
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
+import ArticlePeople from "../components/articles/ArticlePeople";
 
 export default function LandingPage() {
   const {
@@ -45,14 +48,9 @@ export default function LandingPage() {
       <Main>
         
         <ArticleMoviesMin variant="scroll-x" name="trending-movies" heading="Trending movies" data={movies?.results}/>
+        <ArticlePeople variant="scroll-x" name="trending-people"heading="Trending people"data={people?.results}department/>
 
-        {/* Trending People */}
-        <ArticlePeopleScrollX
-          name="trending-people"
-          heading="Trending People"
-          data={people?.results}
-          department
-        />
+        
 
         {/* Trending TV Shows */}
         <ArticleTvScrollX

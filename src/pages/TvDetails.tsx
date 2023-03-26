@@ -31,14 +31,15 @@ import { formatDate } from "../utilities/formatDate";
 // Articles
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
+import ArticlePeople from "../components/articles/ArticlePeople";
 import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
-import ArticlePeopleScrollX from "../components/articles/ArticlePeopleScrollX";
 
 // Data
 import { tvPages } from "../data/tvPages";
 
 // Icons
 import { RxCalendar } from "react-icons/rx";
+import Cards from "../components/cards/Cards";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -98,23 +99,17 @@ export default function TvDetails() {
         <CrewJobs credits={tv?.credits} />
       </Header>
       <Statistics tv={tv} />
-      <ArticlePeopleScrollX
-        name="tv-show-top-billed-cast"
-        heading="Top billed cast"
-        data={tv?.aggregate_credits?.cast}
-        character
-        limit
-      />
-
-      <ArticleVideos data={tv?.videos?.results} />
+      <ArticlePeople variant="scroll-x" name="tv-show-top-billed-cast" heading="Top billed cast"data={tv?.aggregate_credits.cast}character limit/>
+      <ArticleVideos data={tv?.videos?.results} /> 
       <ArticleReviews data={tv?.reviews?.results} />
       <Article name="tv-show-seasons">
         <Container>
           <H2 heading="Seasons" />
-          <CardsScrollX
-            getID={(item) => item.id}
-            renderLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
-            renderItem={(item) => (
+          <Cards
+          variant="scroll-x"
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
+            renderContent={(item) => (
               <>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
