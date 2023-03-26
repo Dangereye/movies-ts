@@ -12,9 +12,9 @@ import { ITVShowMin } from "../interfaces/ITVShowMin";
 import useMakeQuery from "../hooks/useMakeQuery";
 
 // Articles
-import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
 import ArticlePeople from "../components/articles/ArticlePeople";
+import ArticleTvMin from "../components/articles/ArticleTvMin";
 
 export default function LandingPage() {
   const {
@@ -49,15 +49,10 @@ export default function LandingPage() {
         
         <ArticleMoviesMin variant="scroll-x" name="trending-movies" heading="Trending movies" data={movies?.results}/>
         <ArticlePeople variant="scroll-x" name="trending-people"heading="Trending people"data={people?.results}department/>
-
+<ArticleTvMin variant="scroll-x" name="trending-tv-shows"heading="Trending TV shows"data={tvshows?.results}/>
         
 
-        {/* Trending TV Shows */}
-        <ArticleTvScrollX
-          name="trending-tv-shows"
-          heading="Trending TV Shows"
-          data={tvshows?.results}
-        />
+        
       </Main>
     </>
   );

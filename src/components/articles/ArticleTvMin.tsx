@@ -22,7 +22,7 @@ type ArticleTvMinProps={
 }
 
 export default function ArticleTvMin({variant,name,heading,data}:ArticleTvMinProps){
-    if(data && DataTransfer.length>0){
+    if(data && data.length>0){
         const filtered = removeDuplicatesById(data);
         return (
           <Article name={name}>

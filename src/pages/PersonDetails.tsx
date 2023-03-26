@@ -7,7 +7,7 @@ import { RiCake2Line } from "react-icons/ri";
 
 // Articles
 import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
-import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
+import ArticleTvMin from "../components/articles/ArticleTvMin";
 
 // Components
 import Header from "../components/header/Header";
@@ -96,11 +96,8 @@ export default function TvDetails() {
 
       
       <ArticleMoviesMin variant="scroll-x" name="movie-credits"heading="Movie credits" data={person?.movie_credits.cast}/>
-      <ArticleTvScrollX
-        name="tv-credits"
-        heading="TV Credits"
-        data={person?.tv_credits.cast}
-      />
+      <ArticleTvMin variant="scroll-x"name="tv-credits"heading="TV credits"data={person?.tv_credits.cast}/>
+      
     </>
   );
 }

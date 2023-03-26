@@ -32,7 +32,6 @@ import { formatDate } from "../utilities/formatDate";
 import ArticleVideos from "../components/articles/ArticleVideos";
 import ArticleReviews from "../components/articles/ArticleReviews";
 import ArticlePeople from "../components/articles/ArticlePeople";
-import ArticleTvScrollX from "../components/articles/ArticleTvScrollX";
 
 // Data
 import { tvPages } from "../data/tvPages";
@@ -40,6 +39,7 @@ import { tvPages } from "../data/tvPages";
 // Icons
 import { RxCalendar } from "react-icons/rx";
 import Cards from "../components/cards/Cards";
+import ArticleTvMin from "../components/articles/ArticleTvMin";
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -127,16 +127,10 @@ export default function TvDetails() {
           />
         </Container>
       </Article>
-      <ArticleTvScrollX
-        name="recommended-tv-shows"
-        heading="Recommended"
-        data={tv?.recommendations?.results}
-      />
-      <ArticleTvScrollX
-        name="similar-tv-shows"
-        heading="You may also enjoy..."
-        data={tv?.similar?.results}
-      />
+      <ArticleTvMin variant="scroll-x"name="recommended-tv-shows"heading="Recommended"data={tv?.recommendations.results}/>
+      <ArticleTvMin variant="scroll-x"name="similar-tv-shows"heading="You may also enjoy..."data={tv?.similar.results}/>
+      
+      
     </>
   );
 }
