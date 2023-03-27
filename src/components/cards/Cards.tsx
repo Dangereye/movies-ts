@@ -1,9 +1,10 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
 
 type CardsProps<T> = {
-  variant: "scroll-x" | "list";
+  variant: 'scroll-x' | 'list';
   getId: (item: T) => number;
   getLink: (item: T) => string;
   renderContent: (item: T) => ReactNode;
@@ -12,7 +13,7 @@ type CardsProps<T> = {
   limit?: boolean;
 };
 
-export default function Cards<T>({
+export default function Cards<T extends { id: number }>({
   variant,
   getId,
   getLink,
@@ -29,10 +30,11 @@ export default function Cards<T>({
     data = data.slice(0, 10);
   }
   if (data && data.length > 0) {
+    const filtered = removeDuplicatesById(data);
     return (
       <div className={`cards cards__${variant}`}>
-        {data.map((item) => (
-          <Link key={getId(item)} to={getLink(item)} className="card">
+        {filtered.map((item) => (
+          <Link key={getId(item)} to={getLink(item)} className='card'>
             {renderContent(item)}
           </Link>
         ))}

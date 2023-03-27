@@ -1,16 +1,28 @@
-import { Link, useParams } from "react-router-dom";
-import Article from "../components/articles/Article";
-import CardContent from "../components/cards/card/CardContent";
-import Container from "../components/container/Container";
-import ImageComponent from "../components/image/Image";
-import Navigation from "../components/navigation/Navigation";
-import SubNavbar from "../components/sub_navbar/SubNavbar";
-import BodyText from "../components/typography/BodyText";
-import H1 from "../components/typography/H1";
-import H2 from "../components/typography/H2";
-import { moviePages } from "../data/moviePages";
-import useMakeQuery from "../hooks/useMakeQuery";
-import { IMovieFull } from "../interfaces/IMovieFull";
+import { useParams } from 'react-router-dom';
+
+// Components
+import Article from '../components/articles/Article';
+import CardContent from '../components/cards/card/CardContent';
+import Cards from '../components/cards/Cards';
+import Container from '../components/container/Container';
+import ImageComponent from '../components/image/Image';
+import Navigation from '../components/navigation/Navigation';
+import SubNavbar from '../components/sub_navbar/SubNavbar';
+import BodyText from '../components/typography/BodyText';
+import H1 from '../components/typography/H1';
+import H2 from '../components/typography/H2';
+
+// Data
+import { moviePages } from '../data/moviePages';
+
+// Hooks
+import useMakeQuery from '../hooks/useMakeQuery';
+
+// Interfaces
+import { ICast } from '../interfaces/ICast';
+import { ICrew } from '../interfaces/ICrew';
+import { IMovieFull } from '../interfaces/IMovieFull';
+
 export default function MovieCastCrew() {
   const { movieId } = useParams();
 
@@ -25,11 +37,11 @@ export default function MovieCastCrew() {
   );
 
   if (isLoading) {
-    return <H2 heading="Loading" />;
+    return <H2 heading='Loading' />;
   }
 
   if (isError) {
-    return <H2 heading="Error" />;
+    return <H2 heading='Error' />;
   }
 
   return (
@@ -40,37 +52,61 @@ export default function MovieCastCrew() {
           getID={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
-          variant="horizontal"
+          variant='horizontal'
         />
       </SubNavbar>
-      <header className="header">
+      <header className='header'>
         <Container>
-          <H1 heading={`${movie?.title}, Full cast & crew`} />
+          <H1 heading='Cast & crew' />
         </Container>
       </header>
-      <Article name="Cast">
+      <Article name='Cast'>
         <Container>
-          <H2 heading={`cast ${movie?.credits.cast.length}`} />
-          <div className="cards-list">
-            {movie?.credits.cast
-              .sort((a, b) => b.popularity - a.popularity)
-              .map((person) => (
-                <Link
-                  key={person.id}
-                  to={`/people/${person.id}`}
-                  className="card"
-                >
-                  <ImageComponent
-                    src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                    fallback="/images/error_500x750.webp"
-                    alt={person.name}
-                  />
-                  <CardContent heading={person.name}>
-                    <BodyText text={`${person.character}`} />
-                  </CardContent>
-                </Link>
-              ))}
-          </div>
+          <H2 heading={`Cast ${movie?.credits.cast.length}`} />
+          <Cards
+            variant='list'
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            renderContent={(item) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  fallback='/images/error_500x750.webp'
+                  alt={item.name}
+                />
+                <CardContent heading={item.name}>
+                  <BodyText text={`${item.character}`} />
+                </CardContent>
+              </>
+            )}
+            data={movie?.credits?.cast}
+            sort={(a: ICast, b: ICast) => b.popularity - a.popularity}
+          />
+        </Container>
+      </Article>
+      <Article name='crew'>
+        <Container>
+          <H2 heading={`Crew ${movie?.credits?.crew?.length}`} />
+          <Cards
+            variant='list'
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            renderContent={(item) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  fallback='/images/error_500x750.webp'
+                  alt={item.name}
+                />
+                <CardContent heading={item.name}>
+                  <BodyText text={`${item.department}`} />
+                  <BodyText text={`${item.job}`} />
+                </CardContent>
+              </>
+            )}
+            data={movie?.credits?.crew}
+            sort={(a: ICrew, b: ICrew) => b.popularity - a.popularity}
+          />
         </Container>
       </Article>
     </>
