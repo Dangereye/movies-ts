@@ -36,8 +36,6 @@ export default function MovieCastCrew() {
   const [sound, setSound] = useState<ICrew[] | []>([]);
   const [visualEffects, setVisualEffects] = useState<ICrew[] | []>([]);
   const [writing, setWriting] = useState<ICrew[] | []>([]);
-  console.log('Reloaded');
-  // let writing: ICrew[] = [];
 
   const {
     data: movie,
