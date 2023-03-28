@@ -1,116 +1,136 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 
 // Utilities
-import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
+import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
 
 // Components
-import CardContent from "../cards/card/CardContent";
-import Cards from "../cards/Cards";
-import Container from "../container/Container";
-import ImageComponent from "../image/Image";
-import BodyText from "../typography/BodyText";
-import H2 from "../typography/H2";
-import SmallText from "../typography/SmallText";
-import Article from "./Article";
+import CardContent from '../cards/card/CardContent';
+import Cards from '../cards/Cards';
+import Container from '../container/Container';
+import ImageComponent from '../image/Image';
+import BodyText from '../typography/BodyText';
+import H2 from '../typography/H2';
+import SmallText from '../typography/SmallText';
+import Article from './Article';
 
-
-type ArticlePeopleProps<T>={
-    variant:"scroll-x"|"list";  
-    name:string;
-    heading:string;
-    department?:boolean;
-    character?:boolean;
-    limit?:boolean;
-    data:T[]|undefined; 
-}
-
-export default function ArticlePeople<T extends{
-  id: number;
+type ArticlePeopleProps<T> = {
+  variant: 'scroll-x' | 'list';
   name: string;
-  profile_path: string | null;
-  character?: string;
-  roles?: { credit_id: string; character: string; episode_count: number }[];
-  known_for_department?: string;
-  popularity: number;}>({variant,name,heading,department,character,limit,data}:ArticlePeopleProps<T>){  
-  const { pathname } = useLocation(); 
+  heading: string;
+  department?: boolean;
+  crew?: boolean;
+  character?: boolean;
+  limit?: boolean;
+  data: T[] | undefined;
+};
 
-  if(data&& data.length>0){
-      const filtered = removeDuplicatesById(data); 
+export default function ArticlePeople<
+  T extends {
+    id: number;
+    name: string;
+    profile_path: string | null;
+    character?: string;
+    roles?: { credit_id: string; character: string; episode_count: number }[];
+    known_for_department?: string;
+    job?: string;
+    popularity: number;
+  }
+>({
+  variant,
+  name,
+  heading,
+  department,
+  crew,
+  character,
+  limit,
+  data,
+}: ArticlePeopleProps<T>) {
+  const { pathname } = useLocation();
 
-        return(<Article name={name}>
-            <Container>
-              <H2 heading={heading} />
-              <BodyText text={`Showing ${limit ? 10 : filtered.length} people`} />
-              <Cards
-              variant={variant}
-                getId={(item) => item.id}
-                getLink={(item) => `/people/${item.id}`}
-                renderContent={(item) => ( 
-                  <>
-                    <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                      fallback="/images/error_500x750.webp"
-                      alt={item.name}
-                    />
-                    <CardContent heading={item.name}>
-                      {/* Movie character */}
-                      {character && item.character && (
-                        <BodyText text={item.character} />
-                      )}
-    
-                      {/* Tv character */}
-                      {character && item.roles && (
-                        <>
-                          <BodyText
-                            text={
-                              item.roles.length > 0
-                                ? item?.roles?.map((role) => role.character)
-                                : "TBC"
-                            }
-                          />
-                          <SmallText
-                            text={
-                              item.roles.length > 0
-                                ? `${item.roles[0].episode_count.toLocaleString()} ${
-                                    item.roles[0].episode_count > 1
-                                      ? `episodes`
-                                      : `episode`
-                                  }`
-                                : ""
-                            }
-                          />
-                        </>
-                      )}
-    
-                      {/* Acting / Crew */}
-                      {department && (
-                        <BodyText
-                          text={
-                            item.known_for_department
-                              ? item.known_for_department
-                              : "TBC"
-                          }
-                        />
-                      )}
-                    </CardContent>
-                  </>
-                )}
-                data={filtered}
-                sort={(a, b) =>
-                  (b.popularity ? b.popularity : 0) -
-                  (a.popularity ? a.popularity : 0)
-                }
-                limit={limit}
-              />
-              {(pathname.includes("movies") || pathname.includes("tv")) && (
-                <div className="buttons">
-                  <Link to={`${pathname}/cast-crew`} className="btn btn--secondary">
-                    Full cast & crew
-                  </Link>
-                </div>
-              )}
-            </Container>
-          </Article>)
-    }
-    return null
+  if (data && data.length > 0) {
+    const filtered = removeDuplicatesById(data);
+
+    return (
+      <Article name={name}>
+        <Container>
+          <H2 heading={heading} />
+          <BodyText
+            text={`Showing ${limit ? 10 : filtered.length} ${
+              data.length > 1 ? 'people' : 'person'
+            }`}
+          />
+          <Cards
+            variant={variant}
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            renderContent={(item) => (
+              <>
+                <ImageComponent
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  fallback='/images/error_500x750.webp'
+                  alt={item.name}
+                />
+                <CardContent heading={item.name}>
+                  {/* Movie character */}
+                  {character && item.character && (
+                    <BodyText text={item.character} />
+                  )}
+
+                  {/* Tv character */}
+                  {character && item.roles && (
+                    <>
+                      <BodyText
+                        text={
+                          item.roles.length > 0
+                            ? item?.roles?.map((role) => role.character)
+                            : ''
+                        }
+                      />
+                      <SmallText
+                        text={
+                          item.roles.length > 0
+                            ? `${item.roles[0].episode_count.toLocaleString()} ${
+                                item.roles[0].episode_count > 1
+                                  ? `episodes`
+                                  : `episode`
+                              }`
+                            : ''
+                        }
+                      />
+                    </>
+                  )}
+
+                  {/* department */}
+                  {department && item.known_for_department && (
+                    <BodyText text={item.known_for_department} />
+                  )}
+
+                  {/* crew */}
+                  {crew && item.job && <BodyText text={item.job} />}
+                </CardContent>
+              </>
+            )}
+            data={filtered}
+            sort={(a, b) =>
+              (b.popularity ? b.popularity : 0) -
+              (a.popularity ? a.popularity : 0)
+            }
+            limit={limit}
+          />
+          {(pathname.includes('movies') || pathname.includes('tv')) &&
+            !pathname.includes('cast-crew') && (
+              <div className='buttons'>
+                <Link
+                  to={`${pathname}/cast-crew`}
+                  className='btn btn--secondary'
+                >
+                  Full cast & crew
+                </Link>
+              </div>
+            )}
+        </Container>
+      </Article>
+    );
+  }
+  return null;
 }
