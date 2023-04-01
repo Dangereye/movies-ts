@@ -2,7 +2,7 @@ import BodyText from '../../typography/BodyText';
 import HDiv from '../../typography/HDiv';
 
 type StatisticProps = {
-  heading: string | number;
+  heading: string | number | undefined | null;
   text: string | undefined | null;
 };
 

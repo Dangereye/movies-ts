@@ -24,19 +24,16 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
       <div className='statistics'>
         <Container>
           <Wrapper name='stats' variant='flex'>
-            <Statistic
-              heading={movie.status ? movie.status : 'n/a'}
-              text='Status'
-            />
+            <Statistic heading={movie?.status} text='Status' />
             <Statistic
               heading={
-                movie.budget ? `$${movie.budget.toLocaleString()}` : 'n/a'
+                movie?.budget ? `$${movie?.budget.toLocaleString()}` : null
               }
               text='Budget'
             />
             <Statistic
               heading={
-                movie.revenue ? `$${movie?.revenue.toLocaleString()}` : 'n/a'
+                movie?.revenue ? `$${movie?.revenue.toLocaleString()}` : null
               }
               text='Revenue'
             />
@@ -44,7 +41,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
           <Wrapper name='social-icons' variant='flex'>
             <SocialIcon
               anchor={
-                movie.external_ids.facebook_id
+                movie?.external_ids?.facebook_id
                   ? `https://www.facebook.com/${movie.external_ids.facebook_id}`
                   : null
               }
@@ -52,7 +49,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <SocialIcon
               anchor={
-                movie.external_ids.twitter_id
+                movie?.external_ids?.twitter_id
                   ? `https://www.twitter.com/${movie.external_ids.twitter_id}`
                   : null
               }
@@ -60,7 +57,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <SocialIcon
               anchor={
-                movie.external_ids.instagram_id
+                movie?.external_ids?.instagram_id
                   ? `https://www.instagram.com/${movie.external_ids.instagram_id}`
                   : null
               }
@@ -78,15 +75,9 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
       <div className='statistics'>
         <Container>
           <Wrapper name='stats' variant='flex'>
-            <Statistic heading={tv.status ? tv.status : 'n/a'} text='Status' />
-            <Statistic
-              heading={tv.number_of_seasons ? tv.number_of_seasons : 'n/a'}
-              text='Seasons'
-            />
-            <Statistic
-              heading={tv.number_of_episodes ? tv.number_of_episodes : 'n/a'}
-              text='Episodes'
-            />
+            <Statistic heading={tv?.status} text='Status' />
+            <Statistic heading={tv?.number_of_seasons} text='Seasons' />
+            <Statistic heading={tv?.number_of_episodes} text='Episodes' />
           </Wrapper>
           <Wrapper name='social-icons' variant='flex'>
             <SocialIcon
@@ -150,7 +141,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             <SocialIcon
               anchor={
                 person?.external_ids?.facebook_id
-                  ? `https://www.facebook.com/${person?.external_ids.facebook_id}`
+                  ? `https://www.facebook.com/${person.external_ids.facebook_id}`
                   : null
               }
               icon={<BsFacebook />}
