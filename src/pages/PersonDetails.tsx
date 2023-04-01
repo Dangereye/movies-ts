@@ -1,36 +1,36 @@
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 // Icons
-import { GiHastyGrave } from "react-icons/gi";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { RiCake2Line } from "react-icons/ri";
+import { GiHastyGrave } from 'react-icons/gi';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { RiCake2Line } from 'react-icons/ri';
 
 // Articles
-import ArticleMoviesMin from "../components/articles/ArticleMoviesMin";
-import ArticleTvMin from "../components/articles/ArticleTvMin";
+import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
+import ArticleTvMin from '../components/articles/ArticleTvMin';
 
 // Components
-import Header from "../components/header/Header";
-import Navigation from "../components/navigation/Navigation";
-import Statistics from "../components/statistics/Statistics";
-import SubNavbar from "../components/sub_navbar/SubNavbar";
-import ExpandableText from "../components/typography/ExpandableText";
-import H2 from "../components/typography/H2";
-import HDiv from "../components/typography/HDiv";
-import IconText from "../components/typography/IconText";
-import Wrapper from "../components/wrapper/Wrapper";
+import Header from '../components/header/Header';
+import Navigation from '../components/navigation/Navigation';
+import Statistics from '../components/statistics/Statistics';
+import SubNavbar from '../components/sub_navbar/SubNavbar';
+import ExpandableText from '../components/typography/ExpandableText';
+import H2 from '../components/typography/H2';
+import HDiv from '../components/typography/HDiv';
+import IconText from '../components/typography/IconText';
+import Wrapper from '../components/wrapper/Wrapper';
 
 // Data
-import { peoplePages } from "../data/peoplePages";
+import { peoplePages } from '../data/peoplePages';
 
 // Hooks
-import useMakeQuery from "../hooks/useMakeQuery";
+import useMakeQuery from '../hooks/useMakeQuery';
 
 // Interfaces
-import { IPerson } from "../interfaces/IPerson";
+import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
-import { formatDate } from "../utilities/formatDate";
+import { formatDate } from '../utilities/formatDate';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -45,11 +45,11 @@ export default function TvDetails() {
   );
 
   if (isLoading) {
-    return <H2 heading="Loading" />;
+    return <H2 heading='Loading' />;
   }
 
   if (isError) {
-    return <H2 heading="Error" />;
+    return <H2 heading='Error' />;
   }
 
   return (
@@ -60,44 +60,64 @@ export default function TvDetails() {
           getID={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
-          variant="horizontal"
+          variant='horizontal'
         />
       </SubNavbar>
       <Header
-        variant="header__full"
+        variant='header__full'
         image={person?.profile_path}
         alt={person?.name}
         title={person?.name}
       >
-        <Wrapper name="info-bar" variant="flex">
+        <Wrapper name='info-bar' variant='flex'>
           <IconText
-            name="birthday"
+            name='birthday'
             icon={<RiCake2Line />}
             text={formatDate(person?.birthday)}
           />
           <IconText
-            name="place-of-birth"
+            name='place-of-birth'
             icon={<HiOutlineLocationMarker />}
             text={person?.place_of_birth}
           />
           <IconText
-            name="deathday"
+            name='deathday'
             icon={<GiHastyGrave />}
             text={formatDate(person?.deathday)}
           />
         </Wrapper>
-        <HDiv variant="heading--h4" heading="Biography" />
+        <HDiv variant='heading--h4' heading='Biography' />
         <ExpandableText
-          text={person?.biography ? person?.biography : "Unavailable"}
+          text={person?.biography ? person?.biography : 'Unavailable'}
           lines={8}
         />
       </Header>
       <Statistics person={person} />
 
-      
-      <ArticleMoviesMin variant="scroll-x" name="movie-credits"heading="Movie credits" data={person?.movie_credits.cast}/>
-      <ArticleTvMin variant="scroll-x"name="tv-credits"heading="TV credits"data={person?.tv_credits.cast}/>
-      
+      <ArticleMoviesMin
+        variant='scroll-x'
+        name='movie-credits'
+        heading='Movie credits'
+        data={person?.movie_credits.cast}
+      />
+      <ArticleMoviesMin
+        variant='scroll-x'
+        name='movie-credits'
+        heading='Movie crew'
+        data={person?.movie_credits.crew}
+      />
+      <ArticleTvMin
+        variant='scroll-x'
+        name='tv-credits'
+        heading='TV credits'
+        data={person?.tv_credits.cast}
+      />
+      <ArticleTvMin
+        variant='scroll-x'
+        name='tv-credits'
+        heading='TV crew'
+        data={person?.tv_credits.crew}
+      />
     </>
   );
 }
