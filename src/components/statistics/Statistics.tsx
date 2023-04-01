@@ -1,16 +1,16 @@
 // Icons
-import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from 'react-icons/bs';
 
 // Interfaces
-import { IMovieFull } from "../../interfaces/IMovieFull";
-import { IPerson } from "../../interfaces/IPerson";
-import { ITVShowFull } from "../../interfaces/ITVShowFull";
+import { IMovieFull } from '../../interfaces/IMovieFull';
+import { IPerson } from '../../interfaces/IPerson';
+import { ITVShowFull } from '../../interfaces/ITVShowFull';
 
 // Components
-import Container from "../container/Container";
-import Wrapper from "../wrapper/Wrapper";
-import SocialIcon from "./social_icon/SocialIcon";
-import Statistic from "./Statistic/Statistic";
+import Container from '../container/Container';
+import Wrapper from '../wrapper/Wrapper';
+import SocialIcon from './social_icon/SocialIcon';
+import Statistic from './Statistic/Statistic';
 
 type StatisticsProps = {
   movie?: IMovieFull;
@@ -21,27 +21,27 @@ type StatisticsProps = {
 export default function Statistics({ movie, tv, person }: StatisticsProps) {
   if (movie) {
     return (
-      <div className="statistics">
+      <div className='statistics'>
         <Container>
-          <Wrapper name="stats" variant="flex">
+          <Wrapper name='stats' variant='flex'>
             <Statistic
-              heading={movie.status ? movie.status : "n/a"}
-              text="Status"
+              heading={movie.status ? movie.status : 'n/a'}
+              text='Status'
             />
             <Statistic
               heading={
-                movie.budget ? `$${movie.budget.toLocaleString()}` : "n/a"
+                movie.budget ? `$${movie.budget.toLocaleString()}` : 'n/a'
               }
-              text="Budget"
+              text='Budget'
             />
             <Statistic
               heading={
-                movie.revenue ? `$${movie?.revenue.toLocaleString()}` : "n/a"
+                movie.revenue ? `$${movie?.revenue.toLocaleString()}` : 'n/a'
               }
-              text="Revenue"
+              text='Revenue'
             />
           </Wrapper>
-          <Wrapper name="social-icons" variant="flex">
+          <Wrapper name='social-icons' variant='flex'>
             <SocialIcon
               anchor={
                 movie.external_ids.facebook_id
@@ -75,20 +75,20 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
 
   if (tv) {
     return (
-      <div className="statistics">
+      <div className='statistics'>
         <Container>
-          <Wrapper name="stats" variant="flex">
-            <Statistic heading={tv.status ? tv.status : "n/a"} text="Status" />
+          <Wrapper name='stats' variant='flex'>
+            <Statistic heading={tv.status ? tv.status : 'n/a'} text='Status' />
             <Statistic
-              heading={tv.number_of_seasons ? tv.number_of_seasons : "n/a"}
-              text="Seasons"
+              heading={tv.number_of_seasons ? tv.number_of_seasons : 'n/a'}
+              text='Seasons'
             />
             <Statistic
-              heading={tv.number_of_episodes ? tv.number_of_episodes : "n/a"}
-              text="Episodes"
+              heading={tv.number_of_episodes ? tv.number_of_episodes : 'n/a'}
+              text='Episodes'
             />
           </Wrapper>
-          <Wrapper name="social-icons" variant="flex">
+          <Wrapper name='social-icons' variant='flex'>
             <SocialIcon
               anchor={
                 tv?.external_ids?.facebook_id
@@ -122,35 +122,31 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
 
   if (person) {
     return (
-      <div className="statistics">
+      <div className='statistics'>
         <Container>
-          <Wrapper name="stats" variant="flex">
+          <Wrapper name='stats' variant='flex'>
             <Statistic
-              heading={
-                person?.known_for_department
-                  ? person.known_for_department
-                  : "n/a"
-              }
-              text="Known for"
+              heading={person?.known_for_department}
+              text='Known for'
             />
             <Statistic
-              heading={
-                person?.movie_credits?.cast.length > 0
-                  ? person.movie_credits.cast.length
-                  : "n/a"
-              }
-              text="Movie credits"
+              heading={person?.movie_credits?.cast?.length}
+              text='Movie credits'
             />
             <Statistic
-              heading={
-                person?.tv_credits?.cast.length > 0
-                  ? person.tv_credits.cast.length
-                  : "n/a"
-              }
-              text="TV credits"
+              heading={person?.movie_credits?.crew?.length}
+              text='Movie crew'
+            />
+            <Statistic
+              heading={person?.tv_credits?.cast?.length}
+              text='TV credits'
+            />
+            <Statistic
+              heading={person?.tv_credits?.crew?.length}
+              text='TV crew'
             />
           </Wrapper>
-          <Wrapper name="social-icons" variant="flex">
+          <Wrapper name='social-icons' variant='flex'>
             <SocialIcon
               anchor={
                 person?.external_ids?.facebook_id
