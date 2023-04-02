@@ -57,7 +57,7 @@ export default function TvDetails() {
       <SubNavbar>
         <Navigation
           data={peoplePages}
-          getID={(item) => item.name}
+          getId={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
           variant='horizontal'

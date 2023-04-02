@@ -118,7 +118,7 @@ export default function MovieCastCrew() {
       <SubNavbar>
         <Navigation
           data={moviePages}
-          getID={(item) => item.name}
+          getId={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
           variant='horizontal'

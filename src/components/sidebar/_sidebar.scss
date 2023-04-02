@@ -5,6 +5,14 @@
   display: flex;
   flex-direction: column;
 
+  .navigation{
+
+    &__link{
+      color:$heading-text-dark;
+
+    }
+  }
+
   @media (max-width: $tablet) {
     display: none;
   }

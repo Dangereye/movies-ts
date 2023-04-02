@@ -24,6 +24,7 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import useCreateMovieGenres from '../hooks/useCreateMovieGenres';
 
 export default function MoviesPopular() {
   const {
@@ -31,6 +32,7 @@ export default function MoviesPopular() {
     isLoading,
     isError,
   } = useMakeQuery<IPage<IMovieMin>>('popular movies', '/movie/popular');
+  const genres = useCreateMovieGenres();
 
   if (isLoading) {
     return <H2 heading='Loading' />;
@@ -45,7 +47,7 @@ export default function MoviesPopular() {
       <SubNavbar>
         <Navigation
           data={moviePages}
-          getID={(item) => item.name}
+          getId={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
           variant='horizontal'
@@ -55,7 +57,15 @@ export default function MoviesPopular() {
         <Container>
           <H2 heading='Popular Movies' />
           <Layout variant='grid grid--sidebar'>
-            <Sidebar>sidebar</Sidebar>
+            <Sidebar>
+              <Navigation
+                variant='vertical'
+                getId={(item) => item.id}
+                getLink={(item) => `/genre/${item.id}/movie`}
+                renderItem={(item) => item.name}
+                data={genres}
+              />
+            </Sidebar>
             <Main>
               <Cards
                 variant='list'

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 type NavigationProps<T> = {
   variant: 'horizontal' | 'vertical' | 'comma-separated';
-  getID: (item: T) => string | number;
+  getId: (item: T) => string | number;
   getLink: (item: T) => string;
   renderItem: (item: T) => ReactNode;
   data: T[] | undefined;
@@ -11,7 +11,7 @@ type NavigationProps<T> = {
 
 export default function Navigation<T>({
   variant,
-  getID,
+  getId,
   getLink,
   renderItem,
   data,
@@ -20,7 +20,7 @@ export default function Navigation<T>({
     <nav className='navigation'>
       <ul className={`navigation__list ${variant}`}>
         {data?.map((item) => (
-          <li key={getID(item)} className='navigation__item'>
+          <li key={getId(item)} className='navigation__item'>
             <Link to={getLink(item)} className='navigation__link'>
               {renderItem(item)}
             </Link>
