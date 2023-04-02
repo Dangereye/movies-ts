@@ -13,11 +13,9 @@ import Sidebar from '../components/sidebar/Sidebar';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import BodyText from '../components/typography/BodyText';
 import H2 from '../components/typography/H2';
-import HDiv from '../components/typography/HDiv';
-import Wrapper from '../components/wrapper/Wrapper';
 import { moviePages } from '../data/moviePages';
+import useCreateMovieGenres from '../hooks/useCreateMovieGenres';
 import useMakeQuery from '../hooks/useMakeQuery';
-import { IMovieGenres } from '../interfaces/IMovieGenres';
 import { IMovieMin } from '../interfaces/IMovieMin';
 import { IPage } from '../interfaces/IPage';
 import { formatDate } from '../utilities/formatDate';
@@ -36,25 +34,21 @@ export default function MovieGenre() {
     `&with_genres=${genreId}`
   );
 
-  const {
-    data: genreList,
-    isError: genreListIsError,
-    isLoading: genreListIsLoading,
-  } = useMakeQuery<IMovieGenres>(`movie-genre-list`, `genre/movie/list`);
+  const genres = useCreateMovieGenres();
 
   useEffect(() => {
-    genreList?.genres?.find((g) => {
+    genres?.find((g) => {
       if (`${g.id}` === genreId) {
         setGenre(g.name);
       }
     });
-  }, [genreId, genreList, genre]);
+  }, [genreId, genres, genre]);
 
-  if (isLoading || genreListIsLoading) {
+  if (isLoading) {
     return <H2 heading='Loading' />;
   }
 
-  if (isError || genreListIsError) {
+  if (isError) {
     return <H2 heading='Error' />;
   }
 
@@ -73,16 +67,7 @@ export default function MovieGenre() {
       <Article name='genre-movies'>
         <Container>
           <Layout variant='grid grid--sidebar'>
-            <Sidebar>
-              <HDiv variant='heading--h4' heading='genres' />
-              <Wrapper name='tags' variant='flex'>
-                {genreList?.genres.map((g) => (
-                  <Link to={`/genre/${g.id}/movie`} className='btn btn--tag'>
-                    {g.name}
-                  </Link>
-                ))}
-              </Wrapper>
-            </Sidebar>
+            <Sidebar />
             <Main>
               <Cards
                 variant='list'

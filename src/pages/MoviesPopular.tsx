@@ -25,6 +25,8 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import useCreateMovieGenres from '../hooks/useCreateMovieGenres';
+import Header from '../components/header/Header';
+import HDiv from '../components/typography/HDiv';
 
 export default function MoviesPopular() {
   const {
@@ -53,19 +55,11 @@ export default function MoviesPopular() {
           variant='horizontal'
         />
       </SubNavbar>
+      <Header variant='header__min' title='Popular movies' />
       <Article name='popular-movies'>
         <Container>
-          <H2 heading='Popular Movies' />
           <Layout variant='grid grid--sidebar'>
-            <Sidebar>
-              <Navigation
-                variant='vertical'
-                getId={(item) => item.id}
-                getLink={(item) => `/genre/${item.id}/movie`}
-                renderItem={(item) => item.name}
-                data={genres}
-              />
-            </Sidebar>
+            <Sidebar />
             <Main>
               <Cards
                 variant='list'
