@@ -96,25 +96,25 @@ export default function TvDetails() {
 
       <ArticleMoviesMin
         variant='scroll-x'
-        name='movie-credits'
-        heading='Movie credits'
+        name='movie-cast'
+        heading='Movie cast'
         data={person?.movie_credits.cast}
       />
       <ArticleMoviesMin
         variant='scroll-x'
-        name='movie-credits'
+        name='movie-crew'
         heading='Movie crew'
         data={person?.movie_credits.crew}
       />
       <ArticleTvMin
         variant='scroll-x'
-        name='tv-credits'
-        heading='TV credits'
+        name='tv-cast'
+        heading='TV cast'
         data={person?.tv_credits.cast}
       />
       <ArticleTvMin
         variant='scroll-x'
-        name='tv-credits'
+        name='tv-crew'
         heading='TV crew'
         data={person?.tv_credits.crew}
       />
