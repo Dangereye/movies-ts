@@ -1,15 +1,20 @@
 import Article from '../components/articles/Article';
+import CardContent from '../components/cards/card/CardContent';
+import Cards from '../components/cards/Cards';
 import Container from '../components/container/Container';
+import ImageComponent from '../components/image/Image';
 import Layout from '../components/layout/Layout';
 import Main from '../components/main/Main';
 import Navigation from '../components/navigation/Navigation';
 import Sidebar from '../components/sidebar/Sidebar';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
+import BodyText from '../components/typography/BodyText';
 import H2 from '../components/typography/H2';
 import { moviePages } from '../data/moviePages';
 import useMakeQuery from '../hooks/useMakeQuery';
 import { IMovieMin } from '../interfaces/IMovieMin';
 import { IPage } from '../interfaces/IPage';
+import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesPopular() {
   const {
@@ -42,7 +47,26 @@ export default function MoviesPopular() {
           <H2 heading='Popular Movies' />
           <Layout variant='grid grid--sidebar'>
             <Sidebar>sidebar</Sidebar>
-            <Main>main</Main>
+            <Main>
+              <Cards
+                variant='list'
+                getId={(item) => item.id}
+                getLink={(item) => `/movies/${item.id}`}
+                renderContent={(item) => (
+                  <>
+                    <ImageComponent
+                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                      fallback='/images/error_500x750.webp'
+                      alt={item.title}
+                    />
+                    <CardContent heading={item.title} vote={item.vote_average}>
+                      <BodyText text={`${formatDate(item.release_date)}`} />
+                    </CardContent>
+                  </>
+                )}
+                data={movies?.results}
+              />
+            </Main>
           </Layout>
         </Container>
       </Article>
