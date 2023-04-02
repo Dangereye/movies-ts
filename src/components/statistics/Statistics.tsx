@@ -122,7 +122,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <Statistic
               heading={person?.movie_credits?.cast?.length}
-              text='Movie credits'
+              text='Movie cast'
             />
             <Statistic
               heading={person?.movie_credits?.crew?.length}
@@ -130,7 +130,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
             />
             <Statistic
               heading={person?.tv_credits?.cast?.length}
-              text='TV credits'
+              text='TV cast'
             />
             <Statistic
               heading={person?.tv_credits?.crew?.length}
