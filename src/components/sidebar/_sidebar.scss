@@ -4,6 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 
   &__section {
     padding: 2rem;
@@ -37,6 +38,37 @@
     margin-top: 2rem;
     &__link {
       color: $heading-text-dark;
+    }
+  }
+
+  .form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    label {
+      font-size: $base-font-size;
+    }
+
+    &__group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    input[type='date'] {
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6rem;
+
+      &:focus {
+        outline: 2px solid $accent-color;
+      }
+    }
+
+    button[type='submit'] {
+      margin-top: 2rem;
     }
   }
 
