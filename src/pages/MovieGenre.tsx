@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Article from '../components/articles/Article';
 import CardContent from '../components/cards/card/CardContent';
 import Cards from '../components/cards/Cards';

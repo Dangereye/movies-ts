@@ -4,15 +4,39 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  border:1px solid $grey-color;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
-  padding:2rem;
 
-  .navigation{
+  &__section {
+    padding: 2rem;
+    border: 1px solid $grey-color;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-    &__link{
-      color:$heading-text-dark;
+    .heading {
+      margin: 0;
+    }
 
+    .section-header {
+      margin: 0;
+      justify-content: space-between;
+    }
+
+    &.active .btn--close {
+      transform: rotate(180deg);
+    }
+  }
+
+  .btn--close {
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    padding: 0;
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .navigation {
+    margin-top: 2rem;
+    &__link {
+      color: $heading-text-dark;
     }
   }
 
