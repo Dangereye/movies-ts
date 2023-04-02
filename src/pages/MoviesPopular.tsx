@@ -1,3 +1,7 @@
+// Hooks
+import useMakeQuery from '../hooks/useMakeQuery';
+
+// Components
 import Article from '../components/articles/Article';
 import CardContent from '../components/cards/card/CardContent';
 import Cards from '../components/cards/Cards';
@@ -10,10 +14,15 @@ import Sidebar from '../components/sidebar/Sidebar';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import BodyText from '../components/typography/BodyText';
 import H2 from '../components/typography/H2';
+
+// Data
 import { moviePages } from '../data/moviePages';
-import useMakeQuery from '../hooks/useMakeQuery';
-import { IMovieMin } from '../interfaces/IMovieMin';
+
+// Interfaces
 import { IPage } from '../interfaces/IPage';
+import { IMovieMin } from '../interfaces/IMovieMin';
+
+// Utilities
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesPopular() {
