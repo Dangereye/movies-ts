@@ -1,0 +1,30 @@
+.mobile-sidebar-controls {
+  margin-bottom: 4rem;
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__settings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid $accent-color;
+    cursor: pointer;
+  }
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .body-text {
+    margin: 0;
+  }
+
+  @media (min-width: 1150px) {
+    display: none;
+  }
+}

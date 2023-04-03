@@ -27,6 +27,7 @@ import { formatDate } from '../utilities/formatDate';
 import useCreateMovieGenres from '../hooks/useCreateMovieGenres';
 import Header from '../components/header/Header';
 import HDiv from '../components/typography/HDiv';
+import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 
 export default function MoviesPopular() {
   const {
@@ -61,6 +62,7 @@ export default function MoviesPopular() {
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
+              <MobileSidebarControls />
               <Cards
                 variant='list'
                 getId={(item) => item.id}
