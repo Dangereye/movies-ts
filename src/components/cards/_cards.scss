@@ -12,19 +12,15 @@
     }
 
     .card {
-      min-width: 35rem;
-      max-width: 35rem;
+      min-width: 30rem;
+      max-width: 30rem;
     }
   }
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
     row-gap: 4rem;
-
-    @media (max-width: $laptop) {
-      grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
-    }
 
     @media (max-width: $tablet) {
       grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
