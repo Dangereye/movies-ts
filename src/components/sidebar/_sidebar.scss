@@ -1,17 +1,17 @@
 .sidebar {
-  position: sticky;
-  top: 0;
   width: 100%;
-  max-width: 30rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  max-width: 25rem;
+
+  &__content {
+    position: sticky;
+    top: 10.2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
 
   &__section {
-    padding: 2rem;
-    border: 1px solid $grey-color;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
     .heading {
       margin: 0;
     }

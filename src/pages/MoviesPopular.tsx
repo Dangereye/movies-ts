@@ -14,6 +14,8 @@ import Sidebar from '../components/sidebar/Sidebar';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import BodyText from '../components/typography/BodyText';
 import H2 from '../components/typography/H2';
+import Header from '../components/header/Header';
+import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -24,10 +26,6 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import useCreateMovieGenres from '../hooks/useCreateMovieGenres';
-import Header from '../components/header/Header';
-import HDiv from '../components/typography/HDiv';
-import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 
 export default function MoviesPopular() {
   const {
@@ -35,7 +33,6 @@ export default function MoviesPopular() {
     isLoading,
     isError,
   } = useMakeQuery<IPage<IMovieMin>>('popular movies', '/movie/popular');
-  const genres = useCreateMovieGenres();
 
   if (isLoading) {
     return <H2 heading='Loading' />;
