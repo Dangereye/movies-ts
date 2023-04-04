@@ -26,13 +26,24 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import { useState } from 'react';
 
 export default function MoviesPopular() {
+  const [sort, setSort] = useState('popularity.desc');
+  const [adult, setAdult] = useState(false);
+  const [dateFrom, setdateFrom] = useState('2000-01-01');
+  const [dateTo, setdateTo] = useState('2020-01-01');
+  const [genres, setGenres] = useState([27]);
+
   const {
     data: movies,
-    isLoading,
     isError,
-  } = useMakeQuery<IPage<IMovieMin>>('popular movies', '/movie/popular');
+    isLoading,
+  } = useMakeQuery<IPage<IMovieMin>>(
+    'discover-movies',
+    'discover/movie',
+    `&sort_by=${sort}&include_adult=${adult}&release_date.gte=${dateFrom}&release_date.lte=${dateTo}&with_genres=${genres}`
+  );
 
   if (isLoading) {
     return <H2 heading='Loading' />;
@@ -76,6 +87,7 @@ export default function MoviesPopular() {
                     </CardContent>
                   </>
                 )}
+                // data={movies?.results}
                 data={movies?.results}
               />
             </Main>
