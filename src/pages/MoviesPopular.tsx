@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
 
@@ -17,6 +19,9 @@ import H2 from '../components/typography/H2';
 import Header from '../components/header/Header';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 
+// Context
+import { FiltersContext } from '../contexts/FiltersContext';
+
 // Data
 import { moviePages } from '../data/moviePages';
 
@@ -26,15 +31,9 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import { useState } from 'react';
 
 export default function MoviesPopular() {
-  const [sort, setSort] = useState('popularity.desc');
-  const [adult, setAdult] = useState(false);
-  const [dateFrom, setDateFrom] = useState('2000-01-01');
-  const [dateTo, setDateTo] = useState('2010-12-31');
-  const [genres, setGenres] = useState([]);
-
+  const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
   const {
     data: movies,
     isError,
