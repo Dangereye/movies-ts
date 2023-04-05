@@ -31,9 +31,9 @@ import { useState } from 'react';
 export default function MoviesPopular() {
   const [sort, setSort] = useState('popularity.desc');
   const [adult, setAdult] = useState(false);
-  const [dateFrom, setdateFrom] = useState('2000-01-01');
-  const [dateTo, setdateTo] = useState('2020-01-01');
-  const [genres, setGenres] = useState([27]);
+  const [dateFrom, setDateFrom] = useState('2000-01-01');
+  const [dateTo, setDateTo] = useState('2010-12-31');
+  const [genres, setGenres] = useState([]);
 
   const {
     data: movies,
@@ -42,7 +42,11 @@ export default function MoviesPopular() {
   } = useMakeQuery<IPage<IMovieMin>>(
     'discover-movies',
     'discover/movie',
-    `&sort_by=${sort}&include_adult=${adult}&release_date.gte=${dateFrom}&release_date.lte=${dateTo}&with_genres=${genres}`
+    `&sort_by=${sort}&include_adult=${adult}${
+      dateFrom ? `&primary_release_date.gte=${dateFrom}` : ''
+    }${dateTo ? `&primary_release_date.lte=${dateTo}` : ''}${
+      genres.length ? `&with_genres=${genres}` : ''
+    }`
   );
 
   if (isLoading) {
