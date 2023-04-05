@@ -1,6 +1,6 @@
 import { useState, createContext, ReactNode } from 'react';
 
-export const filtersContext = createContext({});
+export const FiltersContext = createContext({});
 
 type FiltersContextProps = {
   children: ReactNode;
@@ -15,7 +15,7 @@ export default function FiltersContextComponent({
   const [dateTo, setDateTo] = useState('');
   const [genres, setGenres] = useState([]);
   return (
-    <filtersContext.Provider
+    <FiltersContext.Provider
       value={{
         sort,
         setSort,
@@ -30,6 +30,6 @@ export default function FiltersContextComponent({
       }}
     >
       {children}
-    </filtersContext.Provider>
+    </FiltersContext.Provider>
   );
 }
