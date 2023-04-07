@@ -1,28 +1,21 @@
-import { useState } from 'react';
-import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
-import Button from '../buttons/Button';
-import Navigation from '../navigation/Navigation';
+import { useContext } from 'react';
 import Section from './sections/Section';
+import { FiltersContext } from '../../contexts/FiltersContext';
 
 export default function Sidebar() {
-  const genres = useCreateMovieGenres();
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-
-  const handleStartDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStartDate(e.target.value);
+  const { dateFrom, setDateFrom, dateTo, setDateTo } =
+    useContext(FiltersContext);
+  const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDateFrom(e.target.value);
   };
-
-  const handleEndDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEndDate(e.target.value);
+  const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDateTo(e.target.value);
   };
-
-  const handleSubmit = () => {};
 
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
-        <Section heading='Genres'>
+        {/* <Section heading='Genres'>
           <Navigation
             variant='vertical'
             getId={(item) => item.id}
@@ -30,33 +23,27 @@ export default function Sidebar() {
             renderItem={(item) => item.name}
             data={genres}
           />
-        </Section>
+        </Section> */}
         <Section heading='release dates'>
           <form className='form'>
             <div className='form__group'>
-              <label htmlFor='start-date'>From</label>
+              <label htmlFor='date-from'>From</label>
               <input
                 type='date'
-                name='start-date'
-                value={startDate}
-                onChange={handleStartDate}
+                name='date-from'
+                value={dateFrom}
+                onChange={handleDateFrom}
               />
             </div>
             <div className='form__group'>
-              <label htmlFor='end-date'>To</label>
+              <label htmlFor='date-to'>To</label>
               <input
                 type='date'
-                name='end-date'
-                value={endDate}
-                onChange={handleEndDate}
+                name='date-to'
+                value={dateTo}
+                onChange={handleDateTo}
               />
             </div>
-            <Button
-              type='submit'
-              variant='btn--primary'
-              name='submit'
-              onClick={handleSubmit}
-            />
           </form>
         </Section>
       </div>

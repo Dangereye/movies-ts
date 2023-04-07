@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
@@ -38,6 +38,7 @@ export default function MoviesPopular() {
     data: movies,
     isError,
     isLoading,
+    refetch,
   } = useMakeQuery<IPage<IMovieMin>>(
     'discover-movies',
     'discover/movie',
@@ -47,6 +48,10 @@ export default function MoviesPopular() {
       genres.length ? `&with_genres=${genres}` : ''
     }`
   );
+
+  useEffect(() => {
+    refetch();
+  }, [sort, adult, dateFrom, dateTo, genres]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;
