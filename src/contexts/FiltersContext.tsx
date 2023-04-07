@@ -22,14 +22,11 @@ type FiltersContextProps = {
 export default function FiltersContextComponent({
   children,
 }: FiltersContextProps) {
-  const [sort, setSort] = useState('popularity.desc');
-  const [adult, setAdult] = useState(false);
-  const [dateFrom, setDateFrom] = useState(''); // 2000-01-01
-  const [dateTo, setDateTo] = useState('');
-  const [genres, setGenres] = useState([
-    28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878,
-    10770, 53, 10752, 37,
-  ]);
+  const [sort, setSort] = useState<string>('popularity.desc');
+  const [adult, setAdult] = useState<boolean>(false);
+  const [dateFrom, setDateFrom] = useState<string>(''); // 2000-01-01
+  const [dateTo, setDateTo] = useState<string>('');
+  const [genres, setGenres] = useState<number[]>([]);
   return (
     <FiltersContext.Provider
       value={{
