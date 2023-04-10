@@ -2,11 +2,6 @@
   margin-top: 4rem;
 }
 
-.wrapper.tags.flex {
-  margin: 0;
-  gap: 8px;
-}
-
 .btn {
   position: relative;
   display: flex;
@@ -14,7 +9,7 @@
   justify-content: center;
   gap: 1rem;
 
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-transform: capitalize;
   font-size: 1.6rem;
   font-weight: 500;
@@ -68,10 +63,16 @@
     }
   }
 
-  &--tag {
-    color: $heading-text-dark;
-    font-size: 1.4rem;
-    padding: 4px 8px;
-    border: 1px solid $accent-color;
+  &--toggle {
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid rgb(133, 133, 133);
+    justify-content: flex-start;
+
+    &.active {
+      border-color: $accent-color;
+    }
   }
 }
