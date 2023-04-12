@@ -27,6 +27,7 @@ export default function FiltersContextComponent({
   const [dateFrom, setDateFrom] = useState<string>(''); // 2000-01-01
   const [dateTo, setDateTo] = useState<string>('');
   const [genres, setGenres] = useState<number[]>([]);
+  console.log('Genres: ', genres);
   return (
     <FiltersContext.Provider
       value={{

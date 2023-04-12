@@ -5,7 +5,7 @@ import useMakeQuery from './useMakeQuery';
 import { IMovieGenres } from '../interfaces/IMovieGenres';
 
 export default function useCreateMovieGenres() {
-  let genres: { id: number; name: string }[] = [];
+  let movieGenres: { id: number; name: string }[] = [];
 
   const {
     data: genreList,
@@ -22,8 +22,8 @@ export default function useCreateMovieGenres() {
   }
 
   genreList?.genres?.forEach((g) => {
-    genres = [...genres, { id: g.id, name: g.name }];
+    movieGenres = [...movieGenres, { id: g.id, name: g.name }];
   });
 
-  return genres;
+  return movieGenres;
 }

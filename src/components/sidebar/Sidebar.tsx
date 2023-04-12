@@ -5,10 +5,10 @@ import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
 import SidebarToggle from './SidebarToggle';
 
 export default function Sidebar() {
-  const { dateFrom, setDateFrom, dateTo, setDateTo } =
+  const { dateFrom, setDateFrom, dateTo, setDateTo, genres, setGenres } =
     useContext(FiltersContext);
 
-  const genres = useCreateMovieGenres();
+  const movieGenres = useCreateMovieGenres();
 
   const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateFrom(e.target.value);
@@ -18,18 +18,24 @@ export default function Sidebar() {
     setDateTo(e.target.value);
   };
 
-  const updateGenres = () => {};
+  const updateGenres = (id: number) => {
+    if (genres.includes(id)) {
+      setGenres(genres.filter((g) => g !== id));
+    } else {
+      setGenres([...genres, id]);
+    }
+  };
 
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
         <Section heading='Genres'>
           <div className='sidebar-toggles'>
-            {genres.map((genre) => (
+            {movieGenres.map((genre) => (
               <SidebarToggle
                 key={genre.id}
                 name={genre.name}
-                func={updateGenres}
+                func={() => updateGenres(genre.id)}
               />
             ))}
           </div>
