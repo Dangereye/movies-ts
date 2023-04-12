@@ -1,22 +1,20 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { FiltersContext } from '../../contexts/FiltersContext';
 
 type ToggleProps = {
+  id: number;
   name: string;
-  func: () => void;
+  onClick: () => void;
 };
 
-export default function Toggle({ name, func }: ToggleProps) {
-  const [active, setActive] = useState(false);
-
-  const handleClick = () => {
-    setActive(!active);
-    func();
-  };
-
+export default function Toggle({ id, name, onClick }: ToggleProps) {
+  const { genres } = useContext(FiltersContext);
   return (
     <button
-      className={active ? 'btn btn--toggle active' : 'btn btn--toggle'}
-      onClick={handleClick}
+      className={
+        genres.includes(id) ? 'btn btn--toggle active' : 'btn btn--toggle'
+      }
+      onClick={onClick}
     >
       {name}
     </button>

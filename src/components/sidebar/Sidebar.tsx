@@ -34,8 +34,9 @@ export default function Sidebar() {
             {movieGenres.map((genre) => (
               <SidebarToggle
                 key={genre.id}
+                id={genre.id}
                 name={genre.name}
-                func={() => updateGenres(genre.id)}
+                onClick={() => updateGenres(genre.id)}
               />
             ))}
           </div>
