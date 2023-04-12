@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+
+// Context
 import { FiltersContext } from '../../contexts/FiltersContext';
 
 type ToggleProps = {
