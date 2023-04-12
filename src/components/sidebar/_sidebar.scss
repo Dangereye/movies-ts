@@ -1,6 +1,6 @@
 .sidebar {
   width: 100%;
-  max-width: 25rem;
+  max-width: 30rem;
 
   &__content {
     position: sticky;
@@ -8,10 +8,13 @@
 
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 1rem;
   }
 
   &__section {
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     .heading {
       margin: 0;
     }
@@ -74,11 +77,10 @@
     }
   }
 
-  .sidebar-toggles {
-    margin-top: 2rem;
+  .buttons {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2rem;
   }
 
   @media (max-width: 1150px) {

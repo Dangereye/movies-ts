@@ -8,12 +8,14 @@ import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
 
 // Components
 import Section from './sections/Section';
-import SidebarToggle from './SidebarToggle';
+import ToggleButton from '../buttons/ToggleButton';
 
 export default function Sidebar() {
   const {
     sort,
     setSort,
+    adult,
+    setAdult,
     dateFrom,
     setDateFrom,
     dateTo,
@@ -42,6 +44,10 @@ export default function Sidebar() {
 
   const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSort(e.target.value);
+  };
+
+  const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
+    setAdult(!adult);
   };
 
   return (
@@ -95,11 +101,10 @@ export default function Sidebar() {
           </form>
         </Section>
         <Section heading='Genres'>
-          <div className='sidebar-toggles'>
+          <div className='buttons'>
             {movieGenres.map((genre) => (
-              <SidebarToggle
-                key={genre.id}
-                id={genre.id}
+              <ToggleButton
+                active={genres.includes(genre.id)}
                 name={genre.name}
                 onClick={() => updateGenres(genre.id)}
               />
@@ -127,6 +132,15 @@ export default function Sidebar() {
               />
             </div>
           </form>
+        </Section>
+        <Section heading='Adult content'>
+          <div className='buttons'>
+            <ToggleButton
+              active={adult}
+              name={adult ? 'Visible' : 'Hidden'}
+              onClick={handleAdult}
+            />
+          </div>
         </Section>
       </div>
     </aside>

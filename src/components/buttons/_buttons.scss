@@ -63,16 +63,44 @@
     }
   }
 
-  &--toggle {
+  &__toggle-group {
+    padding: 0;
     width: 100%;
-    padding: 1rem;
-    background-color: transparent;
-    border-radius: 3px;
-    border: 1px solid rgb(133, 133, 133);
-    justify-content: flex-start;
+    display: flex;
+    justify-content: space-between;
+
+    .name {
+      font-weight: 400;
+      color: $body-text-dark;
+      font-size: $base-font-size;
+    }
+  }
+
+  &__toggle {
+    position: relative;
+    width: 5.4rem;
+    height: 3rem;
+    border-radius: 4rem;
+    background-color: $grey-color;
+    transition: background-color 0.4s;
+
+    .switch {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0.3rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: left 0.4s;
+    }
 
     &.active {
-      border-color: $accent-color;
+      background-color: $accent-color;
+      .switch {
+        left: 50%;
+      }
     }
   }
 }
