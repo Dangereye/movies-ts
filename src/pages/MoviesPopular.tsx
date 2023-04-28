@@ -46,6 +46,7 @@ export default function MoviesPopular() {
     isLoading,
     refetch,
     hasNextPage,
+    isFetchingNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
     'discover/movie',
@@ -101,7 +102,10 @@ export default function MoviesPopular() {
                           fallback='/images/error_500x750.webp'
                           alt={movie.title}
                         />
-                        <CardContent heading={movie.title}>
+                        <CardContent
+                          heading={movie.title}
+                          vote={movie.vote_average}
+                        >
                           <BodyText
                             text={`${formatDate(movie.release_date)}`}
                           />
@@ -112,7 +116,13 @@ export default function MoviesPopular() {
                 ))}
               </div>
               <Button
-                name={hasNextPage ? 'load more' : "That's all folks!"}
+                name={
+                  isFetchingNextPage
+                    ? 'Loading more'
+                    : hasNextPage
+                    ? 'load more'
+                    : "That's all folks!"
+                }
                 disabled={!hasNextPage}
                 variant='btn--primary'
                 onClick={() => fetchNextPage()}
