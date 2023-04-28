@@ -6,6 +6,7 @@ type ButtonProps = {
   variant?: 'btn--primary' | 'btn--secondary' | 'btn--tertiary' | 'btn--close';
   name: string | ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 };
 
 export default function Button({
@@ -14,12 +15,14 @@ export default function Button({
   name,
   onClick,
   type = 'button',
+  disabled = false,
 }: ButtonProps) {
   return (
     <button
       type={type}
       className={`btn ${variant} ${active ? 'active' : ''}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {name}
     </button>

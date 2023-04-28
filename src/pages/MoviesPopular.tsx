@@ -112,7 +112,8 @@ export default function MoviesPopular() {
                 ))}
               </div>
               <Button
-                name={hasNextPage ? 'load more' : "That's everything"}
+                name={hasNextPage ? 'load more' : "That's all folks!"}
+                disabled={!hasNextPage}
                 variant='btn--primary'
                 onClick={() => fetchNextPage()}
               />
