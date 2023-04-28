@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
+import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 
 // Components
 import Article from '../components/articles/Article';
@@ -31,22 +32,28 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import Button from '../components/buttons/Button';
 
 export default function MoviesPopular() {
   const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
+
+  const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
+
   const {
-    data: movies,
+    data: movieQueries,
     isError,
     isLoading,
     refetch,
-  } = useMakeQuery<IPage<IMovieMin>>(
-    'discover-movies',
+    hasNextPage,
+    fetchNextPage,
+  } = useMakeInfiniteQuery<IPage<IMovieMin>>(
     'discover/movie',
     `&sort_by=${sort}&include_adult=${adult}${
       dateFrom ? `&primary_release_date.gte=${dateFrom}` : ''
     }${dateTo ? `&primary_release_date.lte=${dateTo}` : ''}${
       genres.length ? `&with_genres=${genres}` : ''
-    }`
+    }`,
+    getNextPageParam
   );
 
   useEffect(() => {
@@ -79,24 +86,17 @@ export default function MoviesPopular() {
             <Sidebar />
             <Main>
               <MobileSidebarControls />
-              <Cards
-                variant='list'
-                getId={(item) => item.id}
-                getLink={(item) => `/movies/${item.id}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                      fallback='/images/error_500x750.webp'
-                      alt={item.title}
-                    />
-                    <CardContent heading={item.title} vote={item.vote_average}>
-                      <BodyText text={`${formatDate(item.release_date)}`} />
-                    </CardContent>
-                  </>
-                )}
-                // data={movies?.results}
-                data={movies?.results}
+              {movieQueries?.pages?.map((page) =>
+                page?.results?.map((movie) => (
+                  <p className='body-text' key={movie.title}>
+                    {movie.title}
+                  </p>
+                ))
+              )}
+              <Button
+                name={hasNextPage ? 'load more' : "That's everything"}
+                variant='btn--primary'
+                onClick={() => fetchNextPage()}
               />
             </Main>
           </Layout>
