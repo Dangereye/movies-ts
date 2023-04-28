@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, Fragment } from 'react';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
@@ -33,6 +33,7 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import Button from '../components/buttons/Button';
+import { Link } from 'react-router-dom';
 
 export default function MoviesPopular() {
   const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
@@ -86,13 +87,30 @@ export default function MoviesPopular() {
             <Sidebar />
             <Main>
               <MobileSidebarControls />
-              {movieQueries?.pages?.map((page) =>
-                page?.results?.map((movie) => (
-                  <p className='body-text' key={movie.title}>
-                    {movie.title}
-                  </p>
-                ))
-              )}
+              <div className='cards cards__list'>
+                {movieQueries?.pages?.map((page, i) => (
+                  <Fragment key={`movie-page-${i}`}>
+                    {page?.results?.map((movie) => (
+                      <Link
+                        key={movie.title}
+                        to={`/movies/${movie.id}`}
+                        className='card'
+                      >
+                        <ImageComponent
+                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                          fallback='/images/error_500x750.webp'
+                          alt={movie.title}
+                        />
+                        <CardContent heading={movie.title}>
+                          <BodyText
+                            text={`${formatDate(movie.release_date)}`}
+                          />
+                        </CardContent>
+                      </Link>
+                    ))}
+                  </Fragment>
+                ))}
+              </div>
               <Button
                 name={hasNextPage ? 'load more' : "That's everything"}
                 variant='btn--primary'
