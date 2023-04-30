@@ -1,13 +1,11 @@
 import { useEffect, useContext, Fragment } from 'react';
 
 // Hooks
-import useMakeQuery from '../hooks/useMakeQuery';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 
 // Components
 import Article from '../components/articles/Article';
 import CardContent from '../components/cards/card/CardContent';
-import Cards from '../components/cards/Cards';
 import Container from '../components/container/Container';
 import ImageComponent from '../components/image/Image';
 import Layout from '../components/layout/Layout';
@@ -88,6 +86,7 @@ export default function MoviesPopular() {
             <Sidebar />
             <Main>
               <MobileSidebarControls />
+
               <div className='cards cards__list'>
                 {movieQueries?.pages?.map((page, i) => (
                   <Fragment key={`movie-page-${i}`}>
