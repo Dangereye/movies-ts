@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 
 // Interfaces
 import { IPage } from '../../interfaces/IPage';
+import Button from '../buttons/Button';
 
 type InfiniteCardsProps<T> = {
   getId: (item: T) => number;
   getLink: (item: T) => string;
   renderContent: (item: T) => ReactNode;
-  data: T;
+  data: IPage<T>[];
 };
 
-export default function InfiniteCards<T extends { pages: [] }>({
+export default function InfiniteCards<T>({
   getId,
   getLink,
   renderContent,
@@ -21,7 +22,7 @@ export default function InfiniteCards<T extends { pages: [] }>({
 }: InfiniteCardsProps<T>) {
   return (
     <div className='cards cards__list'>
-      {data?.pages?.map((page: IPage<T>, i) => (
+      {data.map((page, i) => (
         <Fragment key={`page-${i}`}>
           {page?.results?.map((item) => (
             <Link key={getId(item)} to={getLink(item)} className='card'>

@@ -32,6 +32,7 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 import { formatDate } from '../utilities/formatDate';
 import Button from '../components/buttons/Button';
 import { Link } from 'react-router-dom';
+import InfiniteCards from '../components/cards/InifinteCards';
 
 export default function MoviesPopular() {
   const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
@@ -86,34 +87,23 @@ export default function MoviesPopular() {
             <Sidebar />
             <Main>
               <MobileSidebarControls />
-
-              <div className='cards cards__list'>
-                {movieQueries?.pages?.map((page, i) => (
-                  <Fragment key={`movie-page-${i}`}>
-                    {page?.results?.map((movie) => (
-                      <Link
-                        key={movie.title}
-                        to={`/movies/${movie.id}`}
-                        className='card'
-                      >
-                        <ImageComponent
-                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                          fallback='/images/error_500x750.webp'
-                          alt={movie.title}
-                        />
-                        <CardContent
-                          heading={movie.title}
-                          vote={movie.vote_average}
-                        >
-                          <BodyText
-                            text={`${formatDate(movie.release_date)}`}
-                          />
-                        </CardContent>
-                      </Link>
-                    ))}
-                  </Fragment>
-                ))}
-              </div>
+              <InfiniteCards
+                getId={(item) => item.id}
+                getLink={(item) => `/movie/${item.id}`}
+                renderContent={(item) => (
+                  <>
+                    <ImageComponent
+                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                      fallback='/images/error_500x750.webp'
+                      alt={item.title}
+                    />
+                    <CardContent heading={item.title} vote={item.vote_average}>
+                      <BodyText text={`${formatDate(item.release_date)}`} />
+                    </CardContent>
+                  </>
+                )}
+                data={movieQueries.pages}
+              />
               <Button
                 name={
                   isFetchingNextPage
