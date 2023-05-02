@@ -123,6 +123,7 @@ export default function Sidebar() {
           <div className='buttons'>
             {movieGenres.map((genre) => (
               <ToggleButton
+                key={genre.id}
                 active={genres.includes(genre.id)}
                 name={genre.name}
                 onClick={() => updateGenres(genre.id)}
