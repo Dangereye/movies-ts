@@ -89,7 +89,7 @@ export default function MoviesPopular() {
               <MobileSidebarControls />
               <InfiniteCards
                 getId={(item) => item.id}
-                getLink={(item) => `/movie/${item.id}`}
+                getLink={(item) => `/movies/${item.id}`}
                 renderContent={(item) => (
                   <>
                     <ImageComponent

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 // Interfaces
 import { IPage } from '../../interfaces/IPage';
-import Button from '../buttons/Button';
 
 type InfiniteCardsProps<T> = {
   getId: (item: T) => number;
