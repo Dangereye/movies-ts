@@ -58,61 +58,42 @@ export default function Sidebar() {
             <select
               className='select-menu'
               name='sort-order'
+              value={sort}
               onChange={handleSort}
             >
-              <option
-                className='select-menu__option'
-                value='popularity.desc'
-                selected={sort === 'popularity.desc'}
-              >
+              <option className='select-menu__option' value='popularity.desc'>
                 Popularity descending
               </option>
-              <option
-                className='select-menu__option'
-                value='popularity.asc'
-                selected={sort === 'popularity.asc'}
-              >
+              <option className='select-menu__option' value='popularity.asc'>
                 Popularity ascending
               </option>
-              <option
-                className='select-menu__option'
-                value='vote_average.desc'
-                selected={sort === 'vote_average.desc'}
-              >
+              <option className='select-menu__option' value='vote_average.desc'>
                 Rating descending
               </option>
-              <option
-                className='select-menu__option'
-                value='vote_average.asc'
-                selected={sort === 'vote_average.asc'}
-              >
+              <option className='select-menu__option' value='vote_average.asc'>
                 Rating ascending
               </option>
               <option
                 className='select-menu__option'
                 value='primary_release_date.desc'
-                selected={sort === 'primary_release_date.desc'}
               >
                 Release date descending
               </option>
               <option
                 className='select-menu__option'
                 value='primary_release_date.asc'
-                selected={sort === 'primary_release_date.asc'}
               >
                 Release date ascending
               </option>
               <option
                 className='select-menu__option'
                 value='original_title.asc'
-                selected={sort === 'original_title.asc'}
               >
                 Title (A-Z)
               </option>
               <option
                 className='select-menu__option'
                 value='original_title.desc'
-                selected={sort === 'original_title.desc'}
               >
                 Title (Z-A)
               </option>
