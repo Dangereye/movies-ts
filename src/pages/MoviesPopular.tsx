@@ -1,4 +1,4 @@
-import { useEffect, useContext, Fragment } from 'react';
+import { useEffect, useContext } from 'react';
 
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
@@ -17,6 +17,7 @@ import BodyText from '../components/typography/BodyText';
 import H2 from '../components/typography/H2';
 import Header from '../components/header/Header';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
+import InfiniteCards from '../components/cards/InifinteCards';
 
 // Context
 import { FiltersContext } from '../contexts/FiltersContext';
@@ -30,9 +31,6 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import Button from '../components/buttons/Button';
-import { Link } from 'react-router-dom';
-import InfiniteCards from '../components/cards/InifinteCards';
 
 export default function MoviesPopular() {
   const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
@@ -45,7 +43,6 @@ export default function MoviesPopular() {
     isLoading,
     refetch,
     hasNextPage,
-    isFetchingNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
     'discover/movie',
@@ -103,18 +100,8 @@ export default function MoviesPopular() {
                   </>
                 )}
                 data={movieQueries.pages}
-              />
-              <Button
-                name={
-                  isFetchingNextPage
-                    ? 'Loading more'
-                    : hasNextPage
-                    ? 'load more'
-                    : "That's all folks!"
-                }
-                disabled={!hasNextPage}
-                variant='btn--primary'
-                onClick={() => fetchNextPage()}
+                hasNextPage={hasNextPage}
+                fetchNextPage={fetchNextPage}
               />
             </Main>
           </Layout>
