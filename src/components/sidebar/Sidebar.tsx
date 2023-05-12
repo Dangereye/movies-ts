@@ -22,6 +22,8 @@ export default function Sidebar() {
     setDateTo,
     genres,
     setGenres,
+    types,
+    setTypes,
   } = useContext(FiltersContext);
 
   const movieGenres = useCreateMovieGenres();
@@ -39,6 +41,13 @@ export default function Sidebar() {
       setGenres(genres.filter((g) => g !== id));
     } else {
       setGenres([...genres, id]);
+    }
+  };
+  const updateTypes = (id: number) => {
+    if (types.includes(id)) {
+      setTypes(types.filter((t) => t !== id));
+    } else {
+      setTypes([...types, id]);
     }
   };
 
@@ -113,6 +122,44 @@ export default function Sidebar() {
           </div>
         </Section>
         <Section heading='release dates'>
+          <div className='buttons'>
+            <ToggleButton
+              key='premiere-release'
+              active={types.includes(1)}
+              name='Premiere'
+              onClick={() => updateTypes(1)}
+            />
+            <ToggleButton
+              key='theatrical-limited-release'
+              active={types.includes(2)}
+              name='Theatrical (limited)'
+              onClick={() => updateTypes(2)}
+            />
+            <ToggleButton
+              key='theatrical-release'
+              active={types.includes(3)}
+              name='Theatrical'
+              onClick={() => updateTypes(3)}
+            />
+            <ToggleButton
+              key='digital-release'
+              active={types.includes(4)}
+              name='Digital'
+              onClick={() => updateTypes(4)}
+            />
+            <ToggleButton
+              key='physical-release'
+              active={types.includes(5)}
+              name='Physical'
+              onClick={() => updateTypes(5)}
+            />
+            <ToggleButton
+              key='tv-release'
+              active={types.includes(6)}
+              name='TV'
+              onClick={() => updateTypes(6)}
+            />
+          </div>
           <form className='form'>
             <div className='form__group'>
               <label htmlFor='date-from'>From</label>

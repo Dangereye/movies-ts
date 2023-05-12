@@ -33,7 +33,8 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesPopular() {
-  const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
+  const { sort, adult, dateFrom, dateTo, genres, types } =
+    useContext(FiltersContext);
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -50,13 +51,13 @@ export default function MoviesPopular() {
       dateFrom ? `&primary_release_date.gte=${dateFrom}` : ''
     }${dateTo ? `&primary_release_date.lte=${dateTo}` : ''}${
       genres.length ? `&with_genres=${genres}` : ''
-    }`,
+    }${types.length ? `&with_release_type=${types}` : ''}`,
     getNextPageParam
   );
 
   useEffect(() => {
     refetch();
-  }, [sort, adult, dateFrom, dateTo, genres]);
+  }, [sort, adult, dateFrom, dateTo, genres, types]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;

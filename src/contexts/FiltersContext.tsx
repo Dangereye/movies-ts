@@ -11,6 +11,8 @@ type FiltersContextType = {
   setDateTo: React.Dispatch<React.SetStateAction<string>>;
   genres: number[];
   setGenres: React.Dispatch<React.SetStateAction<number[]>>;
+  types: number[];
+  setTypes: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 export const FiltersContext = createContext({} as FiltersContextType);
@@ -24,9 +26,11 @@ export default function FiltersContextComponent({
 }: FiltersContextProps) {
   const [sort, setSort] = useState<string>('popularity.desc');
   const [adult, setAdult] = useState<boolean>(false);
-  const [dateFrom, setDateFrom] = useState<string>(''); // 2000-01-01
+  const [dateFrom, setDateFrom] = useState<string>('');
   const [dateTo, setDateTo] = useState<string>('');
   const [genres, setGenres] = useState<number[]>([]);
+  const [types, setTypes] = useState<number[]>([]);
+  console.log(types);
   return (
     <FiltersContext.Provider
       value={{
@@ -40,6 +44,8 @@ export default function FiltersContextComponent({
         setDateTo,
         genres,
         setGenres,
+        types,
+        setTypes,
       }}
     >
       {children}
