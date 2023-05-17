@@ -11,63 +11,114 @@ import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
 
 export default function Sidebar() {
-  const {
-    sort,
-    setSort,
-    adult,
-    setAdult,
-    dateFrom,
-    setDateFrom,
-    dateTo,
-    setDateTo,
-    genres,
-    setGenres,
-    types,
-    setTypes,
-  } = useContext(FiltersContext);
+  // const {
+  //   sort,
+  //   setSort,
+  //   adult,
+  //   setAdult,
+  //   dateFrom,
+  //   setDateFrom,
+  //   dateTo,
+  //   setDateTo,
+  //   genres,
+  //   setGenres,
+  //   types,
+  //   setTypes,
+  // } = useContext(FiltersContext);
+  const { state, dispatch } = useContext(FiltersContext);
 
   const movieGenres = useCreateMovieGenres();
 
+  // const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDateFrom(e.target.value);
+  // };
+
   const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDateFrom(e.target.value);
+    dispatch({
+      type: 'SET_STATE',
+      payload: { ...state, date_from: e.target.value },
+    });
   };
+
+  // const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDateTo(e.target.value);
+  // };
 
   const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDateTo(e.target.value);
+    dispatch({
+      type: 'SET_STATE',
+      payload: { ...state, date_to: e.target.value },
+    });
   };
+
+  // const updateGenres = (id: number) => {
+  //   if (genres.includes(id)) {
+  //     setGenres(genres.filter((g) => g !== id));
+  //   } else {
+  //     setGenres([...genres, id]);
+  //   }
+  // };
 
   const updateGenres = (id: number) => {
-    if (genres.includes(id)) {
-      setGenres(genres.filter((g) => g !== id));
+    if (state.genres.includes(id)) {
+      dispatch({
+        type: 'SET_STATE',
+        payload: { ...state, genres: state.genres.filter((g) => g !== id) },
+      });
     } else {
-      setGenres([...genres, id]);
-    }
-  };
-  const updateTypes = (id: number) => {
-    if (types.includes(id)) {
-      setTypes(types.filter((t) => t !== id));
-    } else {
-      setTypes([...types, id]);
+      dispatch({
+        type: 'SET_STATE',
+        payload: { ...state, genres: [...state.genres, id] },
+      });
     }
   };
 
-  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSort(e.target.value);
+  // const updateTypes = (id: number) => {
+  //   if (types.includes(id)) {
+  //     setTypes(types.filter((t) => t !== id));
+  //   } else {
+  //     setTypes([...types, id]);
+  //   }
+  // };
+
+  const updateTypes = (id: number) => {
+    if (state.release_types.includes(id)) {
+      dispatch({
+        type: 'SET_STATE',
+        payload: {
+          ...state,
+          release_types: state.release_types.filter((t) => t !== id),
+        },
+      });
+    } else {
+      dispatch({
+        type: 'SET_STATE',
+        payload: { ...state, release_types: [...state.release_types, id] },
+      });
+    }
   };
+
+  // const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSort(e.target.value);
+  // };
+
+  // const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   setAdult(!adult);
+  // };
 
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
-    setAdult(!adult);
+    dispatch({ type: 'SET_STATE', payload: { ...state, adult: !state.adult } });
   };
 
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
-        <Section heading='Sort'>
+        {/* <Section heading='Sort'>
           <form className='form'>
             <select
               className='select-menu'
               name='sort-order'
-              value={sort}
+              value={state.sort}
               onChange={handleSort}
             >
               <option className='select-menu__option' value='popularity.desc'>
@@ -108,13 +159,13 @@ export default function Sidebar() {
               </option>
             </select>
           </form>
-        </Section>
+        </Section> */}
         <Section heading='Genres'>
           <div className='buttons'>
             {movieGenres.map((genre) => (
               <ToggleButton
                 key={genre.id}
-                active={genres.includes(genre.id)}
+                active={state.genres.includes(genre.id)}
                 name={genre.name}
                 onClick={() => updateGenres(genre.id)}
               />
@@ -125,37 +176,37 @@ export default function Sidebar() {
           <div className='buttons'>
             <ToggleButton
               key='premiere-release'
-              active={types.includes(1)}
+              active={state.release_types.includes(1)}
               name='Premiere'
               onClick={() => updateTypes(1)}
             />
             <ToggleButton
               key='theatrical-limited-release'
-              active={types.includes(2)}
+              active={state.release_types.includes(2)}
               name='Theatrical (limited)'
               onClick={() => updateTypes(2)}
             />
             <ToggleButton
               key='theatrical-release'
-              active={types.includes(3)}
+              active={state.release_types.includes(3)}
               name='Theatrical'
               onClick={() => updateTypes(3)}
             />
             <ToggleButton
               key='digital-release'
-              active={types.includes(4)}
+              active={state.release_types.includes(4)}
               name='Digital'
               onClick={() => updateTypes(4)}
             />
             <ToggleButton
               key='physical-release'
-              active={types.includes(5)}
+              active={state.release_types.includes(5)}
               name='Physical'
               onClick={() => updateTypes(5)}
             />
             <ToggleButton
               key='tv-release'
-              active={types.includes(6)}
+              active={state.release_types.includes(6)}
               name='TV'
               onClick={() => updateTypes(6)}
             />
@@ -166,7 +217,7 @@ export default function Sidebar() {
               <input
                 type='date'
                 name='date-from'
-                value={dateFrom}
+                value={state.date_from}
                 onChange={handleDateFrom}
               />
             </div>
@@ -175,7 +226,7 @@ export default function Sidebar() {
               <input
                 type='date'
                 name='date-to'
-                value={dateTo}
+                value={state.date_to}
                 onChange={handleDateTo}
               />
             </div>
@@ -184,8 +235,8 @@ export default function Sidebar() {
         <Section heading='Adult content'>
           <div className='buttons'>
             <ToggleButton
-              active={adult}
-              name={adult ? 'Visible' : 'Hidden'}
+              active={state.adult}
+              name={state.adult ? 'Visible' : 'Hidden'}
               onClick={handleAdult}
             />
           </div>

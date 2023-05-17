@@ -33,81 +33,92 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesPopular() {
-  const { sort, adult, dateFrom, dateTo, genres, types } =
-    useContext(FiltersContext);
+  // const { sort, adult, dateFrom, dateTo, genres, types } =
+  //   useContext(FiltersContext);
 
-  const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
+  // const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
-  const {
-    data: movieQueries,
-    isError,
-    isLoading,
-    refetch,
-    hasNextPage,
-    fetchNextPage,
-  } = useMakeInfiniteQuery<IPage<IMovieMin>>(
-    'discover/movie',
-    `&sort_by=${sort}&include_adult=${adult}${
-      dateFrom ? `&primary_release_date.gte=${dateFrom}` : ''
-    }${dateTo ? `&primary_release_date.lte=${dateTo}` : ''}${
-      genres.length ? `&with_genres=${genres}` : ''
-    }${types.length ? `&with_release_type=${types}` : ''}`,
-    getNextPageParam
-  );
+  // const {
+  //   data: movieQueries,
+  //   isError,
+  //   isLoading,
+  //   refetch,
+  //   hasNextPage,
+  //   fetchNextPage,
+  // } = useMakeInfiniteQuery<IPage<IMovieMin>>(
+  //   'discover/movie',
+  //   `&sort_by=${sort}&include_adult=${adult}${
+  //     dateFrom ? `&primary_release_date.gte=${dateFrom}` : ''
+  //   }${dateTo ? `&primary_release_date.lte=${dateTo}` : ''}${
+  //     genres.length ? `&with_genres=${genres}` : ''
+  //   }${types.length ? `&with_release_type=${types}` : ''}`,
+  //   getNextPageParam
+  // );
 
-  useEffect(() => {
-    refetch();
-  }, [sort, adult, dateFrom, dateTo, genres, types]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [sort, adult, dateFrom, dateTo, genres, types]);
 
-  if (isLoading) {
-    return <H2 heading='Loading' />;
-  }
+  // if (isLoading) {
+  //   return <H2 heading='Loading' />;
+  // }
 
-  if (isError) {
-    return <H2 heading='Error' />;
-  }
+  // if (isError) {
+  //   return <H2 heading='Error' />;
+  // }
 
+  // return (
+  //   <>
+  //     <SubNavbar>
+  //       <Navigation
+  //         data={moviePages}
+  //         getId={(item) => item.name}
+  //         getLink={(item) => item.link}
+  //         renderItem={(item) => item.name}
+  //         variant='horizontal'
+  //       />
+  //     </SubNavbar>
+  //     <Header variant='header__min' title='Popular movies' />
+  //     <Article name='popular-movies'>
+  //       <Container>
+  //         <Layout variant='grid grid--sidebar'>
+  //           <Sidebar />
+  //           <Main>
+  //             <MobileSidebarControls />
+  //             <InfiniteCards
+  //               getId={(item) => item.id}
+  //               getLink={(item) => `/movies/${item.id}`}
+  //               renderContent={(item) => (
+  //                 <>
+  //                   <ImageComponent
+  //                     src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+  //                     fallback='/images/error_500x750.webp'
+  //                     alt={item.title}
+  //                   />
+  //                   <CardContent heading={item.title} vote={item.vote_average}>
+  //                     <BodyText text={`${formatDate(item.release_date)}`} />
+  //                   </CardContent>
+  //                 </>
+  //               )}
+  //               data={movieQueries.pages}
+  //               hasNextPage={hasNextPage}
+  //               fetchNextPage={fetchNextPage}
+  //             />
+  //           </Main>
+  //         </Layout>
+  //       </Container>
+  //     </Article>
+  //   </>
+  // );
   return (
-    <>
-      <SubNavbar>
-        <Navigation
-          data={moviePages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
-      <Header variant='header__min' title='Popular movies' />
-      <Article name='popular-movies'>
-        <Container>
-          <Layout variant='grid grid--sidebar'>
-            <Sidebar />
-            <Main>
-              <MobileSidebarControls />
-              <InfiniteCards
-                getId={(item) => item.id}
-                getLink={(item) => `/movies/${item.id}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                      fallback='/images/error_500x750.webp'
-                      alt={item.title}
-                    />
-                    <CardContent heading={item.title} vote={item.vote_average}>
-                      <BodyText text={`${formatDate(item.release_date)}`} />
-                    </CardContent>
-                  </>
-                )}
-                data={movieQueries.pages}
-                hasNextPage={hasNextPage}
-                fetchNextPage={fetchNextPage}
-              />
-            </Main>
-          </Layout>
-        </Container>
-      </Article>
-    </>
+    <SubNavbar>
+      <Navigation
+        data={moviePages}
+        getId={(item) => item.name}
+        getLink={(item) => item.link}
+        renderItem={(item) => item.name}
+        variant='horizontal'
+      />
+    </SubNavbar>
   );
 }

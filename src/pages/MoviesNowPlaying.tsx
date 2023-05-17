@@ -21,7 +21,8 @@ import BodyText from '../components/typography/BodyText';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesNowPlaying() {
-  const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
+  // const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
+  const { state, dispatch } = useContext(FiltersContext);
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -33,20 +34,29 @@ export default function MoviesNowPlaying() {
     hasNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
-    'movie/now_playing',
-    '',
-    // 'discover/movie',
-    // `&sort_by=${sort}&include_adult=${adult}&with_release_type=3|2${
-    //   dateFrom ? `&primary_release_date.gte=${dateFrom}` : ''
-    // }${dateTo ? `&primary_release_date.lte=${dateTo}` : ''}${
-    //   genres.length ? `&with_genres=${genres}` : ''
-    // }`,
+    // 'movie/now_playing',
+    // '',
+    'discover/movie',
+    `&sort_by=${state.sort}&include_adult=${
+      state.adult
+    }&with_release_type=${state.release_types.toString().replaceAll(',', '|')}${
+      state.date_from ? `&primary_release_date.gte=${state.date_from}` : ''
+    }${state.date_to ? `&primary_release_date.lte=${state.date_to}` : ''}${
+      state.genres.length ? `&with_genres=${state.genres}` : ''
+    }`,
     getNextPageParam
   );
 
   useEffect(() => {
+    dispatch({
+      type: 'SET_STATE',
+      payload: { ...state, release_types: [2, 3] },
+    });
+  }, []);
+
+  useEffect(() => {
     refetch();
-  }, [sort, adult, dateFrom, dateTo, genres]);
+  }, [state.sort, state.adult, state.date_from, state.date_to, state.genres]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;
