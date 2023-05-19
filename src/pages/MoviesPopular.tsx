@@ -31,9 +31,11 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import useAppend from '../hooks/useAppend';
 
 export default function MoviesPopular() {
   const { state, dispatch } = useContext(FiltersContext);
+  const { append } = useAppend();
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -46,15 +48,7 @@ export default function MoviesPopular() {
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
     'discover/movie',
-    `&sort_by=${state.sort}&include_adult=${state.adult}${
-      state.date_from ? `&primary_release_date.gte=${state.date_from}` : ''
-    }${state.date_to ? `&primary_release_date.lte=${state.date_to}` : ''}${
-      state.genres.length ? `&with_genres=${state.genres}` : ''
-    }${
-      state.release_types.length
-        ? `&with_release_type=${state.release_types}`
-        : ''
-    }`,
+    append,
     getNextPageParam
   );
 

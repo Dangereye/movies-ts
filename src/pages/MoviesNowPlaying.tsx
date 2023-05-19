@@ -19,9 +19,11 @@ import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 import { formatDate } from '../utilities/formatDate';
+import useAppend from '../hooks/useAppend';
 
 export default function MoviesNowPlaying() {
   const { state, dispatch } = useContext(FiltersContext);
+  const { append } = useAppend();
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -34,13 +36,7 @@ export default function MoviesNowPlaying() {
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
     'discover/movie',
-    `&sort_by=${state.sort}&include_adult=${
-      state.adult
-    }&with_release_type=${state.release_types.toString().replaceAll(',', '|')}${
-      state.date_from ? `&primary_release_date.gte=${state.date_from}` : ''
-    }${state.date_to ? `&primary_release_date.lte=${state.date_to}` : ''}${
-      state.genres.length ? `&with_genres=${state.genres}` : ''
-    }`,
+    append,
     getNextPageParam
   );
 

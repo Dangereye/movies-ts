@@ -15,6 +15,13 @@ export default function Sidebar() {
 
   const movieGenres = useCreateMovieGenres();
 
+  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, sort: e.target.value },
+    });
+  };
+
   const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: 'SET_FILTERS',
@@ -70,7 +77,7 @@ export default function Sidebar() {
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
-        {/* <Section heading='Sort'>
+        <Section heading='Sort'>
           <form className='form'>
             <select
               className='select-menu'
@@ -116,7 +123,7 @@ export default function Sidebar() {
               </option>
             </select>
           </form>
-        </Section> */}
+        </Section>
         <Section heading='Genres'>
           <div className='buttons'>
             {movieGenres.map((genre) => (
