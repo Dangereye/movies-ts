@@ -34,8 +34,6 @@ export default function MoviesNowPlaying() {
     hasNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
-    // 'movie/now_playing',
-    // '',
     'discover/movie',
     `&sort_by=${state.sort}&include_adult=${
       state.adult
@@ -49,14 +47,14 @@ export default function MoviesNowPlaying() {
 
   useEffect(() => {
     dispatch({
-      type: 'SET_STATE',
-      payload: { ...state, release_types: [2, 3] },
+      type: 'SET_DEFAULT_NOW_PLAYING',
+      payload: { ...state },
     });
   }, []);
 
   useEffect(() => {
     refetch();
-  }, [state.sort, state.adult, state.date_from, state.date_to, state.genres]);
+  }, [state]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;

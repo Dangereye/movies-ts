@@ -11,80 +11,42 @@ import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
 
 export default function Sidebar() {
-  // const {
-  //   sort,
-  //   setSort,
-  //   adult,
-  //   setAdult,
-  //   dateFrom,
-  //   setDateFrom,
-  //   dateTo,
-  //   setDateTo,
-  //   genres,
-  //   setGenres,
-  //   types,
-  //   setTypes,
-  // } = useContext(FiltersContext);
   const { state, dispatch } = useContext(FiltersContext);
 
   const movieGenres = useCreateMovieGenres();
 
-  // const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDateFrom(e.target.value);
-  // };
-
   const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: 'SET_STATE',
+      type: 'SET_FILTERS',
       payload: { ...state, date_from: e.target.value },
     });
   };
 
-  // const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDateTo(e.target.value);
-  // };
-
   const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: 'SET_STATE',
+      type: 'SET_FILTERS',
       payload: { ...state, date_to: e.target.value },
     });
   };
 
-  // const updateGenres = (id: number) => {
-  //   if (genres.includes(id)) {
-  //     setGenres(genres.filter((g) => g !== id));
-  //   } else {
-  //     setGenres([...genres, id]);
-  //   }
-  // };
-
   const updateGenres = (id: number) => {
-    if (state.genres.includes(id)) {
+    if (state?.genres?.includes(id)) {
       dispatch({
-        type: 'SET_STATE',
+        type: 'SET_FILTERS',
         payload: { ...state, genres: state.genres.filter((g) => g !== id) },
       });
     } else {
       dispatch({
-        type: 'SET_STATE',
+        type: 'SET_FILTERS',
         payload: { ...state, genres: [...state.genres, id] },
       });
     }
   };
 
-  // const updateTypes = (id: number) => {
-  //   if (types.includes(id)) {
-  //     setTypes(types.filter((t) => t !== id));
-  //   } else {
-  //     setTypes([...types, id]);
-  //   }
-  // };
-
   const updateTypes = (id: number) => {
     if (state.release_types.includes(id)) {
       dispatch({
-        type: 'SET_STATE',
+        type: 'SET_FILTERS',
         payload: {
           ...state,
           release_types: state.release_types.filter((t) => t !== id),
@@ -92,22 +54,17 @@ export default function Sidebar() {
       });
     } else {
       dispatch({
-        type: 'SET_STATE',
+        type: 'SET_FILTERS',
         payload: { ...state, release_types: [...state.release_types, id] },
       });
     }
   };
 
-  // const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setSort(e.target.value);
-  // };
-
-  // const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
-  //   setAdult(!adult);
-  // };
-
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
-    dispatch({ type: 'SET_STATE', payload: { ...state, adult: !state.adult } });
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, adult: !state.adult },
+    });
   };
 
   return (
