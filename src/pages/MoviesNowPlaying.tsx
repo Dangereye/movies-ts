@@ -21,7 +21,6 @@ import BodyText from '../components/typography/BodyText';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesNowPlaying() {
-  // const { sort, adult, dateFrom, dateTo, genres } = useContext(FiltersContext);
   const { state, dispatch } = useContext(FiltersContext);
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;

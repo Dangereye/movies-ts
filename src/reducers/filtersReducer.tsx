@@ -31,6 +31,10 @@ export default function filtersReducer(state: stateType, action: ActionType) {
       return {
         ...state,
         sort: 'popularity.desc',
+        genres: [],
+        release_types: [],
+        date_from: '',
+        date_to: '',
       };
     case 'SET_DEFAULT_NOW_PLAYING':
       if (!state.release_types.length) {
@@ -39,6 +43,7 @@ export default function filtersReducer(state: stateType, action: ActionType) {
         const to = new Date(Date.now() + 12096e5).toISOString().split('T')[0];
         return {
           ...state,
+          genres: [],
           release_types: [2, 3],
           date_from: from,
           date_to: to,
