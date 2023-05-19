@@ -5,6 +5,7 @@ export type stateType = {
   date_to: string;
   genres: number[];
   release_types: number[];
+  vote_count: number;
 };
 
 export const initialState: stateType = {
@@ -14,10 +15,15 @@ export const initialState: stateType = {
   date_to: '',
   genres: [],
   release_types: [],
+  vote_count: 0,
 };
 
 export type ActionType = {
-  type: 'SET_DEFAULT_POPULAR' | 'SET_DEFAULT_NOW_PLAYING' | 'SET_FILTERS';
+  type:
+    | 'SET_DEFAULT_POPULAR'
+    | 'SET_DEFAULT_NOW_PLAYING'
+    | 'SET_DEFAULT_TOP_RATED'
+    | 'SET_FILTERS';
   payload: stateType;
 };
 
@@ -33,6 +39,7 @@ export default function filtersReducer(state: stateType, action: ActionType) {
         release_types: [],
         date_from: '',
         date_to: '',
+        vote_count: 300,
       };
     case 'SET_DEFAULT_NOW_PLAYING':
       if (!state.release_types.length) {
@@ -46,6 +53,21 @@ export default function filtersReducer(state: stateType, action: ActionType) {
           release_types: [2, 3],
           date_from: from,
           date_to: to,
+          vote_count: 0,
+        };
+      }
+      return state;
+    case 'SET_DEFAULT_TOP_RATED':
+      if (state.sort !== 'vote_average.desc') {
+        console.log('Top rated defaults');
+        return {
+          ...state,
+          sort: 'vote_average.desc',
+          genres: [],
+          release_types: [],
+          date_from: '',
+          date_to: '',
+          vote_count: 300,
         };
       }
       return state;

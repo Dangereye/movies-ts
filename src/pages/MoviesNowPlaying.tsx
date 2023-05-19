@@ -1,12 +1,26 @@
 import { useContext, useEffect } from 'react';
+
+// Contexts
 import { FiltersContext } from '../contexts/FiltersContext';
+
+// Interfaces
 import { IPage } from '../interfaces/IPage';
 import { IMovieMin } from '../interfaces/IMovieMin';
+
+// Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
+import useAppend from '../hooks/useAppend';
+
+// Data
+import { moviePages } from '../data/moviePages';
+
+// Utilities
+import { formatDate } from '../utilities/formatDate';
+
+// Components
 import H2 from '../components/typography/H2';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Navigation from '../components/navigation/Navigation';
-import { moviePages } from '../data/moviePages';
 import Header from '../components/header/Header';
 import Article from '../components/articles/Article';
 import Container from '../components/container/Container';
@@ -18,8 +32,6 @@ import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
-import { formatDate } from '../utilities/formatDate';
-import useAppend from '../hooks/useAppend';
 
 export default function MoviesNowPlaying() {
   const { state, dispatch } = useContext(FiltersContext);

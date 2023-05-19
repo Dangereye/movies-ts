@@ -109,18 +109,6 @@ export default function Sidebar() {
               >
                 Release date ascending
               </option>
-              <option
-                className='select-menu__option'
-                value='original_title.asc'
-              >
-                Title (A-Z)
-              </option>
-              <option
-                className='select-menu__option'
-                value='original_title.desc'
-              >
-                Title (Z-A)
-              </option>
             </select>
           </form>
         </Section>
