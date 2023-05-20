@@ -32,7 +32,6 @@ export default function filtersReducer(state: stateType, action: ActionType) {
   const { type, payload } = action;
   switch (type) {
     case 'SET_DEFAULT_POPULAR': {
-      console.log('Popular defaults');
       return {
         ...state,
         sort: 'popularity.desc',
@@ -44,7 +43,6 @@ export default function filtersReducer(state: stateType, action: ActionType) {
       };
     }
     case 'SET_DEFAULT_NOW_PLAYING': {
-      console.log('Now playing defaults');
       const from = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000)
         .toISOString()
         .split('T')[0];
@@ -63,7 +61,6 @@ export default function filtersReducer(state: stateType, action: ActionType) {
     }
 
     case 'SET_DEFAULT_TOP_RATED': {
-      console.log('Top rated defaults');
       return {
         ...state,
         sort: 'vote_average.desc',
@@ -75,7 +72,6 @@ export default function filtersReducer(state: stateType, action: ActionType) {
       };
     }
     case 'SET_DEFAULT_UPCOMING': {
-      console.log('Upcoming defaults');
       const from = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
         .toISOString()
         .split('T')[0];
@@ -93,7 +89,6 @@ export default function filtersReducer(state: stateType, action: ActionType) {
       };
     }
     case 'SET_FILTERS': {
-      console.log('Setting filters');
       return {
         ...state,
         ...payload,
