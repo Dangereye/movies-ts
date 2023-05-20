@@ -70,8 +70,8 @@ export default function MoviesTopRated() {
           variant='horizontal'
         />
       </SubNavbar>
-      <Header variant='header__min' title='Top rated' />
-      <Article name='movies-in-cinemas'>
+      <Header variant='header__min' title='Top rated movies' />
+      <Article name='top-rated-movies'>
         <Container>
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
