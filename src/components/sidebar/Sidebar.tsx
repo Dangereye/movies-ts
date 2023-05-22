@@ -97,6 +97,12 @@ export default function Sidebar() {
               <option className='select-menu__option' value='vote_average.asc'>
                 Rating ascending
               </option>
+              <option className='select-menu__option' value='revenue.desc'>
+                Revenue descending
+              </option>
+              <option className='select-menu__option' value='revenue.asc'>
+                Revenue ascending
+              </option>
               <option
                 className='select-menu__option'
                 value='primary_release_date.desc'
