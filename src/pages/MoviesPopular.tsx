@@ -20,7 +20,7 @@ import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls
 import InfiniteCards from '../components/cards/InifinteCards';
 
 // Context
-import { FiltersContext } from '../contexts/FiltersContext';
+import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -31,10 +31,10 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import useAppend from '../hooks/useAppend';
+import useAppend from '../hooks/useAppendMovie';
 
 export default function MoviesPopular() {
-  const { state, dispatch } = useContext(FiltersContext);
+  const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;

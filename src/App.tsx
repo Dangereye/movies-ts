@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 
 // Contexts
-import FiltersContextComponent from './contexts/FiltersContext';
+import FiltersContextComponent from './contexts/MovieFiltersContext';
 import VideoContextComponent from './contexts/VideoContext';
 
 // Components

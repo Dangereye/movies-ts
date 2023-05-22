@@ -28,7 +28,10 @@ export type ActionType = {
   payload: stateType;
 };
 
-export default function filtersReducer(state: stateType, action: ActionType) {
+export default function movieFiltersReducer(
+  state: stateType,
+  action: ActionType
+) {
   const { type, payload } = action;
   switch (type) {
     case 'SET_DEFAULT_POPULAR': {

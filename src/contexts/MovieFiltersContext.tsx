@@ -3,26 +3,26 @@ import filtersReducer, {
   stateType,
   initialState,
   ActionType,
-} from '../reducers/filtersReducer';
+} from '../reducers/movieFiltersReducer';
 
-type filtersContextType = {
+type MovieFiltersContextType = {
   state: stateType;
   dispatch: React.Dispatch<ActionType>;
 };
 
-export const FiltersContext = createContext({} as filtersContextType);
+export const MovieFiltersContext = createContext({} as MovieFiltersContextType);
 
 type FiltersContextProps = {
   children: ReactNode;
 };
 
-export default function FiltersContextComponent({
+export default function MovieFiltersContextComponent({
   children,
 }: FiltersContextProps) {
   const [state, dispatch] = useReducer(filtersReducer, initialState);
   return (
-    <FiltersContext.Provider value={{ state, dispatch }}>
+    <MovieFiltersContext.Provider value={{ state, dispatch }}>
       {children}
-    </FiltersContext.Provider>
+    </MovieFiltersContext.Provider>
   );
 }

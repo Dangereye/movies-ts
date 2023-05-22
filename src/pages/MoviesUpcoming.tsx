@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
-import { FiltersContext } from '../contexts/FiltersContext';
-import useAppend from '../hooks/useAppend';
+import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
+import useAppend from '../hooks/useAppendMovie';
 import { IPage } from '../interfaces/IPage';
 import { IMovieMin } from '../interfaces/IMovieMin';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
@@ -22,7 +22,7 @@ import BodyText from '../components/typography/BodyText';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesUpcoming() {
-  const { state, dispatch } = useContext(FiltersContext);
+  const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;

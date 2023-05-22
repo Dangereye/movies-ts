@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 
 // Contexts
-import { FiltersContext } from '../contexts/FiltersContext';
+import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 export default function useAppend() {
-  const { state } = useContext(FiltersContext);
+  const { state } = useContext(MovieFiltersContext);
   const append = `&sort_by=${state.sort}&include_adult=${state.adult}${
     state.release_types.length
       ? `&with_release_type=${state.release_types

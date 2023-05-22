@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 
 // Contexts
-import { FiltersContext } from '../contexts/FiltersContext';
+import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -9,7 +9,7 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
-import useAppend from '../hooks/useAppend';
+import useAppend from '../hooks/useAppendMovie';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -34,7 +34,7 @@ import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 
 export default function MoviesNowPlaying() {
-  const { state, dispatch } = useContext(FiltersContext);
+  const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;

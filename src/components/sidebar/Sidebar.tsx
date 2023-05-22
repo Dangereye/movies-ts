@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 // Context
-import { FiltersContext } from '../../contexts/FiltersContext';
+import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
 
 // Hooks
 import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
@@ -11,7 +11,7 @@ import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
 
 export default function Sidebar() {
-  const { state, dispatch } = useContext(FiltersContext);
+  const { state, dispatch } = useContext(MovieFiltersContext);
 
   const movieGenres = useCreateMovieGenres();
 
