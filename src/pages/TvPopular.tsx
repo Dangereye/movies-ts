@@ -30,7 +30,7 @@ export default function TvPopular() {
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<ITVShowMin>>(
     'discover/tv',
-    '&with_watch_monetization_types=flatrate,free,ads,rent,buy&sort_by=popularity.desc',
+    '&sort_by=popularity.desc&watch_region=GB&with_watch_monetization_types=flatrate|free|ads|rent|buy',
     getNextPageParam
   );
 
