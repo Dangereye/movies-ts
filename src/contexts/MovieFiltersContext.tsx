@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useReducer } from 'react';
-import filtersReducer, {
+import moviefiltersReducer, {
   stateType,
   initialState,
   ActionType,
@@ -19,7 +19,7 @@ type FiltersContextProps = {
 export default function MovieFiltersContextComponent({
   children,
 }: FiltersContextProps) {
-  const [state, dispatch] = useReducer(filtersReducer, initialState);
+  const [state, dispatch] = useReducer(moviefiltersReducer, initialState);
   return (
     <MovieFiltersContext.Provider value={{ state, dispatch }}>
       {children}
