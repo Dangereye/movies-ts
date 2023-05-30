@@ -4,14 +4,14 @@ import useMakeQuery from './useMakeQuery';
 // Interfaces
 import { IGenres } from '../interfaces/IGenres';
 
-export default function useCreateMovieGenres() {
-  let movieGenres: { id: number; name: string }[] = [];
+export default function useCreateTvGenres() {
+  let tvGenres: { id: number; name: string }[] = [];
 
   const {
     data: genreList,
     isError,
     isLoading,
-  } = useMakeQuery<IGenres>(`movie-genre-list`, `genre/movie/list`);
+  } = useMakeQuery<IGenres>(`tv-genre-list`, `genre/tv/list`);
 
   if (isLoading) {
     return [];
@@ -22,8 +22,8 @@ export default function useCreateMovieGenres() {
   }
 
   genreList?.genres?.forEach((g) => {
-    movieGenres = [...movieGenres, { id: g.id, name: g.name }];
+    tvGenres = [...tvGenres, { id: g.id, name: g.name }];
   });
 
-  return movieGenres;
+  return tvGenres;
 }
