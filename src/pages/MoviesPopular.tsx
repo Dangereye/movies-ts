@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
+import useAppend from '../hooks/useAppendMovie';
 
 // Components
 import Article from '../components/articles/Article';
@@ -31,7 +32,6 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import useAppend from '../hooks/useAppendMovie';
 
 export default function MoviesPopular() {
   const { state, dispatch } = useContext(MovieFiltersContext);

@@ -1,3 +1,5 @@
+import { useEffect, useContext } from 'react';
+import useAppendTv from '../hooks/useAppendTv';
 import Article from '../components/articles/Article';
 import InfiniteCards from '../components/cards/InifinteCards';
 import CardContent from '../components/cards/card/CardContent';
@@ -17,9 +19,12 @@ import { ITVShowMin } from '../interfaces/ITVShowMin';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import H2 from '../components/typography/H2';
 import { formatDate } from '../utilities/formatDate';
+import { TvFiltersContext } from '../contexts/TvFiltersContext';
 
 export default function TvPopular() {
   const getNextPageParam = (page: IPage<ITVShowMin>) => page.page + 1;
+  const { state, dispatch } = useContext(TvFiltersContext);
+  const { append } = useAppendTv();
 
   const {
     data: tvQueries,
@@ -30,9 +35,20 @@ export default function TvPopular() {
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<ITVShowMin>>(
     'discover/tv',
-    '&sort_by=popularity.desc&watch_region=GB&with_watch_monetization_types=flatrate|free|ads|rent|buy',
+    append,
     getNextPageParam
   );
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_DEFAULT_POPULAR',
+      payload: { ...state },
+    });
+  }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [state]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;
