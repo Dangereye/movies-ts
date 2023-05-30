@@ -42,7 +42,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         region: 'GB',
         date_from: '',
         date_to: '',
-        vote_count: 0,
+        vote_count: 100,
       };
     }
     case 'SET_FILTERS': {
