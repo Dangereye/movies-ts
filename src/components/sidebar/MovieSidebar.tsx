@@ -3,16 +3,25 @@ import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
 import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
 import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
+import CustomSelectInput from '../custom_select_input/CustomSelectInput';
+import CustomSelectOption from '../custom_select_input/CustomSelectOption';
+import { movieSortOptions } from '../../data/movieSortOptions';
 
 export default function MovieSidebar() {
   const { state, dispatch } = useContext(MovieFiltersContext);
 
   const movieGenres = useCreateMovieGenres();
 
-  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSort = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch({
       type: 'SET_FILTERS',
-      payload: { ...state, sort: e.target.value },
+      payload: {
+        ...state,
+        sort: {
+          name: e.currentTarget.innerText,
+          value: e.currentTarget.dataset.value,
+        },
+      },
     });
   };
 
@@ -71,45 +80,17 @@ export default function MovieSidebar() {
     <aside className='sidebar'>
       <div className='sidebar__content'>
         <Section heading='Sort'>
-          <form className='form'>
-            <select
-              className='select-menu'
-              name='sort-order'
-              value={state.sort}
-              onChange={handleSort}
-            >
-              <option className='select-menu__option' value='popularity.desc'>
-                Popularity descending
-              </option>
-              <option className='select-menu__option' value='popularity.asc'>
-                Popularity ascending
-              </option>
-              <option className='select-menu__option' value='vote_average.desc'>
-                Rating descending
-              </option>
-              <option className='select-menu__option' value='vote_average.asc'>
-                Rating ascending
-              </option>
-              <option className='select-menu__option' value='revenue.desc'>
-                Revenue descending
-              </option>
-              <option className='select-menu__option' value='revenue.asc'>
-                Revenue ascending
-              </option>
-              <option
-                className='select-menu__option'
-                value='primary_release_date.desc'
-              >
-                Release date descending
-              </option>
-              <option
-                className='select-menu__option'
-                value='primary_release_date.asc'
-              >
-                Release date ascending
-              </option>
-            </select>
-          </form>
+          <CustomSelectInput selected={state.sort.name}>
+            {movieSortOptions.map((option) => (
+              <CustomSelectOption
+                key={option.value}
+                onClick={handleSort}
+                name={option.name}
+                value={option.value}
+                active={state.sort.value === option.value}
+              />
+            ))}
+          </CustomSelectInput>
         </Section>
         <Section heading='Genres'>
           <div className='buttons'>
