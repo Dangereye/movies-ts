@@ -42,7 +42,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         region: 'GB',
         date_from: '',
         date_to: '',
-        vote_count: 100,
+        vote_count: 50,
       };
     }
     case 'SET_DEFAULT_AIRING_TODAY': {
@@ -55,6 +55,22 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         region: 'GB',
         date_from: date,
         date_to: date,
+        vote_count: 0,
+      };
+    }
+    case 'SET_DEFAULT_NEXT_7_DAYS': {
+      const from = new Date(Date.now()).toISOString().split('T')[0];
+      const to = new Date(Date.now() + 6 * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split('T')[0];
+      return {
+        ...state,
+        sort: 'popularity.desc',
+        genres: [],
+        release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        region: 'GB',
+        date_from: from,
+        date_to: to,
         vote_count: 0,
       };
     }
