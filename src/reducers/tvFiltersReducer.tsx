@@ -45,6 +45,19 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         vote_count: 100,
       };
     }
+    case 'SET_DEFAULT_AIRING_TODAY': {
+      const date = new Date(Date.now()).toISOString().split('T')[0];
+      return {
+        ...state,
+        sort: 'popularity.desc',
+        genres: [],
+        release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        region: 'GB',
+        date_from: date,
+        date_to: date,
+        vote_count: 0,
+      };
+    }
     case 'SET_FILTERS': {
       return {
         ...state,
