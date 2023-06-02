@@ -8,7 +8,7 @@ export type stateType = {
   adult: { expanded: boolean; active: boolean };
   date_from: string;
   date_to: string;
-  genres: number[];
+  genres: { expanded: boolean; types: number[] };
   release_types: number[];
   vote_count: number;
 };
@@ -23,7 +23,7 @@ export const initialState: stateType = {
   adult: { expanded: false, active: false },
   date_from: '',
   date_to: '',
-  genres: [],
+  genres: { expanded: false, types: [] },
   release_types: [],
   vote_count: 0,
 };
@@ -53,7 +53,7 @@ export default function movieFiltersReducer(
           name: 'popularity descending',
           value: 'popularity.desc',
         },
-        genres: [],
+        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: [],
         date_from: '',
         date_to: '',
@@ -75,7 +75,7 @@ export default function movieFiltersReducer(
           name: 'popularity descending',
           value: 'popularity.desc',
         },
-        genres: [],
+        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: [2, 3],
         date_from: from,
         date_to: to,
@@ -92,7 +92,7 @@ export default function movieFiltersReducer(
           name: 'Rating descending',
           value: 'vote_average.desc',
         },
-        genres: [],
+        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: [],
         date_from: '',
         date_to: '',
@@ -114,7 +114,7 @@ export default function movieFiltersReducer(
           name: 'popularity descending',
           value: 'popularity.desc',
         },
-        genres: [],
+        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: [2, 3],
         date_from: from,
         date_to: to,

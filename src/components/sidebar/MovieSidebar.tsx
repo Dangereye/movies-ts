@@ -60,16 +60,38 @@ export default function MovieSidebar() {
     });
   };
 
+  const handleToggleGenres = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        genres: { ...state.genres, expanded: !state.genres.expanded },
+      },
+    });
+  };
+
   const updateGenres = (id: number) => {
-    if (state?.genres?.includes(id)) {
+    if (state?.genres?.types.includes(id)) {
       dispatch({
         type: 'SET_FILTERS',
-        payload: { ...state, genres: state.genres.filter((g) => g !== id) },
+        payload: {
+          ...state,
+          genres: {
+            expanded: state.genres.expanded,
+            types: state.genres.types.filter((g) => g !== id),
+          },
+        },
       });
     } else {
       dispatch({
         type: 'SET_FILTERS',
-        payload: { ...state, genres: [...state.genres, id] },
+        payload: {
+          ...state,
+          genres: {
+            expanded: state.genres.expanded,
+            types: [...state.genres.types, id],
+          },
+        },
       });
     }
   };
@@ -132,19 +154,23 @@ export default function MovieSidebar() {
             ))}
           </CustomSelectInput>
         </Section>
-        {/* <Section heading='Genres'>
+        <Section
+          heading='Genres'
+          expanded={state.genres.expanded}
+          dispatch={handleToggleGenres}
+        >
           <div className='buttons'>
             {movieGenres.map((genre) => (
               <ToggleButton
                 key={genre.id}
-                active={state.genres.includes(genre.id)}
+                active={state.genres.types.includes(genre.id)}
                 name={genre.name}
                 onClick={() => updateGenres(genre.id)}
               />
             ))}
           </div>
         </Section>
-        <Section heading='release dates'>
+        {/*<Section heading='release dates'>
           <div className='buttons'>
             <ToggleButton
               key='premiere-release'
