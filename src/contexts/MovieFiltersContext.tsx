@@ -20,6 +20,7 @@ export default function MovieFiltersContextComponent({
   children,
 }: FiltersContextProps) {
   const [state, dispatch] = useReducer(moviefiltersReducer, initialState);
+  console.log('Movie state: ', state);
   return (
     <MovieFiltersContext.Provider value={{ state, dispatch }}>
       {children}

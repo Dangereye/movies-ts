@@ -1,32 +1,28 @@
-import { useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
 
 type CustomSelectInputProps = {
   selected: string | undefined;
+  expanded: boolean;
+  dispatch: () => void;
   children: ReactNode;
 };
 
 export default function CustomSelectInput({
   selected,
+  expanded,
+  dispatch,
   children,
 }: CustomSelectInputProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <>
-      <div className='custom-select' onClick={handleToggle}>
+      <div className='custom-select' onClick={dispatch}>
         <span>{selected}</span>
-        <span>
-          <HiChevronDown />
-        </span>
+        <span>{<HiChevronDown />}</span>
       </div>
       <div
         className={
-          isOpen ? 'custom-select_options active' : 'custom-select_options'
+          expanded ? 'custom-select_options active' : 'custom-select_options'
         }
       >
         {children}

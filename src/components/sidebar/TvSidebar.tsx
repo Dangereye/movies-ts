@@ -69,7 +69,7 @@ export default function TvSidebar() {
   const handleRegion = () => {};
   return (
     <aside className='sidebar'>
-      <div className='sidebar__content'>
+      {/* <div className='sidebar__content'>
         <Section heading='Sort'>
           <form className='form'>
             <select
@@ -186,7 +186,7 @@ export default function TvSidebar() {
             />
           </div>
         </Section>
-      </div>
+      </div> */}
     </aside>
   );
 }

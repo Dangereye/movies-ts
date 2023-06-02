@@ -1,32 +1,33 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import Button from '../../buttons/Button';
 import HDiv from '../../typography/HDiv';
 import { HiChevronDown } from 'react-icons/hi';
 import Wrapper from '../../wrapper/Wrapper';
 
 type SectionProps = {
+  expanded: boolean;
+  dispatch: () => void;
   heading: string;
   children: ReactNode;
 };
 
-export default function Section({ heading, children }: SectionProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
-
+export default function Section({
+  expanded,
+  dispatch,
+  heading,
+  children,
+}: SectionProps) {
   return (
-    <div className={isOpen ? 'sidebar__section active' : 'sidebar__section'}>
+    <div className={expanded ? 'sidebar__section active' : 'sidebar__section'}>
       <Wrapper name='section-header' variant='flex'>
         <HDiv variant='heading--h4' heading={heading} />
         <Button
           variant='btn--close'
           name={<HiChevronDown />}
-          onClick={toggle}
+          onClick={dispatch}
         />
       </Wrapper>
-      {isOpen && children}
+      {expanded && children}
     </div>
   );
 }

@@ -1,5 +1,10 @@
 export type stateType = {
-  sort: { name: string; value: string | undefined };
+  sort: {
+    expanded: boolean;
+    inputExpanded: boolean;
+    name: string;
+    value: string | undefined;
+  };
   adult: boolean;
   date_from: string;
   date_to: string;
@@ -9,7 +14,12 @@ export type stateType = {
 };
 
 export const initialState: stateType = {
-  sort: { name: 'popularity descending', value: 'popularity.desc' },
+  sort: {
+    expanded: false,
+    inputExpanded: false,
+    name: 'popularity descending',
+    value: 'popularity.desc',
+  },
   adult: false,
   date_from: '',
   date_to: '',
@@ -37,7 +47,12 @@ export default function movieFiltersReducer(
     case 'SET_DEFAULT_POPULAR': {
       return {
         ...state,
-        sort: { name: 'popularity descending', value: 'popularity.desc' },
+        sort: {
+          expanded: state.sort.expanded,
+          inputExpanded: state.sort.inputExpanded,
+          name: 'popularity descending',
+          value: 'popularity.desc',
+        },
         genres: [],
         release_types: [],
         date_from: '',
@@ -54,7 +69,12 @@ export default function movieFiltersReducer(
         .split('T')[0];
       return {
         ...state,
-        sort: { name: 'popularity descending', value: 'popularity.desc' },
+        sort: {
+          expanded: state.sort.expanded,
+          inputExpanded: state.sort.inputExpanded,
+          name: 'popularity descending',
+          value: 'popularity.desc',
+        },
         genres: [],
         release_types: [2, 3],
         date_from: from,
@@ -66,7 +86,12 @@ export default function movieFiltersReducer(
     case 'SET_DEFAULT_TOP_RATED': {
       return {
         ...state,
-        sort: { name: 'Rating descending', value: 'vote_average.desc' },
+        sort: {
+          expanded: state.sort.expanded,
+          inputExpanded: state.sort.inputExpanded,
+          name: 'Rating descending',
+          value: 'vote_average.desc',
+        },
         genres: [],
         release_types: [],
         date_from: '',
@@ -83,7 +108,12 @@ export default function movieFiltersReducer(
         .split('T')[0];
       return {
         ...state,
-        sort: { name: 'popularity descending', value: 'popularity.desc' },
+        sort: {
+          expanded: state.sort.expanded,
+          inputExpanded: state.sort.inputExpanded,
+          name: 'popularity descending',
+          value: 'popularity.desc',
+        },
         genres: [],
         release_types: [2, 3],
         date_from: from,

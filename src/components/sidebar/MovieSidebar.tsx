@@ -12,12 +12,33 @@ export default function MovieSidebar() {
 
   const movieGenres = useCreateMovieGenres();
 
+  const handleToggleSortSection = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        sort: { ...state.sort, expanded: !state.sort.expanded },
+      },
+    });
+  };
+
+  const handleToggleSortInput = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        sort: { ...state.sort, inputExpanded: !state.sort.inputExpanded },
+      },
+    });
+  };
   const handleSort = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
         ...state,
         sort: {
+          expanded: state.sort.expanded,
+          inputExpanded: state.sort.inputExpanded,
           name: e.currentTarget.innerText,
           value: e.currentTarget.dataset.value,
         },
@@ -79,8 +100,16 @@ export default function MovieSidebar() {
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
-        <Section heading='Sort'>
-          <CustomSelectInput selected={state.sort.name}>
+        <Section
+          heading='Sort'
+          expanded={state.sort.expanded}
+          dispatch={handleToggleSortSection}
+        >
+          <CustomSelectInput
+            selected={state.sort.name}
+            expanded={state.sort.inputExpanded}
+            dispatch={handleToggleSortInput}
+          >
             {movieSortOptions.map((option) => (
               <CustomSelectOption
                 key={option.value}
@@ -92,7 +121,7 @@ export default function MovieSidebar() {
             ))}
           </CustomSelectInput>
         </Section>
-        <Section heading='Genres'>
+        {/* <Section heading='Genres'>
           <div className='buttons'>
             {movieGenres.map((genre) => (
               <ToggleButton
@@ -172,7 +201,7 @@ export default function MovieSidebar() {
               onClick={handleAdult}
             />
           </div>
-        </Section>
+        </Section> */}
       </div>
     </aside>
   );
