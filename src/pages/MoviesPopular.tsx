@@ -61,7 +61,7 @@ export default function MoviesPopular() {
 
   useEffect(() => {
     refetch();
-  }, [state]);
+  }, [state.sort.value, state.adult.active]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;

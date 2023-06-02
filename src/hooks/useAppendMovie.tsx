@@ -5,7 +5,9 @@ import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 export default function useAppend() {
   const { state } = useContext(MovieFiltersContext);
-  const append = `&sort_by=${state.sort.value}&include_adult=${state.adult}${
+  const append = `&sort_by=${state.sort.value}&include_adult=${
+    state.adult.active
+  }${
     state.release_types.length
       ? `&with_release_type=${state.release_types
           .toString()

@@ -90,11 +90,22 @@ export default function MovieSidebar() {
       });
     }
   };
-
+  const handleToggleAdultSection = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        adult: { expanded: !state.adult.expanded, active: state.adult.active },
+      },
+    });
+  };
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch({
       type: 'SET_FILTERS',
-      payload: { ...state, adult: !state.adult },
+      payload: {
+        ...state,
+        adult: { expanded: state.adult.expanded, active: !state.adult.active },
+      },
     });
   };
   return (
@@ -192,16 +203,20 @@ export default function MovieSidebar() {
               />
             </div>
           </form>
-        </Section>
-        <Section heading='Adult content'>
+        </Section>*/}
+        <Section
+          heading='Adult content'
+          expanded={state.adult.expanded}
+          dispatch={handleToggleAdultSection}
+        >
           <div className='buttons'>
             <ToggleButton
-              active={state.adult}
-              name={state.adult ? 'Visible' : 'Hidden'}
+              active={state.adult.active}
+              name={state.adult.active ? 'Visible' : 'Hidden'}
               onClick={handleAdult}
             />
           </div>
-        </Section> */}
+        </Section>
       </div>
     </aside>
   );
