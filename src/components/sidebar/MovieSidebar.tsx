@@ -31,6 +31,7 @@ export default function MovieSidebar() {
       },
     });
   };
+
   const handleSort = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch({
       type: 'SET_FILTERS',
@@ -88,6 +89,13 @@ export default function MovieSidebar() {
         ...state,
         genres: { ...state.genres, expanded: !state.genres.expanded },
       },
+    });
+  };
+
+  const clearGenres = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, genres: { ...state.genres, types: [] } },
     });
   };
 
@@ -175,6 +183,7 @@ export default function MovieSidebar() {
       },
     });
   };
+
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch({
       type: 'SET_FILTERS',
@@ -184,6 +193,7 @@ export default function MovieSidebar() {
       },
     });
   };
+
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
@@ -214,6 +224,11 @@ export default function MovieSidebar() {
           dispatch={handleToggleGenres}
         >
           <div className='buttons'>
+            <ToggleButton
+              active={state.genres.types.length === 0}
+              name='All'
+              onClick={clearGenres}
+            />
             {movieGenres.map((genre) => (
               <ToggleButton
                 key={genre.id}
