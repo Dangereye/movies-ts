@@ -46,17 +46,43 @@ export default function MovieSidebar() {
     });
   };
 
+  const handleToggleDates = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        dates: { ...state.dates, expanded: !state.dates.expanded },
+      },
+    });
+  };
+
   const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: 'SET_FILTERS',
-      payload: { ...state, date_from: e.target.value },
+      payload: {
+        ...state,
+        dates: {
+          ...state.dates,
+          expanded: state.dates.expanded,
+          date_from: e.target.value,
+          date_to: state.dates.date_to,
+        },
+      },
     });
   };
 
   const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: 'SET_FILTERS',
-      payload: { ...state, date_to: e.target.value },
+      payload: {
+        ...state,
+        dates: {
+          ...state.dates,
+          expanded: state.dates.expanded,
+          date_from: state.dates.date_from,
+          date_to: e.target.value,
+        },
+      },
     });
   };
 
@@ -170,7 +196,11 @@ export default function MovieSidebar() {
             ))}
           </div>
         </Section>
-        {/*<Section heading='release dates'>
+        <Section
+          heading='release dates'
+          expanded={state.dates.expanded}
+          dispatch={handleToggleDates}
+        >
           <div className='buttons'>
             <ToggleButton
               key='premiere-release'
@@ -215,7 +245,7 @@ export default function MovieSidebar() {
               <input
                 type='date'
                 name='date-from'
-                value={state.date_from}
+                value={state.dates.date_from}
                 onChange={handleDateFrom}
               />
             </div>
@@ -224,12 +254,12 @@ export default function MovieSidebar() {
               <input
                 type='date'
                 name='date-to'
-                value={state.date_to}
+                value={state.dates.date_to}
                 onChange={handleDateTo}
               />
             </div>
           </form>
-        </Section>*/}
+        </Section>
         <Section
           heading='Adult content'
           expanded={state.adult.expanded}

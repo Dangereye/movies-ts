@@ -6,8 +6,11 @@ export type stateType = {
     value: string | undefined;
   };
   adult: { expanded: boolean; active: boolean };
-  date_from: string;
-  date_to: string;
+  dates: {
+    expanded: boolean;
+    date_from: string;
+    date_to: string;
+  };
   genres: { expanded: boolean; types: number[] };
   release_types: number[];
   vote_count: number;
@@ -21,8 +24,11 @@ export const initialState: stateType = {
     value: 'popularity.desc',
   },
   adult: { expanded: false, active: false },
-  date_from: '',
-  date_to: '',
+  dates: {
+    expanded: false,
+    date_to: '',
+    date_from: '',
+  },
   genres: { expanded: false, types: [] },
   release_types: [],
   vote_count: 0,
