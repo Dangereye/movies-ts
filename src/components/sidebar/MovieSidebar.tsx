@@ -37,8 +37,7 @@ export default function MovieSidebar() {
       payload: {
         ...state,
         sort: {
-          expanded: state.sort.expanded,
-          inputExpanded: state.sort.inputExpanded,
+          ...state.sort,
           name: e.currentTarget.innerText,
           value: e.currentTarget.dataset.value,
         },
@@ -63,9 +62,7 @@ export default function MovieSidebar() {
         ...state,
         dates: {
           ...state.dates,
-          expanded: state.dates.expanded,
           date_from: e.target.value,
-          date_to: state.dates.date_to,
         },
       },
     });
@@ -78,8 +75,6 @@ export default function MovieSidebar() {
         ...state,
         dates: {
           ...state.dates,
-          expanded: state.dates.expanded,
-          date_from: state.dates.date_from,
           date_to: e.target.value,
         },
       },
@@ -103,7 +98,7 @@ export default function MovieSidebar() {
         payload: {
           ...state,
           genres: {
-            expanded: state.genres.expanded,
+            ...state.genres,
             types: state.genres.types.filter((g) => g !== id),
           },
         },
@@ -114,7 +109,7 @@ export default function MovieSidebar() {
         payload: {
           ...state,
           genres: {
-            expanded: state.genres.expanded,
+            ...state.genres,
             types: [...state.genres.types, id],
           },
         },
@@ -176,7 +171,7 @@ export default function MovieSidebar() {
       type: 'SET_FILTERS',
       payload: {
         ...state,
-        adult: { expanded: !state.adult.expanded, active: state.adult.active },
+        adult: { ...state.adult, expanded: !state.adult.expanded },
       },
     });
   };
@@ -185,7 +180,7 @@ export default function MovieSidebar() {
       type: 'SET_FILTERS',
       payload: {
         ...state,
-        adult: { expanded: state.adult.expanded, active: !state.adult.active },
+        adult: { ...state.adult, active: !state.adult.active },
       },
     });
   };
