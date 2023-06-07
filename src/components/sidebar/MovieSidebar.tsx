@@ -1,11 +1,20 @@
 import { useContext } from 'react';
+
+// Context
 import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
+
+// Hooks
 import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
+
+// Components
 import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
 import CustomSelectInput from '../custom_select_input/CustomSelectInput';
 import CustomSelectOption from '../custom_select_input/CustomSelectOption';
+
+// Data
 import { movieSortOptions } from '../../data/movieSortOptions';
+import SmallText from '../typography/SmallText';
 
 export default function MovieSidebar() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -184,6 +193,29 @@ export default function MovieSidebar() {
     });
   };
 
+  const handleToggleMinimumVotes = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        vote_count: {
+          ...state.vote_count,
+          expanded: !state.vote_count.expanded,
+        },
+      },
+    });
+  };
+
+  const handleVoteCount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        vote_count: { ...state.vote_count, count: +e.target.value },
+      },
+    });
+  };
+
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch({
       type: 'SET_FILTERS',
@@ -313,6 +345,21 @@ export default function MovieSidebar() {
                 onChange={handleDateTo}
               />
             </div>
+          </form>
+        </Section>
+        <Section
+          heading='minimum votes'
+          expanded={state.vote_count.expanded}
+          dispatch={handleToggleMinimumVotes}
+        >
+          <form className='form'>
+            <SmallText text='Increase to reduce junk data' />
+            <input
+              type='number'
+              name='vote-count'
+              value={state.vote_count.count}
+              onChange={handleVoteCount}
+            />
           </form>
         </Section>
         <Section

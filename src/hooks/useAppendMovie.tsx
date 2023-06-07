@@ -22,7 +22,7 @@ export default function useAppend() {
       ? `&primary_release_date.lte=${state.dates.date_to}`
       : ''
   }${state.genres.types.length ? `&with_genres=${state.genres.types}` : ''}${
-    state.vote_count ? `&vote_count.gte=${state.vote_count}` : ''
+    state.vote_count.count ? `&vote_count.gte=${state.vote_count.count}` : ''
   }`;
   return { append };
 }

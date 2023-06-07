@@ -12,6 +12,7 @@
     padding: 2rem;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
     .heading {
       margin: 0;
     }
@@ -59,6 +60,7 @@
     }
 
     input[type='date'],
+    input[type='number'],
     .select-menu {
       padding: 1rem;
       font-family: 'Montserrat', sans-serif;

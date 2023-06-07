@@ -13,7 +13,7 @@ export type stateType = {
   };
   genres: { expanded: boolean; types: number[] };
   release_types: { expanded: boolean; types: number[] };
-  vote_count: number;
+  vote_count: { expanded: boolean; count: number };
 };
 
 export const initialState: stateType = {
@@ -31,7 +31,7 @@ export const initialState: stateType = {
   },
   genres: { expanded: false, types: [] },
   release_types: { expanded: false, types: [] },
-  vote_count: 0,
+  vote_count: { expanded: false, count: 0 },
 };
 
 export type ActionType = {
@@ -62,7 +62,7 @@ export default function movieFiltersReducer(
         genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
-        vote_count: 300,
+        vote_count: { ...state.vote_count, count: 0 },
       };
     }
 
@@ -84,7 +84,7 @@ export default function movieFiltersReducer(
         genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [2, 3] },
         dates: { ...state.dates, date_from: from, date_to: to },
-        vote_count: 0,
+        vote_count: { ...state.vote_count, count: 0 },
       };
     }
 
@@ -100,7 +100,7 @@ export default function movieFiltersReducer(
         genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
-        vote_count: 300,
+        vote_count: { ...state.vote_count, count: 300 },
       };
     }
 
@@ -122,7 +122,7 @@ export default function movieFiltersReducer(
         genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [2, 3] },
         dates: { ...state.dates, date_from: from, date_to: to },
-        vote_count: 0,
+        vote_count: { ...state.vote_count, count: 0 },
       };
     }
 
