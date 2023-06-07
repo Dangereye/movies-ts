@@ -12,7 +12,7 @@ export type stateType = {
     date_to: string;
   };
   genres: { expanded: boolean; types: number[] };
-  release_types: number[];
+  release_types: { expanded: boolean; types: number[] };
   vote_count: number;
 };
 
@@ -30,7 +30,7 @@ export const initialState: stateType = {
     date_from: '',
   },
   genres: { expanded: false, types: [] },
-  release_types: [],
+  release_types: { expanded: false, types: [] },
   vote_count: 0,
 };
 
@@ -60,12 +60,12 @@ export default function movieFiltersReducer(
           value: 'popularity.desc',
         },
         genres: { expanded: state.genres.expanded, types: state.genres.types },
-        release_types: [],
-        date_from: '',
-        date_to: '',
+        release_types: { ...state.release_types, types: [] },
+        dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 300,
       };
     }
+
     case 'SET_DEFAULT_NOW_PLAYING': {
       const from = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000)
         .toISOString()
@@ -82,9 +82,8 @@ export default function movieFiltersReducer(
           value: 'popularity.desc',
         },
         genres: { expanded: state.genres.expanded, types: state.genres.types },
-        release_types: [2, 3],
-        date_from: from,
-        date_to: to,
+        release_types: { ...state.release_types, types: [2, 3] },
+        dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: 0,
       };
     }
@@ -99,12 +98,12 @@ export default function movieFiltersReducer(
           value: 'vote_average.desc',
         },
         genres: { expanded: state.genres.expanded, types: state.genres.types },
-        release_types: [],
-        date_from: '',
-        date_to: '',
+        release_types: { ...state.release_types, types: [] },
+        dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 300,
       };
     }
+
     case 'SET_DEFAULT_UPCOMING': {
       const from = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
         .toISOString()
@@ -121,18 +120,19 @@ export default function movieFiltersReducer(
           value: 'popularity.desc',
         },
         genres: { expanded: state.genres.expanded, types: state.genres.types },
-        release_types: [2, 3],
-        date_from: from,
-        date_to: to,
+        release_types: { ...state.release_types, types: [2, 3] },
+        dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: 0,
       };
     }
+
     case 'SET_FILTERS': {
       return {
         ...state,
         ...payload,
       };
     }
+
     default: {
       return state;
     }

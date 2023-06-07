@@ -61,7 +61,13 @@ export default function MoviesPopular() {
 
   useEffect(() => {
     refetch();
-  }, [state.sort.value, state.adult.active, state.genres.types]);
+  }, [
+    state.sort.value,
+    state.adult.active,
+    state.genres.types,
+    state.dates.date_to,
+    state.dates.date_from,
+  ]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;

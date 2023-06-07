@@ -8,8 +8,8 @@ export default function useAppend() {
   const append = `&sort_by=${state.sort.value}&include_adult=${
     state.adult.active
   }${
-    state.release_types.length
-      ? `&with_release_type=${state.release_types
+    state.release_types.types.length
+      ? `&with_release_type=${state.release_types.types
           .toString()
           .replaceAll(',', '|')}`
       : ''

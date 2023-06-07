@@ -122,22 +122,55 @@ export default function MovieSidebar() {
     }
   };
 
+  const handleToggleReleaseTypes = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        release_types: {
+          ...state.release_types,
+          expanded: !state.release_types.expanded,
+        },
+      },
+    });
+  };
+
+  const clearTypes = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        release_types: { ...state.release_types, types: [] },
+      },
+    });
+  };
+
   const updateTypes = (id: number) => {
-    if (state.release_types.includes(id)) {
+    if (state.release_types.types.includes(id)) {
       dispatch({
         type: 'SET_FILTERS',
         payload: {
           ...state,
-          release_types: state.release_types.filter((t) => t !== id),
+          release_types: {
+            ...state.release_types,
+            types: state.release_types.types.filter((t) => t !== id),
+          },
         },
       });
     } else {
       dispatch({
         type: 'SET_FILTERS',
-        payload: { ...state, release_types: [...state.release_types, id] },
+        payload: {
+          ...state,
+          release_types: {
+            ...state.release_types,
+            types: [...state.release_types.types, id],
+          },
+        },
       });
     }
   };
+
   const handleToggleAdultSection = () => {
     dispatch({
       type: 'SET_FILTERS',
@@ -197,48 +230,60 @@ export default function MovieSidebar() {
           </div>
         </Section>
         <Section
-          heading='release dates'
-          expanded={state.dates.expanded}
-          dispatch={handleToggleDates}
+          heading='release types'
+          expanded={state.release_types.expanded}
+          dispatch={handleToggleReleaseTypes}
         >
           <div className='buttons'>
             <ToggleButton
               key='premiere-release'
-              active={state.release_types.includes(1)}
+              active={state.release_types.types.length === 0}
+              name='All'
+              onClick={clearTypes}
+            />
+            <ToggleButton
+              key='premiere-release'
+              active={state.release_types.types.includes(1)}
               name='Premiere'
               onClick={() => updateTypes(1)}
             />
             <ToggleButton
               key='theatrical-limited-release'
-              active={state.release_types.includes(2)}
+              active={state.release_types.types.includes(2)}
               name='Theatrical (limited)'
               onClick={() => updateTypes(2)}
             />
             <ToggleButton
               key='theatrical-release'
-              active={state.release_types.includes(3)}
+              active={state.release_types.types.includes(3)}
               name='Theatrical'
               onClick={() => updateTypes(3)}
             />
             <ToggleButton
               key='digital-release'
-              active={state.release_types.includes(4)}
+              active={state.release_types.types.includes(4)}
               name='Digital'
               onClick={() => updateTypes(4)}
             />
             <ToggleButton
               key='physical-release'
-              active={state.release_types.includes(5)}
+              active={state.release_types.types.includes(5)}
               name='Physical'
               onClick={() => updateTypes(5)}
             />
             <ToggleButton
               key='tv-release'
-              active={state.release_types.includes(6)}
+              active={state.release_types.types.includes(6)}
               name='TV'
               onClick={() => updateTypes(6)}
             />
           </div>
+        </Section>
+        <Section
+          heading='release dates'
+          expanded={state.dates.expanded}
+          dispatch={handleToggleDates}
+        >
           <form className='form'>
             <div className='form__group'>
               <label htmlFor='date-from'>From</label>
