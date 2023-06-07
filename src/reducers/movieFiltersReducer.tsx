@@ -13,6 +13,7 @@ export type stateType = {
   };
   genres: { expanded: boolean; types: number[] };
   release_types: { expanded: boolean; types: number[] };
+  rating: { expanded: boolean; min_rating: number; max_rating: number };
   vote_count: { expanded: boolean; count: number };
 };
 
@@ -31,6 +32,7 @@ export const initialState: stateType = {
   },
   genres: { expanded: false, types: [] },
   release_types: { expanded: false, types: [] },
+  rating: { expanded: false, min_rating: 0, max_rating: 10 },
   vote_count: { expanded: false, count: 0 },
 };
 
@@ -62,6 +64,7 @@ export default function movieFiltersReducer(
         genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
+        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         vote_count: { ...state.vote_count, count: 0 },
       };
     }

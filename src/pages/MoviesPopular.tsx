@@ -67,6 +67,7 @@ export default function MoviesPopular() {
     state.genres.types,
     state.dates.date_to,
     state.dates.date_from,
+    state.rating.min_rating,
   ]);
 
   if (isLoading) {

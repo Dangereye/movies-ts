@@ -15,6 +15,7 @@ import CustomSelectOption from '../custom_select_input/CustomSelectOption';
 // Data
 import { movieSortOptions } from '../../data/movieSortOptions';
 import SmallText from '../typography/SmallText';
+import Button from '../buttons/Button';
 
 export default function MovieSidebar() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -193,6 +194,36 @@ export default function MovieSidebar() {
     });
   };
 
+  const handleToggleRating = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        rating: { ...state.rating, expanded: !state.rating.expanded },
+      },
+    });
+  };
+
+  const handleMinRating = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        rating: { ...state.rating, min_rating: +e.target.value },
+      },
+    });
+  };
+
+  const handleMaxRating = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        rating: { ...state.rating, max_rating: +e.target.value },
+      },
+    });
+  };
+
   const handleToggleMinimumVotes = () => {
     dispatch({
       type: 'SET_FILTERS',
@@ -346,6 +377,38 @@ export default function MovieSidebar() {
               />
             </div>
           </form>
+        </Section>
+        <Section
+          heading='rating'
+          expanded={state.rating.expanded}
+          dispatch={handleToggleRating}
+        >
+          <div className='form'>
+            <div className='form__group'>
+              <label htmlFor='min-rating'>Min</label>
+              <input
+                className='fixed-size'
+                type='number'
+                value={state.rating.min_rating}
+                onChange={handleMinRating}
+                name='min-rating'
+                min='0'
+                max='9'
+              />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='max-rating'>Max</label>
+              <input
+                className='fixed-size'
+                type='number'
+                value={state.rating.max_rating}
+                onChange={handleMaxRating}
+                name='max-rating'
+                min='1'
+                max='10'
+              />
+            </div>
+          </div>
         </Section>
         <Section
           heading='minimum votes'
