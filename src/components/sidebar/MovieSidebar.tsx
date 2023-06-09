@@ -15,7 +15,7 @@ import CustomSelectOption from '../custom_select_input/CustomSelectOption';
 // Data
 import { movieSortOptions } from '../../data/movieSortOptions';
 import SmallText from '../typography/SmallText';
-import Button from '../buttons/Button';
+import NumberInput from '../forms/input/NumberInput';
 
 export default function MovieSidebar() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -204,22 +204,22 @@ export default function MovieSidebar() {
     });
   };
 
-  const handleMinRating = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMinRating = (value: number) => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
         ...state,
-        rating: { ...state.rating, min_rating: +e.target.value },
+        rating: { ...state.rating, min_rating: value },
       },
     });
   };
 
-  const handleMaxRating = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMaxRating = (value: number) => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
         ...state,
-        rating: { ...state.rating, max_rating: +e.target.value },
+        rating: { ...state.rating, max_rating: value },
       },
     });
   };
@@ -309,43 +309,36 @@ export default function MovieSidebar() {
         >
           <div className='buttons'>
             <ToggleButton
-              key='premiere-release'
               active={state.release_types.types.length === 0}
               name='All'
               onClick={clearTypes}
             />
             <ToggleButton
-              key='premiere-release'
               active={state.release_types.types.includes(1)}
               name='Premiere'
               onClick={() => updateTypes(1)}
             />
             <ToggleButton
-              key='theatrical-limited-release'
               active={state.release_types.types.includes(2)}
               name='Theatrical (limited)'
               onClick={() => updateTypes(2)}
             />
             <ToggleButton
-              key='theatrical-release'
               active={state.release_types.types.includes(3)}
               name='Theatrical'
               onClick={() => updateTypes(3)}
             />
             <ToggleButton
-              key='digital-release'
               active={state.release_types.types.includes(4)}
               name='Digital'
               onClick={() => updateTypes(4)}
             />
             <ToggleButton
-              key='physical-release'
               active={state.release_types.types.includes(5)}
               name='Physical'
               onClick={() => updateTypes(5)}
             />
             <ToggleButton
-              key='tv-release'
               active={state.release_types.types.includes(6)}
               name='TV'
               onClick={() => updateTypes(6)}
@@ -385,27 +378,23 @@ export default function MovieSidebar() {
         >
           <div className='form'>
             <div className='form__group'>
-              <label htmlFor='min-rating'>Min</label>
-              <input
-                className='fixed-size'
-                type='number'
-                value={state.rating.min_rating}
-                onChange={handleMinRating}
+              <NumberInput
+                init={state.rating.min_rating}
+                min={0}
+                max={9}
                 name='min-rating'
-                min='0'
-                max='9'
+                label='Min'
+                func={handleMinRating}
               />
             </div>
             <div className='form__group'>
-              <label htmlFor='max-rating'>Max</label>
-              <input
-                className='fixed-size'
-                type='number'
-                value={state.rating.max_rating}
-                onChange={handleMaxRating}
+              <NumberInput
+                init={state.rating.max_rating}
+                min={1}
+                max={10}
                 name='max-rating'
-                min='1'
-                max='10'
+                label='Max'
+                func={handleMaxRating}
               />
             </div>
           </div>

@@ -59,16 +59,22 @@ export default function MoviesPopular() {
     });
   }, []);
 
-  useEffect(() => {
-    refetch();
-  }, [
-    state.sort.value,
-    state.adult.active,
-    state.genres.types,
-    state.dates.date_to,
-    state.dates.date_from,
-    state.rating.min_rating,
-  ]);
+  // useEffect(() => {
+  //   const keyDelay = setTimeout(() => {
+  //     console.log('Refetching data');
+  //     refetch();
+  //   }, 9000);
+  //   return () => clearTimeout(keyDelay);
+  // }, [
+  //   state.sort.value,
+  //   state.adult.active,
+  //   state.genres.types,
+  //   state.dates.date_to,
+  //   state.dates.date_from,
+  //   state.vote_count.count,
+  //   state.rating.min_rating,
+  //   state.rating.max_rating,
+  // ]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;
