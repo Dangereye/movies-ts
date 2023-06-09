@@ -237,12 +237,12 @@ export default function MovieSidebar() {
     });
   };
 
-  const handleVoteCount = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVoteCount = (value: number) => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
         ...state,
-        vote_count: { ...state.vote_count, count: +e.target.value },
+        vote_count: { ...state.vote_count, count: value },
       },
     });
   };
@@ -400,18 +400,21 @@ export default function MovieSidebar() {
           </div>
         </Section>
         <Section
-          heading='minimum votes'
+          heading='Votes'
           expanded={state.vote_count.expanded}
           dispatch={handleToggleMinimumVotes}
         >
           <form className='form'>
-            <SmallText text='Increase to reduce junk data' />
-            <input
-              type='number'
-              name='vote-count'
-              value={state.vote_count.count}
-              onChange={handleVoteCount}
-            />
+            <div className='form__group'>
+              <label htmlFor='min-votes'>Min</label>
+              <NumberInput
+                init={state.vote_count.count}
+                min={0}
+                max={500}
+                name='min-votes'
+                func={handleVoteCount}
+              />
+            </div>
           </form>
         </Section>
         <Section
