@@ -378,22 +378,22 @@ export default function MovieSidebar() {
         >
           <div className='form'>
             <div className='form__group'>
+              <label htmlFor='min-rating'>Min</label>
               <NumberInput
                 init={state.rating.min_rating}
                 min={0}
                 max={9}
                 name='min-rating'
-                label='Min'
                 func={handleMinRating}
               />
             </div>
             <div className='form__group'>
+              <label htmlFor='max-rating'>Max</label>
               <NumberInput
                 init={state.rating.max_rating}
                 min={1}
                 max={10}
                 name='max-rating'
-                label='Max'
                 func={handleMaxRating}
               />
             </div>

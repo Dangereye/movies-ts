@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 type NumberInputProps = {
   init: number;
   name: string;
-  label: string;
   min: number;
   max: number;
   func: (value: number) => void;
@@ -12,7 +11,6 @@ type NumberInputProps = {
 export default function NumberInput({
   init,
   name,
-  label,
   min,
   max,
   func,
@@ -39,17 +37,14 @@ export default function NumberInput({
   }, [state]);
 
   return (
-    <>
-      <label htmlFor={name}>{label}</label>
-      <input
-        className='form__input fixed-size'
-        type='number'
-        name={name}
-        min={min}
-        max={max}
-        value={state}
-        onChange={(e) => handleOnChange(+e.target.value)}
-      />
-    </>
+    <input
+      className='form__input fixed-size'
+      type='number'
+      name={name}
+      min={min}
+      max={max}
+      value={state}
+      onChange={(e) => handleOnChange(+e.target.value)}
+    />
   );
 }
