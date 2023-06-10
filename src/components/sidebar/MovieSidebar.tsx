@@ -14,8 +14,7 @@ import CustomSelectOption from '../custom_select_input/CustomSelectOption';
 
 // Data
 import { movieSortOptions } from '../../data/movieSortOptions';
-import SmallText from '../typography/SmallText';
-import NumberInput from '../forms/input/NumberInput';
+import NumberInput from '../forms/inputs/NumberInput';
 
 export default function MovieSidebar() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -51,6 +50,7 @@ export default function MovieSidebar() {
           ...state.sort,
           name: e.currentTarget.innerText,
           value: e.currentTarget.dataset.value,
+          inputExpanded: false,
         },
       },
     });

@@ -43,44 +43,6 @@
     }
   }
 
-  .form {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    label {
-      font-size: $base-font-size;
-    }
-
-    &__group {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .fixed-size {
-        width: 100%;
-        max-width: 173px;
-      }
-    }
-
-    input[type='date'],
-    input[type='number'],
-    .select-menu {
-      padding: 1rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.6rem;
-
-      &:focus {
-        border: 2px solid $accent-color;
-      }
-    }
-
-    .select-menu__option {
-      margin-bottom: 1rem;
-    }
-  }
-
   .buttons {
     display: flex;
     flex-direction: column;

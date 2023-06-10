@@ -43,7 +43,6 @@ export default function MoviesPopular() {
     data: movieQueries,
     isError,
     isLoading,
-    refetch,
     hasNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
@@ -58,23 +57,6 @@ export default function MoviesPopular() {
       payload: { ...state },
     });
   }, []);
-
-  // useEffect(() => {
-  //   const keyDelay = setTimeout(() => {
-  //     console.log('Refetching data');
-  //     refetch();
-  //   }, 9000);
-  //   return () => clearTimeout(keyDelay);
-  // }, [
-  //   state.sort.value,
-  //   state.adult.active,
-  //   state.genres.types,
-  //   state.dates.date_to,
-  //   state.dates.date_from,
-  //   state.vote_count.count,
-  //   state.rating.min_rating,
-  //   state.rating.max_rating,
-  // ]);
 
   if (isLoading) {
     return <H2 heading='Loading' />;
