@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 type NumberInputProps = {
   init: number;
-  name: string;
+  id: string;
   min: number;
   max: number;
   func: (value: number) => void;
@@ -10,7 +10,7 @@ type NumberInputProps = {
 
 export default function NumberInput({
   init,
-  name,
+  id,
   min,
   max,
   func,
@@ -38,9 +38,9 @@ export default function NumberInput({
 
   return (
     <input
+      id={id}
       className='form__input fixed-size'
       type='number'
-      name={name}
       min={min}
       max={max}
       value={state}

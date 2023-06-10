@@ -355,7 +355,7 @@ export default function MovieSidebar() {
               <label htmlFor='date-from'>From</label>
               <input
                 type='date'
-                name='date-from'
+                id='date-from'
                 value={state.dates.date_from}
                 onChange={handleDateFrom}
               />
@@ -364,7 +364,7 @@ export default function MovieSidebar() {
               <label htmlFor='date-to'>To</label>
               <input
                 type='date'
-                name='date-to'
+                id='date-to'
                 value={state.dates.date_to}
                 onChange={handleDateTo}
               />
@@ -383,7 +383,7 @@ export default function MovieSidebar() {
                 init={state.rating.min_rating}
                 min={0}
                 max={9}
-                name='min-rating'
+                id='min-rating'
                 func={handleMinRating}
               />
             </div>
@@ -393,7 +393,7 @@ export default function MovieSidebar() {
                 init={state.rating.max_rating}
                 min={1}
                 max={10}
-                name='max-rating'
+                id='max-rating'
                 func={handleMaxRating}
               />
             </div>
@@ -411,7 +411,7 @@ export default function MovieSidebar() {
                 init={state.vote_count.count}
                 min={0}
                 max={500}
-                name='min-votes'
+                id='min-votes'
                 func={handleVoteCount}
               />
             </div>
