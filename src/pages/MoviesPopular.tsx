@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useRef, useEffect, useContext } from 'react';
 
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
@@ -36,6 +36,7 @@ import { formatDate } from '../utilities/formatDate';
 export default function MoviesPopular() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
+  const initial = useRef(false);
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -52,11 +53,14 @@ export default function MoviesPopular() {
   );
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_DEFAULT_POPULAR',
-      payload: { ...state },
-    });
-  }, []);
+    if (!initial.current) {
+      initial.current = true;
+      dispatch({
+        type: 'SET_DEFAULT_POPULAR',
+        payload: { ...state },
+      });
+    }
+  });
 
   if (isLoading) {
     return <H2 heading='Loading' />;

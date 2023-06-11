@@ -56,12 +56,10 @@ export default function movieFiltersReducer(
       return {
         ...state,
         sort: {
-          expanded: state.sort.expanded,
-          inputExpanded: state.sort.inputExpanded,
+          ...state.sort,
           name: 'popularity descending',
           value: 'popularity.desc',
         },
-        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
         rating: { ...state.rating, min_rating: 0, max_rating: 10 },
@@ -79,12 +77,10 @@ export default function movieFiltersReducer(
       return {
         ...state,
         sort: {
-          expanded: state.sort.expanded,
-          inputExpanded: state.sort.inputExpanded,
+          ...state.sort,
           name: 'popularity descending',
           value: 'popularity.desc',
         },
-        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [2, 3] },
         dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: { ...state.vote_count, count: 0 },
@@ -95,12 +91,10 @@ export default function movieFiltersReducer(
       return {
         ...state,
         sort: {
-          expanded: state.sort.expanded,
-          inputExpanded: state.sort.inputExpanded,
+          ...state.sort,
           name: 'Rating descending',
           value: 'vote_average.desc',
         },
-        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: { ...state.vote_count, count: 300 },
@@ -117,12 +111,10 @@ export default function movieFiltersReducer(
       return {
         ...state,
         sort: {
-          expanded: state.sort.expanded,
-          inputExpanded: state.sort.inputExpanded,
+          ...state.sort,
           name: 'popularity descending',
           value: 'popularity.desc',
         },
-        genres: { expanded: state.genres.expanded, types: state.genres.types },
         release_types: { ...state.release_types, types: [2, 3] },
         dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: { ...state.vote_count, count: 0 },
