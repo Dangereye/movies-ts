@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 // Contexts
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
@@ -36,6 +36,7 @@ import BodyText from '../components/typography/BodyText';
 export default function MoviesNowPlaying() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
+  const initial = useRef(false);
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -43,7 +44,6 @@ export default function MoviesNowPlaying() {
     data: movieQueries,
     isError,
     isLoading,
-    refetch,
     hasNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
@@ -53,15 +53,14 @@ export default function MoviesNowPlaying() {
   );
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_DEFAULT_NOW_PLAYING',
-      payload: { ...state },
-    });
-  }, []);
-
-  useEffect(() => {
-    refetch();
-  }, [state]);
+    if (!initial.current) {
+      initial.current = true;
+      dispatch({
+        type: 'SET_DEFAULT_NOW_PLAYING',
+        payload: { ...state },
+      });
+    }
+  });
 
   if (isLoading) {
     return <H2 heading='Loading' />;
