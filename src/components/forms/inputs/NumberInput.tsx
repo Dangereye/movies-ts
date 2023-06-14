@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type NumberInputProps = {
   init: number;
@@ -16,25 +16,33 @@ export default function NumberInput({
   func,
 }: NumberInputProps) {
   const [state, setState] = useState<number>(init);
+  const hasChanged = useRef(false);
 
   const handleOnChange = (num: number) => {
+    hasChanged.current = true;
     setState(num);
   };
 
   useEffect(() => {
-    const globalState = window.setTimeout(() => {
-      if (state > max) {
-        setState(max);
-      }
-      if (state < min) {
-        setState(0);
-      }
-      func(state);
-    }, 500);
-    return () => {
-      window.clearTimeout(globalState);
-    };
-  }, [state]);
+    if (hasChanged.current) {
+      const globalState = window.setTimeout(() => {
+        if (state > max) {
+          setState(max);
+        }
+        if (state < min) {
+          setState(0);
+        }
+        func(state);
+        hasChanged.current = false;
+      }, 500);
+
+      return () => {
+        window.clearTimeout(globalState);
+      };
+    } else {
+      setState(init);
+    }
+  });
 
   return (
     <input
