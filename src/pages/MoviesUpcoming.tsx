@@ -1,13 +1,20 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
+
+// Context
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
-import useAppend from '../hooks/useAppendMovie';
+
+// Interfaces
 import { IPage } from '../interfaces/IPage';
 import { IMovieMin } from '../interfaces/IMovieMin';
+
+// Hooks
+import useAppend from '../hooks/useAppendMovie';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
+
+// Components
 import H2 from '../components/typography/H2';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Navigation from '../components/navigation/Navigation';
-import { moviePages } from '../data/moviePages';
 import Header from '../components/header/Header';
 import Article from '../components/articles/Article';
 import Container from '../components/container/Container';
@@ -19,11 +26,17 @@ import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
+
+// Data
+import { moviePages } from '../data/moviePages';
+
+// Utilities
 import { formatDate } from '../utilities/formatDate';
 
 export default function MoviesUpcoming() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
+  const initial = useRef(false);
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -31,7 +44,6 @@ export default function MoviesUpcoming() {
     data: movieQueries,
     isError,
     isLoading,
-    refetch,
     hasNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
@@ -41,15 +53,14 @@ export default function MoviesUpcoming() {
   );
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_DEFAULT_UPCOMING',
-      payload: { ...state },
-    });
-  }, []);
-
-  useEffect(() => {
-    refetch();
-  }, [state]);
+    if (!initial.current) {
+      initial.current = true;
+      dispatch({
+        type: 'SET_DEFAULT_UPCOMING',
+        payload: { ...state },
+      });
+    }
+  });
 
   if (isLoading) {
     return <H2 heading='Loading' />;
