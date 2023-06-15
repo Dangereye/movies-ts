@@ -11,10 +11,11 @@ import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
 import CustomSelectInput from '../custom_select_input/CustomSelectInput';
 import CustomSelectOption from '../custom_select_input/CustomSelectOption';
+import NumberInput from '../forms/inputs/NumberInput';
 
 // Data
 import { movieSortOptions } from '../../data/movieSortOptions';
-import NumberInput from '../forms/inputs/NumberInput';
+import { movieReleaseTypes } from '../../data/movieReleaseTypes';
 
 export default function MovieSidebar() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -313,36 +314,14 @@ export default function MovieSidebar() {
               name='All'
               onClick={clearTypes}
             />
-            <ToggleButton
-              active={state.release_types.types.includes(1)}
-              name='Premiere'
-              onClick={() => updateTypes(1)}
-            />
-            <ToggleButton
-              active={state.release_types.types.includes(2)}
-              name='Theatrical (limited)'
-              onClick={() => updateTypes(2)}
-            />
-            <ToggleButton
-              active={state.release_types.types.includes(3)}
-              name='Theatrical'
-              onClick={() => updateTypes(3)}
-            />
-            <ToggleButton
-              active={state.release_types.types.includes(4)}
-              name='Digital'
-              onClick={() => updateTypes(4)}
-            />
-            <ToggleButton
-              active={state.release_types.types.includes(5)}
-              name='Physical'
-              onClick={() => updateTypes(5)}
-            />
-            <ToggleButton
-              active={state.release_types.types.includes(6)}
-              name='TV'
-              onClick={() => updateTypes(6)}
-            />
+            {movieReleaseTypes.map((type) => (
+              <ToggleButton
+                key={`release-type-${type.name}`}
+                active={state.release_types.types.includes(type.value)}
+                name={type.name}
+                onClick={() => updateTypes(type.value)}
+              />
+            ))}
           </div>
         </Section>
         <Section
