@@ -42,7 +42,7 @@ export default function NumberInput({
     } else {
       setState(init);
     }
-  });
+  }, [state, max, min, func, init]);
 
   return (
     <input
