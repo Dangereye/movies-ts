@@ -17,10 +17,14 @@ import NumberInput from '../forms/inputs/NumberInput';
 // Data
 import { movieSortOptions } from '../../data/movieSortOptions';
 import { movieReleaseTypes } from '../../data/movieReleaseTypes';
+import useCreateCountries from '../../hooks/UseCreateCountries';
+import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
   const movieGenres = useCreateMovieGenres();
+  const countries = useCreateCountries();
+  const certificationList = useCreateMovieCertifications();
   const {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -31,6 +35,9 @@ export default function MovieSidebar() {
     handleToggleGenres,
     clearGenres,
     updateGenres,
+    handleToggleCertificates,
+    clearCertificates,
+    updateCertificates,
     handleToggleReleaseTypes,
     clearTypes,
     updateTypes,
@@ -42,7 +49,7 @@ export default function MovieSidebar() {
     handleVoteCount,
     handleAdult,
   } = useMovieFilterFuntions();
-
+  console.log(certificationList);
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
@@ -84,6 +91,27 @@ export default function MovieSidebar() {
                 active={state.genres.types.includes(genre.id)}
                 name={genre.name}
                 onClick={() => updateGenres(genre.id)}
+              />
+            ))}
+          </div>
+        </Section>
+        <Section
+          heading='certification'
+          expanded={state.certifications.expanded}
+          dispatch={handleToggleCertificates}
+        >
+          <div className='buttons'>
+            <ToggleButton
+              active={state.certifications.certs.length === 0}
+              name='All'
+              onClick={clearGenres}
+            />
+            {certificationList.map((cert) => (
+              <ToggleButton
+                key={cert}
+                active={state.certifications.certs.includes(cert)}
+                name={cert}
+                onClick={() => updateCertificates(cert)}
               />
             ))}
           </div>

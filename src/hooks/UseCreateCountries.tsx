@@ -16,5 +16,5 @@ export default function useCreateCountries() {
     return [];
   }
 
-  return { countries };
+  return countries;
 }

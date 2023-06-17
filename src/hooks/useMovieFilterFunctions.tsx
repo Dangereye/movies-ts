@@ -119,6 +119,54 @@ export default function useMovieFilterFuntions() {
       });
     }
   };
+  const handleToggleCertificates = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        certifications: {
+          ...state.certifications,
+          expanded: !state.certifications.expanded,
+        },
+      },
+    });
+  };
+
+  const clearCertificates = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        certifications: { ...state.certifications, certs: [] },
+      },
+    });
+  };
+
+  const updateCertificates = (value: string) => {
+    if (state?.certifications?.certs.includes(value)) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          certifications: {
+            ...state.certifications,
+            certs: state.certifications.certs.filter((c) => c !== value),
+          },
+        },
+      });
+    } else {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          certifications: {
+            ...state.certifications,
+            certs: [...state.certifications.certs, value],
+          },
+        },
+      });
+    }
+  };
 
   const handleToggleReleaseTypes = () => {
     dispatch({
@@ -251,6 +299,9 @@ export default function useMovieFilterFuntions() {
     handleToggleGenres,
     clearGenres,
     updateGenres,
+    handleToggleCertificates,
+    clearCertificates,
+    updateCertificates,
     handleToggleReleaseTypes,
     clearTypes,
     updateTypes,

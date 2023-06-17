@@ -15,6 +15,7 @@ export type stateType = {
   release_types: { expanded: boolean; types: number[] };
   rating: { expanded: boolean; min_rating: number; max_rating: number };
   vote_count: { expanded: boolean; count: number };
+  certifications: { expanded: boolean; certs: string[] };
 };
 
 export const initialState: stateType = {
@@ -34,6 +35,7 @@ export const initialState: stateType = {
   release_types: { expanded: false, types: [] },
   rating: { expanded: false, min_rating: 0, max_rating: 10 },
   vote_count: { expanded: false, count: 0 },
+  certifications: { expanded: false, certs: [] },
 };
 
 export type ActionType = {
