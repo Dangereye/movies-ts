@@ -103,16 +103,18 @@ export default function MovieSidebar() {
             <ToggleButton
               active={state.certifications.certs.length === 0}
               name='All'
-              onClick={clearGenres}
+              onClick={clearCertificates}
             />
-            {certificationList.map((cert) => (
-              <ToggleButton
-                key={cert}
-                active={state.certifications.certs.includes(cert)}
-                name={cert}
-                onClick={() => updateCertificates(cert)}
-              />
-            ))}
+            {certificationList
+              .sort((a, b) => a.order - b.order)
+              .map((c) => (
+                <ToggleButton
+                  key={c.name}
+                  active={state.certifications.certs.includes(c.name)}
+                  name={c.name}
+                  onClick={() => updateCertificates(c.name)}
+                />
+              ))}
           </div>
         </Section>
         <Section
