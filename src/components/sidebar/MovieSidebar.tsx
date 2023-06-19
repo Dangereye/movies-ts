@@ -49,7 +49,6 @@ export default function MovieSidebar() {
     handleVoteCount,
     handleAdult,
   } = useMovieFilterFuntions();
-  console.log(certificationList);
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>

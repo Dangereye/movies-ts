@@ -1,5 +1,6 @@
-export interface ICertification {    
+export interface ICertification {
     certification:string; 
     meaning:string;
-    order:number
+    order:number   
+    
 }
