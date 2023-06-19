@@ -7,7 +7,9 @@ export default function useAppend() {
   const { state } = useContext(MovieFiltersContext);
   const append = `&sort_by=${
     state.sort.value
-  }&region=GB&certification_country=GB&certification=12a&vote_average.lte=${
+  }&region=GB&certification_country=GB&certification=${state.certifications.certs
+    .toString()
+    .replaceAll(',', '|')}&vote_average.lte=${
     state.rating.max_rating
   }&vote_average.gte=${state.rating.min_rating}&include_adult=${
     state.adult.active
