@@ -70,6 +70,33 @@ export default function MoviesPopular() {
     return <H2 heading='Error' />;
   }
 
+  if (movieQueries.pages[0].total_results === 0) {
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={moviePages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Header variant='header__min' title='Popular movies' />
+        <Article name='popular-movies'>
+          <Container>
+            <Layout variant='grid grid--sidebar'>
+              <Sidebar />
+              <Main>
+                <BodyText text='No items were found that match your query.' />
+              </Main>
+            </Layout>
+          </Container>
+        </Article>
+      </>
+    );
+  }
+
   return (
     <>
       <SubNavbar>
