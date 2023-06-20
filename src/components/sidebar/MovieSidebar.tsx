@@ -48,6 +48,7 @@ export default function MovieSidebar() {
     handleToggleMinimumVotes,
     handleVoteCount,
     handleAdult,
+    preventDefault,
   } = useMovieFilterFuntions();
   return (
     <aside className='sidebar'>
@@ -143,7 +144,7 @@ export default function MovieSidebar() {
           expanded={state.dates.expanded}
           dispatch={handleToggleDates}
         >
-          <form className='form'>
+          <form className='form' onSubmit={preventDefault}>
             <div className='form__group'>
               <label htmlFor='date-from'>From</label>
               <input
@@ -169,7 +170,7 @@ export default function MovieSidebar() {
           expanded={state.rating.expanded}
           dispatch={handleToggleRating}
         >
-          <div className='form'>
+          <form className='form' onSubmit={preventDefault}>
             <div className='form__group'>
               <label htmlFor='min-rating'>Min</label>
               <NumberInput
@@ -190,14 +191,14 @@ export default function MovieSidebar() {
                 func={handleMaxRating}
               />
             </div>
-          </div>
+          </form>
         </Section>
         <Section
           heading='Votes'
           expanded={state.vote_count.expanded}
           dispatch={handleToggleMinimumVotes}
         >
-          <form className='form'>
+          <form className='form' onSubmit={preventDefault}>
             <div className='form__group'>
               <label htmlFor='min-votes'>Min</label>
               <NumberInput

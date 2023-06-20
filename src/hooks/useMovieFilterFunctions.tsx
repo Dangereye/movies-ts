@@ -289,6 +289,11 @@ export default function useMovieFilterFuntions() {
       },
     });
   };
+
+  const preventDefault = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -312,5 +317,6 @@ export default function useMovieFilterFuntions() {
     handleToggleMinimumVotes,
     handleVoteCount,
     handleAdult,
+    preventDefault,
   };
 }
