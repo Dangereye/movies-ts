@@ -62,10 +62,12 @@ export default function movieFiltersReducer(
           name: 'popularity descending',
           value: 'popularity.desc',
         },
+        genres: { ...state.genres, types: [] },
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
         rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         vote_count: { ...state.vote_count, count: 0 },
+        certifications: { ...state.certifications, certs: [] },
       };
     }
 
@@ -83,23 +85,11 @@ export default function movieFiltersReducer(
           name: 'popularity descending',
           value: 'popularity.desc',
         },
+        genres: { ...state.genres, types: [] },
         release_types: { ...state.release_types, types: [2, 3] },
         dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: { ...state.vote_count, count: 0 },
-      };
-    }
-
-    case 'SET_DEFAULT_TOP_RATED': {
-      return {
-        ...state,
-        sort: {
-          ...state.sort,
-          name: 'Rating descending',
-          value: 'vote_average.desc',
-        },
-        release_types: { ...state.release_types, types: [] },
-        dates: { ...state.dates, date_from: '', date_to: '' },
-        vote_count: { ...state.vote_count, count: 300 },
+        certifications: { ...state.certifications, certs: [] },
       };
     }
 
@@ -117,9 +107,27 @@ export default function movieFiltersReducer(
           name: 'popularity descending',
           value: 'popularity.desc',
         },
+        genres: { ...state.genres, types: [] },
         release_types: { ...state.release_types, types: [2, 3] },
         dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: { ...state.vote_count, count: 0 },
+        certifications: { ...state.certifications, certs: [] },
+      };
+    }
+
+    case 'SET_DEFAULT_TOP_RATED': {
+      return {
+        ...state,
+        sort: {
+          ...state.sort,
+          name: 'Rating descending',
+          value: 'vote_average.desc',
+        },
+        genres: { ...state.genres, types: [] },
+        release_types: { ...state.release_types, types: [] },
+        dates: { ...state.dates, date_from: '', date_to: '' },
+        vote_count: { ...state.vote_count, count: 300 },
+        certifications: { ...state.certifications, certs: [] },
       };
     }
 
