@@ -19,11 +19,13 @@ import { movieSortOptions } from '../../data/movieSortOptions';
 import { movieReleaseTypes } from '../../data/movieReleaseTypes';
 import useCreateCountries from '../../hooks/UseCreateCountries';
 import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
+import useCreateMovieProviders from '../../hooks/useCreateMovieProviders';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
   const movieGenres = useCreateMovieGenres();
   const countries = useCreateCountries();
+  const movieProviders = useCreateMovieProviders();
   const certificationList = useCreateMovieCertifications();
   const {
     handleToggleSortSection,
@@ -96,7 +98,7 @@ export default function MovieSidebar() {
           </div>
         </Section>
         <Section
-          heading='certification'
+          heading='Certifications'
           expanded={state.certifications.expanded}
           dispatch={handleToggleCertificates}
         >
@@ -119,7 +121,7 @@ export default function MovieSidebar() {
           </div>
         </Section>
         <Section
-          heading='release types'
+          heading='Release types'
           expanded={state.release_types.expanded}
           dispatch={handleToggleReleaseTypes}
         >
@@ -140,7 +142,7 @@ export default function MovieSidebar() {
           </div>
         </Section>
         <Section
-          heading='release dates'
+          heading='Release dates'
           expanded={state.dates.expanded}
           dispatch={handleToggleDates}
         >
@@ -166,7 +168,7 @@ export default function MovieSidebar() {
           </form>
         </Section>
         <Section
-          heading='rating'
+          heading='User Ratings'
           expanded={state.rating.expanded}
           dispatch={handleToggleRating}
         >
@@ -194,7 +196,7 @@ export default function MovieSidebar() {
           </form>
         </Section>
         <Section
-          heading='Votes'
+          heading='User Votes'
           expanded={state.vote_count.expanded}
           dispatch={handleToggleMinimumVotes}
         >
