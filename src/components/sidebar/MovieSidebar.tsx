@@ -96,6 +96,7 @@ export default function MovieSidebar() {
           <div className='providers'>
             {movieProviders.map((mp) => (
               <ProvidersIcon
+                key={mp.provider_id}
                 id={mp.provider_id}
                 active={state.providers.ids.includes(mp.provider_id)}
                 name={mp.provider_name}

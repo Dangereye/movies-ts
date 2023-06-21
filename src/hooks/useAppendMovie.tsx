@@ -5,12 +5,18 @@ import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 export default function useAppend() {
   const { state } = useContext(MovieFiltersContext);
-  const append = `&sort_by=${
-    state.sort.value
-  }&region=GB&certification_country=GB&certification=${state.certifications.certs
-    .toString()
-    .replaceAll(',', '|')}&vote_average.lte=${
-    state.rating.max_rating
+  const append = `&sort_by=${state.sort.value}${
+    state.certifications.certs.length
+      ? `&region=GB&certification_country=GB&certification=${state.certifications.certs
+          .toString()
+          .replaceAll(',', '|')}`
+      : ''
+  }&vote_average.lte=${state.rating.max_rating}${
+    state.providers.ids.length
+      ? `&watch_region=GB&with_watch_providers=${state.providers.ids
+          .toString()
+          .replaceAll(',', '|')}`
+      : ''
   }&vote_average.gte=${state.rating.min_rating}&include_adult=${
     state.adult.active
   }${
