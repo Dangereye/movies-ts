@@ -5,6 +5,7 @@ export type stateType = {
     name: string;
     value: string | undefined;
   };
+  providers: { expanded: boolean; ids: number[] };
   adult: { expanded: boolean; active: boolean };
   dates: {
     expanded: boolean;
@@ -25,6 +26,7 @@ export const initialState: stateType = {
     name: 'popularity descending',
     value: 'popularity.desc',
   },
+  providers: { expanded: false, ids: [] },
   adult: { expanded: false, active: false },
   dates: {
     expanded: false,

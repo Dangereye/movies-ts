@@ -76,6 +76,9 @@ export default function MovieSidebar() {
             ))}
           </CustomSelectInput>
         </Section>
+        <Section heading='Providers' expanded={true} dispatch={() => {}}>
+          a
+        </Section>
         <Section
           heading='Genres'
           expanded={state.genres.expanded}
