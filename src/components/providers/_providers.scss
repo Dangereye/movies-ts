@@ -1,0 +1,43 @@
+.providers {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($accent-color, 0.8);
+    display: none;
+    place-content: center;
+    color: #fff;
+    font-size: 2.4rem;
+    z-index: 2;
+
+    &.active {
+      display: grid;
+    }
+  }
+  &__icon {
+    width: 57.5px;
+    height: 57.5px;
+    position: relative;
+
+    .image-component {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

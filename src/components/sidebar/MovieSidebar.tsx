@@ -20,6 +20,8 @@ import { movieReleaseTypes } from '../../data/movieReleaseTypes';
 import useCreateCountries from '../../hooks/UseCreateCountries';
 import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
 import useCreateMovieProviders from '../../hooks/useCreateMovieProviders';
+import ImageComponent from '../image/Image';
+import ProvidersIcon from '../providers/ProvidersIcon';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
@@ -31,6 +33,9 @@ export default function MovieSidebar() {
     handleToggleSortSection,
     handleToggleSortInput,
     handleSort,
+    handleToggleProviders,
+    clearProviders,
+    updateProviders,
     handleToggleDates,
     handleDateFrom,
     handleDateTo,
@@ -76,8 +81,29 @@ export default function MovieSidebar() {
             ))}
           </CustomSelectInput>
         </Section>
-        <Section heading='Providers' expanded={true} dispatch={() => {}}>
-          a
+        <Section
+          heading='Providers'
+          expanded={state.providers.expanded}
+          dispatch={handleToggleProviders}
+        >
+          <div className='buttons'>
+            <ToggleButton
+              active={state.providers.ids.length === 0}
+              name='All'
+              onClick={clearProviders}
+            />
+          </div>
+          <div className='providers'>
+            {movieProviders.map((mp) => (
+              <ProvidersIcon
+                id={mp.provider_id}
+                active={state.providers.ids.includes(mp.provider_id)}
+                name={mp.provider_name}
+                logo={mp.logo_path}
+                onClick={() => updateProviders(mp.provider_id)}
+              />
+            ))}
+          </div>
         </Section>
         <Section
           heading='Genres'

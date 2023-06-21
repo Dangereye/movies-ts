@@ -41,6 +41,49 @@ export default function useMovieFilterFuntions() {
     });
   };
 
+  const handleToggleProviders = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        providers: { ...state.providers, expanded: !state.providers.expanded },
+      },
+    });
+  };
+
+  const clearProviders = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, providers: { ...state.providers, ids: [] } },
+    });
+  };
+
+  const updateProviders = (id: number) => {
+    if (state?.providers?.ids.includes(id)) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          providers: {
+            ...state.providers,
+            ids: state.providers.ids.filter((p) => p !== id),
+          },
+        },
+      });
+    } else {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          providers: {
+            ...state.providers,
+            ids: [...state.providers.ids, id],
+          },
+        },
+      });
+    }
+  };
+
   const handleToggleDates = () => {
     dispatch({
       type: 'SET_FILTERS',
@@ -119,6 +162,7 @@ export default function useMovieFilterFuntions() {
       });
     }
   };
+
   const handleToggleCertificates = () => {
     dispatch({
       type: 'SET_FILTERS',
@@ -298,6 +342,9 @@ export default function useMovieFilterFuntions() {
     handleToggleSortSection,
     handleToggleSortInput,
     handleSort,
+    handleToggleProviders,
+    clearProviders,
+    updateProviders,
     handleToggleDates,
     handleDateFrom,
     handleDateTo,

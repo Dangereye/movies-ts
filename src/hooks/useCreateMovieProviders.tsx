@@ -14,7 +14,8 @@ export default function useCreateMovieProviders() {
 
   const { data, isError, isLoading } = useMakeQuery<IMovieProviders>(
     `movie-providers-list`,
-    `watch/providers/movie`
+    `watch/providers/movie`,
+    `&watch_region=GB&language=en-GB`
   );
 
   if (isLoading) {
