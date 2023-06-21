@@ -18,12 +18,12 @@ export default function ProvidersIcon({
   onClick,
 }: ProvidersIconProps) {
   return (
-    <div className='providers__icon' onClick={onClick}>
-      <div
-        className={active ? 'providers__status active' : 'providers__status'}
-      >
-        <TiTick />
-      </div>
+    <div
+      className={active ? 'providers__icon active' : 'providers__icon'}
+      onClick={onClick}
+      data-tool-tip={name}
+    >
+      <div className='providers__status'>{<TiTick />}</div>
       <ImageComponent
         src={`https://image.tmdb.org/t/p/w500/${logo}`}
         fallback=''
