@@ -5,9 +5,9 @@ import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 export default function useAppend() {
   const { state } = useContext(MovieFiltersContext);
-  const append = `&sort_by=${state.sort.value}${
+  const append = `&region=GB&sort_by=${state.sort.value}${
     state.certifications.certs.length
-      ? `&region=GB&certification_country=GB&certification=${state.certifications.certs
+      ? `&certification_country=GB&certification=${state.certifications.certs
           .toString()
           .replaceAll(',', '|')}`
       : ''
