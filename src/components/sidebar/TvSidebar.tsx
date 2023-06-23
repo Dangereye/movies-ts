@@ -24,6 +24,9 @@ export default function TvSidebar() {
     handleToggleProviders,
     clearProviders,
     updateProviders,
+    handleToggleGenres,
+    clearGenres,
+    updateGenres,
   } = useTvFiltersFunctions();
 
   return (
@@ -75,19 +78,28 @@ export default function TvSidebar() {
             ))}
           </div>
         </Section>
-        {/* <Section heading='Genres'>
+        <Section
+          heading='Genres'
+          expanded={state.genres.expanded}
+          dispatch={handleToggleGenres}
+        >
           <div className='buttons'>
+            <ToggleButton
+              active={state.genres.types.length === 0}
+              name='All'
+              onClick={clearGenres}
+            />
             {tvGenres.map((genre) => (
               <ToggleButton
                 key={genre.id}
-                active={state.genres.includes(genre.id)}
+                active={state.genres.types.includes(genre.id)}
                 name={genre.name}
                 onClick={() => updateGenres(genre.id)}
               />
             ))}
           </div>
         </Section>
-        <Section heading='air dates'>
+        {/*<Section heading='air dates'>
           <div className='buttons'>
             <ToggleButton
               key='flatrate'

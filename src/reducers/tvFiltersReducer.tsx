@@ -9,7 +9,7 @@ export type stateType = {
   adult: boolean;
   date_from: string;
   date_to: string;
-  genres: number[];
+  genres: { expanded: boolean; types: number[] };
   release_types: string[];
   region: string;
   vote_count: number;
@@ -26,7 +26,7 @@ export const initialState: stateType = {
   adult: false,
   date_from: '',
   date_to: '',
-  genres: [],
+  genres: { expanded: false, types: [] },
   release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
   region: 'GB',
   vote_count: 0,
@@ -54,7 +54,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           value: 'popularity.desc',
         },
         providers: { ...state.providers, ids: [] },
-        genres: [],
+        genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
         date_from: '',
@@ -72,7 +72,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           value: 'popularity.desc',
         },
         providers: { ...state.providers, ids: [] },
-        genres: [],
+        genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
         date_from: date,
@@ -93,7 +93,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           value: 'popularity.desc',
         },
         providers: { ...state.providers, ids: [] },
-        genres: [],
+        genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
         date_from: from,
@@ -110,7 +110,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           value: 'vote_average.desc',
         },
         providers: { ...state.providers, ids: [] },
-        genres: [],
+        genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
         date_from: '',

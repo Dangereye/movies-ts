@@ -81,6 +81,49 @@ export default function useTvFiltersFunctions() {
       });
     }
   };
+
+  const handleToggleGenres = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        genres: { ...state.genres, expanded: !state.genres.expanded },
+      },
+    });
+  };
+
+  const clearGenres = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, genres: { ...state.genres, types: [] } },
+    });
+  };
+
+  const updateGenres = (id: number) => {
+    if (state?.genres?.types.includes(id)) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          genres: {
+            ...state.genres,
+            types: state.genres.types.filter((g) => g !== id),
+          },
+        },
+      });
+    } else {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          genres: {
+            ...state.genres,
+            types: [...state.genres.types, id],
+          },
+        },
+      });
+    }
+  };
   return {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -88,5 +131,8 @@ export default function useTvFiltersFunctions() {
     handleToggleProviders,
     clearProviders,
     updateProviders,
+    handleToggleGenres,
+    clearGenres,
+    updateGenres,
   };
 }

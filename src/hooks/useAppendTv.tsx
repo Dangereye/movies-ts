@@ -20,7 +20,7 @@ export default function useAppendTv() {
       : ''
   }${state.date_from ? `&air_date.gte=${state.date_from}` : ''}${
     state.date_to ? `&air_date.lte=${state.date_to}` : ''
-  }${state.genres.length ? `&with_genres=${state.genres}` : ''}${
+  }${state.genres.types.length ? `&with_genres=${state.genres.types}` : ''}${
     state.vote_count ? `&vote_count.gte=${state.vote_count}` : ''
   }`;
 
