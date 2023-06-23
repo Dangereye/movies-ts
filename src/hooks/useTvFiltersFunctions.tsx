@@ -210,6 +210,40 @@ export default function useTvFiltersFunctions() {
     }
   };
 
+  const handleToggleRating = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        rating: { ...state.rating, expanded: !state.rating.expanded },
+      },
+    });
+  };
+
+  const handleMinRating = (value: number) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        rating: { ...state.rating, min_rating: value },
+      },
+    });
+  };
+
+  const handleMaxRating = (value: number) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        rating: { ...state.rating, max_rating: value },
+      },
+    });
+  };
+
+  const preventDefault = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -226,5 +260,9 @@ export default function useTvFiltersFunctions() {
     handleToggleReleaseTypes,
     clearTypes,
     updateTypes,
+    handleToggleRating,
+    handleMinRating,
+    handleMaxRating,
+    preventDefault,
   };
 }

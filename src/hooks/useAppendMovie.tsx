@@ -11,14 +11,14 @@ export default function useAppend() {
           .toString()
           .replaceAll(',', '|')}`
       : ''
-  }&vote_average.lte=${state.rating.max_rating}${
+  }&vote_average.lte=${state.rating.max_rating}&vote_average.gte=${
+    state.rating.min_rating
+  }&include_adult=${state.adult.active}${
     state.providers.ids.length
       ? `&watch_region=GB&with_watch_providers=${state.providers.ids
           .toString()
           .replaceAll(',', '|')}`
       : ''
-  }&vote_average.gte=${state.rating.min_rating}&include_adult=${
-    state.adult.active
   }${
     state.release_types.types.length
       ? `&with_release_type=${state.release_types.types

@@ -14,6 +14,7 @@ export type stateType = {
   };
   genres: { expanded: boolean; types: number[] };
   release_types: { expanded: boolean; types: string[] };
+  rating: { expanded: boolean; min_rating: number; max_rating: number };
   region: string;
   vote_count: number;
 };
@@ -37,6 +38,7 @@ export const initialState: stateType = {
     expanded: false,
     types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
   },
+  rating: { expanded: false, min_rating: 0, max_rating: 10 },
   region: 'GB',
   vote_count: 0,
 };
@@ -68,6 +70,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           ...state.release_types,
           types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         },
+        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 0,
@@ -88,6 +91,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           ...state.release_types,
           types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         },
+        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: date, date_to: date },
         vote_count: 0,
@@ -111,6 +115,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           ...state.release_types,
           types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         },
+        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: 0,
@@ -130,6 +135,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           ...state.release_types,
           types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         },
+        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 100,

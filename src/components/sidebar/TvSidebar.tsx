@@ -10,6 +10,7 @@ import CustomSelectOption from '../custom_select_input/CustomSelectOption';
 import ProvidersIcon from '../providers/ProvidersIcon';
 import useCreateProviders from '../../hooks/useCreateProviders';
 import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
+import NumberInput from '../forms/inputs/NumberInput';
 
 export default function TvSidebar() {
   const { state } = useContext(TvFiltersContext);
@@ -34,6 +35,10 @@ export default function TvSidebar() {
     handleToggleReleaseTypes,
     clearTypes,
     updateTypes,
+    handleToggleRating,
+    handleMinRating,
+    handleMaxRating,
+    preventDefault,
   } = useTvFiltersFunctions();
 
   return (
@@ -149,6 +154,34 @@ export default function TvSidebar() {
                 name='date-to'
                 value={state.dates.date_to}
                 onChange={handleDateTo}
+              />
+            </div>
+          </form>
+        </Section>
+        <Section
+          heading='User Ratings'
+          expanded={state.rating.expanded}
+          dispatch={handleToggleRating}
+        >
+          <form className='form' onSubmit={preventDefault}>
+            <div className='form__group'>
+              <label htmlFor='min-rating'>Min</label>
+              <NumberInput
+                init={state.rating.min_rating}
+                min={0}
+                max={9}
+                id='min-rating'
+                func={handleMinRating}
+              />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='max-rating'>Max</label>
+              <NumberInput
+                init={state.rating.max_rating}
+                min={1}
+                max={10}
+                id='max-rating'
+                func={handleMaxRating}
               />
             </div>
           </form>

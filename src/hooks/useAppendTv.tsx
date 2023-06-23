@@ -20,9 +20,11 @@ export default function useAppendTv() {
       : ''
   }${state.dates.date_from ? `&air_date.gte=${state.dates.date_from}` : ''}${
     state.dates.date_to ? `&air_date.lte=${state.dates.date_to}` : ''
-  }${state.genres.types.length ? `&with_genres=${state.genres.types}` : ''}${
-    state.vote_count ? `&vote_count.gte=${state.vote_count}` : ''
-  }`;
+  }${
+    state.genres.types.length ? `&with_genres=${state.genres.types}` : ''
+  }&vote_average.lte=${state.rating.max_rating}&vote_average.gte=${
+    state.rating.min_rating
+  }${state.vote_count ? `&vote_count.gte=${state.vote_count}` : ''}`;
 
   return { append };
 }
