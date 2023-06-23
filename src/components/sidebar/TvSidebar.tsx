@@ -206,16 +206,6 @@ export default function TvSidebar() {
             </div>
           </form>
         </Section>
-
-        {/*<Section heading='Adult content'>
-          <div className='buttons'>
-            <ToggleButton
-              active={state.adult}
-              name={state.adult ? 'Visible' : 'Hidden'}
-              onClick={handleAdult}
-            />
-          </div>
-        </Section> */}
       </div>
     </aside>
   );

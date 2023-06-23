@@ -12,7 +12,7 @@ export default function useAppendTv() {
           .toString()
           .replaceAll(',', '|')}`
       : ''
-  }&include_adult=${state.adult}${
+  }${
     state.release_types.types.length
       ? `&with_watch_monetization_types=${state.release_types.types
           .toString()

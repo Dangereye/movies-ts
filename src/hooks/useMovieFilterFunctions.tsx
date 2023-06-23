@@ -261,16 +261,6 @@ export default function useMovieFilterFuntions() {
     }
   };
 
-  const handleToggleAdultSection = () => {
-    dispatch({
-      type: 'SET_FILTERS',
-      payload: {
-        ...state,
-        adult: { ...state.adult, expanded: !state.adult.expanded },
-      },
-    });
-  };
-
   const handleToggleRating = () => {
     dispatch({
       type: 'SET_FILTERS',
@@ -320,6 +310,16 @@ export default function useMovieFilterFuntions() {
       payload: {
         ...state,
         vote_count: { ...state.vote_count, count: value },
+      },
+    });
+  };
+
+  const handleToggleAdultSection = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        adult: { ...state.adult, expanded: !state.adult.expanded },
       },
     });
   };

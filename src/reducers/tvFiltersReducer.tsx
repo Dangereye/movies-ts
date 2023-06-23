@@ -6,7 +6,6 @@ export type stateType = {
     value: string | undefined;
   };
   providers: { expanded: boolean; ids: number[] };
-  adult: boolean;
   dates: {
     expanded: boolean;
     date_from: string;
@@ -27,7 +26,6 @@ export const initialState: stateType = {
     value: 'popularity.desc',
   },
   providers: { expanded: false, ids: [] },
-  adult: false,
   dates: {
     expanded: false,
     date_to: '',
