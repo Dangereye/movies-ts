@@ -6,6 +6,9 @@ import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
 // Hooks
 import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
 import useMovieFilterFuntions from '../../hooks/useMovieFilterFunctions';
+import useCreateCountries from '../../hooks/UseCreateCountries';
+import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
+import useCreateMovieProviders from '../../hooks/useCreateMovieProviders';
 
 // Components
 import Section from './sections/Section';
@@ -13,15 +16,11 @@ import ToggleButton from '../buttons/ToggleButton';
 import CustomSelectInput from '../custom_select_input/CustomSelectInput';
 import CustomSelectOption from '../custom_select_input/CustomSelectOption';
 import NumberInput from '../forms/inputs/NumberInput';
+import ProvidersIcon from '../providers/ProvidersIcon';
 
 // Data
-import { movieSortOptions } from '../../data/movieSortOptions';
+import { sortOptions } from '../../data/sortOptions';
 import { movieReleaseTypes } from '../../data/movieReleaseTypes';
-import useCreateCountries from '../../hooks/UseCreateCountries';
-import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
-import useCreateMovieProviders from '../../hooks/useCreateMovieProviders';
-import ImageComponent from '../image/Image';
-import ProvidersIcon from '../providers/ProvidersIcon';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
@@ -70,7 +69,7 @@ export default function MovieSidebar() {
             expanded={state.sort.inputExpanded}
             dispatch={handleToggleSortInput}
           >
-            {movieSortOptions.map((option) => (
+            {sortOptions.map((option) => (
               <CustomSelectOption
                 key={option.value}
                 onClick={handleSort}

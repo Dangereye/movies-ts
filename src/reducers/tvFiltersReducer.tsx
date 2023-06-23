@@ -1,5 +1,10 @@
 export type stateType = {
-  sort: string;
+  sort: {
+    expanded: boolean;
+    inputExpanded: boolean;
+    name: string;
+    value: string | undefined;
+  };
   adult: boolean;
   date_from: string;
   date_to: string;
@@ -10,7 +15,12 @@ export type stateType = {
 };
 
 export const initialState: stateType = {
-  sort: 'popularity.desc',
+  sort: {
+    expanded: false,
+    inputExpanded: false,
+    name: 'Pupularity descended',
+    value: 'popularity.desc',
+  },
   adult: false,
   date_from: '',
   date_to: '',
@@ -36,7 +46,11 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
     case 'SET_DEFAULT_POPULAR': {
       return {
         ...state,
-        sort: 'popularity.desc',
+        sort: {
+          ...state.sort,
+          name: 'popularity descending',
+          value: 'popularity.desc',
+        },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
@@ -49,7 +63,11 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
       const date = new Date(Date.now()).toISOString().split('T')[0];
       return {
         ...state,
-        sort: 'popularity.desc',
+        sort: {
+          ...state.sort,
+          name: 'popularity descending',
+          value: 'popularity.desc',
+        },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
@@ -65,7 +83,11 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         .split('T')[0];
       return {
         ...state,
-        sort: 'popularity.desc',
+        sort: {
+          ...state.sort,
+          name: 'popularity descending',
+          value: 'popularity.desc',
+        },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
@@ -77,7 +99,11 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
     case 'SET_DEFAULT_TOP_RATED': {
       return {
         ...state,
-        sort: 'vote_average.desc',
+        sort: {
+          ...state.sort,
+          name: 'Rating descending',
+          value: 'vote_average.desc',
+        },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',

@@ -1,4 +1,4 @@
-export const movieSortOptions=[
+export const sortOptions=[
     {name:"popularity descending",value:"popularity.desc"},
     {name:"popularity ascending",value:"popularity.asc"},
     {name:"rating descending",value:"vote_average.desc"},

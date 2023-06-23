@@ -6,7 +6,7 @@ import { TvFiltersContext } from '../contexts/TvFiltersContext';
 export default function useAppendTv() {
   const { state } = useContext(TvFiltersContext);
 
-  const append = `&sort_by=${state.sort}&include_adult=${
+  const append = `&sort_by=${state.sort.value}&include_adult=${
     state.adult
   }&watch_region=${state.region}${
     state.release_types.length
