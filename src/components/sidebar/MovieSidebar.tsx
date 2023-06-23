@@ -8,7 +8,7 @@ import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
 import useMovieFilterFuntions from '../../hooks/useMovieFilterFunctions';
 import useCreateCountries from '../../hooks/UseCreateCountries';
 import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
-import useCreateMovieProviders from '../../hooks/useCreateMovieProviders';
+import useCreateProviders from '../../hooks/useCreateProviders';
 
 // Components
 import Section from './sections/Section';
@@ -26,7 +26,10 @@ export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
   const movieGenres = useCreateMovieGenres();
   const countries = useCreateCountries();
-  const movieProviders = useCreateMovieProviders();
+  const providers = useCreateProviders(
+    'movie-providers-list',
+    'watch/providers/movie'
+  );
   const certificationList = useCreateMovieCertifications();
   const {
     handleToggleSortSection,
@@ -93,14 +96,14 @@ export default function MovieSidebar() {
             />
           </div>
           <div className='providers'>
-            {movieProviders.map((mp) => (
+            {providers.map((p) => (
               <ProvidersIcon
-                key={mp.provider_id}
-                id={mp.provider_id}
-                active={state.providers.ids.includes(mp.provider_id)}
-                name={mp.provider_name}
-                logo={mp.logo_path}
-                onClick={() => updateProviders(mp.provider_id)}
+                key={p.provider_id}
+                id={p.provider_id}
+                active={state.providers.ids.includes(p.provider_id)}
+                name={p.provider_name}
+                logo={p.logo_path}
+                onClick={() => updateProviders(p.provider_id)}
               />
             ))}
           </div>

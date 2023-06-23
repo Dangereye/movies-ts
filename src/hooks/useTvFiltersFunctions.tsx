@@ -38,5 +38,55 @@ export default function useTvFiltersFunctions() {
       },
     });
   };
-  return { handleToggleSortSection, handleToggleSortInput, handleSort };
+
+  const handleToggleProviders = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        providers: { ...state.providers, expanded: !state.providers.expanded },
+      },
+    });
+  };
+
+  const clearProviders = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, providers: { ...state.providers, ids: [] } },
+    });
+  };
+
+  const updateProviders = (id: number) => {
+    if (state?.providers?.ids.includes(id)) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          providers: {
+            ...state.providers,
+            ids: state.providers.ids.filter((p) => p !== id),
+          },
+        },
+      });
+    } else {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          providers: {
+            ...state.providers,
+            ids: [...state.providers.ids, id],
+          },
+        },
+      });
+    }
+  };
+  return {
+    handleToggleSortSection,
+    handleToggleSortInput,
+    handleSort,
+    handleToggleProviders,
+    clearProviders,
+    updateProviders,
+  };
 }

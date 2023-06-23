@@ -1,4 +1,4 @@
-export interface IMovieProviders{
+export interface IProviders{
     results:[
         {
             display_priorities: { [key: string]: number };
@@ -8,4 +8,4 @@ export interface IMovieProviders{
             provider_id: number;
           }
     ]
-}
+} 

@@ -5,6 +5,7 @@ export type stateType = {
     name: string;
     value: string | undefined;
   };
+  providers: { expanded: boolean; ids: number[] };
   adult: boolean;
   date_from: string;
   date_to: string;
@@ -21,6 +22,7 @@ export const initialState: stateType = {
     name: 'Pupularity descended',
     value: 'popularity.desc',
   },
+  providers: { expanded: false, ids: [] },
   adult: false,
   date_from: '',
   date_to: '',
@@ -51,6 +53,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           name: 'popularity descending',
           value: 'popularity.desc',
         },
+        providers: { ...state.providers, ids: [] },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
@@ -68,6 +71,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           name: 'popularity descending',
           value: 'popularity.desc',
         },
+        providers: { ...state.providers, ids: [] },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
@@ -88,6 +92,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           name: 'popularity descending',
           value: 'popularity.desc',
         },
+        providers: { ...state.providers, ids: [] },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
@@ -104,6 +109,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
           name: 'Rating descending',
           value: 'vote_average.desc',
         },
+        providers: { ...state.providers, ids: [] },
         genres: [],
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',

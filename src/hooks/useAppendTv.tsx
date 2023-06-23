@@ -6,9 +6,13 @@ import { TvFiltersContext } from '../contexts/TvFiltersContext';
 export default function useAppendTv() {
   const { state } = useContext(TvFiltersContext);
 
-  const append = `&sort_by=${state.sort.value}&include_adult=${
-    state.adult
-  }&watch_region=${state.region}${
+  const append = `&watch_region=GB&sort_by=${state.sort.value}${
+    state.providers.ids.length
+      ? `&with_watch_providers=${state.providers.ids
+          .toString()
+          .replaceAll(',', '|')}`
+      : ''
+  }&include_adult=${state.adult}${
     state.release_types.length
       ? `&with_watch_monetization_types=${state.release_types
           .toString()

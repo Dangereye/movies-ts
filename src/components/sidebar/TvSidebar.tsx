@@ -7,12 +7,24 @@ import useTvFiltersFunctions from '../../hooks/useTvFiltersFunctions';
 import CustomSelectInput from '../custom_select_input/CustomSelectInput';
 import { sortOptions } from '../../data/sortOptions';
 import CustomSelectOption from '../custom_select_input/CustomSelectOption';
+import ProvidersIcon from '../providers/ProvidersIcon';
+import useCreateProviders from '../../hooks/useCreateProviders';
 
 export default function TvSidebar() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const tvGenres = useCreateTvGenres();
-  const { handleToggleSortSection, handleToggleSortInput, handleSort } =
-    useTvFiltersFunctions();
+  const providers = useCreateProviders(
+    'tv-providers-list',
+    'watch/providers/tv'
+  );
+  const {
+    handleToggleSortSection,
+    handleToggleSortInput,
+    handleSort,
+    handleToggleProviders,
+    clearProviders,
+    updateProviders,
+  } = useTvFiltersFunctions();
 
   return (
     <aside className='sidebar'>
@@ -37,6 +49,31 @@ export default function TvSidebar() {
               />
             ))}
           </CustomSelectInput>
+        </Section>
+        <Section
+          heading='Providers'
+          expanded={state.providers.expanded}
+          dispatch={handleToggleProviders}
+        >
+          <div className='buttons'>
+            <ToggleButton
+              active={state.providers.ids.length === 0}
+              name='All'
+              onClick={clearProviders}
+            />
+          </div>
+          <div className='providers'>
+            {providers.map((p) => (
+              <ProvidersIcon
+                key={p.provider_id}
+                id={p.provider_id}
+                active={state.providers.ids.includes(p.provider_id)}
+                name={p.provider_name}
+                logo={p.logo_path}
+                onClick={() => updateProviders(p.provider_id)}
+              />
+            ))}
+          </div>
         </Section>
         {/* <Section heading='Genres'>
           <div className='buttons'>
