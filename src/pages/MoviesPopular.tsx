@@ -10,6 +10,7 @@ import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import InfiniteCards from '../components/cards/InifinteCards';
+import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
 
 // Context
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
@@ -20,7 +21,6 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
 
 export default function MoviesPopular() {
   const { state, dispatch } = useContext(MovieFiltersContext);

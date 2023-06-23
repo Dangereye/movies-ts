@@ -11,22 +11,10 @@ import { IMovieMin } from '../interfaces/IMovieMin';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import useAppend from '../hooks/useAppendMovie';
 
-// Data
-import { moviePages } from '../data/moviePages';
-
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 
 // Components
-import H2 from '../components/typography/H2';
-import SubNavbar from '../components/sub_navbar/SubNavbar';
-import Navigation from '../components/navigation/Navigation';
-import Header from '../components/header/Header';
-import Article from '../components/articles/Article';
-import Container from '../components/container/Container';
-import Layout from '../components/layout/Layout';
-import Sidebar from '../components/sidebar/Sidebar';
-import Main from '../components/main/Main';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
