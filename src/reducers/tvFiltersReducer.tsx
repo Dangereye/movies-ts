@@ -7,8 +7,11 @@ export type stateType = {
   };
   providers: { expanded: boolean; ids: number[] };
   adult: boolean;
-  date_from: string;
-  date_to: string;
+  dates: {
+    expanded: boolean;
+    date_from: string;
+    date_to: string;
+  };
   genres: { expanded: boolean; types: number[] };
   release_types: string[];
   region: string;
@@ -24,8 +27,11 @@ export const initialState: stateType = {
   },
   providers: { expanded: false, ids: [] },
   adult: false,
-  date_from: '',
-  date_to: '',
+  dates: {
+    expanded: false,
+    date_to: '',
+    date_from: '',
+  },
   genres: { expanded: false, types: [] },
   release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
   region: 'GB',
@@ -57,8 +63,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
-        date_from: '',
-        date_to: '',
+        dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 50,
       };
     }
@@ -75,8 +80,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
-        date_from: date,
-        date_to: date,
+        dates: { ...state.dates, date_from: date, date_to: date },
         vote_count: 0,
       };
     }
@@ -96,8 +100,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
-        date_from: from,
-        date_to: to,
+        dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: 0,
       };
     }
@@ -113,8 +116,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         genres: { ...state.genres, types: [] },
         release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
         region: 'GB',
-        date_from: '',
-        date_to: '',
+        dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 100,
       };
     }

@@ -18,8 +18,8 @@ export default function useAppendTv() {
           .toString()
           .replaceAll(',', '|')}`
       : ''
-  }${state.date_from ? `&air_date.gte=${state.date_from}` : ''}${
-    state.date_to ? `&air_date.lte=${state.date_to}` : ''
+  }${state.dates.date_from ? `&air_date.gte=${state.dates.date_from}` : ''}${
+    state.dates.date_to ? `&air_date.lte=${state.dates.date_to}` : ''
   }${state.genres.types.length ? `&with_genres=${state.genres.types}` : ''}${
     state.vote_count ? `&vote_count.gte=${state.vote_count}` : ''
   }`;

@@ -27,6 +27,9 @@ export default function TvSidebar() {
     handleToggleGenres,
     clearGenres,
     updateGenres,
+    handleToggleDates,
+    handleDateFrom,
+    handleDateTo,
   } = useTvFiltersFunctions();
 
   return (
@@ -99,46 +102,18 @@ export default function TvSidebar() {
             ))}
           </div>
         </Section>
-        {/*<Section heading='air dates'>
-          <div className='buttons'>
-            <ToggleButton
-              key='flatrate'
-              active={state.release_types.includes('flatrate')}
-              name='Stream'
-              onClick={() => updateTypes('flatrate')}
-            />
-            <ToggleButton
-              key='free'
-              active={state.release_types.includes('free')}
-              name='Free'
-              onClick={() => updateTypes('free')}
-            />
-            <ToggleButton
-              key='ads'
-              active={state.release_types.includes('ads')}
-              name='Ads'
-              onClick={() => updateTypes('ads')}
-            />
-            <ToggleButton
-              key='rent'
-              active={state.release_types.includes('rent')}
-              name='Rent'
-              onClick={() => updateTypes('rent')}
-            />
-            <ToggleButton
-              key='buy'
-              active={state.release_types.includes('buy')}
-              name='Buy'
-              onClick={() => updateTypes('buy')}
-            />
-          </div>
+        <Section
+          heading='air dates'
+          expanded={state.dates.expanded}
+          dispatch={handleToggleDates}
+        >
           <form className='form'>
             <div className='form__group'>
               <label htmlFor='date-from'>From</label>
               <input
                 type='date'
                 name='date-from'
-                value={state.date_from}
+                value={state.dates.date_from}
                 onChange={handleDateFrom}
               />
             </div>
@@ -147,13 +122,13 @@ export default function TvSidebar() {
               <input
                 type='date'
                 name='date-to'
-                value={state.date_to}
+                value={state.dates.date_to}
                 onChange={handleDateTo}
               />
             </div>
           </form>
         </Section>
-        <Section heading='Adult content'>
+        {/*<Section heading='Adult content'>
           <div className='buttons'>
             <ToggleButton
               active={state.adult}

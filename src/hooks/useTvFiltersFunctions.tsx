@@ -124,6 +124,43 @@ export default function useTvFiltersFunctions() {
       });
     }
   };
+
+  const handleToggleDates = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        dates: { ...state.dates, expanded: !state.dates.expanded },
+      },
+    });
+  };
+
+  const handleDateFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        dates: {
+          ...state.dates,
+          date_from: e.target.value,
+        },
+      },
+    });
+  };
+
+  const handleDateTo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        dates: {
+          ...state.dates,
+          date_to: e.target.value,
+        },
+      },
+    });
+  };
+
   return {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -134,5 +171,8 @@ export default function useTvFiltersFunctions() {
     handleToggleGenres,
     clearGenres,
     updateGenres,
+    handleToggleDates,
+    handleDateFrom,
+    handleDateTo,
   };
 }
