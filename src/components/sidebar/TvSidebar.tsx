@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { TvFiltersContext } from '../../contexts/TvFiltersContext';
 import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
-import useCreateTvGenres from '../../hooks/useCreateTvGenres';
+import useCreateGenres from '../../hooks/useCreateGenres';
 import useTvFiltersFunctions from '../../hooks/useTvFiltersFunctions';
 import CustomSelectInput from '../custom_select_input/CustomSelectInput';
 import { sortOptions } from '../../data/sortOptions';
@@ -14,7 +14,7 @@ import NumberInput from '../forms/inputs/NumberInput';
 
 export default function TvSidebar() {
   const { state } = useContext(TvFiltersContext);
-  const tvGenres = useCreateTvGenres();
+  const genres = useCreateGenres('tv-genres', 'genre/tv/list');
   const providers = useCreateProviders(
     'tv-providers-list',
     'watch/providers/tv'
@@ -122,7 +122,7 @@ export default function TvSidebar() {
               name='All'
               onClick={clearGenres}
             />
-            {tvGenres.map((genre) => (
+            {genres.map((genre) => (
               <ToggleButton
                 key={genre.id}
                 active={state.genres.types.includes(genre.id)}

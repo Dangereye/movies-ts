@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
 
 // Hooks
-import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
+import useCreateGenres from '../../hooks/useCreateGenres';
 import useMovieFilterFuntions from '../../hooks/useMovieFilterFunctions';
 import useCreateCountries from '../../hooks/UseCreateCountries';
 import useCreateCertifications from '../../hooks/useCreateCertifications';
@@ -24,7 +24,7 @@ import { movieReleaseTypes } from '../../data/movieReleaseTypes';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
-  const movieGenres = useCreateMovieGenres();
+  const genres = useCreateGenres('movie-genres', 'genre/movie/list');
   const countries = useCreateCountries();
   const providers = useCreateProviders(
     'movie-providers-list',
@@ -122,7 +122,7 @@ export default function MovieSidebar() {
               name='All'
               onClick={clearGenres}
             />
-            {movieGenres.map((genre) => (
+            {genres.map((genre) => (
               <ToggleButton
                 key={genre.id}
                 active={state.genres.types.includes(genre.id)}

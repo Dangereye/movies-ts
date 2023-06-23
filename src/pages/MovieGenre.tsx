@@ -14,7 +14,7 @@ import SubNavbar from '../components/sub_navbar/SubNavbar';
 import BodyText from '../components/typography/BodyText';
 import H2 from '../components/typography/H2';
 import { moviePages } from '../data/moviePages';
-import useCreateMovieGenres from '../hooks/useCreateMovieGenres';
+import useCreateGenres from '../hooks/useCreateGenres';
 import useMakeQuery from '../hooks/useMakeQuery';
 import { IMovieMin } from '../interfaces/IMovieMin';
 import { IPage } from '../interfaces/IPage';
@@ -34,7 +34,7 @@ export default function MovieGenre() {
     `&with_genres=${genreId}`
   );
 
-  const genres = useCreateMovieGenres();
+  const genres = useCreateGenres('movie-genres', 'genre/movie/list');
 
   useEffect(() => {
     genres?.find((g) => {
