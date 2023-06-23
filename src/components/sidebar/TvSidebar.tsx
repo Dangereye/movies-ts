@@ -9,9 +9,10 @@ import { sortOptions } from '../../data/sortOptions';
 import CustomSelectOption from '../custom_select_input/CustomSelectOption';
 import ProvidersIcon from '../providers/ProvidersIcon';
 import useCreateProviders from '../../hooks/useCreateProviders';
+import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
 
 export default function TvSidebar() {
-  const { state, dispatch } = useContext(TvFiltersContext);
+  const { state } = useContext(TvFiltersContext);
   const tvGenres = useCreateTvGenres();
   const providers = useCreateProviders(
     'tv-providers-list',
@@ -30,6 +31,9 @@ export default function TvSidebar() {
     handleToggleDates,
     handleDateFrom,
     handleDateTo,
+    handleToggleReleaseTypes,
+    clearTypes,
+    updateTypes,
   } = useTvFiltersFunctions();
 
   return (
@@ -82,6 +86,27 @@ export default function TvSidebar() {
           </div>
         </Section>
         <Section
+          heading='Release types'
+          expanded={state.release_types.expanded}
+          dispatch={handleToggleReleaseTypes}
+        >
+          <div className='buttons'>
+            <ToggleButton
+              active={state.release_types.types.length === 0}
+              name='All'
+              onClick={clearTypes}
+            />
+            {tvMonetizationTypes.map((t) => (
+              <ToggleButton
+                key={t.name}
+                active={state.release_types.types.includes(t.value)}
+                name={t.name}
+                onClick={() => updateTypes(t.value)}
+              />
+            ))}
+          </div>
+        </Section>
+        <Section
           heading='Genres'
           expanded={state.genres.expanded}
           dispatch={handleToggleGenres}
@@ -128,6 +153,7 @@ export default function TvSidebar() {
             </div>
           </form>
         </Section>
+
         {/*<Section heading='Adult content'>
           <div className='buttons'>
             <ToggleButton

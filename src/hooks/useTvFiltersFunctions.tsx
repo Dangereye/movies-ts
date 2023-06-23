@@ -161,6 +161,55 @@ export default function useTvFiltersFunctions() {
     });
   };
 
+  const handleToggleReleaseTypes = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        release_types: {
+          ...state.release_types,
+          expanded: !state.release_types.expanded,
+        },
+      },
+    });
+  };
+
+  const clearTypes = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        release_types: { ...state.release_types, types: [] },
+      },
+    });
+  };
+
+  const updateTypes = (id: string) => {
+    if (state.release_types.types.includes(id)) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          release_types: {
+            ...state.release_types,
+            types: state.release_types.types.filter((t) => t !== id),
+          },
+        },
+      });
+    } else {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          release_types: {
+            ...state.release_types,
+            types: [...state.release_types.types, id],
+          },
+        },
+      });
+    }
+  };
+
   return {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -174,5 +223,8 @@ export default function useTvFiltersFunctions() {
     handleToggleDates,
     handleDateFrom,
     handleDateTo,
+    handleToggleReleaseTypes,
+    clearTypes,
+    updateTypes,
   };
 }

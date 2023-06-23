@@ -7,7 +7,7 @@ import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
 import useCreateMovieGenres from '../../hooks/useCreateMovieGenres';
 import useMovieFilterFuntions from '../../hooks/useMovieFilterFunctions';
 import useCreateCountries from '../../hooks/UseCreateCountries';
-import useCreateMovieCertifications from '../../hooks/useCreateMovieCertifications';
+import useCreateCertifications from '../../hooks/useCreateCertifications';
 import useCreateProviders from '../../hooks/useCreateProviders';
 
 // Components
@@ -30,7 +30,10 @@ export default function MovieSidebar() {
     'movie-providers-list',
     'watch/providers/movie'
   );
-  const certificationList = useCreateMovieCertifications();
+  const certifications = useCreateCertifications(
+    'movie-certifications',
+    'certification/movie/list'
+  );
   const {
     handleToggleSortSection,
     handleToggleSortInput,
@@ -140,7 +143,7 @@ export default function MovieSidebar() {
               name='All'
               onClick={clearCertificates}
             />
-            {certificationList
+            {certifications
               .sort((a, b) => a.order - b.order)
               .map((c) => (
                 <ToggleButton

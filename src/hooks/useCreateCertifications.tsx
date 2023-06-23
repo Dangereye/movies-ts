@@ -5,12 +5,12 @@ import { ICertification } from '../interfaces/ICertification';
 // Hooks
 import useMakeQuery from './useMakeQuery';
 
-export default function useCreateMovieCertifications() {
-  let certificationList: { name: string; order: number }[] = [];
+export default function useCreateCertifications(key: string, endPoint: string) {
+  let certifications: { name: string; order: number }[] = [];
 
   const { data, isError, isLoading } = useMakeQuery<
     ICertifications<ICertification>
-  >(`certification-list`, `certification/movie/list`);
+  >(key, endPoint);
 
   if (isLoading) {
     return [];
@@ -23,12 +23,12 @@ export default function useCreateMovieCertifications() {
   if (data) {
     const key: keyof typeof data.certifications = 'GB';
     data.certifications[key].forEach((c) => {
-      certificationList = [
-        ...certificationList,
+      certifications = [
+        ...certifications,
         { name: c.certification, order: c.order },
       ];
     });
   }
 
-  return certificationList;
+  return certifications;
 }

@@ -13,7 +13,7 @@ export type stateType = {
     date_to: string;
   };
   genres: { expanded: boolean; types: number[] };
-  release_types: string[];
+  release_types: { expanded: boolean; types: string[] };
   region: string;
   vote_count: number;
 };
@@ -33,7 +33,10 @@ export const initialState: stateType = {
     date_from: '',
   },
   genres: { expanded: false, types: [] },
-  release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+  release_types: {
+    expanded: false,
+    types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+  },
   region: 'GB',
   vote_count: 0,
 };
@@ -61,10 +64,13 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         },
         providers: { ...state.providers, ids: [] },
         genres: { ...state.genres, types: [] },
-        release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        release_types: {
+          ...state.release_types,
+          types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        },
         region: 'GB',
         dates: { ...state.dates, date_from: '', date_to: '' },
-        vote_count: 50,
+        vote_count: 0,
       };
     }
     case 'SET_DEFAULT_AIRING_TODAY': {
@@ -78,7 +84,10 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         },
         providers: { ...state.providers, ids: [] },
         genres: { ...state.genres, types: [] },
-        release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        release_types: {
+          ...state.release_types,
+          types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        },
         region: 'GB',
         dates: { ...state.dates, date_from: date, date_to: date },
         vote_count: 0,
@@ -98,7 +107,10 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         },
         providers: { ...state.providers, ids: [] },
         genres: { ...state.genres, types: [] },
-        release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        release_types: {
+          ...state.release_types,
+          types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        },
         region: 'GB',
         dates: { ...state.dates, date_from: from, date_to: to },
         vote_count: 0,
@@ -114,7 +126,10 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         },
         providers: { ...state.providers, ids: [] },
         genres: { ...state.genres, types: [] },
-        release_types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        release_types: {
+          ...state.release_types,
+          types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
+        },
         region: 'GB',
         dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: 100,
