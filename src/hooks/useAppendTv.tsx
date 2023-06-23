@@ -24,7 +24,9 @@ export default function useAppendTv() {
     state.genres.types.length ? `&with_genres=${state.genres.types}` : ''
   }&vote_average.lte=${state.rating.max_rating}&vote_average.gte=${
     state.rating.min_rating
-  }${state.vote_count ? `&vote_count.gte=${state.vote_count}` : ''}`;
+  }${
+    state.vote_count.count ? `&vote_count.gte=${state.vote_count.count}` : ''
+  }`;
 
   return { append };
 }

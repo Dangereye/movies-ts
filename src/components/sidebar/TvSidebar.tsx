@@ -38,6 +38,8 @@ export default function TvSidebar() {
     handleToggleRating,
     handleMinRating,
     handleMaxRating,
+    handleToggleMinimumVotes,
+    handleVoteCount,
     preventDefault,
   } = useTvFiltersFunctions();
 
@@ -182,6 +184,24 @@ export default function TvSidebar() {
                 max={10}
                 id='max-rating'
                 func={handleMaxRating}
+              />
+            </div>
+          </form>
+        </Section>
+        <Section
+          heading='User Votes'
+          expanded={state.vote_count.expanded}
+          dispatch={handleToggleMinimumVotes}
+        >
+          <form className='form' onSubmit={preventDefault}>
+            <div className='form__group'>
+              <label htmlFor='min-votes'>Min</label>
+              <NumberInput
+                init={state.vote_count.count}
+                min={0}
+                max={500}
+                id='min-votes'
+                func={handleVoteCount}
               />
             </div>
           </form>

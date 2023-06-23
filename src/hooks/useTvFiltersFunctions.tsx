@@ -240,6 +240,29 @@ export default function useTvFiltersFunctions() {
     });
   };
 
+  const handleToggleMinimumVotes = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        vote_count: {
+          ...state.vote_count,
+          expanded: !state.vote_count.expanded,
+        },
+      },
+    });
+  };
+
+  const handleVoteCount = (value: number) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        vote_count: { ...state.vote_count, count: value },
+      },
+    });
+  };
+
   const preventDefault = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -263,6 +286,8 @@ export default function useTvFiltersFunctions() {
     handleToggleRating,
     handleMinRating,
     handleMaxRating,
+    handleToggleMinimumVotes,
+    handleVoteCount,
     preventDefault,
   };
 }
