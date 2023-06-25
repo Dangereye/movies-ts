@@ -27,8 +27,8 @@ export default function MoviesTopRated() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
   const initial = useRef(false);
-  const title = 'Top rated movies';
-  const name = 'top-rated-movies';
+  const title = 'Movies: top rated';
+  const name = 'movies-top-rated';
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 

@@ -28,7 +28,7 @@ export default function TvPopular() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
   const initial = useRef(false);
-  const title = 'TV Shows - Popular';
+  const title = 'TV Shows: Popular';
   const name = 'tv-shows-popular';
 
   const {

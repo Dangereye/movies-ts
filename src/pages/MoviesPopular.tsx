@@ -27,8 +27,8 @@ export default function MoviesPopular() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
   const initial = useRef(false);
-  const title = 'Popular movies';
-  const name = 'popular-movies';
+  const title = 'Movies: Popular';
+  const name = 'movies-popular';
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 

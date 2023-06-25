@@ -27,8 +27,8 @@ export default function MoviesNowPlaying() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
   const initial = useRef(false);
-  const title = 'Theatrical releases';
-  const name = 'theatrical-releases';
+  const title = 'Movies: Theatrical';
+  const name = 'movies-theatrical';
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 

@@ -27,8 +27,8 @@ export default function MoviesUpcoming() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
   const initial = useRef(false);
-  const title = 'Upcoming movies';
-  const name = 'upcoming-movies';
+  const title = 'Movies: Upcoming';
+  const name = 'movies-upcoming';
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 

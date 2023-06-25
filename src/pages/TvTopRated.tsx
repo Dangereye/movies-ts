@@ -28,7 +28,7 @@ export default function TvTopRated() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
   const initial = useRef(false);
-  const title = 'TV Shows - top rated';
+  const title = 'TV Shows: top rated';
   const name = 'tv-shows-top-rated';
 
   const {

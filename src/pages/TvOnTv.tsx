@@ -28,7 +28,7 @@ export default function TvOnTv() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
   const initial = useRef(false);
-  const title = 'TV Shows - next 7 days';
+  const title = 'TV Shows: next 7 days';
   const name = 'tv-shows-next-7-days';
 
   const {
