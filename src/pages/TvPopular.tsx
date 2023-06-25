@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useRef } from 'react';
 import useAppendTv from '../hooks/useAppendTv';
 import Article from '../components/articles/Article';
 import InfiniteCards from '../components/cards/InifinteCards';
@@ -20,17 +20,21 @@ import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import H2 from '../components/typography/H2';
 import { formatDate } from '../utilities/formatDate';
 import { TvFiltersContext } from '../contexts/TvFiltersContext';
+import TVShowsWithSidebar from '../components/page_templates/TVShowsWithSidebar';
+import Loader from '../components/loader/Loader';
 
 export default function TvPopular() {
   const getNextPageParam = (page: IPage<ITVShowMin>) => page.page + 1;
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
+  const initial = useRef(false);
+  const title = 'Popular TV Shows';
+  const name = 'popular-tv-shows';
 
   const {
     data: tvQueries,
     isError,
     isLoading,
-    refetch,
     hasNextPage,
     fetchNextPage,
   } = useMakeInfiniteQuery<IPage<ITVShowMin>>(
@@ -40,64 +44,61 @@ export default function TvPopular() {
   );
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_DEFAULT_POPULAR',
-      payload: { ...state },
-    });
-  }, []);
-
-  useEffect(() => {
-    refetch();
-  }, [state]);
+    if (!initial.current) {
+      initial.current = true;
+      dispatch({
+        type: 'SET_DEFAULT_POPULAR',
+        payload: { ...state },
+      });
+    }
+  });
 
   if (isLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <TVShowsWithSidebar title={title} name={name}>
+        <Loader />
+      </TVShowsWithSidebar>
+    );
   }
 
   if (isError) {
-    return <H2 heading='Error' />;
+    return (
+      <TVShowsWithSidebar title={title} name={name}>
+        <BodyText text='Oops! Something went wrong.' />
+      </TVShowsWithSidebar>
+    );
   }
+
+  if (tvQueries.pages[0].total_results === 0) {
+    return (
+      <TVShowsWithSidebar title={title} name={name}>
+        <BodyText text='No items were found that match your query.' />
+      </TVShowsWithSidebar>
+    );
+  }
+
   return (
-    <>
-      <SubNavbar>
-        <Navigation
-          data={tvPages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
-      <Header variant='header__min' title='Popular TV Shows' />
-      <Article name='popular-tv-shows'>
-        <Container>
-          <Layout variant='grid grid--sidebar'>
-            <Sidebar />
-            <Main>
-              <MobileSidebarControls />
-              <InfiniteCards
-                getId={(item) => item.id}
-                getLink={(item) => `/tv/${item.id}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                      fallback='/images/error_500x750.webp'
-                      alt={item.name}
-                    />
-                    <CardContent heading={item.name} vote={item.vote_average}>
-                      <BodyText text={`${formatDate(item.first_air_date)}`} />
-                    </CardContent>
-                  </>
-                )}
-                data={tvQueries.pages}
-                hasNextPage={hasNextPage}
-                fetchNextPage={fetchNextPage}
-              />
-            </Main>
-          </Layout>
-        </Container>
-      </Article>
-    </>
+    <TVShowsWithSidebar title={title} name={name}>
+      <MobileSidebarControls />
+      <InfiniteCards
+        getId={(item) => item.id}
+        getLink={(item) => `/tv/${item.id}`}
+        renderContent={(item) => (
+          <>
+            <ImageComponent
+              src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+              fallback='/images/error_500x750.webp'
+              alt={item.name}
+            />
+            <CardContent heading={item.name} vote={item.vote_average}>
+              <BodyText text={`${formatDate(item.first_air_date)}`} />
+            </CardContent>
+          </>
+        )}
+        data={tvQueries.pages}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+      />
+    </TVShowsWithSidebar>
   );
 }
