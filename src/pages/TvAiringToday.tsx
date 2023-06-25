@@ -28,7 +28,7 @@ export default function TvAiringToday() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
   const initial = useRef(false);
-  const title = 'TV Shows airing today';
+  const title = 'TV Shows - airing today';
   const name = 'tv-shows-airing-today';
 
   const {

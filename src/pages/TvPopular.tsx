@@ -28,8 +28,8 @@ export default function TvPopular() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
   const initial = useRef(false);
-  const title = 'Popular TV Shows';
-  const name = 'popular-tv-shows';
+  const title = 'TV Shows - Popular';
+  const name = 'tv-shows-popular';
 
   const {
     data: tvQueries,

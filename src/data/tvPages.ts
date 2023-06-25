@@ -8,7 +8,7 @@ export const tvPages = [
     link: "/tv/airing-today",
   },
   {
-    name: "On TV",
+    name: "Next 7 days",
     link: "/tv/on-tv",
   },
   {
