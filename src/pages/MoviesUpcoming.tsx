@@ -18,6 +18,7 @@ import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
+import Loader from '../components/loader/Loader';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
@@ -56,7 +57,7 @@ export default function MoviesUpcoming() {
   if (isLoading) {
     return (
       <MoviesWithSidebar title={title} name={name}>
-        <BodyText text='Loading..' />
+        <Loader />
       </MoviesWithSidebar>
     );
   }

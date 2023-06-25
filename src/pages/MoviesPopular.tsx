@@ -11,6 +11,7 @@ import BodyText from '../components/typography/BodyText';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import InfiniteCards from '../components/cards/InifinteCards';
 import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
+import Loader from '../components/loader/Loader';
 
 // Context
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
@@ -56,7 +57,7 @@ export default function MoviesPopular() {
   if (isLoading) {
     return (
       <MoviesWithSidebar title={title} name={name}>
-        <BodyText text='Loading..' />
+        <Loader />
       </MoviesWithSidebar>
     );
   }

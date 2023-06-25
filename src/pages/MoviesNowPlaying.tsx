@@ -21,6 +21,7 @@ import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
+import Loader from '../components/loader/Loader';
 
 export default function MoviesNowPlaying() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -56,7 +57,7 @@ export default function MoviesNowPlaying() {
   if (isLoading) {
     return (
       <MoviesWithSidebar title={title} name={name}>
-        <BodyText text='Loading..' />
+        <Loader />
       </MoviesWithSidebar>
     );
   }
