@@ -28,8 +28,8 @@ export default function TvAiringToday() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
   const initial = useRef(false);
-  const title = 'Popular TV Shows';
-  const name = 'popular-tv-shows';
+  const title = 'TV Shows airing today';
+  const name = 'tv-shows-airing-today';
 
   const {
     data: tvQueries,
