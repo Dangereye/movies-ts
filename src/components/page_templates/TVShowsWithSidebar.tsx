@@ -1,18 +1,15 @@
+// Data
 import { tvPages } from '../../data/tvPages';
-import { formatDate } from '../../utilities/formatDate';
+
+// Components
 import Article from '../articles/Article';
-import InfiniteCards from '../cards/InifinteCards';
-import CardContent from '../cards/card/CardContent';
 import Container from '../container/Container';
 import Header from '../header/Header';
-import ImageComponent from '../image/Image';
 import Layout from '../layout/Layout';
 import Main from '../main/Main';
 import Navigation from '../navigation/Navigation';
 import Sidebar from '../sidebar/Sidebar';
-import MobileSidebarControls from '../sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import SubNavbar from '../sub_navbar/SubNavbar';
-import BodyText from '../typography/BodyText';
 
 type TVShowsWithSidebarProps = {
   title: string;
