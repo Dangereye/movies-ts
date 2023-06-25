@@ -21,6 +21,7 @@ import BodyText from '../components/typography/BodyText';
 // Utilites
 import { formatDate } from '../utilities/formatDate';
 import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
+import Loader from '../components/loader/Loader';
 
 export default function MoviesTopRated() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -28,6 +29,7 @@ export default function MoviesTopRated() {
   const initial = useRef(false);
   const title = 'Top rated movies';
   const name = 'top-rated-movies';
+  const temp = true;
 
   const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
 
@@ -53,6 +55,13 @@ export default function MoviesTopRated() {
     }
   });
 
+  if (temp) {
+    return (
+      <MoviesWithSidebar title={title} name={name}>
+        <Loader />
+      </MoviesWithSidebar>
+    );
+  }
   if (isLoading) {
     return (
       <MoviesWithSidebar title={title} name={name}>
