@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { IoCloseSharp } from 'react-icons/io5';
 
 export default function Searchbar() {
   const [isActive, setIsActive] = useState(false);
   const [query, setQuery] = useState('');
+
+  const navigate = useNavigate();
 
   const handleOpen = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsActive(true);
@@ -21,6 +24,7 @@ export default function Searchbar() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    navigate(`/search/${query}`);
     setQuery('');
   };
 

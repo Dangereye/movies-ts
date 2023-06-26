@@ -37,6 +37,7 @@ import TvCastCrew from './pages/TvCastCrew';
 import PeoplePopular from './pages/PeoplePopular';
 import PersonDetails from './pages/PersonDetails';
 import MovieGenre from './pages/MovieGenre';
+import Search from './pages/Search';
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ function App() {
                   />
                   <Route path='/people/popular' element={<PeoplePopular />} />
                   <Route path='/people/:personId' element={<PersonDetails />} />
+                  <Route path='/search/:searchId' element={<Search />} />
                 </Routes>
               </VideoContextComponent>
             </TvFiltersContextComponent>
