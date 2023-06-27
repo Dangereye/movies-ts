@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import { MdArrowBackIos } from "react-icons/md";
-import Container from "../container/Container";
-import Button from "../buttons/Button";
+import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { MdArrowBackIos } from 'react-icons/md';
+import Container from '../container/Container';
+import Button from '../buttons/Button';
 
 type SubNavbarProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export default function SubNavbar({ children }: SubNavbarProps) {
@@ -16,10 +16,10 @@ export default function SubNavbar({ children }: SubNavbarProps) {
   };
 
   return (
-    <div className="sub-navbar">
+    <div className='sub-navbar'>
       <Container>
         <Button
-          variant="btn--tertiary"
+          variant='btn--tertiary'
           name={<MdArrowBackIos />}
           onClick={handleClick}
         />
