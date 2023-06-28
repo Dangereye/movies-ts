@@ -1,4 +1,4 @@
-import ImageComponent from '../image/Image';
+import ImageComponent from '../../image/Image';
 
 import { TiTick } from 'react-icons/ti';
 

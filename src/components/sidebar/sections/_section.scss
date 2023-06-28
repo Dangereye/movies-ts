@@ -1,0 +1,30 @@
+.section {
+  border-radius: 5px;
+  border: 1px solid $grey-color;
+  box-shadow: 0 5px 10px rgba(black, 0.1);
+  &__heading {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > * {
+      margin: 0;
+    }
+  }
+
+  &__content {
+    padding: 1rem 0 2rem 0;
+    display: none;
+  }
+
+  &.active {
+    .section__content {
+      display: block;
+    }
+
+    .btn--close {
+      transform: rotate(180deg);
+    }
+  }
+}

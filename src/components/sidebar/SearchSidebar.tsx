@@ -1,8 +1,12 @@
 import { useContext } from 'react';
+
+// Context
 import { SearchFiltersContext } from '../../contexts/SearchFiltersContext';
-import Section from './sections/Section';
-import BodyText from '../typography/BodyText';
+
+// Components
 import ToggleButton from '../buttons/ToggleButton';
+import Selector from './selectors/Selector';
+import Section from './sections/Section';
 
 export default function SearchSidebar() {
   const { state, dispatch } = useContext(SearchFiltersContext);
@@ -55,18 +59,24 @@ export default function SearchSidebar() {
           expanded={state.display.expanded}
           dispatch={handleToggleDisplay}
         >
-          <div onClick={() => handleSetMediaType('movies')}>
-            <BodyText text='Movies' />
-            <BodyText text={state.display.results.movies} />
-          </div>
-          <div onClick={() => handleSetMediaType('tv-shows')}>
-            <BodyText text='Tv Shows' />
-            <BodyText text={state.display.results.tv_shows} />
-          </div>
-          <div onClick={() => handleSetMediaType('people')}>
-            <BodyText text='People' />
-            <BodyText text={state.display.results.people} />
-          </div>
+          <Selector
+            active={state.display.show_media_type === 'movies'}
+            name='Movies'
+            value={state.display.results.movies}
+            onClick={() => handleSetMediaType('movies')}
+          />
+          <Selector
+            active={state.display.show_media_type === 'tv-shows'}
+            name='Tv Shows'
+            value={state.display.results.tv_shows}
+            onClick={() => handleSetMediaType('tv-shows')}
+          />
+          <Selector
+            active={state.display.show_media_type === 'people'}
+            name='People'
+            value={state.display.results.people}
+            onClick={() => handleSetMediaType('people')}
+          />
         </Section>
 
         <Section
@@ -74,13 +84,11 @@ export default function SearchSidebar() {
           expanded={state.adult.expanded}
           dispatch={handleToggleAdultSection}
         >
-          <div className='buttons'>
-            <ToggleButton
-              active={state.adult.active}
-              name={state.adult.active ? 'Visible' : 'Hidden'}
-              onClick={handleAdult}
-            />
-          </div>
+          <ToggleButton
+            active={state.adult.active}
+            name={state.adult.active ? 'Visible' : 'Hidden'}
+            onClick={handleAdult}
+          />
         </Section>
       </div>
     </aside>

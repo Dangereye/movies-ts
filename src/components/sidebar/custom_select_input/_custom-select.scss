@@ -1,0 +1,56 @@
+.custom-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border: 1px solid $grey-color;
+  background-color: $grey-color;
+  transition: border-color 0.3s;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: $input-border-color;
+    }
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+
+    border-radius: 50%;
+    color: $heading-text-dark;
+    display: grid;
+    place-content: center;
+  }
+
+  &.active {
+    .custom-select__icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &_options {
+    display: none;
+
+    &.active {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &_option {
+    padding: 1rem 2rem;
+    text-transform: capitalize;
+    font-size: 1.6rem;
+    background-color: transparent;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $grey-color;
+      cursor: pointer;
+    }
+  }
+}

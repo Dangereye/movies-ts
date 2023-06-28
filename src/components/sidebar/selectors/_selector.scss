@@ -1,0 +1,27 @@
+.selector {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  font-size: $base-font-size;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: $grey-color;
+    }
+  }
+
+  &.active {
+    background-color: $grey-color;
+  }
+
+  &__results {
+    padding: 5px 1rem;
+    color: #fff;
+    background-color: $accent-color;
+    border-radius: 5px;
+  }
+}

@@ -1,8 +1,11 @@
 import { ReactNode } from 'react';
+
+// Icons
+import { HiChevronDown } from 'react-icons/hi';
+
+// Components
 import Button from '../../buttons/Button';
 import HDiv from '../../typography/HDiv';
-import { HiChevronDown } from 'react-icons/hi';
-import Wrapper from '../../wrapper/Wrapper';
 
 type SectionProps = {
   expanded: boolean;
@@ -18,16 +21,20 @@ export default function Section({
   children,
 }: SectionProps) {
   return (
-    <div className={expanded ? 'sidebar__section active' : 'sidebar__section'}>
-      <Wrapper name='section-header' variant='flex'>
+    <div className={expanded ? 'section active' : 'section'}>
+      <div className='section__heading'>
         <HDiv variant='heading--h4' heading={heading} />
         <Button
           variant='btn--close'
           name={<HiChevronDown />}
           onClick={dispatch}
         />
-      </Wrapper>
-      {expanded && children}
+      </div>
+      <div
+        className={expanded ? 'section__content active' : 'section__content'}
+      >
+        {children}
+      </div>
     </div>
   );
 }

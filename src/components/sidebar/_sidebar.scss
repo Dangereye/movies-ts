@@ -8,25 +8,6 @@
     gap: 1rem;
   }
 
-  &__section {
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-    .heading {
-      margin: 0;
-    }
-
-    .section-header {
-      margin: 0;
-      justify-content: space-between;
-    }
-
-    &.active .btn--close {
-      transform: rotate(180deg);
-    }
-  }
-
   .btn--close {
     display: grid;
     place-content: center;

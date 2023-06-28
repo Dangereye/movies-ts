@@ -1,9 +1,10 @@
 .providers {
-  margin-top: 4rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.6rem;
+  column-gap: 1rem;
+  row-gap: 1.6rem;
 
   &__status {
     display: none;
@@ -20,8 +21,8 @@
   }
 
   &__icon {
-    width: 53px;
-    height: 53px;
+    width: 55px;
+    height: 55px;
     position: relative;
 
     &::before {

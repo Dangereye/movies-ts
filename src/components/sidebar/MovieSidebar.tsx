@@ -13,10 +13,10 @@ import useCreateProviders from '../../hooks/useCreateProviders';
 // Components
 import Section from './sections/Section';
 import ToggleButton from '../buttons/ToggleButton';
-import CustomSelectInput from '../custom_select_input/CustomSelectInput';
-import CustomSelectOption from '../custom_select_input/CustomSelectOption';
+import CustomSelectInput from './custom_select_input/CustomSelectInput';
+import CustomSelectOption from './custom_select_input/CustomSelectOption';
 import NumberInput from '../forms/inputs/NumberInput';
-import ProvidersIcon from '../providers/ProvidersIcon';
+import ProvidersIcon from './providers/ProvidersIcon';
 
 // Data
 import { sortOptions } from '../../data/sortOptions';
@@ -91,13 +91,11 @@ export default function MovieSidebar() {
           expanded={state.providers.expanded}
           dispatch={handleToggleProviders}
         >
-          <div className='buttons'>
-            <ToggleButton
-              active={state.providers.ids.length === 0}
-              name='All'
-              onClick={clearProviders}
-            />
-          </div>
+          <ToggleButton
+            active={state.providers.ids.length === 0}
+            name='All'
+            onClick={clearProviders}
+          />
           <div className='providers'>
             {providers.map((p) => (
               <ProvidersIcon
@@ -116,65 +114,59 @@ export default function MovieSidebar() {
           expanded={state.genres.expanded}
           dispatch={handleToggleGenres}
         >
-          <div className='buttons'>
+          <ToggleButton
+            active={state.genres.types.length === 0}
+            name='All'
+            onClick={clearGenres}
+          />
+          {genres.map((genre) => (
             <ToggleButton
-              active={state.genres.types.length === 0}
-              name='All'
-              onClick={clearGenres}
+              key={genre.id}
+              active={state.genres.types.includes(genre.id)}
+              name={genre.name}
+              onClick={() => updateGenres(genre.id)}
             />
-            {genres.map((genre) => (
-              <ToggleButton
-                key={genre.id}
-                active={state.genres.types.includes(genre.id)}
-                name={genre.name}
-                onClick={() => updateGenres(genre.id)}
-              />
-            ))}
-          </div>
+          ))}
         </Section>
         <Section
           heading='Certifications'
           expanded={state.certifications.expanded}
           dispatch={handleToggleCertificates}
         >
-          <div className='buttons'>
-            <ToggleButton
-              active={state.certifications.certs.length === 0}
-              name='All'
-              onClick={clearCertificates}
-            />
-            {certifications
-              .sort((a, b) => a.order - b.order)
-              .map((c) => (
-                <ToggleButton
-                  key={c.name}
-                  active={state.certifications.certs.includes(c.name)}
-                  name={c.name}
-                  onClick={() => updateCertificates(c.name)}
-                />
-              ))}
-          </div>
+          <ToggleButton
+            active={state.certifications.certs.length === 0}
+            name='All'
+            onClick={clearCertificates}
+          />
+          {certifications
+            .sort((a, b) => a.order - b.order)
+            .map((c) => (
+              <ToggleButton
+                key={c.name}
+                active={state.certifications.certs.includes(c.name)}
+                name={c.name}
+                onClick={() => updateCertificates(c.name)}
+              />
+            ))}
         </Section>
         <Section
           heading='Release types'
           expanded={state.release_types.expanded}
           dispatch={handleToggleReleaseTypes}
         >
-          <div className='buttons'>
+          <ToggleButton
+            active={state.release_types.types.length === 0}
+            name='All'
+            onClick={clearTypes}
+          />
+          {movieReleaseTypes.map((type) => (
             <ToggleButton
-              active={state.release_types.types.length === 0}
-              name='All'
-              onClick={clearTypes}
+              key={`release-type-${type.name}`}
+              active={state.release_types.types.includes(type.value)}
+              name={type.name}
+              onClick={() => updateTypes(type.value)}
             />
-            {movieReleaseTypes.map((type) => (
-              <ToggleButton
-                key={`release-type-${type.name}`}
-                active={state.release_types.types.includes(type.value)}
-                name={type.name}
-                onClick={() => updateTypes(type.value)}
-              />
-            ))}
-          </div>
+          ))}
         </Section>
         <Section
           heading='Release dates'
@@ -253,13 +245,11 @@ export default function MovieSidebar() {
           expanded={state.adult.expanded}
           dispatch={handleToggleAdultSection}
         >
-          <div className='buttons'>
-            <ToggleButton
-              active={state.adult.active}
-              name={state.adult.active ? 'Visible' : 'Hidden'}
-              onClick={handleAdult}
-            />
-          </div>
+          <ToggleButton
+            active={state.adult.active}
+            name={state.adult.active ? 'Visible' : 'Hidden'}
+            onClick={handleAdult}
+          />
         </Section>
       </div>
     </aside>

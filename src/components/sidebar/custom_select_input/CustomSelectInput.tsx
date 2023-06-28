@@ -16,9 +16,12 @@ export default function CustomSelectInput({
 }: CustomSelectInputProps) {
   return (
     <>
-      <div className='custom-select' onClick={dispatch}>
-        <span>{selected}</span>
-        <span>{<HiChevronDown />}</span>
+      <div
+        className={expanded ? 'custom-select active' : 'custom-select'}
+        onClick={dispatch}
+      >
+        <span className='custom-select__name'>{selected}</span>
+        <span className='custom-select__icon'>{<HiChevronDown />}</span>
       </div>
       <div
         className={
