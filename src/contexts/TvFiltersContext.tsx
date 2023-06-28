@@ -20,7 +20,7 @@ export default function TvFiltersContextComponent({
   children,
 }: FiltersContextProps) {
   const [state, dispatch] = useReducer(tvFiltersReducer, initialState);
-  console.log('TV Filters: ', state);
+  // console.log('TV Filters: ', state);
   return (
     <TvFiltersContext.Provider value={{ state, dispatch }}>
       {children}

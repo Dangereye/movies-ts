@@ -1,13 +1,25 @@
 export type stateType = {
-  show_media_type: 'movies' | 'tv-shows' | 'people';
+  display: {
+    expanded: boolean;
+    show_media_type: 'movies' | 'tv-shows' | 'people';
+    results: {
+      movies: number | undefined;
+      tv_shows: number | undefined;
+      people: number | undefined;
+    };
+  };
 };
 
 export const initialState: stateType = {
-  show_media_type: 'movies',
+  display: {
+    expanded: true,
+    show_media_type: 'movies',
+    results: { movies: 1, tv_shows: 1, people: 1 },
+  },
 };
 
 export type actionType = {
-  type: string;
+  type: 'SET_FILTERS';
   payload: stateType;
 };
 
