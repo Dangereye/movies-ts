@@ -2,7 +2,7 @@ export type stateType = {
   show_media_type: 'movies' | 'tv-shows' | 'people';
 };
 
-export const InitialState: stateType = {
+export const initialState: stateType = {
   show_media_type: 'movies',
 };
 
