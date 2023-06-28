@@ -18,7 +18,7 @@ export const initialState: stateType = {
   display: {
     expanded: true,
     show_media_type: 'movies',
-    results: { movies: 1, tv_shows: 1, people: 1 },
+    results: { movies: 0, tv_shows: 0, people: 0 },
   },
   adult: { expanded: false, active: false },
 };
@@ -40,6 +40,7 @@ export default function searchFiltersReducer(
         ...payload,
       };
     }
+
     default: {
       return state;
     }

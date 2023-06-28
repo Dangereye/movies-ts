@@ -68,6 +68,7 @@ export default function SearchSidebar() {
             <BodyText text={state.display.results.people} />
           </div>
         </Section>
+
         <Section
           heading='Adult content'
           expanded={state.adult.expanded}

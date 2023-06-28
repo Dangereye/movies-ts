@@ -28,13 +28,15 @@ export default function NumberInput({
       const globalState = window.setTimeout(() => {
         if (state > max) {
           setState(max);
+          return;
         }
         if (state < min) {
-          setState(0);
+          setState(min);
+          return;
         }
         func(state);
         hasChanged.current = false;
-      }, 500);
+      }, 1000);
 
       return () => {
         window.clearTimeout(globalState);
