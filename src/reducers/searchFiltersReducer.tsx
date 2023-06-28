@@ -8,6 +8,10 @@ export type stateType = {
       people: number | undefined;
     };
   };
+  adult: {
+    expanded: boolean;
+    active: boolean;
+  };
 };
 
 export const initialState: stateType = {
@@ -16,6 +20,7 @@ export const initialState: stateType = {
     show_media_type: 'movies',
     results: { movies: 1, tv_shows: 1, people: 1 },
   },
+  adult: { expanded: false, active: false },
 };
 
 export type actionType = {

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { SearchFiltersContext } from '../../contexts/SearchFiltersContext';
 import Section from './sections/Section';
 import BodyText from '../typography/BodyText';
-import Wrapper from '../wrapper/Wrapper';
+import ToggleButton from '../buttons/ToggleButton';
 
 export default function SearchSidebar() {
   const { state, dispatch } = useContext(SearchFiltersContext);
@@ -27,6 +27,26 @@ export default function SearchSidebar() {
     });
   };
 
+  const handleToggleAdultSection = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        adult: { ...state.adult, expanded: !state.adult.expanded },
+      },
+    });
+  };
+
+  const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        adult: { ...state.adult, active: !state.adult.active },
+      },
+    });
+  };
+
   return (
     <aside className='sidebar'>
       <div className='sidebar__content'>
@@ -46,6 +66,19 @@ export default function SearchSidebar() {
           <div onClick={() => handleSetMediaType('people')}>
             <BodyText text='People' />
             <BodyText text={state.display.results.people} />
+          </div>
+        </Section>
+        <Section
+          heading='Adult content'
+          expanded={state.adult.expanded}
+          dispatch={handleToggleAdultSection}
+        >
+          <div className='buttons'>
+            <ToggleButton
+              active={state.adult.active}
+              name={state.adult.active ? 'Visible' : 'Hidden'}
+              onClick={handleAdult}
+            />
           </div>
         </Section>
       </div>

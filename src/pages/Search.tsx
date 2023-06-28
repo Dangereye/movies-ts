@@ -35,10 +35,12 @@ import { peoplePages } from '../data/peoplePages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import Navigation from '../components/navigation/Navigation';
+import useAppendSearch from '../hooks/useAppendSearch';
 
 export default function Search() {
   const { searchId } = useParams();
   const { state, dispatch } = useContext(SearchFiltersContext);
+  const append = useAppendSearch();
 
   const moviesGetNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
   const tvshowsGetNextPageParam = (page: IPage<ITVShowMin>) => page.page + 1;
@@ -52,7 +54,7 @@ export default function Search() {
     fetchNextPage: moviesFetchNextPage,
   } = useMakeInfiniteQuery<IPage<IMovieMin>>(
     'search/movie',
-    `&query=${searchId}`,
+    `&query=${searchId}${append}`,
     moviesGetNextPageParam
   );
 
@@ -64,7 +66,7 @@ export default function Search() {
     fetchNextPage: tvshowsFetchNextPage,
   } = useMakeInfiniteQuery<IPage<ITVShowMin>>(
     'search/tv',
-    `&query=${searchId}`,
+    `&query=${searchId}${append}`,
     tvshowsGetNextPageParam
   );
 
@@ -76,7 +78,7 @@ export default function Search() {
     fetchNextPage: peopleFetchNextPage,
   } = useMakeInfiniteQuery<IPage<IPerson>>(
     'search/person',
-    `&query=${searchId}`,
+    `&query=${searchId}${append}`,
     peopleGetNextPageParam
   );
 
