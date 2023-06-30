@@ -31,9 +31,15 @@ import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import Main from '../components/main/Main';
+import Container from '../components/container/Container';
+import LoaderComponent from '../components/loader/Loader';
+import Article from '../components/articles/Article';
+import ErrorComponent from '../components/error/Error';
 
 export default function TvDetails() {
   const { personId } = useParams();
+  const test = true;
   const {
     data: person,
     isError,
@@ -45,11 +51,49 @@ export default function TvDetails() {
   );
 
   if (isLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={peoplePages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Main>
+          <Article name='Loading'>
+            <Container>
+              <LoaderComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
   if (isError) {
-    return <H2 heading='Error' />;
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={peoplePages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Main>
+          <Article name='error'>
+            <Container>
+              <ErrorComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
   return (
@@ -66,6 +110,7 @@ export default function TvDetails() {
       <Header
         variant='header__full'
         image={person?.profile_path}
+        bgImage={person?.movie_credits.cast[0].backdrop_path}
         alt={person?.name}
         title={person?.name}
       >
@@ -93,31 +138,32 @@ export default function TvDetails() {
         />
       </Header>
       <Statistics person={person} />
-
-      <ArticleMoviesMin
-        variant='scroll-x'
-        name='movie-cast'
-        heading='Movie cast'
-        data={person?.movie_credits.cast}
-      />
-      <ArticleMoviesMin
-        variant='scroll-x'
-        name='movie-crew'
-        heading='Movie crew'
-        data={person?.movie_credits.crew}
-      />
-      <ArticleTvMin
-        variant='scroll-x'
-        name='tv-cast'
-        heading='TV cast'
-        data={person?.tv_credits.cast}
-      />
-      <ArticleTvMin
-        variant='scroll-x'
-        name='tv-crew'
-        heading='TV crew'
-        data={person?.tv_credits.crew}
-      />
+      <Main>
+        <ArticleMoviesMin
+          variant='scroll-x'
+          name='movie-cast'
+          heading='Movie cast'
+          data={person?.movie_credits.cast}
+        />
+        <ArticleMoviesMin
+          variant='scroll-x'
+          name='movie-crew'
+          heading='Movie crew'
+          data={person?.movie_credits.crew}
+        />
+        <ArticleTvMin
+          variant='scroll-x'
+          name='tv-cast'
+          heading='TV cast'
+          data={person?.tv_credits.cast}
+        />
+        <ArticleTvMin
+          variant='scroll-x'
+          name='tv-crew'
+          heading='TV crew'
+          data={person?.tv_credits.crew}
+        />
+      </Main>
     </>
   );
 }
