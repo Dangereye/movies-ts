@@ -39,7 +39,6 @@ export default function Collections() {
   let collectionGenres: { id: number; name: string }[] = [];
   let vote_averages: number[] = [];
   let vote_average = 0;
-  const test = true;
 
   const { data, isLoading, isError } = useMakeQuery<ICollections>(
     'Collection',
@@ -95,7 +94,7 @@ export default function Collections() {
     );
   }
 
-  if (isError || test) {
+  if (isError) {
     return (
       <>
         <SubNavbar />
