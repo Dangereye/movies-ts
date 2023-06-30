@@ -43,7 +43,6 @@ import { formatRuntime } from '../utilities/formatRuntime';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
-  const test = true;
 
   const {
     data: movie,
@@ -78,7 +77,7 @@ export default function MovieDetails() {
     );
   }
 
-  if (isError || test) {
+  if (isError) {
     return (
       <>
         <SubNavbar>

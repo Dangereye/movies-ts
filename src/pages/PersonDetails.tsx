@@ -1,3 +1,4 @@
+// React router
 import { useParams } from 'react-router-dom';
 
 // Icons
@@ -10,15 +11,19 @@ import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticleTvMin from '../components/articles/ArticleTvMin';
 
 // Components
+import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
+import Article from '../components/articles/Article';
 import Navigation from '../components/navigation/Navigation';
 import Statistics from '../components/statistics/Statistics';
-import SubNavbar from '../components/sub_navbar/SubNavbar';
 import ExpandableText from '../components/typography/ExpandableText';
-import H2 from '../components/typography/H2';
 import HDiv from '../components/typography/HDiv';
 import IconText from '../components/typography/IconText';
 import Wrapper from '../components/wrapper/Wrapper';
+import Main from '../components/main/Main';
+import Container from '../components/container/Container';
+import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
 
 // Data
 import { peoplePages } from '../data/peoplePages';
@@ -31,11 +36,6 @@ import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import Main from '../components/main/Main';
-import Container from '../components/container/Container';
-import LoaderComponent from '../components/loader/Loader';
-import Article from '../components/articles/Article';
-import ErrorComponent from '../components/error/Error';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -110,7 +110,7 @@ export default function TvDetails() {
       <Header
         variant='header__full'
         image={person?.profile_path}
-        bgImage={person?.movie_credits.cast[0].backdrop_path}
+        bgImage={person?.movie_credits?.cast[0]?.backdrop_path}
         alt={person?.name}
         title={person?.name}
       >
