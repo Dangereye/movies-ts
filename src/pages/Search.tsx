@@ -1,8 +1,12 @@
+// React
 import { useEffect, useContext } from 'react';
+
+// React router
 import { useParams } from 'react-router-dom';
 
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
+import useAppendSearch from '../hooks/useAppendSearch';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -18,7 +22,6 @@ import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Container from '../components/container/Container';
 import Article from '../components/articles/Article';
 import BodyText from '../components/typography/BodyText';
-import H2 from '../components/typography/H2';
 import Main from '../components/main/Main';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
@@ -26,6 +29,9 @@ import CardContent from '../components/cards/card/CardContent';
 import Header from '../components/header/Header';
 import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
+import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
+import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -34,13 +40,12 @@ import { peoplePages } from '../data/peoplePages';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import Navigation from '../components/navigation/Navigation';
-import useAppendSearch from '../hooks/useAppendSearch';
 
 export default function Search() {
   const { searchId } = useParams();
   const { state, dispatch } = useContext(SearchFiltersContext);
   const append = useAppendSearch();
+  const title = `${state.display.show_media_type} matching: ${searchId}`;
 
   const moviesGetNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
   const tvshowsGetNextPageParam = (page: IPage<ITVShowMin>) => page.page + 1;
@@ -101,155 +106,165 @@ export default function Search() {
   }, [movies, tvshows, people]);
 
   if (moviesLoading || tvshowsLoading || peopleLoading) {
-    return <H2 heading='Loading' />;
-  }
-
-  if (moviesError || tvshowsError || peopleError) {
-    return <H2 heading='Error' />;
-  }
-
-  if (state.display.show_media_type === 'movies') {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={moviePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar />
         <Header
           variant='header__min'
           title={`${state.display.show_media_type} matching: ${searchId}`}
         />
-        <Main>
-          <Article name='movie-search-results'>
-            <Container>
-              <Layout variant='grid grid--sidebar'>
-                <Sidebar />
-                <InfiniteCards
-                  getId={(item) => item.id}
-                  getLink={(item) => `/movies/${item.id}`}
-                  renderContent={(item) => (
-                    <>
-                      <ImageComponent
-                        src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                        fallback='/images/error_500x750.webp'
-                        alt={item.title}
-                      />
-                      <CardContent
-                        heading={item.title}
-                        vote={item.vote_average}
-                      >
-                        <BodyText text={`${formatDate(item.release_date)}`} />
-                      </CardContent>
-                    </>
-                  )}
-                  data={movies.pages}
-                  hasNextPage={moviesHasNextPage}
-                  fetchNextPage={moviesFetchNextPage}
-                />
-              </Layout>
-            </Container>
-          </Article>
-        </Main>
+        <Article name='Loading'>
+          <Container>
+            <Layout variant='grid grid--sidebar'>
+              <Sidebar />
+              <Main>
+                <LoaderComponent />
+              </Main>
+            </Layout>
+          </Container>
+        </Article>
       </>
     );
   }
 
-  if (state.display.show_media_type === 'tv-shows') {
+  if (moviesError || tvshowsError || peopleError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar />
         <Header
           variant='header__min'
           title={`${state.display.show_media_type} matching: ${searchId}`}
         />
-        <Main>
-          <Article name='tv-shows-search-results'>
-            <Container>
-              <Layout variant='grid grid--sidebar'>
-                <Sidebar />
-                <InfiniteCards
-                  getId={(item) => item.id}
-                  getLink={(item) => `/tv/${item.id}`}
-                  renderContent={(item) => (
-                    <>
-                      <ImageComponent
-                        src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                        fallback='/images/error_500x750.webp'
-                        alt={item.name}
-                      />
-                      <CardContent heading={item.name} vote={item.vote_average}>
-                        <BodyText text={`${formatDate(item.first_air_date)}`} />
-                      </CardContent>
-                    </>
-                  )}
-                  data={tvshows.pages}
-                  hasNextPage={tvshowsHasNextPage}
-                  fetchNextPage={tvshowsFetchNextPage}
-                />
-              </Layout>
-            </Container>
-          </Article>
-        </Main>
+        <Article name='Error'>
+          <Container>
+            <Layout variant='grid grid--sidebar'>
+              <Sidebar />
+              <Main>
+                <ErrorComponent />
+              </Main>
+            </Layout>
+          </Container>
+        </Article>
       </>
+    );
+  }
+
+  if (
+    state.display.show_media_type === 'movies' &&
+    state.display.results.movies
+  ) {
+    return (
+      <ArticleWithSidebar
+        navigation={moviePages}
+        title={title}
+        name='search-results-movie'
+      >
+        <InfiniteCards
+          getId={(item) => item.id}
+          getLink={(item) => `/movies/${item.id}`}
+          renderContent={(item) => (
+            <>
+              <ImageComponent
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                fallback='/images/error_500x750.webp'
+                alt={item.title}
+              />
+              <CardContent heading={item.title} vote={item.vote_average}>
+                <BodyText text={`${formatDate(item.release_date)}`} />
+              </CardContent>
+            </>
+          )}
+          data={movies.pages}
+          hasNextPage={moviesHasNextPage}
+          fetchNextPage={moviesFetchNextPage}
+        />
+      </ArticleWithSidebar>
+    );
+  }
+
+  if (
+    state.display.show_media_type === 'tv-shows' &&
+    state.display.results.tv_shows
+  ) {
+    return (
+      <ArticleWithSidebar
+        navigation={tvPages}
+        title={title}
+        name='search-results-tv'
+      >
+        <InfiniteCards
+          getId={(item) => item.id}
+          getLink={(item) => `/tv/${item.id}`}
+          renderContent={(item) => (
+            <>
+              <ImageComponent
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                fallback='/images/error_500x750.webp'
+                alt={item.name}
+              />
+              <CardContent heading={item.name} vote={item.vote_average}>
+                <BodyText text={`${formatDate(item.first_air_date)}`} />
+              </CardContent>
+            </>
+          )}
+          data={tvshows.pages}
+          hasNextPage={tvshowsHasNextPage}
+          fetchNextPage={tvshowsFetchNextPage}
+        />
+      </ArticleWithSidebar>
+    );
+  }
+
+  if (
+    state.display.show_media_type === 'people' &&
+    state.display.results.people
+  ) {
+    return (
+      <ArticleWithSidebar
+        navigation={peoplePages}
+        title={title}
+        name='search-results-people'
+      >
+        <InfiniteCards
+          getId={(item) => item.id}
+          getLink={(item) => `/people/${item.id}`}
+          renderContent={(item) => (
+            <>
+              <ImageComponent
+                src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                fallback='/images/error_500x750.webp'
+                alt={item.name}
+              />
+              <CardContent heading={item.name}>
+                <BodyText text={item.known_for_department} />
+              </CardContent>
+            </>
+          )}
+          data={people.pages}
+          hasNextPage={peopleHasNextPage}
+          fetchNextPage={peopleFetchNextPage}
+        />
+      </ArticleWithSidebar>
     );
   }
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={peoplePages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar />
       <Header
         variant='header__min'
         title={`${state.display.show_media_type} matching: ${searchId}`}
       />
-      <Main>
-        <Article name='people-search-results'>
-          <Container>
-            <Layout variant='grid grid--sidebar'>
-              <Sidebar />
-              <InfiniteCards
-                getId={(item) => item.id}
-                getLink={(item) => `/people/${item.id}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                      fallback='/images/error_500x750.webp'
-                      alt={item.name}
-                    />
-                    <CardContent heading={item.name}>
-                      <BodyText text={item.known_for_department} />
-                    </CardContent>
-                  </>
-                )}
-                data={people.pages}
-                hasNextPage={peopleHasNextPage}
-                fetchNextPage={peopleFetchNextPage}
-              />
-            </Layout>
-          </Container>
-        </Article>
-      </Main>
+      <Article name='no results'>
+        <Container>
+          <Layout variant='grid grid--sidebar'>
+            <Sidebar />
+            <Main>
+              <BodyText text='No items match your query.' />
+            </Main>
+          </Layout>
+        </Container>
+      </Article>
     </>
   );
 }

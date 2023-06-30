@@ -1,26 +1,31 @@
-// Data
-import { peoplePages } from '../../data/peoplePages';
-
 // Components
 import Article from '../articles/Article';
 import Container from '../container/Container';
 import Header from '../header/Header';
+import Layout from '../layout/Layout';
 import Main from '../main/Main';
 import Navigation from '../navigation/Navigation';
+import Sidebar from '../sidebar/Sidebar';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
-type PeopleProps = {
+type ArticleWithSidebarProps = {
+  navigation: { name: string; link: string }[] | undefined;
   title: string;
   name: string;
   children: React.ReactNode;
 };
 
-export default function People({ title, name, children }: PeopleProps) {
+export default function ArticleWithSidebar({
+  navigation,
+  title,
+  name,
+  children,
+}: ArticleWithSidebarProps) {
   return (
     <>
       <SubNavbar>
         <Navigation
-          data={peoplePages}
+          data={navigation}
           getId={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
@@ -28,13 +33,16 @@ export default function People({ title, name, children }: PeopleProps) {
         />
       </SubNavbar>
       <Header variant='header__min' title={title} />
-      <Main>
-        <Article name={name}>
-          <Container>
-            <>{children}</>
-          </Container>
-        </Article>
-      </Main>
+      <Article name={name}>
+        <Container>
+          <Layout variant='grid grid--sidebar'>
+            <Sidebar />
+            <Main>
+              <>{children}</>
+            </Main>
+          </Layout>
+        </Container>
+      </Article>
     </>
   );
 }
