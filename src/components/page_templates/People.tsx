@@ -28,13 +28,13 @@ export default function People({ title, name, children }: PeopleProps) {
         />
       </SubNavbar>
       <Header variant='header__min' title='Popular people' />
-      <Article name='popular-people'>
-        <Container>
-          <Main>
+      <Main>
+        <Article name='popular-people'>
+          <Container>
             <>{children}</>
-          </Main>
-        </Container>
-      </Article>
+          </Container>
+        </Article>
+      </Main>
     </>
   );
 }
