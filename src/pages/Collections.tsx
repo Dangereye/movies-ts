@@ -1,33 +1,36 @@
-import { useParams } from 'react-router-dom';
+// React
 import { useMemo, useState } from 'react';
+
+// React Router
+import { useParams } from 'react-router-dom';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
 import useCreateGenres from '../hooks/useCreateGenres';
 
 // Components
-import H2 from '../components/typography/H2';
-import Header from '../components/header/Header';
-import Overview from '../components/header/Overview';
+import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
+import Header from '../components/header/Header';
+import Main from '../components/main/Main';
+import Article from '../components/articles/Article';
+import Container from '../components/container/Container';
+import H2 from '../components/typography/H2';
+import Overview from '../components/header/Overview';
 import UserScore from '../components/header/UserScore';
 import Wrapper from '../components/wrapper/Wrapper';
 import Navigation from '../components/navigation/Navigation';
-
-// Interfaces
-import { ICollections } from '../interfaces/ICollections';
-import Main from '../components/main/Main';
-import Container from '../components/container/Container';
-import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
-import Article from '../components/articles/Article';
 import BodyText from '../components/typography/BodyText';
 import Cards from '../components/cards/Cards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
+
+// Interfaces
+import { ICollections } from '../interfaces/ICollections';
+
+// Utilities
 import { formatDate } from '../utilities/formatDate';
-import Loader from '../components/loader/Loader';
-import Button from '../components/buttons/Button';
-import ErrorComponent from '../components/error/Error';
 
 export default function Collections() {
   const { collectionId } = useParams();
@@ -86,7 +89,7 @@ export default function Collections() {
         <Main>
           <Article name='loading'>
             <Container>
-              <Loader />
+              <LoaderComponent />
             </Container>
           </Article>
         </Main>
