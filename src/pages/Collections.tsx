@@ -16,11 +16,21 @@ import Navigation from '../components/navigation/Navigation';
 
 // Interfaces
 import { ICollections } from '../interfaces/ICollections';
+import Main from '../components/main/Main';
+import Container from '../components/container/Container';
+import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
+import Article from '../components/articles/Article';
+import BodyText from '../components/typography/BodyText';
+import Cards from '../components/cards/Cards';
+import ImageComponent from '../components/image/Image';
+import CardContent from '../components/cards/card/CardContent';
+import { formatDate } from '../utilities/formatDate';
 
 export default function Collections() {
   const { collectionId } = useParams();
   const [genres, setGenres] = useState<{ id: number; name: string }[]>([]);
   const [votes, setVotes] = useState(0);
+
   const allGenres = useCreateGenres('genre-list', 'genre/movie/list');
   let collectionGenresNumbers: number[] = [];
   let collectionGenres: { id: number; name: string }[] = [];
@@ -38,6 +48,7 @@ export default function Collections() {
         if (item.vote_average > 0) {
           vote_averages = [...vote_averages, item.vote_average];
         }
+
         collectionGenresNumbers = [
           ...collectionGenresNumbers,
           ...item.genre_ids,
@@ -95,6 +106,42 @@ export default function Collections() {
         <UserScore rating={votes} />
         <Overview text={data?.overview} />
       </Header>
+      <Main>
+        <Article name='Collection movies'>
+          <Container>
+            <H2 heading='Movies in collection' />
+            <BodyText text={`Showing ${data?.parts.length} movies`} />
+            <Cards
+              variant='list'
+              data={data?.parts}
+              getId={(item) => item.id}
+              getLink={(item) => `/movies/${item.id}`}
+              renderContent={(item) => (
+                <>
+                  <ImageComponent
+                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                    fallback='/images/error_500x750.webp'
+                    alt={item.title}
+                  />
+                  <CardContent vote={item.vote_average} heading={item.title}>
+                    <BodyText
+                      text={
+                        item.release_date
+                          ? formatDate(item.release_date)
+                          : 'TBC'
+                      }
+                    />
+                  </CardContent>
+                </>
+              )}
+              sort={(a, b) =>
+                (b.release_date ? +new Date(b.release_date) : 0) -
+                (a.release_date ? +new Date(a.release_date) : 0)
+              }
+            />
+          </Container>
+        </Article>
+      </Main>
     </>
   );
 }
