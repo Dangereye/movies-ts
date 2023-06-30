@@ -71,7 +71,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: '', date_to: '' },
-        vote_count: { ...state.vote_count, count: 0 },
+        vote_count: { ...state.vote_count, count: 10 },
       };
     }
     case 'SET_DEFAULT_AIRING_TODAY': {
@@ -92,7 +92,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: date, date_to: date },
-        vote_count: { ...state.vote_count, count: 0 },
+        vote_count: { ...state.vote_count, count: 10 },
       };
     }
     case 'SET_DEFAULT_NEXT_7_DAYS': {
@@ -116,7 +116,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         rating: { ...state.rating, min_rating: 0, max_rating: 10 },
         region: 'GB',
         dates: { ...state.dates, date_from: from, date_to: to },
-        vote_count: { ...state.vote_count, count: 0 },
+        vote_count: { ...state.vote_count, count: 10 },
       };
     }
     case 'SET_DEFAULT_TOP_RATED': {
