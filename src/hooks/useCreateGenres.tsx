@@ -4,7 +4,7 @@ import useMakeQuery from './useMakeQuery';
 // Interfaces
 import { IGenres } from '../interfaces/IGenres';
 
-export default function useCreateMovieGenres(key: string, endPoint: string) {
+export default function useCreateGenres(key: string, endPoint: string) {
   let genres: { id: number; name: string }[] = [];
 
   const {

@@ -1,13 +1,11 @@
 import { useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+
+// Hooks
+import useMakeQuery from '../hooks/useMakeQuery';
+import useCreateGenres from '../hooks/useCreateGenres';
 
 // Components
-import Article from '../components/articles/Article';
-import Container from '../components/container/Container';
-import BodyText from '../components/typography/BodyText';
-import useMakeQuery from '../hooks/useMakeQuery';
-
-// Interfaces
-import { ICollections } from '../interfaces/ICollections';
 import H2 from '../components/typography/H2';
 import Header from '../components/header/Header';
 import Overview from '../components/header/Overview';
@@ -16,9 +14,16 @@ import UserScore from '../components/header/UserScore';
 import Wrapper from '../components/wrapper/Wrapper';
 import Navigation from '../components/navigation/Navigation';
 
+// Interfaces
+import { ICollections } from '../interfaces/ICollections';
+
 export default function Collections() {
   const { collectionId } = useParams();
-  let genres: number[] = [];
+  const [genres, setGenres] = useState<{ id: number; name: string }[]>([]);
+  const [votes, setVotes] = useState(0);
+  const allGenres = useCreateGenres('genre-list', 'genre/movie/list');
+  let collectionGenresNumbers: number[] = [];
+  let collectionGenres: { id: number; name: string }[] = [];
   let vote_averages: number[] = [];
   let vote_average = 0;
 
@@ -27,23 +32,45 @@ export default function Collections() {
     `collection/${collectionId}`
   );
 
+  useMemo(() => {
+    if (data) {
+      data.parts.map((item) => {
+        if (item.vote_average > 0) {
+          vote_averages = [...vote_averages, item.vote_average];
+        }
+        collectionGenresNumbers = [
+          ...collectionGenresNumbers,
+          ...item.genre_ids,
+        ];
+      });
+
+      vote_average =
+        vote_averages.reduce((a, b) => a + b, 0) / vote_averages.length;
+      collectionGenresNumbers = collectionGenresNumbers.filter(
+        (item, i) => collectionGenresNumbers.indexOf(item) === i
+      );
+
+      collectionGenresNumbers.forEach((item) => {
+        allGenres.find((genre) => {
+          if (genre.id === item) {
+            collectionGenres = [
+              ...collectionGenres,
+              { id: genre.id, name: genre.name },
+            ];
+          }
+        });
+      });
+    }
+    setVotes(vote_average);
+    setGenres(collectionGenres);
+  }, [data]);
+
   if (isLoading) {
     return <H2 heading='Loading' />;
   }
 
   if (isError) {
     return <H2 heading='Error' />;
-  }
-
-  if (data) {
-    data.parts.map((item) => {
-      vote_averages = [...vote_averages, item.vote_average];
-      genres = [...genres, ...item.genre_ids];
-    });
-
-    vote_average =
-      vote_averages.reduce((a, b) => a + b, 0) / vote_averages.length;
-    genres = genres.filter((item, i) => genres.indexOf(item) === i);
   }
 
   return (
@@ -59,13 +86,13 @@ export default function Collections() {
         <Wrapper name='info-bar' variant='flex'>
           <Navigation
             data={genres}
-            getId={(item) => item}
-            getLink={(item) => `/genre/${item}/movie`}
-            renderItem={(item) => item}
+            getId={(item) => item.id}
+            getLink={(item) => `/genre/${item.id}/movie`}
+            renderItem={(item) => item.name}
             variant='comma-separated'
           />
         </Wrapper>
-        <UserScore rating={vote_average} />
+        <UserScore rating={votes} />
         <Overview text={data?.overview} />
       </Header>
     </>
