@@ -1,37 +1,56 @@
-import { useEffect, useState } from 'react';
+// React
+import { useEffect, useState, useRef, useContext } from 'react';
+
+// React router
 import { useParams } from 'react-router-dom';
-import Article from '../components/articles/Article';
-import CardContent from '../components/cards/card/CardContent';
-import Cards from '../components/cards/Cards';
-import Container from '../components/container/Container';
-import Header from '../components/header/Header';
-import ImageComponent from '../components/image/Image';
-import Layout from '../components/layout/Layout';
-import Main from '../components/main/Main';
-import Navigation from '../components/navigation/Navigation';
-import Sidebar from '../components/sidebar/Sidebar';
-import SubNavbar from '../components/sub_navbar/SubNavbar';
-import BodyText from '../components/typography/BodyText';
-import H2 from '../components/typography/H2';
-import { moviePages } from '../data/moviePages';
+
+// Hooks
+import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import useCreateGenres from '../hooks/useCreateGenres';
-import useMakeQuery from '../hooks/useMakeQuery';
-import { IMovieMin } from '../interfaces/IMovieMin';
+import useAppend from '../hooks/useAppendMovie';
+
+// Context
+import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
+
+// Components
+import CardContent from '../components/cards/card/CardContent';
+import ImageComponent from '../components/image/Image';
+import BodyText from '../components/typography/BodyText';
+import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
+import InfiniteCards from '../components/cards/InifinteCards';
+import ErrorComponent from '../components/error/Error';
+import LoaderComponent from '../components/loader/Loader';
+
+// Interfaces
 import { IPage } from '../interfaces/IPage';
+import { IMovieMin } from '../interfaces/IMovieMin';
+
+// Data
+import { moviePages } from '../data/moviePages';
+
+// Utilities
 import { formatDate } from '../utilities/formatDate';
 
 export default function MovieGenre() {
+  const { state, dispatch } = useContext(MovieFiltersContext);
+  const [genre, setGenre] = useState('');
+  const { append } = useAppend();
   const { genreId } = useParams();
-  const [genre, setGenre] = useState<string | null>(null);
+  const initial = useRef(false);
+  const title = `${genre} movies`;
+  const name = 'movies-by-genre';
 
+  const GetNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
   const {
-    data: movie,
+    data: movies,
     isError,
     isLoading,
-  } = useMakeQuery<IPage<IMovieMin>>(
-    `movie-genre-${genreId}`,
-    `discover/movie`,
-    `&with_genres=${genreId}`
+    hasNextPage,
+    fetchNextPage,
+  } = useMakeInfiniteQuery<IPage<IMovieMin>>(
+    'discover/movie',
+    append,
+    GetNextPageParam
   );
 
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
@@ -44,53 +63,76 @@ export default function MovieGenre() {
     });
   }, [genreId, genres, genre]);
 
+  useEffect(() => {
+    if (!initial.current) {
+      initial.current = true;
+      dispatch({
+        type: 'SET_DEFAULT_GENRE',
+        payload: {
+          ...state,
+          genres: { ...state.genres, types: genreId ? [+genreId] : [] },
+        },
+      });
+    }
+  });
+
   if (isLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <ArticleWithSidebar
+        navigation={moviePages}
+        title={title}
+        name='search-results-movie'
+      >
+        <LoaderComponent />
+      </ArticleWithSidebar>
+    );
   }
 
   if (isError) {
-    return <H2 heading='Error' />;
+    return (
+      <ArticleWithSidebar
+        navigation={moviePages}
+        title={title}
+        name='search-results-movie'
+      >
+        <ErrorComponent />
+      </ArticleWithSidebar>
+    );
+  }
+
+  if (movies.pages[0].total_results === 0) {
+    return (
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+        <BodyText text='No items were found that match your query.' />
+      </ArticleWithSidebar>
+    );
   }
 
   return (
-    <>
-      <SubNavbar>
-        <Navigation
-          data={moviePages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
-      <Header variant='header__min' title={`${genre} movies`} />
-      <Article name='genre-movies'>
-        <Container>
-          <Layout variant='grid grid--sidebar'>
-            <Sidebar />
-            <Main>
-              <Cards
-                variant='list'
-                data={movie?.results}
-                getId={(item) => item.id}
-                getLink={(item) => `/movies/${item?.id}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                      fallback='/images/error_500x750.webp'
-                      alt={item.title}
-                    />
-                    <CardContent heading={item.title}>
-                      <BodyText text={`${formatDate(item.release_date)}`} />
-                    </CardContent>
-                  </>
-                )}
-              />
-            </Main>
-          </Layout>
-        </Container>
-      </Article>
-    </>
+    <ArticleWithSidebar
+      navigation={moviePages}
+      title={title}
+      name='search-results-movie'
+    >
+      <InfiniteCards
+        getId={(item) => item.id}
+        getLink={(item) => `/movies/${item.id}`}
+        renderContent={(item) => (
+          <>
+            <ImageComponent
+              src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+              fallback='/images/error_500x750.webp'
+              alt={item.title}
+            />
+            <CardContent heading={item.title} vote={item.vote_average}>
+              <BodyText text={`${formatDate(item.release_date)}`} />
+            </CardContent>
+          </>
+        )}
+        data={movies.pages}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+      />
+    </ArticleWithSidebar>
   );
 }
