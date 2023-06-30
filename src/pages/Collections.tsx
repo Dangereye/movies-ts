@@ -25,6 +25,9 @@ import Cards from '../components/cards/Cards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import { formatDate } from '../utilities/formatDate';
+import Loader from '../components/loader/Loader';
+import Button from '../components/buttons/Button';
+import ErrorComponent from '../components/error/Error';
 
 export default function Collections() {
   const { collectionId } = useParams();
@@ -36,6 +39,7 @@ export default function Collections() {
   let collectionGenres: { id: number; name: string }[] = [];
   let vote_averages: number[] = [];
   let vote_average = 0;
+  const test = true;
 
   const { data, isLoading, isError } = useMakeQuery<ICollections>(
     'Collection',
@@ -77,11 +81,33 @@ export default function Collections() {
   }, [data]);
 
   if (isLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <>
+        <SubNavbar />
+        <Main>
+          <Article name='loading'>
+            <Container>
+              <Loader />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
-  if (isError) {
-    return <H2 heading='Error' />;
+  if (isError || test) {
+    return (
+      <>
+        <SubNavbar />
+        <Main>
+          <Article name='error'>
+            <Container>
+              <ErrorComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
   return (
