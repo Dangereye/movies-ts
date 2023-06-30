@@ -34,16 +34,18 @@ export default function MoviesWithSidebar({
         />
       </SubNavbar>
       <Header variant='header__min' title={title} />
-      <Article name={name}>
-        <Container>
-          <Layout variant='grid grid--sidebar'>
-            <Sidebar />
-            <Main>
-              <>{children}</>
-            </Main>
-          </Layout>
-        </Container>
-      </Article>
+      <Main>
+        <Article name={name}>
+          <Container>
+            <Layout variant='grid grid--sidebar'>
+              <Sidebar />
+              <Main>
+                <>{children}</>
+              </Main>
+            </Layout>
+          </Container>
+        </Article>
+      </Main>
     </>
   );
 }
