@@ -1,3 +1,4 @@
+// React router
 import { useParams } from 'react-router-dom';
 
 // Components
@@ -10,7 +11,6 @@ import Wrapper from '../components/wrapper/Wrapper';
 import CrewJobs from '../components/header/CrewJobs';
 import Container from '../components/container/Container';
 import Article from '../components/articles/Article';
-import CardsScrollX from '../components/cards/CardsScrollX';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import Statistics from '../components/statistics/Statistics';
@@ -18,6 +18,11 @@ import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Certificate from '../components/header/Certificate';
 import UserScore from '../components/header/UserScore';
 import IconText from '../components/typography/IconText';
+import Cards from '../components/cards/Cards';
+import ArticleTvMin from '../components/articles/ArticleTvMin';
+import Main from '../components/main/Main';
+import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
@@ -38,8 +43,6 @@ import { tvPages } from '../data/tvPages';
 
 // Icons
 import { RxCalendar } from 'react-icons/rx';
-import Cards from '../components/cards/Cards';
-import ArticleTvMin from '../components/articles/ArticleTvMin';
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -54,11 +57,49 @@ export default function TvDetails() {
   );
 
   if (isLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={tvPages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Main>
+          <Article name='Loading'>
+            <Container>
+              <LoaderComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
   if (isError) {
-    return <H2 heading='Error' />;
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={tvPages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Main>
+          <Article name='Error'>
+            <Container>
+              <ErrorComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
   return (
@@ -99,57 +140,59 @@ export default function TvDetails() {
         <CrewJobs credits={tv?.credits} />
       </Header>
       <Statistics tv={tv} />
-      <ArticlePeople
-        variant='scroll-x'
-        name='tv-show-top-billed-cast'
-        heading='Top billed cast'
-        data={tv?.aggregate_credits?.cast}
-        character
-        limit
-      />
-      <ArticleVideos data={tv?.videos?.results} />
-      <ArticleReviews data={tv?.reviews?.results} />
-      <Article name='tv-show-seasons'>
-        <Container>
-          <H2 heading='Seasons' />
-          <Cards
-            variant='scroll-x'
-            getId={(item) => item.id}
-            getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
-            renderContent={(item) => (
-              <>
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  fallback='/images/error_500x750.webp'
-                  alt={item.name}
-                />
-                <CardContent heading={item.name}>
-                  <BodyText
-                    text={item.air_date ? formatDate(item.air_date) : 'TBC'}
+      <Main>
+        <ArticlePeople
+          variant='scroll-x'
+          name='tv-show-top-billed-cast'
+          heading='Top billed cast'
+          data={tv?.aggregate_credits?.cast}
+          character
+          limit
+        />
+        <ArticleVideos data={tv?.videos?.results} />
+        <ArticleReviews data={tv?.reviews?.results} />
+        <Article name='tv-show-seasons'>
+          <Container>
+            <H2 heading='Seasons' />
+            <Cards
+              variant='scroll-x'
+              getId={(item) => item.id}
+              getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
+              renderContent={(item) => (
+                <>
+                  <ImageComponent
+                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                    fallback='/images/error_500x750.webp'
+                    alt={item.name}
                   />
-                </CardContent>
-              </>
-            )}
-            data={tv?.seasons}
-            sort={(a, b) =>
-              (b.air_date ? +new Date(b.air_date) : 0) -
-              (a.air_date ? +new Date(a.air_date) : 0)
-            }
-          />
-        </Container>
-      </Article>
-      <ArticleTvMin
-        variant='scroll-x'
-        name='recommended-tv-shows'
-        heading='Recommended'
-        data={tv?.recommendations?.results}
-      />
-      <ArticleTvMin
-        variant='scroll-x'
-        name='similar-tv-shows'
-        heading='You may also enjoy...'
-        data={tv?.similar?.results}
-      />
+                  <CardContent heading={item.name}>
+                    <BodyText
+                      text={item.air_date ? formatDate(item.air_date) : 'TBC'}
+                    />
+                  </CardContent>
+                </>
+              )}
+              data={tv?.seasons}
+              sort={(a, b) =>
+                (b.air_date ? +new Date(b.air_date) : 0) -
+                (a.air_date ? +new Date(a.air_date) : 0)
+              }
+            />
+          </Container>
+        </Article>
+        <ArticleTvMin
+          variant='scroll-x'
+          name='recommended-tv-shows'
+          heading='Recommended'
+          data={tv?.recommendations?.results}
+        />
+        <ArticleTvMin
+          variant='scroll-x'
+          name='similar-tv-shows'
+          heading='You may also enjoy...'
+          data={tv?.similar?.results}
+        />
+      </Main>
     </>
   );
 }
