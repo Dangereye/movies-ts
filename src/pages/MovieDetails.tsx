@@ -1,11 +1,13 @@
+// React router
 import { useParams } from 'react-router-dom';
 
 // Components
+import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
 import Overview from '../components/header/Overview';
 import Navigation from '../components/navigation/Navigation';
-import H2 from '../components/typography/H2';
 import Wrapper from '../components/wrapper/Wrapper';
 import CrewJobs from '../components/header/CrewJobs';
 import Statistics from '../components/statistics/Statistics';
@@ -13,6 +15,9 @@ import Collection from '../components/collection/Collection';
 import Certificate from '../components/header/Certificate';
 import UserScore from '../components/header/UserScore';
 import IconText from '../components/typography/IconText';
+import Main from '../components/main/Main';
+import Article from '../components/articles/Article';
+import Container from '../components/container/Container';
 
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
@@ -38,6 +43,7 @@ import { formatRuntime } from '../utilities/formatRuntime';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
+  const test = true;
 
   const {
     data: movie,
@@ -50,11 +56,49 @@ export default function MovieDetails() {
   );
 
   if (isLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={moviePages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Main>
+          <Article name='Loading'>
+            <Container>
+              <LoaderComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
-  if (isError) {
-    return <H2 heading='Error' />;
+  if (isError || test) {
+    return (
+      <>
+        <SubNavbar>
+          <Navigation
+            data={moviePages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => item.name}
+            variant='horizontal'
+          />
+        </SubNavbar>
+        <Main>
+          <Article name='Error'>
+            <Container>
+              <ErrorComponent />
+            </Container>
+          </Article>
+        </Main>
+      </>
+    );
   }
 
   return (
@@ -100,35 +144,36 @@ export default function MovieDetails() {
         <CrewJobs credits={movie?.credits} />
       </Header>
       <Statistics movie={movie} />
+      <Main>
+        <ArticlePeople
+          variant='scroll-x'
+          name='top-billed-cast'
+          heading='Top billed cast'
+          data={movie?.credits?.cast}
+          character
+          limit
+        />
 
-      <ArticlePeople
-        variant='scroll-x'
-        name='top-billed-cast'
-        heading='Top billed cast'
-        data={movie?.credits?.cast}
-        character
-        limit
-      />
-
-      <ArticleVideos data={movie?.videos?.results} />
-      <ArticleReviews data={movie?.reviews?.results} />
-      <Collection
-        name={movie?.belongs_to_collection?.name}
-        image={movie?.belongs_to_collection?.backdrop_path}
-        id={movie?.belongs_to_collection?.id}
-      />
-      <ArticleMoviesMin
-        variant='scroll-x'
-        name='recommended-movies'
-        heading='Recommended'
-        data={movie?.recommendations?.results}
-      />
-      <ArticleMoviesMin
-        variant='scroll-x'
-        name='similar-movies'
-        heading='You may also enjoy...'
-        data={movie?.similar?.results}
-      />
+        <ArticleVideos data={movie?.videos?.results} />
+        <ArticleReviews data={movie?.reviews?.results} />
+        <Collection
+          name={movie?.belongs_to_collection?.name}
+          image={movie?.belongs_to_collection?.backdrop_path}
+          id={movie?.belongs_to_collection?.id}
+        />
+        <ArticleMoviesMin
+          variant='scroll-x'
+          name='recommended-movies'
+          heading='Recommended'
+          data={movie?.recommendations?.results}
+        />
+        <ArticleMoviesMin
+          variant='scroll-x'
+          name='similar-movies'
+          heading='You may also enjoy...'
+          data={movie?.similar?.results}
+        />
+      </Main>
     </>
   );
 }
