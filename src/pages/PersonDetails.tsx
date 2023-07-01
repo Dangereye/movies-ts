@@ -39,7 +39,6 @@ import { formatDate } from '../utilities/formatDate';
 
 export default function TvDetails() {
   const { personId } = useParams();
-  const test = true;
   const {
     data: person,
     isError,
