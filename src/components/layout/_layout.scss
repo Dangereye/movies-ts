@@ -1,22 +1,14 @@
 .layout {
-  display: grid;
-  gap: 4rem;
-
   &.grid {
+    display: grid;
+    gap: 4rem;
+
     &--sidebar {
       grid-template-columns: 30rem 1fr;
 
       @media (max-width: 1150px) {
         grid-template-columns: 1fr;
       }
-    }
-  }
-
-  &.left-sidebar {
-    grid-template-columns: 30rem 1fr;
-
-    @media (max-width: 1150px) {
-      grid-template-columns: 1fr;
     }
   }
 }
