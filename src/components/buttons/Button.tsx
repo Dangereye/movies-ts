@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 type ButtonProps = {
-  type?: 'button' | 'submit' | 'reset' | undefined;
+  type?: 'button' | 'submit' | 'reset';
   active?: boolean;
   variant?: 'btn--primary' | 'btn--secondary' | 'btn--tertiary' | 'btn--close';
   name: string | ReactNode;

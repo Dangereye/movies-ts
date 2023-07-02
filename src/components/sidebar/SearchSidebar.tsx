@@ -52,45 +52,43 @@ export default function SearchSidebar() {
   };
 
   return (
-    <aside className='sidebar'>
-      <div className='sidebar__content'>
-        <Section
-          heading='Display'
-          expanded={state.display.expanded}
-          dispatch={handleToggleDisplay}
-        >
-          <Selector
-            active={state.display.show_media_type === 'movies'}
-            name='Movies'
-            value={state.display.results.movies}
-            onClick={() => handleSetMediaType('movies')}
-          />
-          <Selector
-            active={state.display.show_media_type === 'tv-shows'}
-            name='Tv Shows'
-            value={state.display.results.tv_shows}
-            onClick={() => handleSetMediaType('tv-shows')}
-          />
-          <Selector
-            active={state.display.show_media_type === 'people'}
-            name='People'
-            value={state.display.results.people}
-            onClick={() => handleSetMediaType('people')}
-          />
-        </Section>
+    <>
+      <Section
+        heading='Display'
+        expanded={state.display.expanded}
+        dispatch={handleToggleDisplay}
+      >
+        <Selector
+          active={state.display.show_media_type === 'movies'}
+          name='Movies'
+          value={state.display.results.movies}
+          onClick={() => handleSetMediaType('movies')}
+        />
+        <Selector
+          active={state.display.show_media_type === 'tv-shows'}
+          name='Tv Shows'
+          value={state.display.results.tv_shows}
+          onClick={() => handleSetMediaType('tv-shows')}
+        />
+        <Selector
+          active={state.display.show_media_type === 'people'}
+          name='People'
+          value={state.display.results.people}
+          onClick={() => handleSetMediaType('people')}
+        />
+      </Section>
 
-        <Section
-          heading='Adult content'
-          expanded={state.adult.expanded}
-          dispatch={handleToggleAdultSection}
-        >
-          <ToggleButton
-            active={state.adult.active}
-            name={state.adult.active ? 'Visible' : 'Hidden'}
-            onClick={handleAdult}
-          />
-        </Section>
-      </div>
-    </aside>
+      <Section
+        heading='Adult content'
+        expanded={state.adult.expanded}
+        dispatch={handleToggleAdultSection}
+      >
+        <ToggleButton
+          active={state.adult.active}
+          name={state.adult.active ? 'Visible' : 'Hidden'}
+          onClick={handleAdult}
+        />
+      </Section>
+    </>
   );
 }

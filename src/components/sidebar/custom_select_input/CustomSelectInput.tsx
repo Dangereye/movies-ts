@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+// Icons
 import { HiChevronDown } from 'react-icons/hi';
 
 type CustomSelectInputProps = {
   selected: string | undefined;
   expanded: boolean;
   dispatch: () => void;
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export default function CustomSelectInput({
