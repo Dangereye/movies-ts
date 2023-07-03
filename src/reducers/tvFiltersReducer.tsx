@@ -20,7 +20,7 @@ export type stateType = {
 
 export const initialState: stateType = {
   sort: {
-    expanded: false,
+    expanded: true,
     inputExpanded: false,
     name: 'Pupularity descended',
     value: 'popularity.desc',
@@ -31,7 +31,7 @@ export const initialState: stateType = {
     date_to: '',
     date_from: '',
   },
-  genres: { expanded: false, types: [] },
+  genres: { expanded: true, types: [] },
   release_types: {
     expanded: false,
     types: ['flatrate', 'free', 'ads', 'rent', 'buy'],

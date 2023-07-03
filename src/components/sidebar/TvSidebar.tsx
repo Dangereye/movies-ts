@@ -1,16 +1,25 @@
+// react
 import { useContext } from 'react';
+
+// Context
 import { TvFiltersContext } from '../../contexts/TvFiltersContext';
-import Section from './sections/Section';
-import ToggleButton from '../buttons/ToggleButton';
+
+// Hooks
 import useCreateGenres from '../../hooks/useCreateGenres';
 import useTvFiltersFunctions from '../../hooks/useTvFiltersFunctions';
+import useCreateProviders from '../../hooks/useCreateProviders';
+
+// Components
+import Section from './sections/Section';
+import ToggleButton from '../buttons/ToggleButton';
 import CustomSelectInput from './custom_select_input/CustomSelectInput';
-import { sortOptions } from '../../data/sortOptions';
 import CustomSelectOption from './custom_select_input/CustomSelectOption';
 import ProvidersIcon from './providers/ProvidersIcon';
-import useCreateProviders from '../../hooks/useCreateProviders';
-import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
 import NumberInput from '../forms/inputs/NumberInput';
+
+// Data
+import { sortOptions } from '../../data/sortOptions';
+import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
 
 export default function TvSidebar() {
   const { state } = useContext(TvFiltersContext);
@@ -71,13 +80,11 @@ export default function TvSidebar() {
         expanded={state.providers.expanded}
         dispatch={handleToggleProviders}
       >
-        <div className='buttons'>
-          <ToggleButton
-            active={state.providers.ids.length === 0}
-            name='All'
-            onClick={clearProviders}
-          />
-        </div>
+        <ToggleButton
+          active={state.providers.ids.length === 0}
+          name='All'
+          onClick={clearProviders}
+        />
         <div className='providers'>
           {providers.map((p) => (
             <ProvidersIcon
@@ -96,42 +103,38 @@ export default function TvSidebar() {
         expanded={state.release_types.expanded}
         dispatch={handleToggleReleaseTypes}
       >
-        <div className='buttons'>
+        <ToggleButton
+          active={state.release_types.types.length === 0}
+          name='All'
+          onClick={clearTypes}
+        />
+        {tvMonetizationTypes.map((t) => (
           <ToggleButton
-            active={state.release_types.types.length === 0}
-            name='All'
-            onClick={clearTypes}
+            key={t.name}
+            active={state.release_types.types.includes(t.value)}
+            name={t.name}
+            onClick={() => updateTypes(t.value)}
           />
-          {tvMonetizationTypes.map((t) => (
-            <ToggleButton
-              key={t.name}
-              active={state.release_types.types.includes(t.value)}
-              name={t.name}
-              onClick={() => updateTypes(t.value)}
-            />
-          ))}
-        </div>
+        ))}
       </Section>
       <Section
         heading='Genres'
         expanded={state.genres.expanded}
         dispatch={handleToggleGenres}
       >
-        <div className='buttons'>
+        <ToggleButton
+          active={state.genres.types.length === 0}
+          name='All'
+          onClick={clearGenres}
+        />
+        {genres.map((genre) => (
           <ToggleButton
-            active={state.genres.types.length === 0}
-            name='All'
-            onClick={clearGenres}
+            key={genre.id}
+            active={state.genres.types.includes(genre.id)}
+            name={genre.name}
+            onClick={() => updateGenres(genre.id)}
           />
-          {genres.map((genre) => (
-            <ToggleButton
-              key={genre.id}
-              active={state.genres.types.includes(genre.id)}
-              name={genre.name}
-              onClick={() => updateGenres(genre.id)}
-            />
-          ))}
-        </div>
+        ))}
       </Section>
       <Section
         heading='air dates'

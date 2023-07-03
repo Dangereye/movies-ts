@@ -1,4 +1,7 @@
+// React router
 import { useLocation } from 'react-router-dom';
+
+// Components
 import MovieSidebar from './MovieSidebar';
 import TvSidebar from './TvSidebar';
 import SearchSidebar from './SearchSidebar';
