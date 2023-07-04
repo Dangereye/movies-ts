@@ -25,6 +25,12 @@
     color: $heading-text-light;
   }
 
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
   .navigation {
     @media (max-width: $tablet) {
       display: none;

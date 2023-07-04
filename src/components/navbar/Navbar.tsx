@@ -3,7 +3,7 @@ import { pages } from '../../data/pages';
 import Container from '../container/Container';
 import MobileMenuIcon from '../mobile_menu_icon/MobileMenuIcon';
 import Navigation from '../navigation/Navigation';
-import Searchbar from './searchbar/Searcbar';
+import SearchIcon from './search_icon/SearchIcon';
 
 export default function Navbar() {
   return (
@@ -12,14 +12,16 @@ export default function Navbar() {
         <Link to='/' className='navbar__logo'>
           Movies
         </Link>
-        <Searchbar />
-        <Navigation
-          data={pages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => <>{item.name}</>}
-          variant='horizontal'
-        />
+        <div className='controls'>
+          <Navigation
+            data={pages}
+            getId={(item) => item.name}
+            getLink={(item) => item.link}
+            renderItem={(item) => <>{item.name}</>}
+            variant='horizontal'
+          />
+          <SearchIcon />
+        </div>
         <MobileMenuIcon />
       </Container>
     </div>
