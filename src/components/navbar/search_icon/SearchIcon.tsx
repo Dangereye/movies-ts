@@ -1,4 +1,5 @@
 import { FiSearch } from 'react-icons/fi';
+import { IoClose } from 'react-icons/io5';
 
 export default function Searchbar() {
   return (

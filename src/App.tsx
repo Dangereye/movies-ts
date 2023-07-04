@@ -16,6 +16,7 @@ import VideoContextComponent from './contexts/VideoContext';
 
 // Components
 import Navbar from './components/navbar/Navbar';
+import Searchbar from './components/searchbar/Searchbar';
 import VideoPlayer from './components/videos/video_player/VideoPlayer';
 
 // Pages
@@ -47,6 +48,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Navbar />
+          <Searchbar />
           <MovieFiltersContextComponent>
             <TvFiltersContextComponent>
               <SearchFiltersContextComponent>
