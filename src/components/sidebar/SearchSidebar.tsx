@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 // Context
+import { AppContext } from '../../contexts/AppContext';
 import { SearchFiltersContext } from '../../contexts/SearchFiltersContext';
 
 // Components
@@ -9,6 +10,7 @@ import Selector from './selectors/Selector';
 import Section from './sections/Section';
 
 export default function SearchSidebar() {
+  const { state: appState, dispatch: appDispatch } = useContext(AppContext);
   const { state, dispatch } = useContext(SearchFiltersContext);
 
   const handleToggleDisplay = () => {
@@ -32,21 +34,21 @@ export default function SearchSidebar() {
   };
 
   const handleToggleAdultSection = () => {
-    dispatch({
-      type: 'SET_FILTERS',
+    appDispatch({
+      type: 'UPDATE_APP',
       payload: {
-        ...state,
-        adult: { ...state.adult, expanded: !state.adult.expanded },
+        ...appState,
+        adult: { ...appState.adult, expanded: !appState.adult.expanded },
       },
     });
   };
 
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
-    dispatch({
-      type: 'SET_FILTERS',
+    appDispatch({
+      type: 'UPDATE_APP',
       payload: {
-        ...state,
-        adult: { ...state.adult, active: !state.adult.active },
+        ...appState,
+        adult: { ...appState.adult, active: !appState.adult.active },
       },
     });
   };
@@ -80,12 +82,12 @@ export default function SearchSidebar() {
 
       <Section
         heading='Adult content'
-        expanded={state.adult.expanded}
+        expanded={appState.adult.expanded}
         dispatch={handleToggleAdultSection}
       >
         <ToggleButton
-          active={state.adult.active}
-          name={state.adult.active ? 'Visible' : 'Hidden'}
+          active={appState.adult.active}
+          name={appState.adult.active ? 'Visible' : 'Hidden'}
           onClick={handleAdult}
         />
       </Section>
