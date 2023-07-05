@@ -36,7 +36,8 @@ export default function MoviesPopular() {
   const title = 'Movies: Popular';
   const name = 'movies-popular';
 
-  const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
+  const getNextPageParam = (page: IPage<IMovieMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
 
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
     useMakeInfiniteQuery<IPage<IMovieMin>>(

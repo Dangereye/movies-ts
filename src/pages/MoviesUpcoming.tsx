@@ -17,8 +17,13 @@ import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
-import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
 import Loader from '../components/loader/Loader';
+import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
+import ErrorComponent from '../components/error/Error';
+import NoResults from '../components/typography/NoResults';
+
+// Data
+import { moviePages } from '../data/moviePages';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
@@ -30,19 +35,15 @@ export default function MoviesUpcoming() {
   const title = 'Movies: Upcoming';
   const name = 'movies-upcoming';
 
-  const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
+  const getNextPageParam = (page: IPage<IMovieMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
 
-  const {
-    data: movieQueries,
-    isError,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useMakeInfiniteQuery<IPage<IMovieMin>>(
-    'discover/movie',
-    append,
-    getNextPageParam
-  );
+  const { data, isError, isLoading, hasNextPage, fetchNextPage } =
+    useMakeInfiniteQuery<IPage<IMovieMin>>(
+      'discover/movie',
+      append,
+      getNextPageParam
+    );
 
   useEffect(() => {
     if (!initial.current) {
@@ -56,30 +57,30 @@ export default function MoviesUpcoming() {
 
   if (isLoading) {
     return (
-      <MoviesWithSidebar title={title} name={name}>
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
         <Loader />
-      </MoviesWithSidebar>
+      </ArticleWithSidebar>
     );
   }
 
   if (isError) {
     return (
-      <MoviesWithSidebar title={title} name={name}>
-        <BodyText text='Oops! Something went wrong.' />
-      </MoviesWithSidebar>
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+        <ErrorComponent />
+      </ArticleWithSidebar>
     );
   }
 
-  if (movieQueries.pages[0].total_results === 0) {
+  if (data.pages[0].total_results === 0) {
     return (
-      <MoviesWithSidebar title={title} name={name}>
-        <BodyText text='No items were found that match your query.' />
-      </MoviesWithSidebar>
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+        <NoResults media='movies' />
+      </ArticleWithSidebar>
     );
   }
 
   return (
-    <MoviesWithSidebar title={title} name={name}>
+    <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
@@ -96,10 +97,10 @@ export default function MoviesUpcoming() {
             </CardContent>
           </>
         )}
-        data={movieQueries.pages}
+        data={data.pages}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </MoviesWithSidebar>
+    </ArticleWithSidebar>
   );
 }

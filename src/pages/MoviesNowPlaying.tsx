@@ -1,3 +1,4 @@
+// React
 import { useContext, useEffect, useRef } from 'react';
 
 // Contexts
@@ -20,9 +21,12 @@ import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
-import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
 import Loader from '../components/loader/Loader';
 import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
+import ErrorComponent from '../components/error/Error';
+import NoResults from '../components/typography/NoResults';
+
+// Data
 import { moviePages } from '../data/moviePages';
 
 export default function MoviesNowPlaying() {
@@ -32,19 +36,15 @@ export default function MoviesNowPlaying() {
   const title = 'Movies: Theatrical';
   const name = 'movies-theatrical';
 
-  const getNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
+  const getNextPageParam = (page: IPage<IMovieMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
 
-  const {
-    data: movieQueries,
-    isError,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useMakeInfiniteQuery<IPage<IMovieMin>>(
-    'discover/movie',
-    append,
-    getNextPageParam
-  );
+  const { data, isError, isLoading, hasNextPage, fetchNextPage } =
+    useMakeInfiniteQuery<IPage<IMovieMin>>(
+      'discover/movie',
+      append,
+      getNextPageParam
+    );
 
   useEffect(() => {
     if (!initial.current) {
@@ -67,15 +67,15 @@ export default function MoviesNowPlaying() {
   if (isError) {
     return (
       <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
-        <BodyText text='Oops! Something went wrong.' />
+        <ErrorComponent />
       </ArticleWithSidebar>
     );
   }
 
-  if (movieQueries.pages[0].total_results === 0) {
+  if (data.pages[0].total_results === 0) {
     return (
       <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
-        <BodyText text='No items were found that match your query.' />
+        <NoResults media='movies' />
       </ArticleWithSidebar>
     );
   }
@@ -98,7 +98,7 @@ export default function MoviesNowPlaying() {
             </CardContent>
           </>
         )}
-        data={movieQueries.pages}
+        data={data.pages}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
