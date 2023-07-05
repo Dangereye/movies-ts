@@ -1,12 +1,23 @@
-import { useState } from 'react';
+// React
+import { useState, useRef, useContext } from 'react';
+
+// React router
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import Container from '../container/Container';
+
+// Context
 import { AppContext } from '../../contexts/AppContext';
+
+// Components
+import Container from '../container/Container';
+
+// Icons
+import { FiSearch } from 'react-icons/fi';
 
 export default function Searchbar() {
   const [query, setQuery] = useState('');
   const { state } = useContext(AppContext);
+
+  const input = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
@@ -17,7 +28,11 @@ export default function Searchbar() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/search/${query}`);
+    if (query !== '') {
+      navigate(`/search/${query}`);
+      setQuery('');
+      input.current?.blur();
+    }
   };
   return (
     <div
@@ -25,9 +40,14 @@ export default function Searchbar() {
     >
       <Container>
         <form className='searchbar__form' onSubmit={handleSubmit}>
+          <div className='searchbar__icon'>
+            <FiSearch />
+          </div>
           <input
+            ref={input}
             className='searchbar__input'
             type='text'
+            value={query}
             placeholder='Search Movies, TV Shows or People'
             onChange={handleQuery}
           />
