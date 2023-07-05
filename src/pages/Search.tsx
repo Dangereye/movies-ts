@@ -18,20 +18,16 @@ import { IPerson } from '../interfaces/IPerson';
 import { SearchFiltersContext } from '../contexts/SearchFiltersContext';
 
 // Components
-import SubNavbar from '../components/sub_navbar/SubNavbar';
-import Container from '../components/container/Container';
-import Article from '../components/articles/Article';
 import BodyText from '../components/typography/BodyText';
-import Main from '../components/main/Main';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
-import Header from '../components/header/Header';
-import Layout from '../components/layout/Layout';
-import Sidebar from '../components/sidebar/Sidebar';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
-import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
+import NoResults from '../components/typography/NoResults';
+
+// Template
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -46,10 +42,14 @@ export default function Search() {
   const { state, dispatch } = useContext(SearchFiltersContext);
   const append = useAppendSearch();
   const title = `${state.display.show_media_type} matching: ${searchId}`;
+  const name = 'search-results';
 
-  const moviesGetNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
-  const tvshowsGetNextPageParam = (page: IPage<ITVShowMin>) => page.page + 1;
-  const peopleGetNextPageParam = (page: IPage<IPerson>) => page.page + 1;
+  const moviesGetNextPageParam = (page: IPage<IMovieMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
+  const tvshowsGetNextPageParam = (page: IPage<ITVShowMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
+  const peopleGetNextPageParam = (page: IPage<IPerson>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
 
   const {
     data: movies,
@@ -107,45 +107,17 @@ export default function Search() {
 
   if (moviesLoading || tvshowsLoading || peopleLoading) {
     return (
-      <>
-        <SubNavbar />
-        <Header
-          variant='header__min'
-          title={`${state.display.show_media_type} matching: ${searchId}`}
-        />
-        <Article name='Loading'>
-          <Container>
-            <Layout variant='grid grid--sidebar'>
-              <Sidebar />
-              <Main>
-                <LoaderComponent />
-              </Main>
-            </Layout>
-          </Container>
-        </Article>
-      </>
+      <PageWithSidebar navigation={[]} title={title} name={name}>
+        <LoaderComponent />
+      </PageWithSidebar>
     );
   }
 
   if (moviesError || tvshowsError || peopleError) {
     return (
-      <>
-        <SubNavbar />
-        <Header
-          variant='header__min'
-          title={`${state.display.show_media_type} matching: ${searchId}`}
-        />
-        <Article name='Error'>
-          <Container>
-            <Layout variant='grid grid--sidebar'>
-              <Sidebar />
-              <Main>
-                <ErrorComponent />
-              </Main>
-            </Layout>
-          </Container>
-        </Article>
-      </>
+      <PageWithSidebar navigation={[]} title={title} name={name}>
+        <ErrorComponent />
+      </PageWithSidebar>
     );
   }
 
@@ -154,7 +126,7 @@ export default function Search() {
     state.display.results.movies
   ) {
     return (
-      <ArticleWithSidebar
+      <PageWithSidebar
         navigation={moviePages}
         title={title}
         name='search-results-movie'
@@ -178,7 +150,7 @@ export default function Search() {
           hasNextPage={moviesHasNextPage}
           fetchNextPage={moviesFetchNextPage}
         />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
@@ -187,7 +159,7 @@ export default function Search() {
     state.display.results.tv_shows
   ) {
     return (
-      <ArticleWithSidebar
+      <PageWithSidebar
         navigation={tvPages}
         title={title}
         name='search-results-tv'
@@ -211,7 +183,7 @@ export default function Search() {
           hasNextPage={tvshowsHasNextPage}
           fetchNextPage={tvshowsFetchNextPage}
         />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
@@ -220,7 +192,7 @@ export default function Search() {
     state.display.results.people
   ) {
     return (
-      <ArticleWithSidebar
+      <PageWithSidebar
         navigation={peoplePages}
         title={title}
         name='search-results-people'
@@ -244,27 +216,13 @@ export default function Search() {
           hasNextPage={peopleHasNextPage}
           fetchNextPage={peopleFetchNextPage}
         />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   return (
-    <>
-      <SubNavbar />
-      <Header
-        variant='header__min'
-        title={`${state.display.show_media_type} matching: ${searchId}`}
-      />
-      <Article name='no results'>
-        <Container>
-          <Layout variant='grid grid--sidebar'>
-            <Sidebar />
-            <Main>
-              <BodyText text='No items match your query.' />
-            </Main>
-          </Layout>
-        </Container>
-      </Article>
-    </>
+    <PageWithSidebar navigation={[]} title={title} name={name}>
+      <NoResults media='items' />
+    </PageWithSidebar>
   );
 }

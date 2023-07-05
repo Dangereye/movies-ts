@@ -11,10 +11,12 @@ import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import InfiniteCards from '../components/cards/InifinteCards';
-import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
 import Loader from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import NoResults from '../components/typography/NoResults';
+
+// Template
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 
 // Context
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
@@ -58,30 +60,30 @@ export default function MoviesPopular() {
 
   if (isLoading) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <Loader />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   if (isError) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <ErrorComponent />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   if (data.pages[0].total_results === 0) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <NoResults media='movies' />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   return (
-    <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+    <PageWithSidebar navigation={moviePages} title={title} name={name}>
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
@@ -103,6 +105,6 @@ export default function MoviesPopular() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </ArticleWithSidebar>
+    </PageWithSidebar>
   );
 }

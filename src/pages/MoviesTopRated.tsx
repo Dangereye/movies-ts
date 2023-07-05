@@ -19,9 +19,11 @@ import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 import Loader from '../components/loader/Loader';
-import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
 import ErrorComponent from '../components/error/Error';
 import NoResults from '../components/typography/NoResults';
+
+// Template
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -58,30 +60,30 @@ export default function MoviesTopRated() {
 
   if (isLoading) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <Loader />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   if (isError) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <ErrorComponent />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   if (data.pages[0].total_results === 0) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <NoResults media='movies' />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   return (
-    <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
+    <PageWithSidebar navigation={moviePages} title={title} name={name}>
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
@@ -102,6 +104,6 @@ export default function MoviesTopRated() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </ArticleWithSidebar>
+    </PageWithSidebar>
   );
 }

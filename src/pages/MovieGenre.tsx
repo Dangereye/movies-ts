@@ -16,7 +16,7 @@ import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 import CardContent from '../components/cards/card/CardContent';
 import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
-import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ErrorComponent from '../components/error/Error';
 import LoaderComponent from '../components/loader/Loader';
@@ -30,6 +30,7 @@ import { moviePages } from '../data/moviePages';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import NoResults from '../components/typography/NoResults';
 
 export default function MovieGenre() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -41,17 +42,12 @@ export default function MovieGenre() {
   const name = 'movies-by-genre';
 
   const GetNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
-  const {
-    data: movies,
-    isError,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useMakeInfiniteQuery<IPage<IMovieMin>>(
-    'discover/movie',
-    append,
-    GetNextPageParam
-  );
+  const { data, isError, isLoading, hasNextPage, fetchNextPage } =
+    useMakeInfiniteQuery<IPage<IMovieMin>>(
+      'discover/movie',
+      append,
+      GetNextPageParam
+    );
 
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
 
@@ -78,42 +74,30 @@ export default function MovieGenre() {
 
   if (isLoading) {
     return (
-      <ArticleWithSidebar
-        navigation={moviePages}
-        title={title}
-        name='search-results-movie'
-      >
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <LoaderComponent />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
   if (isError) {
     return (
-      <ArticleWithSidebar
-        navigation={moviePages}
-        title={title}
-        name='search-results-movie'
-      >
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
         <ErrorComponent />
-      </ArticleWithSidebar>
+      </PageWithSidebar>
     );
   }
 
-  if (movies.pages[0].total_results === 0) {
+  if (data.pages[0].total_results === 0) {
     return (
-      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
-        <BodyText text='No items were found that match your query.' />
-      </ArticleWithSidebar>
+      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+        <NoResults media='movies' />
+      </PageWithSidebar>
     );
   }
 
   return (
-    <ArticleWithSidebar
-      navigation={moviePages}
-      title={title}
-      name='search-results-movie'
-    >
+    <PageWithSidebar navigation={moviePages} title={title} name={name}>
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}
@@ -129,10 +113,10 @@ export default function MovieGenre() {
             </CardContent>
           </>
         )}
-        data={movies.pages}
+        data={data.pages}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </ArticleWithSidebar>
+    </PageWithSidebar>
   );
 }

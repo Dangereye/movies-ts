@@ -12,23 +12,20 @@ import BodyText from '../components/typography/BodyText';
 import InfiniteCards from '../components/cards/InifinteCards';
 import Loader from '../components/loader/Loader';
 import People from '../components/page_templates/People';
+import ErrorComponent from '../components/error/Error';
 
 export default function PeoplePopular() {
-  const getNextPageParam = (page: IPage<IPerson>) => page.page + 1;
+  const getNextPageParam = (page: IPage<IPerson>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
   const title = 'People: popular';
   const name = 'people-popular';
 
-  const {
-    data: movieQueries,
-    isError,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useMakeInfiniteQuery<IPage<IPerson>>(
-    'person/popular',
-    '',
-    getNextPageParam
-  );
+  const { data, isError, isLoading, hasNextPage, fetchNextPage } =
+    useMakeInfiniteQuery<IPage<IPerson>>(
+      'person/popular',
+      '',
+      getNextPageParam
+    );
 
   if (isLoading) {
     return (
@@ -41,7 +38,7 @@ export default function PeoplePopular() {
   if (isError) {
     return (
       <People title={title} name={name}>
-        <BodyText text='Oops! Something went wrong.' />
+        <ErrorComponent />
       </People>
     );
   }
@@ -63,7 +60,7 @@ export default function PeoplePopular() {
             </CardContent>
           </>
         )}
-        data={movieQueries.pages}
+        data={data.pages}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />

@@ -8,19 +8,19 @@ import Navigation from '../navigation/Navigation';
 import Sidebar from '../sidebar/Sidebar';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
-type ArticleWithSidebarProps = {
+type PageWithSidebarProps = {
   navigation: { name: string; link: string }[] | undefined;
   title: string;
   name: string;
   children: React.ReactNode;
 };
 
-export default function ArticleWithSidebar({
+export default function PageWithSidebar({
   navigation,
   title,
   name,
   children,
-}: ArticleWithSidebarProps) {
+}: PageWithSidebarProps) {
   return (
     <>
       <SubNavbar>
