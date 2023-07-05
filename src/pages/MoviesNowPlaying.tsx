@@ -22,6 +22,8 @@ import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 import MoviesWithSidebar from '../components/page_templates/MoviesWithSidebar';
 import Loader from '../components/loader/Loader';
+import ArticleWithSidebar from '../components/articles/ArticleWithSidebar';
+import { moviePages } from '../data/moviePages';
 
 export default function MoviesNowPlaying() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -56,30 +58,30 @@ export default function MoviesNowPlaying() {
 
   if (isLoading) {
     return (
-      <MoviesWithSidebar title={title} name={name}>
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
         <Loader />
-      </MoviesWithSidebar>
+      </ArticleWithSidebar>
     );
   }
 
   if (isError) {
     return (
-      <MoviesWithSidebar title={title} name={name}>
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
         <BodyText text='Oops! Something went wrong.' />
-      </MoviesWithSidebar>
+      </ArticleWithSidebar>
     );
   }
 
   if (movieQueries.pages[0].total_results === 0) {
     return (
-      <MoviesWithSidebar title={title} name={name}>
+      <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
         <BodyText text='No items were found that match your query.' />
-      </MoviesWithSidebar>
+      </ArticleWithSidebar>
     );
   }
 
   return (
-    <MoviesWithSidebar title={title} name={name}>
+    <ArticleWithSidebar navigation={moviePages} title={title} name={name}>
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
@@ -100,6 +102,6 @@ export default function MoviesNowPlaying() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </MoviesWithSidebar>
+    </ArticleWithSidebar>
   );
 }
