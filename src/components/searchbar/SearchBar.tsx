@@ -39,7 +39,7 @@ export default function Searchbar() {
       className={state.searchbar.expanded ? 'searchbar active' : 'searchbar'}
     >
       <Container>
-        <form className='searchbar__form' onSubmit={handleSubmit}>
+        <form className='form searchbar__form' onSubmit={handleSubmit}>
           <div className='searchbar__icon'>
             <FiSearch />
           </div>
