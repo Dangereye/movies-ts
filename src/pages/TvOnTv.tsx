@@ -1,3 +1,4 @@
+// React
 import { useContext, useEffect, useRef } from 'react';
 
 // Hooks
@@ -13,8 +14,12 @@ import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
-import TVShowsWithSidebar from '../components/page_templates/TVShowsWithSidebar';
-import Loader from '../components/loader/Loader';
+import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
+import NoResults from '../components/typography/NoResults';
+
+// Templates
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
@@ -23,25 +28,26 @@ import { formatDate } from '../utilities/formatDate';
 import { IPage } from '../interfaces/IPage';
 import { ITVShowMin } from '../interfaces/ITVShowMin';
 
+// Data
+import { tvPages } from '../data/tvPages';
+
 export default function TvOnTv() {
-  const getNextPageParam = (page: IPage<ITVShowMin>) => page.page + 1;
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
+
+  const getNextPageParam = (page: IPage<ITVShowMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
+
   const initial = useRef(false);
   const title = 'TV Shows: next 7 days';
   const name = 'tv-shows-next-7-days';
 
-  const {
-    data: tvQueries,
-    isError,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useMakeInfiniteQuery<IPage<ITVShowMin>>(
-    'discover/tv',
-    append,
-    getNextPageParam
-  );
+  const { data, isError, isLoading, hasNextPage, fetchNextPage } =
+    useMakeInfiniteQuery<IPage<ITVShowMin>>(
+      'discover/tv',
+      append,
+      getNextPageParam
+    );
 
   useEffect(() => {
     if (!initial.current) {
@@ -55,30 +61,30 @@ export default function TvOnTv() {
 
   if (isLoading) {
     return (
-      <TVShowsWithSidebar title={title} name={name}>
-        <Loader />
-      </TVShowsWithSidebar>
+      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+        <LoaderComponent />
+      </PageWithSidebar>
     );
   }
 
   if (isError) {
     return (
-      <TVShowsWithSidebar title={title} name={name}>
-        <BodyText text='Oops! Something went wrong.' />
-      </TVShowsWithSidebar>
+      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+        <ErrorComponent />
+      </PageWithSidebar>
     );
   }
 
-  if (tvQueries.pages[0].total_results === 0) {
+  if (data.pages[0].total_results === 0) {
     return (
-      <TVShowsWithSidebar title={title} name={name}>
-        <BodyText text='No items were found that match your query.' />
-      </TVShowsWithSidebar>
+      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+        <NoResults media='Tv shows' />
+      </PageWithSidebar>
     );
   }
 
   return (
-    <TVShowsWithSidebar title={title} name={name}>
+    <PageWithSidebar navigation={tvPages} title={title} name={name}>
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
@@ -95,10 +101,10 @@ export default function TvOnTv() {
             </CardContent>
           </>
         )}
-        data={tvQueries.pages}
+        data={data.pages}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </TVShowsWithSidebar>
+    </PageWithSidebar>
   );
 }

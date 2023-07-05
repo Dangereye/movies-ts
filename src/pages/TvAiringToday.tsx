@@ -30,10 +30,12 @@ import { ITVShowMin } from '../interfaces/ITVShowMin';
 import { tvPages } from '../data/tvPages';
 
 export default function TvAiringToday() {
-  const getNextPageParam = (page: IPage<ITVShowMin>) =>
-    page.page < page.total_pages ? page.page + 1 : null;
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
+
+  const getNextPageParam = (page: IPage<ITVShowMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
+
   const initial = useRef(false);
   const title = 'TV Shows: airing today';
   const name = 'tv-shows-airing-today';
