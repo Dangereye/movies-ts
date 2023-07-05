@@ -10,9 +10,14 @@ import CardContent from '../components/cards/card/CardContent';
 import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
 import InfiniteCards from '../components/cards/InifinteCards';
-import Loader from '../components/loader/Loader';
-import People from '../components/page_templates/People';
+import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
+
+// Template
+import Page from '../components/page_templates/Page';
+
+// Data
+import { peoplePages } from '../data/peoplePages';
 
 export default function PeoplePopular() {
   const getNextPageParam = (page: IPage<IPerson>) =>
@@ -29,22 +34,22 @@ export default function PeoplePopular() {
 
   if (isLoading) {
     return (
-      <People title={title} name={name}>
-        <Loader />
-      </People>
+      <Page navigation={peoplePages} title={title} name={name}>
+        <LoaderComponent />
+      </Page>
     );
   }
 
   if (isError) {
     return (
-      <People title={title} name={name}>
+      <Page navigation={peoplePages} title={title} name={name}>
         <ErrorComponent />
-      </People>
+      </Page>
     );
   }
 
   return (
-    <People title={title} name={name}>
+    <Page navigation={peoplePages} title={title} name={name}>
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/people/${item.id}`}
@@ -64,6 +69,6 @@ export default function PeoplePopular() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </People>
+    </Page>
   );
 }

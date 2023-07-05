@@ -1,6 +1,3 @@
-// Data
-import { peoplePages } from '../../data/peoplePages';
-
 // Components
 import Article from '../articles/Article';
 import Container from '../container/Container';
@@ -9,18 +6,19 @@ import Main from '../main/Main';
 import Navigation from '../navigation/Navigation';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
-type PeopleProps = {
+type PageProps = {
+  navigation: { name: string; link: string }[] | undefined;
   title: string;
   name: string;
   children: React.ReactNode;
 };
 
-export default function People({ title, name, children }: PeopleProps) {
+export default function Page({ navigation, title, name, children }: PageProps) {
   return (
     <>
       <SubNavbar>
         <Navigation
-          data={peoplePages}
+          data={navigation}
           getId={(item) => item.name}
           getLink={(item) => item.link}
           renderItem={(item) => item.name}
