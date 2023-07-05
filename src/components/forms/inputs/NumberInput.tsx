@@ -17,6 +17,7 @@ export default function NumberInput({
 }: NumberInputProps) {
   const [state, setState] = useState<number>(init);
   const hasChanged = useRef(false);
+  const input = useRef<HTMLInputElement>(null);
 
   const handleOnChange = (num: number) => {
     hasChanged.current = true;
@@ -35,6 +36,7 @@ export default function NumberInput({
           return;
         }
         func(state);
+        input.current?.blur();
         hasChanged.current = false;
       }, 1000);
 
@@ -48,6 +50,7 @@ export default function NumberInput({
 
   return (
     <input
+      ref={input}
       id={id}
       className='form__input fixed-size'
       type='number'
