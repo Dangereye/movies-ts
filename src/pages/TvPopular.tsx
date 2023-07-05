@@ -20,6 +20,7 @@ import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls
 import BodyText from '../components/typography/BodyText';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
+import NoResults from '../components/typography/NoResults';
 
 // Templates
 import PageWithSidebar from '../components/page_templates/PageWithSidebar';
@@ -77,7 +78,7 @@ export default function TvPopular() {
   if (data.pages[0].total_results === 0) {
     return (
       <PageWithSidebar navigation={tvPages} title={title} name={name}>
-        <BodyText text='No items were found that match your query.' />
+        <NoResults media='Tv shows' />
       </PageWithSidebar>
     );
   }
