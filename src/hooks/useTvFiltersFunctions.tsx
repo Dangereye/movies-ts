@@ -1,7 +1,12 @@
+// React
 import { useContext } from 'react';
+
+// Context
 import { TvFiltersContext } from '../contexts/TvFiltersContext';
+import { AppContext } from '../contexts/AppContext';
 
 export default function useTvFiltersFunctions() {
+  const { state: appState, dispatch: appDispatch } = useContext(AppContext);
   const { state, dispatch } = useContext(TvFiltersContext);
 
   const handleToggleSortSection = () => {
@@ -263,6 +268,26 @@ export default function useTvFiltersFunctions() {
     });
   };
 
+  const handleToggleAdultSection = () => {
+    appDispatch({
+      type: 'UPDATE_APP',
+      payload: {
+        ...appState,
+        adult: { ...appState.adult, expanded: !appState.adult.expanded },
+      },
+    });
+  };
+
+  const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
+    appDispatch({
+      type: 'UPDATE_APP',
+      payload: {
+        ...appState,
+        adult: { ...appState.adult, active: !appState.adult.active },
+      },
+    });
+  };
+
   const preventDefault = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -288,6 +313,8 @@ export default function useTvFiltersFunctions() {
     handleMaxRating,
     handleToggleMinimumVotes,
     handleVoteCount,
+    handleToggleAdultSection,
+    handleAdult,
     preventDefault,
   };
 }

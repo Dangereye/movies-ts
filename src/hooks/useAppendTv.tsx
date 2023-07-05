@@ -1,12 +1,16 @@
 import { useContext } from 'react';
 
 // Contexts
+import { AppContext } from '../contexts/AppContext';
 import { TvFiltersContext } from '../contexts/TvFiltersContext';
 
 export default function useAppendTv() {
+  const { state: appState } = useContext(AppContext);
   const { state } = useContext(TvFiltersContext);
 
-  const append = `&watch_region=GB&sort_by=${state.sort.value}${
+  const append = `&watch_region=GB&sort_by=${state.sort.value}&include_adult=${
+    appState.adult.active
+  }${
     state.providers.ids.length
       ? `&with_watch_providers=${state.providers.ids
           .toString()

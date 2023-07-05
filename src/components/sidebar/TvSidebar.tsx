@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 
 // Context
+import { AppContext } from '../../contexts/AppContext';
 import { TvFiltersContext } from '../../contexts/TvFiltersContext';
 
 // Hooks
@@ -22,6 +23,7 @@ import { sortOptions } from '../../data/sortOptions';
 import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
 
 export default function TvSidebar() {
+  const { state: appState } = useContext(AppContext);
   const { state } = useContext(TvFiltersContext);
   const genres = useCreateGenres('tv-genres', 'genre/tv/list');
   const providers = useCreateProviders(
@@ -49,6 +51,8 @@ export default function TvSidebar() {
     handleMaxRating,
     handleToggleMinimumVotes,
     handleVoteCount,
+    handleToggleAdultSection,
+    handleAdult,
     preventDefault,
   } = useTvFiltersFunctions();
 
@@ -207,6 +211,17 @@ export default function TvSidebar() {
             />
           </div>
         </form>
+      </Section>
+      <Section
+        heading='Adult content'
+        expanded={appState.adult.expanded}
+        dispatch={handleToggleAdultSection}
+      >
+        <ToggleButton
+          active={appState.adult.active}
+          name={appState.adult.active ? 'Visible' : 'Hidden'}
+          onClick={handleAdult}
+        />
       </Section>
     </>
   );
