@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import Container from '../container/Container';
+import { AppContext } from '../../contexts/AppContext';
 
 export default function Searchbar() {
   const [query, setQuery] = useState('');
+  const { state } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -17,7 +20,9 @@ export default function Searchbar() {
     navigate(`/search/${query}`);
   };
   return (
-    <div className='searchbar'>
+    <div
+      className={state.searchbar.expanded ? 'searchbar active' : 'searchbar'}
+    >
       <Container>
         <form className='searchbar__form' onSubmit={handleSubmit}>
           <input

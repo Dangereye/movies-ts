@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 
 // Contexts
+import AppContextComponent from './contexts/AppContext';
 import MovieFiltersContextComponent from './contexts/MovieFiltersContext';
 import TvFiltersContextComponent from './contexts/TvFiltersContext';
 import SearchFiltersContextComponent from './contexts/SearchFiltersContext';
@@ -47,68 +48,79 @@ function App() {
     <div className='App'>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <Navbar />
-          <Searchbar />
-          <MovieFiltersContextComponent>
-            <TvFiltersContextComponent>
-              <SearchFiltersContextComponent>
-                <VideoContextComponent>
-                  <VideoPlayer />
-                  <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/movies/popular' element={<MoviesPopular />} />
-                    <Route
-                      path='/movies/now-playing'
-                      element={<MoviesNowPlaying />}
-                    />
-                    <Route
-                      path='/movies/upcoming'
-                      element={<MoviesUpcoming />}
-                    />
-                    <Route
-                      path='/movies/top-rated'
-                      element={<MoviesTopRated />}
-                    />
-                    <Route path='/movies/:movieId' element={<MovieDetails />} />
-                    <Route
-                      path='/movies/:movieId/cast-crew'
-                      element={<MovieCastCrew />}
-                    />
-                    <Route
-                      path='/genre/:genreId/movie'
-                      element={<MovieGenre />}
-                    />
-                    <Route path='/tv/popular' element={<TvPopular />} />
-                    <Route
-                      path='/tv/airing-today'
-                      element={<TvAiringToday />}
-                    />
-                    <Route path='/tv/on-tv' element={<TvOnTv />} />
-                    <Route path='/tv/top-rated' element={<TvTopRated />} />
-                    <Route path='/tv/:tvId' element={<TvDetails />} />
-                    <Route
-                      path='/tv/:tvId/cast-crew'
-                      element={<TvCastCrew />}
-                    />
-                    <Route
-                      path='/tv/:tvId/season/:seasonId'
-                      element={<TvSeason />}
-                    />
-                    <Route path='/people/popular' element={<PeoplePopular />} />
-                    <Route
-                      path='/people/:personId'
-                      element={<PersonDetails />}
-                    />
-                    <Route
-                      path='/collection/:collectionId'
-                      element={<Collections />}
-                    />
-                    <Route path='/search/:searchId' element={<Search />} />
-                  </Routes>
-                </VideoContextComponent>
-              </SearchFiltersContextComponent>
-            </TvFiltersContextComponent>
-          </MovieFiltersContextComponent>
+          <AppContextComponent>
+            <Navbar />
+            <Searchbar />
+            <MovieFiltersContextComponent>
+              <TvFiltersContextComponent>
+                <SearchFiltersContextComponent>
+                  <VideoContextComponent>
+                    <VideoPlayer />
+                    <Routes>
+                      <Route path='/' element={<Home />} />
+                      <Route
+                        path='/movies/popular'
+                        element={<MoviesPopular />}
+                      />
+                      <Route
+                        path='/movies/now-playing'
+                        element={<MoviesNowPlaying />}
+                      />
+                      <Route
+                        path='/movies/upcoming'
+                        element={<MoviesUpcoming />}
+                      />
+                      <Route
+                        path='/movies/top-rated'
+                        element={<MoviesTopRated />}
+                      />
+                      <Route
+                        path='/movies/:movieId'
+                        element={<MovieDetails />}
+                      />
+                      <Route
+                        path='/movies/:movieId/cast-crew'
+                        element={<MovieCastCrew />}
+                      />
+                      <Route
+                        path='/genre/:genreId/movie'
+                        element={<MovieGenre />}
+                      />
+                      <Route path='/tv/popular' element={<TvPopular />} />
+                      <Route
+                        path='/tv/airing-today'
+                        element={<TvAiringToday />}
+                      />
+                      <Route path='/tv/on-tv' element={<TvOnTv />} />
+                      <Route path='/tv/top-rated' element={<TvTopRated />} />
+                      <Route path='/tv/:tvId' element={<TvDetails />} />
+                      <Route
+                        path='/tv/:tvId/cast-crew'
+                        element={<TvCastCrew />}
+                      />
+                      <Route
+                        path='/tv/:tvId/season/:seasonId'
+                        element={<TvSeason />}
+                      />
+                      <Route
+                        path='/people/popular'
+                        element={<PeoplePopular />}
+                      />
+                      <Route
+                        path='/people/:personId'
+                        element={<PersonDetails />}
+                      />
+                      <Route
+                        path='/collection/:collectionId'
+                        element={<Collections />}
+                      />
+                      <Route path='/search/:searchId' element={<Search />} />
+                    </Routes>
+                  </VideoContextComponent>
+                </SearchFiltersContextComponent>
+              </TvFiltersContextComponent>
+            </MovieFiltersContextComponent>
+          </AppContextComponent>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

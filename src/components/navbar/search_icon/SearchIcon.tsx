@@ -1,10 +1,28 @@
+// React
+import { useContext } from 'react';
+
+// Context
+import { AppContext } from '../../../contexts/AppContext';
+
+// Icons
 import { FiSearch } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
 
 export default function Searchbar() {
+  const { state, dispatch } = useContext(AppContext);
+
+  const handleClick = () => {
+    dispatch({
+      type: 'test',
+      payload: {
+        ...state,
+        searchbar: { ...state.searchbar, expanded: !state.searchbar.expanded },
+      },
+    });
+  };
   return (
-    <div className='search-icon'>
-      <FiSearch />
+    <div className='search-icon' onClick={handleClick}>
+      {state.searchbar.expanded ? <IoClose /> : <FiSearch />}
     </div>
   );
 }
