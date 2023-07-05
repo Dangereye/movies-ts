@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 
 // Contexts
+import { AppContext } from '../contexts/AppContext';
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 export default function useAppend() {
+  const { state: appState } = useContext(AppContext);
   const { state } = useContext(MovieFiltersContext);
   const append = `&region=GB&sort_by=${state.sort.value}${
     state.certifications.certs.length
@@ -13,7 +15,7 @@ export default function useAppend() {
       : ''
   }&vote_average.lte=${state.rating.max_rating}&vote_average.gte=${
     state.rating.min_rating
-  }&include_adult=${state.adult.active}${
+  }&include_adult=${appState.adult.active}${
     state.providers.ids.length
       ? `&watch_region=GB&with_watch_providers=${state.providers.ids
           .toString()

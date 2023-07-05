@@ -9,7 +9,7 @@ export const InitialState = {
 };
 
 export type ActionType = {
-  type: 'test';
+  type: 'UPDATE_APP';
 
   payload: StateType;
 };
@@ -17,7 +17,7 @@ export type ActionType = {
 export default function appReducer(state: StateType, action: ActionType) {
   const { type, payload } = action;
   switch (type) {
-    case 'test': {
+    case 'UPDATE_APP': {
       return { ...payload };
     }
     default:

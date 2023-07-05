@@ -21,9 +21,11 @@ import ProvidersIcon from './providers/ProvidersIcon';
 // Data
 import { sortOptions } from '../../data/sortOptions';
 import { movieReleaseTypes } from '../../data/movieReleaseTypes';
+import { AppContext } from '../../contexts/AppContext';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
+  const { state: appState } = useContext(AppContext);
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
   const countries = useCreateCountries();
   const providers = useCreateProviders(
@@ -241,12 +243,12 @@ export default function MovieSidebar() {
       </Section>
       <Section
         heading='Adult content'
-        expanded={state.adult.expanded}
+        expanded={appState.adult.expanded}
         dispatch={handleToggleAdultSection}
       >
         <ToggleButton
-          active={state.adult.active}
-          name={state.adult.active ? 'Visible' : 'Hidden'}
+          active={appState.adult.active}
+          name={appState.adult.active ? 'Visible' : 'Hidden'}
           onClick={handleAdult}
         />
       </Section>

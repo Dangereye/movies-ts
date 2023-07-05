@@ -13,7 +13,7 @@ export default function Searchbar() {
 
   const handleClick = () => {
     dispatch({
-      type: 'test',
+      type: 'UPDATE_APP',
       payload: {
         ...state,
         searchbar: { ...state.searchbar, expanded: !state.searchbar.expanded },

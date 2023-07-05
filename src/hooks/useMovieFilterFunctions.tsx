@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 
 // Context
+import { AppContext } from '../contexts/AppContext';
 import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 export default function useMovieFilterFuntions() {
+  const { state: appState, dispatch: appDispatch } = useContext(AppContext);
   const { state, dispatch } = useContext(MovieFiltersContext);
 
   const handleToggleSortSection = () => {
@@ -315,21 +317,21 @@ export default function useMovieFilterFuntions() {
   };
 
   const handleToggleAdultSection = () => {
-    dispatch({
-      type: 'SET_FILTERS',
+    appDispatch({
+      type: 'UPDATE_APP',
       payload: {
-        ...state,
-        adult: { ...state.adult, expanded: !state.adult.expanded },
+        ...appState,
+        adult: { ...appState.adult, expanded: !appState.adult.expanded },
       },
     });
   };
 
   const handleAdult = (e: React.MouseEvent<HTMLDivElement>) => {
-    dispatch({
-      type: 'SET_FILTERS',
+    appDispatch({
+      type: 'UPDATE_APP',
       payload: {
-        ...state,
-        adult: { ...state.adult, active: !state.adult.active },
+        ...appState,
+        adult: { ...appState.adult, active: !appState.adult.active },
       },
     });
   };
