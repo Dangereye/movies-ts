@@ -38,11 +38,7 @@ export default function MovieCastCrew() {
   const [visualEffects, setVisualEffects] = useState<ICrew[]>([]);
   const [writing, setWriting] = useState<ICrew[]>([]);
 
-  const {
-    data: movie,
-    isError,
-    isLoading,
-  } = useMakeQuery<IMovieFull>(
+  const { data, isError, isLoading } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
     `movie/${movieId}`,
     `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar,reviews`
@@ -60,8 +56,8 @@ export default function MovieCastCrew() {
     let visualEffects: ICrew[] = [];
     let writing: ICrew[] = [];
 
-    if (movie?.credits?.crew?.length) {
-      movie.credits.crew.map((item) => {
+    if (data?.credits?.crew?.length) {
+      data.credits.crew.map((item) => {
         if (item.department.toLowerCase() === 'art') {
           art = [...art, { ...item }];
         }
@@ -104,7 +100,7 @@ export default function MovieCastCrew() {
       setVisualEffects(visualEffects);
       setWriting(writing);
     }
-  }, [movie]);
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -163,13 +159,13 @@ export default function MovieCastCrew() {
           variant='horizontal'
         />
       </SubNavbar>
-      <Header variant='header__min' title='Movie cast & crew' />
+      <Header variant='header__min' title={`${data?.title}: cast & crew`} />
       <Main>
         <ArticlePeople
           variant='list'
           name='cast'
           heading='cast'
-          data={movie?.credits?.cast}
+          data={data?.credits?.cast}
           character
         />
         <ArticlePeople

@@ -33,6 +33,7 @@ export default function ArticlePeople<
     roles?: { credit_id: string; character: string; episode_count: number }[];
     known_for_department?: string;
     job?: string;
+    jobs?: { credit_id: string; job: string; episode_count: number }[];
     popularity: number;
   }
 >({
@@ -107,6 +108,9 @@ export default function ArticlePeople<
 
                   {/* crew */}
                   {crew && item.job && <BodyText text={item.job} />}
+                  {crew &&
+                    item.jobs &&
+                    item.jobs.map((job) => <BodyText text={job.job} />)}
                 </CardContent>
               </>
             )}
