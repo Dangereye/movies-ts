@@ -13,7 +13,11 @@ import Container from '../container/Container';
 // Icons
 import { FiSearch } from 'react-icons/fi';
 
-export default function Searchbar() {
+type SearchbarProps = {
+  fixed?: boolean;
+};
+
+export default function Searchbar({ fixed }: SearchbarProps) {
   const [query, setQuery] = useState('');
   const { state } = useContext(AppContext);
 
@@ -34,9 +38,16 @@ export default function Searchbar() {
       input.current?.blur();
     }
   };
+
   return (
     <div
-      className={state.searchbar.expanded ? 'searchbar active' : 'searchbar'}
+      className={
+        fixed
+          ? 'searchbar fixed'
+          : state.searchbar.expanded
+          ? 'searchbar active'
+          : 'searchbar'
+      }
     >
       <Container>
         <form className='form searchbar__form' onSubmit={handleSubmit}>

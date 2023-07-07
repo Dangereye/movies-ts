@@ -5,7 +5,7 @@ import ImageComponent from '../image/Image';
 import H1 from '../typography/H1';
 
 type HeaderProps = {
-  variant: 'header__full' | 'header__min';
+  variant: 'header__full' | 'header__min' | 'header__center';
   bgImage?: string | null | undefined;
   image?: string | null | undefined;
   alt?: string | null | undefined;

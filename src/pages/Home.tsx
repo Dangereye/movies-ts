@@ -15,6 +15,9 @@ import useMakeQuery from '../hooks/useMakeQuery';
 import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticlePeople from '../components/articles/ArticlePeople';
 import ArticleTvMin from '../components/articles/ArticleTvMin';
+import Header from '../components/header/Header';
+import Searchbar from '../components/searchbar/Searchbar';
+import HDiv from '../components/typography/HDiv';
 
 export default function LandingPage() {
   const {
@@ -45,6 +48,17 @@ export default function LandingPage() {
 
   return (
     <>
+      <Header
+        variant='header__center'
+        title='Ready to be entertained?'
+        bgImage={movies?.results[0].backdrop_path}
+      >
+        <HDiv
+          variant='heading--h2'
+          heading='Millions of movies, Tv shows and people to discover, explore now.'
+        />
+        <Searchbar fixed />
+      </Header>
       <Main>
         <ArticleMoviesMin
           variant='scroll-x'
