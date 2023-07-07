@@ -17,7 +17,7 @@ export default function useCreateCertifications(key: string, endPoint: string) {
 
   const { data, isError, isLoading } = useMakeQuery<
     ICertifications<ICertification>
-  >(key, endPoint);
+  >(`${key}-${state.region.value}`, endPoint);
 
   if (isLoading) {
     return [];
@@ -29,7 +29,6 @@ export default function useCreateCertifications(key: string, endPoint: string) {
 
   if (data) {
     const key: keyof typeof data.certifications = `${state.region.value}`;
-    console.log(key);
     data.certifications[key]?.forEach((c) => {
       certifications = [
         ...certifications,

@@ -29,7 +29,7 @@ export default function MovieSidebar() {
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
   const countries = useCreateCountries();
   const providers = useCreateProviders(
-    'movie-providers-list',
+    'movie-providers',
     'watch/providers/movie'
   );
   const certifications = useCreateCertifications(
