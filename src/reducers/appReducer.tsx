@@ -1,13 +1,23 @@
 export type StateType = {
   searchbar: { expanded: boolean };
   adult: { expanded: boolean; active: boolean };
-  region: string;
+  region: {
+    expanded: boolean;
+    inputExpanded: boolean;
+    name: string;
+    value: string | undefined;
+  };
 };
 
 export const InitialState = {
   searchbar: { expanded: false },
   adult: { expanded: false, active: false },
-  region: 'GB',
+  region: {
+    expanded: false,
+    inputExpanded: false,
+    name: 'United Kingdom',
+    value: 'GB',
+  },
 };
 
 export type ActionType = {

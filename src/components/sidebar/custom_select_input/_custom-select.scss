@@ -4,6 +4,7 @@
   justify-content: space-between;
   text-transform: capitalize;
   font-size: 1.6rem;
+  line-height: 1.5;
   padding: 1rem 2rem;
   border: 1px solid $grey-color;
   background-color: $grey-color;
@@ -34,6 +35,15 @@
 
   &_options {
     display: none;
+    max-height: 30rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      /* Chrome */
+      display: none;
+    }
 
     &.active {
       display: block;
@@ -44,12 +54,18 @@
     padding: 1rem 2rem;
     text-transform: capitalize;
     font-size: 1.6rem;
+    line-height: 1.5;
     background-color: transparent;
     transition: background-color 0.3s;
 
     &:hover {
       background-color: $grey-color;
       cursor: pointer;
+    }
+
+    &.active {
+      background-color: $accent-color;
+      color: #fff;
     }
   }
 }

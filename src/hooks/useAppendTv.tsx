@@ -8,7 +8,7 @@ export default function useAppendTv() {
   const { state: appState } = useContext(AppContext);
   const { state } = useContext(TvFiltersContext);
 
-  const append = `&watch_region=${appState.region}&sort_by=${
+  const append = `&watch_region=${appState.region.value}&sort_by=${
     state.sort.value
   }&include_adult=${appState.adult.active}${
     state.providers.ids.length

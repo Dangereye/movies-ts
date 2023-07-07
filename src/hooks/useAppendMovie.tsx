@@ -7,10 +7,10 @@ import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 export default function useAppend() {
   const { state: appState } = useContext(AppContext);
   const { state } = useContext(MovieFiltersContext);
-  const append = `&region=${appState.region}&sort_by=${state.sort.value}${
+  const append = `&region=${appState.region.value}&sort_by=${state.sort.value}${
     state.certifications.certs.length
       ? `&certification_country=${
-          appState.region
+          appState.region.value
         }&certification=${state.certifications.certs
           .toString()
           .replaceAll(',', '|')}`
@@ -20,7 +20,7 @@ export default function useAppend() {
   }&include_adult=${appState.adult.active}${
     state.providers.ids.length
       ? `&watch_region=${
-          appState.region
+          appState.region.value
         }&with_watch_providers=${state.providers.ids
           .toString()
           .replaceAll(',', '|')}`

@@ -43,6 +43,44 @@ export default function useMovieFilterFuntions() {
     });
   };
 
+  const handleToggleRegionSection = () => {
+    appDispatch({
+      type: 'UPDATE_APP',
+      payload: {
+        ...appState,
+        region: { ...appState.region, expanded: !appState.region.expanded },
+      },
+    });
+  };
+
+  const handleToggleRegionInput = () => {
+    appDispatch({
+      type: 'UPDATE_APP',
+      payload: {
+        ...appState,
+        region: {
+          ...appState.region,
+          inputExpanded: !appState.region.inputExpanded,
+        },
+      },
+    });
+  };
+
+  const handleRegion = (e: React.MouseEvent<HTMLDivElement>) => {
+    appDispatch({
+      type: 'UPDATE_APP',
+      payload: {
+        ...appState,
+        region: {
+          ...appState.region,
+          name: e.currentTarget.innerText,
+          value: e.currentTarget.dataset.value,
+          inputExpanded: false,
+        },
+      },
+    });
+  };
+
   const handleToggleProviders = () => {
     dispatch({
       type: 'SET_FILTERS',
@@ -344,6 +382,9 @@ export default function useMovieFilterFuntions() {
     handleToggleSortSection,
     handleToggleSortInput,
     handleSort,
+    handleToggleRegionSection,
+    handleToggleRegionInput,
+    handleRegion,
     handleToggleProviders,
     clearProviders,
     updateProviders,
