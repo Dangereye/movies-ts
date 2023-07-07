@@ -7,11 +7,7 @@ import { IGenres } from '../interfaces/IGenres';
 export default function useCreateGenres(key: string, endPoint: string) {
   let genres: { id: number; name: string }[] = [];
 
-  const {
-    data: genreList,
-    isError,
-    isLoading,
-  } = useMakeQuery<IGenres>(`movie-genre-list`, `genre/movie/list`);
+  const { data, isError, isLoading } = useMakeQuery<IGenres>(key, endPoint);
 
   if (isLoading) {
     return [];
@@ -21,7 +17,7 @@ export default function useCreateGenres(key: string, endPoint: string) {
     return [];
   }
 
-  genreList?.genres?.forEach((g) => {
+  data?.genres?.forEach((g) => {
     genres = [...genres, { id: g.id, name: g.name }];
   });
 

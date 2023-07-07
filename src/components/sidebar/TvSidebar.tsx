@@ -26,10 +26,7 @@ export default function TvSidebar() {
   const { state: appState } = useContext(AppContext);
   const { state } = useContext(TvFiltersContext);
   const genres = useCreateGenres('tv-genres', 'genre/tv/list');
-  const providers = useCreateProviders(
-    'tv-providers-list',
-    'watch/providers/tv'
-  );
+  const providers = useCreateProviders('tv-providers', 'watch/providers/tv');
   const {
     handleToggleSortSection,
     handleToggleSortInput,
