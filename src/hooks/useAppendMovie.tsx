@@ -9,7 +9,9 @@ export default function useAppend() {
   const { state } = useContext(MovieFiltersContext);
   const append = `&region=${appState.region}&sort_by=${state.sort.value}${
     state.certifications.certs.length
-      ? `&certification_country=GB&certification=${state.certifications.certs
+      ? `&certification_country=${
+          appState.region
+        }&certification=${state.certifications.certs
           .toString()
           .replaceAll(',', '|')}`
       : ''
@@ -17,7 +19,9 @@ export default function useAppend() {
     state.rating.min_rating
   }&include_adult=${appState.adult.active}${
     state.providers.ids.length
-      ? `&watch_region=GB&with_watch_providers=${state.providers.ids
+      ? `&watch_region=${
+          appState.region
+        }&with_watch_providers=${state.providers.ids
           .toString()
           .replaceAll(',', '|')}`
       : ''
