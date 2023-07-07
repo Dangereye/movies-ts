@@ -1,10 +1,13 @@
-import { ICountries } from '../interfaces/ICountries';
+// Hooks
 import useMakeQuery from './useMakeQuery';
+
+// Interfaces
+import { ICountries } from '../interfaces/ICountries';
 
 export default function useCreateCountries() {
   let countries: ICountries[] = [];
   const { data, isError, isLoading } = useMakeQuery<ICountries[]>(
-    `country-list`,
+    `countries`,
     `configuration/countries`
   );
 
