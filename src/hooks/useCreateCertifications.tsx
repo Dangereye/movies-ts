@@ -1,3 +1,9 @@
+// React
+import { useContext } from 'react';
+
+// Context
+import { AppContext } from '../contexts/AppContext';
+
 // Interfaces
 import { ICertifications } from '../interfaces/ICertifications';
 import { ICertification } from '../interfaces/ICertification';
@@ -6,6 +12,7 @@ import { ICertification } from '../interfaces/ICertification';
 import useMakeQuery from './useMakeQuery';
 
 export default function useCreateCertifications(key: string, endPoint: string) {
+  const { state } = useContext(AppContext);
   let certifications: { name: string; order: number }[] = [];
 
   const { data, isError, isLoading } = useMakeQuery<
@@ -21,8 +28,9 @@ export default function useCreateCertifications(key: string, endPoint: string) {
   }
 
   if (data) {
-    const key: keyof typeof data.certifications = 'GB';
-    data.certifications[key].forEach((c) => {
+    const key: keyof typeof data.certifications = `${state.region.value}`;
+    console.log(key);
+    data.certifications[key]?.forEach((c) => {
       certifications = [
         ...certifications,
         { name: c.certification, order: c.order },

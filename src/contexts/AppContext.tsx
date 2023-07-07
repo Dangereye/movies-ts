@@ -20,8 +20,6 @@ export default function AppContextComponent({
   children,
 }: AppContextComponentProps) {
   const [state, dispatch] = useReducer(appReducer, InitialState);
-  // console.log('App State: ', state);
-
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       {children}
