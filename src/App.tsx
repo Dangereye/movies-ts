@@ -40,6 +40,7 @@ import PersonDetails from './pages/PersonDetails';
 import MovieGenre from './pages/MovieGenre';
 import Search from './pages/Search';
 import Collections from './pages/Collections';
+import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
@@ -115,6 +116,7 @@ function App() {
                         element={<Collections />}
                       />
                       <Route path='/search/:searchId' element={<Search />} />
+                      <Route path='*' element={<NotFound />} />
                     </Routes>
                   </VideoContextComponent>
                 </SearchFiltersContextComponent>
