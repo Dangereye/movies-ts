@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 
 // Context
+import { AppContext } from '../../contexts/AppContext';
 import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
 
 // Hooks
 import useCreateGenres from '../../hooks/useCreateGenres';
 import useMovieFilterFuntions from '../../hooks/useMovieFilterFunctions';
-import useCreateCountries from '../../hooks/UseCreateCountries';
+import useCreateCountries from '../../hooks/useCreateCountries';
 import useCreateCertifications from '../../hooks/useCreateCertifications';
 import useCreateProviders from '../../hooks/useCreateProviders';
 
@@ -21,7 +22,6 @@ import ProvidersIcon from './providers/ProvidersIcon';
 // Data
 import { sortOptions } from '../../data/sortOptions';
 import { movieReleaseTypes } from '../../data/movieReleaseTypes';
-import { AppContext } from '../../contexts/AppContext';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
@@ -67,6 +67,7 @@ export default function MovieSidebar() {
     handleAdult,
     preventDefault,
   } = useMovieFilterFuntions();
+
   return (
     <>
       <Section
@@ -90,6 +91,7 @@ export default function MovieSidebar() {
           ))}
         </CustomSelectInput>
       </Section>
+
       <Section
         heading='region'
         expanded={appState.region.expanded}
@@ -121,6 +123,7 @@ export default function MovieSidebar() {
             ))}
         </CustomSelectInput>
       </Section>
+
       <Section
         heading='Providers'
         expanded={state.providers.expanded}
@@ -144,6 +147,7 @@ export default function MovieSidebar() {
           ))}
         </div>
       </Section>
+
       <Section
         heading='Genres'
         expanded={state.genres.expanded}
@@ -163,6 +167,7 @@ export default function MovieSidebar() {
           />
         ))}
       </Section>
+
       <Section
         heading='Certifications'
         expanded={state.certifications.expanded}
@@ -184,6 +189,7 @@ export default function MovieSidebar() {
             />
           ))}
       </Section>
+
       <Section
         heading='Release types'
         expanded={state.release_types.expanded}
@@ -203,6 +209,7 @@ export default function MovieSidebar() {
           />
         ))}
       </Section>
+
       <Section
         heading='Release dates'
         expanded={state.dates.expanded}
@@ -229,6 +236,7 @@ export default function MovieSidebar() {
           </div>
         </form>
       </Section>
+
       <Section
         heading='User Ratings'
         expanded={state.rating.expanded}
@@ -257,6 +265,7 @@ export default function MovieSidebar() {
           </div>
         </form>
       </Section>
+
       <Section
         heading='User Votes'
         expanded={state.vote_count.expanded}
@@ -275,6 +284,7 @@ export default function MovieSidebar() {
           </div>
         </form>
       </Section>
+
       <Section
         heading='Adult content'
         expanded={appState.adult.expanded}

@@ -8,6 +8,7 @@ import { TvFiltersContext } from '../../contexts/TvFiltersContext';
 // Hooks
 import useCreateGenres from '../../hooks/useCreateGenres';
 import useTvFiltersFunctions from '../../hooks/useTvFiltersFunctions';
+import useCreateCountries from '../../hooks/useCreateCountries';
 import useCreateProviders from '../../hooks/useCreateProviders';
 
 // Components
@@ -27,10 +28,14 @@ export default function TvSidebar() {
   const { state } = useContext(TvFiltersContext);
   const genres = useCreateGenres('tv-genres', 'genre/tv/list');
   const providers = useCreateProviders('tv-providers', 'watch/providers/tv');
+  const countries = useCreateCountries();
   const {
     handleToggleSortSection,
     handleToggleSortInput,
     handleSort,
+    handleToggleRegionSection,
+    handleToggleRegionInput,
+    handleRegion,
     handleToggleProviders,
     clearProviders,
     updateProviders,
@@ -74,6 +79,37 @@ export default function TvSidebar() {
               active={state.sort.value === option.value}
             />
           ))}
+        </CustomSelectInput>
+      </Section>
+      <Section
+        heading='region'
+        expanded={appState.region.expanded}
+        dispatch={handleToggleRegionSection}
+      >
+        <CustomSelectInput
+          selected={appState.region.name}
+          expanded={appState.region.inputExpanded}
+          dispatch={handleToggleRegionInput}
+        >
+          {countries
+            ?.sort((a, b) => {
+              if (a.english_name < b.english_name) {
+                return -1;
+              }
+              if (a.english_name > b.english_name) {
+                return 1;
+              }
+              return 0;
+            })
+            .map((c) => (
+              <CustomSelectOption
+                key={c.iso_3166_1}
+                onClick={handleRegion}
+                name={c.english_name}
+                value={c.iso_3166_1}
+                active={appState.region.value === c.iso_3166_1}
+              />
+            ))}
         </CustomSelectInput>
       </Section>
       <Section
