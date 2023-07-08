@@ -16,7 +16,7 @@ export default function Sidebar() {
         <HDiv variant='heading--h4' heading='Filter results' />
         {pathname.includes('search') ? (
           <SearchSidebar />
-        ) : pathname.includes('movies') ? (
+        ) : pathname.includes('movie') ? (
           <MovieSidebar />
         ) : (
           <TvSidebar />
