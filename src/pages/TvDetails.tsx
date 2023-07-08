@@ -125,7 +125,7 @@ export default function TvDetails() {
           <Navigation
             data={tv?.genres}
             getId={(item) => item.id}
-            getLink={(item) => `/genre/${item.id}`}
+            getLink={(item) => `/genre/${item.id}/tv`}
             renderItem={(item) => item.name}
             variant='comma-separated'
           />

@@ -40,6 +40,7 @@ import PersonDetails from './pages/PersonDetails';
 import MovieGenre from './pages/MovieGenre';
 import Search from './pages/Search';
 import Collections from './pages/Collections';
+import TvGenre from './pages/TvGenre';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -103,6 +104,7 @@ function App() {
                         path='/tv/:tvId/season/:seasonId'
                         element={<TvSeason />}
                       />
+                      <Route path='/genre/:genreId/tv' element={<TvGenre />} />
                       <Route
                         path='/people/popular'
                         element={<PeoplePopular />}
