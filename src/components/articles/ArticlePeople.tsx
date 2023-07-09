@@ -126,7 +126,7 @@ export default function ArticlePeople<
               <div className='buttons'>
                 <Link
                   to={`${pathname}/cast-crew`}
-                  className='btn btn--secondary'
+                  className='btn btn--tertiary'
                 >
                   Full cast & crew
                 </Link>
