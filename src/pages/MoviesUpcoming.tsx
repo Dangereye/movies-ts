@@ -34,7 +34,8 @@ export default function MoviesUpcoming() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
   const initial = useRef(false);
-  const title = 'Movies: Upcoming';
+  const leadTitle = 'Movies';
+  const title = 'Upcoming releases';
   const name = 'movies-upcoming';
 
   const getNextPageParam = (page: IPage<IMovieMin>) =>
@@ -59,7 +60,12 @@ export default function MoviesUpcoming() {
 
   if (isLoading) {
     return (
-      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={moviePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <Loader />
       </PageWithSidebar>
     );
@@ -67,7 +73,12 @@ export default function MoviesUpcoming() {
 
   if (isError) {
     return (
-      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={moviePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <ErrorComponent />
       </PageWithSidebar>
     );
@@ -75,14 +86,24 @@ export default function MoviesUpcoming() {
 
   if (data.pages[0].total_results === 0) {
     return (
-      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={moviePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <NoResults media='movies' />
       </PageWithSidebar>
     );
   }
 
   return (
-    <PageWithSidebar navigation={moviePages} title={title} name={name}>
+    <PageWithSidebar
+      navigation={moviePages}
+      leadTitle={leadTitle}
+      title={title}
+      name={name}
+    >
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}

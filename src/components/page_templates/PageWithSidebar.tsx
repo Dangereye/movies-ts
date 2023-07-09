@@ -10,6 +10,7 @@ import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageWithSidebarProps = {
   navigation: { name: string; link: string }[] | undefined;
+  leadTitle?: string;
   title: string;
   name: string;
   children: React.ReactNode;
@@ -17,6 +18,7 @@ type PageWithSidebarProps = {
 
 export default function PageWithSidebar({
   navigation,
+  leadTitle,
   title,
   name,
   children,
@@ -32,7 +34,7 @@ export default function PageWithSidebar({
           variant='horizontal'
         />
       </SubNavbar>
-      <Header variant='header__min' title={title} />
+      <Header variant='header__min' leadTitle={leadTitle} title={title} />
       <Article name={name}>
         <Container>
           <Layout variant='grid grid--sidebar'>
