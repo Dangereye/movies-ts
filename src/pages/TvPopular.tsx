@@ -39,7 +39,8 @@ export default function TvPopular() {
     page.page < page.total_pages ? page.page + 1 : null;
 
   const initial = useRef(false);
-  const title = 'TV Shows: Popular';
+  const leadTitle = 'Tv shows';
+  const title = 'Popular';
   const name = 'tv-shows-popular';
 
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
@@ -61,7 +62,12 @@ export default function TvPopular() {
 
   if (isLoading) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={tvPages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <LoaderComponent />
       </PageWithSidebar>
     );
@@ -69,7 +75,12 @@ export default function TvPopular() {
 
   if (isError) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={tvPages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <ErrorComponent />
       </PageWithSidebar>
     );
@@ -77,14 +88,24 @@ export default function TvPopular() {
 
   if (data.pages[0].total_results === 0) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={tvPages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <NoResults media='Tv shows' />
       </PageWithSidebar>
     );
   }
 
   return (
-    <PageWithSidebar navigation={tvPages} title={title} name={name}>
+    <PageWithSidebar
+      navigation={tvPages}
+      leadTitle={leadTitle}
+      title={title}
+      name={name}
+    >
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}

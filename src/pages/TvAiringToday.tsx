@@ -37,7 +37,8 @@ export default function TvAiringToday() {
     page.page < page.total_pages ? page.page + 1 : null;
 
   const initial = useRef(false);
-  const title = 'TV Shows: airing today';
+  const leadTitle = 'Tv shows';
+  const title = 'Airing today';
   const name = 'tv-shows-airing-today';
 
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
@@ -59,7 +60,12 @@ export default function TvAiringToday() {
 
   if (isLoading) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={tvPages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <LoaderComponent />
       </PageWithSidebar>
     );
@@ -67,7 +73,12 @@ export default function TvAiringToday() {
 
   if (isError) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={tvPages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <ErrorComponent />
       </PageWithSidebar>
     );
@@ -75,14 +86,24 @@ export default function TvAiringToday() {
 
   if (data.pages[0].total_results === 0) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <PageWithSidebar
+        navigation={tvPages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <NoResults media='Tv shows' />
       </PageWithSidebar>
     );
   }
 
   return (
-    <PageWithSidebar navigation={tvPages} title={title} name={name}>
+    <PageWithSidebar
+      navigation={tvPages}
+      leadTitle={leadTitle}
+      title={title}
+      name={name}
+    >
       <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
