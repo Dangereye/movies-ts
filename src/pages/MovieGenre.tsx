@@ -16,10 +16,13 @@ import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 import CardContent from '../components/cards/card/CardContent';
 import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
-import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ErrorComponent from '../components/error/Error';
 import LoaderComponent from '../components/loader/Loader';
+import NoResults from '../components/typography/NoResults';
+
+// Templates
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -30,7 +33,6 @@ import { moviePages } from '../data/moviePages';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import NoResults from '../components/typography/NoResults';
 
 export default function MovieGenre() {
   const { state, dispatch } = useContext(MovieFiltersContext);
@@ -41,7 +43,8 @@ export default function MovieGenre() {
   const title = `${genre} movies`;
   const name = 'movies-by-genre';
 
-  const GetNextPageParam = (page: IPage<IMovieMin>) => page.page + 1;
+  const GetNextPageParam = (page: IPage<IMovieMin>) =>
+    page.page < page.total_pages ? page.page + 1 : null;
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
     useMakeInfiniteQuery<IPage<IMovieMin>>(
       'discover/movie',
