@@ -8,12 +8,19 @@ import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageProps = {
   navigation: { name: string; link: string }[] | undefined;
+  leadTitle?: string;
   title: string;
   name: string;
   children: React.ReactNode;
 };
 
-export default function Page({ navigation, title, name, children }: PageProps) {
+export default function Page({
+  navigation,
+  leadTitle,
+  title,
+  name,
+  children,
+}: PageProps) {
   return (
     <>
       <SubNavbar>
@@ -25,7 +32,7 @@ export default function Page({ navigation, title, name, children }: PageProps) {
           variant='horizontal'
         />
       </SubNavbar>
-      <Header variant='header__min' title={title} />
+      <Header variant='header__min' leadTitle={leadTitle} title={title} />
       <Main>
         <Article name={name}>
           <Container>

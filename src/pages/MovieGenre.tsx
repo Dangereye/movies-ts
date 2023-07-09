@@ -37,7 +37,8 @@ export default function MovieGenre() {
   const { state } = useContext(AppContext);
   const [genre, setGenre] = useState('');
   const { genreId } = useParams();
-  const title = `${genre} movies`;
+  const leadTitle = 'Movies';
+  const title = `${genre}`;
   const name = 'movies-by-genre';
 
   const GetNextPageParam = (page: IPage<IMovieMin>) =>
@@ -61,7 +62,12 @@ export default function MovieGenre() {
 
   if (isLoading) {
     return (
-      <Page navigation={moviePages} title={title} name={name}>
+      <Page
+        navigation={moviePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <LoaderComponent />
       </Page>
     );
@@ -69,7 +75,12 @@ export default function MovieGenre() {
 
   if (isError) {
     return (
-      <Page navigation={moviePages} title={title} name={name}>
+      <Page
+        navigation={moviePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <ErrorComponent />
       </Page>
     );
@@ -77,14 +88,24 @@ export default function MovieGenre() {
 
   if (data.pages[0].total_results === 0) {
     return (
-      <Page navigation={moviePages} title={title} name={name}>
+      <Page
+        navigation={moviePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <NoResults media='movies' />
       </Page>
     );
   }
 
   return (
-    <Page navigation={moviePages} title={title} name={name}>
+    <Page
+      navigation={moviePages}
+      leadTitle={leadTitle}
+      title={title}
+      name={name}
+    >
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}
