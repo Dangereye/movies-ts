@@ -1,16 +1,15 @@
 // React
-import { useEffect, useState, useRef, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
 
+// Context
+import { AppContext } from '../contexts/AppContext';
+
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import useCreateGenres from '../hooks/useCreateGenres';
-import useAppend from '../hooks/useAppendMovie';
-
-// Context
-import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 // Components
 import CardContent from '../components/cards/card/CardContent';
@@ -22,7 +21,7 @@ import LoaderComponent from '../components/loader/Loader';
 import NoResults from '../components/typography/NoResults';
 
 // Templates
-import PageWithSidebar from '../components/page_templates/PageWithSidebar';
+import Page from '../components/page_templates/Page';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -35,11 +34,9 @@ import { moviePages } from '../data/moviePages';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MovieGenre() {
-  const { state, dispatch } = useContext(MovieFiltersContext);
+  const { state } = useContext(AppContext);
   const [genre, setGenre] = useState('');
-  const { append } = useAppend();
   const { genreId } = useParams();
-  const initial = useRef(false);
   const title = `${genre} movies`;
   const name = 'movies-by-genre';
 
@@ -48,7 +45,7 @@ export default function MovieGenre() {
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
     useMakeInfiniteQuery<IPage<IMovieMin>>(
       'discover/movie',
-      append,
+      `&sort_by=popularity.desc&with_genres=${genreId}&region=${state.region.value}&include_adult=${state.adult.active}`,
       GetNextPageParam
     );
 
@@ -62,45 +59,32 @@ export default function MovieGenre() {
     });
   }, [genreId, genres, genre]);
 
-  useEffect(() => {
-    if (!initial.current) {
-      initial.current = true;
-      dispatch({
-        type: 'SET_DEFAULT_GENRE',
-        payload: {
-          ...state,
-          genres: { ...state.genres, types: genreId ? [+genreId] : [] },
-        },
-      });
-    }
-  });
-
   if (isLoading) {
     return (
-      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+      <Page navigation={moviePages} title={title} name={name}>
         <LoaderComponent />
-      </PageWithSidebar>
+      </Page>
     );
   }
 
   if (isError) {
     return (
-      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+      <Page navigation={moviePages} title={title} name={name}>
         <ErrorComponent />
-      </PageWithSidebar>
+      </Page>
     );
   }
 
   if (data.pages[0].total_results === 0) {
     return (
-      <PageWithSidebar navigation={moviePages} title={title} name={name}>
+      <Page navigation={moviePages} title={title} name={name}>
         <NoResults media='movies' />
-      </PageWithSidebar>
+      </Page>
     );
   }
 
   return (
-    <PageWithSidebar navigation={moviePages} title={title} name={name}>
+    <Page navigation={moviePages} title={title} name={name}>
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}
@@ -120,6 +104,6 @@ export default function MovieGenre() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </PageWithSidebar>
+    </Page>
   );
 }

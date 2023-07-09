@@ -1,15 +1,17 @@
 // React
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
+
+// Context
+import { AppContext } from '../contexts/AppContext';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
 import { ITVShowMin } from '../interfaces/ITVShowMin';
 
 // Hooks
-import useAppendTv from '../hooks/useAppendTv';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import useCreateGenres from '../hooks/useCreateGenres';
 
@@ -32,8 +34,8 @@ import { tvPages } from '../data/tvPages';
 import { formatDate } from '../utilities/formatDate';
 
 export default function TvGenre() {
+  const { state } = useContext(AppContext);
   const [genre, setGenre] = useState('');
-  const { append } = useAppendTv();
   const { genreId } = useParams();
   const title = `${genre} tv shows`;
   const name = 'tv-shows-by-genre';
@@ -43,7 +45,7 @@ export default function TvGenre() {
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
     useMakeInfiniteQuery<IPage<ITVShowMin>>(
       'discover/tv',
-      append,
+      `&sort_by=popularity.desc&with_genres=${genreId}&region=${state.region.value}&include_adult=${state.adult.active}`,
       GetNextPageParam
     );
 
