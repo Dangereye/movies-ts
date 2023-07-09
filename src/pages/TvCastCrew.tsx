@@ -158,7 +158,11 @@ export default function TvCastCrew() {
           variant='horizontal'
         />
       </SubNavbar>
-      <Header variant='header__min' title={`${data?.name}: cast & crew`} />
+      <Header
+        variant='header__min'
+        leadTitle={`${data?.name}`}
+        title='cast & crew'
+      />
       <ArticlePeople
         variant='list'
         name='cast'
