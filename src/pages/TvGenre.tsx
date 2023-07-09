@@ -45,7 +45,7 @@ export default function TvGenre() {
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
     useMakeInfiniteQuery<IPage<ITVShowMin>>(
       'discover/tv',
-      `&sort_by=popularity.desc&with_genres=${genreId}&region=${state.region.value}&include_adult=${state.adult.active}`,
+      `&sort_by=popularity.desc&with_genres=${genreId}&region=${state.region.value}&vote_count.gte=10&include_adult=${state.adult.active}`,
       GetNextPageParam
     );
 
