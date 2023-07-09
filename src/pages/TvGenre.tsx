@@ -1,11 +1,8 @@
 // React
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
-
-// Contexts
-import { TvFiltersContext } from '../contexts/TvFiltersContext';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -26,7 +23,7 @@ import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 
 // Templates
-import PageWithSidebar from '../components/page_templates/PageWithSidebar';
+import Page from '../components/page_templates/Page';
 
 // Data
 import { tvPages } from '../data/tvPages';
@@ -35,12 +32,9 @@ import { tvPages } from '../data/tvPages';
 import { formatDate } from '../utilities/formatDate';
 
 export default function TvGenre() {
-  const { state, dispatch } = useContext(TvFiltersContext);
   const [genre, setGenre] = useState('');
   const { append } = useAppendTv();
   const { genreId } = useParams();
-
-  const initial = useRef(false);
   const title = `${genre} tv shows`;
   const name = 'tv-shows-by-genre';
 
@@ -63,44 +57,32 @@ export default function TvGenre() {
     });
   }, [genreId, genres, genre]);
 
-  useEffect(() => {
-    if (!initial.current) {
-      initial.current = true;
-      dispatch({
-        type: 'SET_DEFAULT_GENRE',
-        payload: {
-          ...state,
-          genres: { ...state.genres, types: genreId ? [+genreId] : [] },
-        },
-      });
-    }
-  });
   if (isLoading) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <Page navigation={tvPages} title={title} name={name}>
         <LoaderComponent />
-      </PageWithSidebar>
+      </Page>
     );
   }
 
   if (isError) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
+      <Page navigation={tvPages} title={title} name={name}>
         <ErrorComponent />
-      </PageWithSidebar>
+      </Page>
     );
   }
 
   if (data.pages[0].total_results === 0) {
     return (
-      <PageWithSidebar navigation={tvPages} title={title} name={name}>
-        <NoResults media='movies' />
-      </PageWithSidebar>
+      <Page navigation={tvPages} title={title} name={name}>
+        <NoResults media='Tv shows' />
+      </Page>
     );
   }
 
   return (
-    <PageWithSidebar navigation={tvPages} title={title} name={name}>
+    <Page navigation={tvPages} title={title} name={name}>
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/tv/${item.id}`}
@@ -120,6 +102,6 @@ export default function TvGenre() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </PageWithSidebar>
+    </Page>
   );
 }
