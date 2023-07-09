@@ -1,10 +1,11 @@
-import { IPage } from "./IPage";
-import { IMovieMin } from "./IMovieMin";
-import { ICredits } from "./ICredits";
-import { IVideos } from "./IVideos";
-import { IExternalIds } from "./IExternalIds";
-import { IReview } from "./IReview";
-import { IMovieReleaseDates } from "./IMovieReleaseDates";
+import { IPage } from './IPage';
+import { IMovieMin } from './IMovieMin';
+import { ICredits } from './ICredits';
+import { IVideos } from './IVideos';
+import { IExternalIds } from './IExternalIds';
+import { IReview } from './IReview';
+import { IMovieReleaseDates } from './IMovieReleaseDates';
+import { IImages } from './IImages';
 
 export interface IMovieFull {
   adult: boolean;
@@ -52,4 +53,10 @@ export interface IMovieFull {
   recommendations: IPage<IMovieMin>;
   similar: IPage<IMovieMin>;
   reviews: IPage<IReview>;
+  images: {
+    id: number;
+    backdrops: IImages[];
+    logos: IImages[];
+    posters: IImages[];
+  };
 }
