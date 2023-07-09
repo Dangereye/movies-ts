@@ -29,6 +29,9 @@ import CardContent from '../components/cards/card/CardContent';
 // Interfaces
 import { ICollections } from '../interfaces/ICollections';
 
+// Data
+import { moviePages } from '../data/moviePages';
+
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 
@@ -114,7 +117,15 @@ export default function Collections() {
 
   return (
     <>
-      <SubNavbar />
+      <SubNavbar>
+        <Navigation
+          data={moviePages}
+          getId={(item) => item.name}
+          getLink={(item) => item.link}
+          renderItem={(item) => item.name}
+          variant='horizontal'
+        />
+      </SubNavbar>
       <Header
         variant='header__full'
         bgImage={data?.backdrop_path}
