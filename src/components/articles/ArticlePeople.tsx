@@ -22,6 +22,7 @@ type ArticlePeopleProps<T> = {
   character?: boolean;
   limit?: boolean;
   data: T[] | undefined;
+  sort?: (a: T, b: T) => number;
 };
 
 export default function ArticlePeople<
@@ -45,6 +46,8 @@ export default function ArticlePeople<
   character,
   limit,
   data,
+  sort = (a: T, b: T) =>
+    (b.popularity ? b.popularity : 0) - (a.popularity ? a.popularity : 0),
 }: ArticlePeopleProps<T>) {
   const { pathname } = useLocation();
 
@@ -115,10 +118,7 @@ export default function ArticlePeople<
               </>
             )}
             data={filtered}
-            sort={(a, b) =>
-              (b.popularity ? b.popularity : 0) -
-              (a.popularity ? a.popularity : 0)
-            }
+            sort={sort}
             limit={limit}
           />
           {(pathname.includes('movies') || pathname.includes('tv')) &&

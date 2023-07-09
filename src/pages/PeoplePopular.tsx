@@ -22,7 +22,9 @@ import { peoplePages } from '../data/peoplePages';
 export default function PeoplePopular() {
   const getNextPageParam = (page: IPage<IPerson>) =>
     page.page < page.total_pages ? page.page + 1 : null;
-  const title = 'People: popular';
+
+  const leadTitle = 'People';
+  const title = 'Popular';
   const name = 'people-popular';
 
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
@@ -34,7 +36,12 @@ export default function PeoplePopular() {
 
   if (isLoading) {
     return (
-      <Page navigation={peoplePages} title={title} name={name}>
+      <Page
+        navigation={peoplePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <LoaderComponent />
       </Page>
     );
@@ -42,14 +49,24 @@ export default function PeoplePopular() {
 
   if (isError) {
     return (
-      <Page navigation={peoplePages} title={title} name={name}>
+      <Page
+        navigation={peoplePages}
+        leadTitle={leadTitle}
+        title={title}
+        name={name}
+      >
         <ErrorComponent />
       </Page>
     );
   }
 
   return (
-    <Page navigation={peoplePages} title={title} name={name}>
+    <Page
+      navigation={peoplePages}
+      leadTitle={leadTitle}
+      title={title}
+      name={name}
+    >
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/people/${item.id}`}

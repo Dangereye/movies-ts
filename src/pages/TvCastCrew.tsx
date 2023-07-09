@@ -169,6 +169,7 @@ export default function TvCastCrew() {
         heading='cast'
         data={data?.aggregate_credits?.cast}
         character
+        sort={(a, b) => b.total_episode_count - a.total_episode_count}
       />
       <ArticlePeople
         variant='list'
