@@ -35,7 +35,7 @@ export const initialState: stateType = {
   release_types: { expanded: false, types: [] },
   rating: { expanded: false, min_rating: 0, max_rating: 10 },
   vote_count: { expanded: false, count: 0 },
-  certifications: { expanded: true, certs: [] },
+  certifications: { expanded: false, certs: [] },
 };
 
 export type ActionType = {
@@ -44,7 +44,6 @@ export type ActionType = {
     | 'SET_DEFAULT_NOW_PLAYING'
     | 'SET_DEFAULT_TOP_RATED'
     | 'SET_DEFAULT_UPCOMING'
-    | 'SET_DEFAULT_GENRE'
     | 'SET_FILTERS';
   payload: stateType;
 };
@@ -132,23 +131,6 @@ export default function movieFiltersReducer(
         release_types: { ...state.release_types, types: [] },
         dates: { ...state.dates, date_from: '', date_to: '' },
         vote_count: { ...state.vote_count, count: 300 },
-        certifications: { ...state.certifications, certs: [] },
-      };
-    }
-
-    case 'SET_DEFAULT_GENRE': {
-      return {
-        ...payload,
-        sort: {
-          ...state.sort,
-          name: 'popularity descending',
-          value: 'popularity.desc',
-        },
-        providers: { ...state.providers, ids: [] },
-        release_types: { ...state.release_types, types: [] },
-        dates: { ...state.dates, date_from: '', date_to: '' },
-        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
-        vote_count: { ...state.vote_count, count: 0 },
         certifications: { ...state.certifications, certs: [] },
       };
     }

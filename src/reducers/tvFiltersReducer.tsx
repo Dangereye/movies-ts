@@ -45,7 +45,6 @@ export type ActionType = {
     | 'SET_DEFAULT_AIRING_TODAY'
     | 'SET_DEFAULT_NEXT_7_DAYS'
     | 'SET_DEFAULT_TOP_RATED'
-    | 'SET_DEFAULT_GENRE'
     | 'SET_FILTERS';
   payload: stateType;
 };
@@ -134,25 +133,7 @@ export default function tvFiltersReducer(state: stateType, action: ActionType) {
         vote_count: { ...state.vote_count, count: 100 },
       };
     }
-    case 'SET_DEFAULT_GENRE': {
-      return {
-        ...payload,
-        sort: {
-          ...state.sort,
-          name: 'popularity descending',
-          value: 'popularity.desc',
-        },
 
-        providers: { ...state.providers, ids: [] },
-        release_types: {
-          ...state.release_types,
-          types: ['flatrate', 'free', 'ads', 'rent', 'buy'],
-        },
-        dates: { ...state.dates, date_from: '', date_to: '' },
-        rating: { ...state.rating, min_rating: 0, max_rating: 10 },
-        vote_count: { ...state.vote_count, count: 10 },
-      };
-    }
     case 'SET_FILTERS': {
       return {
         ...state,
