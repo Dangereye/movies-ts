@@ -37,6 +37,12 @@ html {
     font-size: $h5-font-size;
     font-weight: 500;
   }
+
+  &--lead {
+    font-size: $h3-font-size;
+    font-weight: 400;
+    font-style: italic;
+  }
 }
 
 .lead-text {

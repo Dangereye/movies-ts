@@ -3,12 +3,14 @@ import BackgroundImage from '../background_image/BackgroundImage';
 import Container from '../container/Container';
 import ImageComponent from '../image/Image';
 import H1 from '../typography/H1';
+import HDiv from '../typography/HDiv';
 
 type HeaderProps = {
   variant: 'header__full' | 'header__min' | 'header__center';
   bgImage?: string | null | undefined;
   image?: string | null | undefined;
   alt?: string | null | undefined;
+  leadTitle?: string;
   title: string | null | undefined;
   children?: ReactNode;
 };
@@ -18,6 +20,7 @@ export default function Header({
   bgImage,
   image,
   alt,
+  leadTitle,
   title,
   children,
 }: HeaderProps) {
@@ -40,7 +43,10 @@ export default function Header({
           />
         )}
         <div className='header__content'>
-          <H1 heading={title} />
+          <div>
+            {leadTitle && <HDiv variant='heading--lead' heading={leadTitle} />}
+            <H1 heading={title} />
+          </div>
           {children && children}
         </div>
       </Container>

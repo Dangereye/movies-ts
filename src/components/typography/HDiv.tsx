@@ -4,7 +4,8 @@ type HDivProps = {
     | 'heading--h2'
     | 'heading--h3'
     | 'heading--h4'
-    | 'heading--h5';
+    | 'heading--h5'
+    | 'heading--lead';
   heading: string | number;
 };
 

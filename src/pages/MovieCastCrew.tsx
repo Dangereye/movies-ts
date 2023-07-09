@@ -159,7 +159,11 @@ export default function MovieCastCrew() {
           variant='horizontal'
         />
       </SubNavbar>
-      <Header variant='header__min' title={`${data?.title}: cast & crew`} />
+      <Header
+        variant='header__min'
+        leadTitle={`${data?.title}`}
+        title='cast & crew'
+      />
       <Main>
         <ArticlePeople
           variant='list'
