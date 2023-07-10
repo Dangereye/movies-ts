@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // Components
-import Article from '../components/articles/Article';
 import ArticlePeople from '../components/articles/ArticlePeople';
 import Container from '../components/container/Container';
 import Navigation from '../components/navigation/Navigation';
@@ -14,6 +13,7 @@ import Header from '../components/header/Header';
 import Main from '../components/main/Main';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
+import Section from '../components/sections/Section';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -24,7 +24,6 @@ import useMakeQuery from '../hooks/useMakeQuery';
 // Interfaces
 import { ICrew } from '../interfaces/ICrew';
 import { IMovieFull } from '../interfaces/IMovieFull';
-import Section from '../components/sections/Section';
 
 export default function MovieCastCrew() {
   const { movieId } = useParams();

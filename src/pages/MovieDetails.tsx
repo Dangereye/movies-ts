@@ -16,7 +16,7 @@ import Certificate from '../components/header/Certificate';
 import UserScore from '../components/header/UserScore';
 import IconText from '../components/typography/IconText';
 import Main from '../components/main/Main';
-import Article from '../components/articles/Article';
+import Section from '../components/sections/Section';
 import Container from '../components/container/Container';
 
 // Articles
@@ -41,7 +41,6 @@ import { moviePages } from '../data/moviePages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
-import Section from '../components/sections/Section';
 
 export default function MovieDetails() {
   const { movieId } = useParams();

@@ -33,6 +33,7 @@ import { tvPages } from '../data/tvPages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
+import Section from '../components/sections/Section';
 
 export default function TvSeason() {
   const { tvId, seasonId } = useParams();
@@ -65,13 +66,13 @@ export default function TvSeason() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <LoaderComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -88,13 +89,13 @@ export default function TvSeason() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <ErrorComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -122,7 +123,7 @@ export default function TvSeason() {
           <Navigation
             data={tv?.genres}
             getId={(item) => item.id}
-            getLink={(item) => `/genre/${item.id}`}
+            getLink={(item) => `/genre/${item.id}/tv`}
             renderItem={(item) => item.name}
             variant='comma-separated'
           />
@@ -130,47 +131,49 @@ export default function TvSeason() {
         <Overview text={season?.overview} />
         <CrewJobs credits={season?.credits} />
       </Header>
-      <Main>
-        <Article name='season-episodes'>
-          <Container>
-            <H2 heading='Episodes' />
-            <div className='episodes'>
-              {season?.episodes.map((episode) => (
-                <div className='episode' key={episode.id}>
-                  <ImageComponent
-                    src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
-                    width={539}
-                    height={303}
-                    alt={episode.name}
-                    fallback='/images/error_1039x584.webp'
-                  />
-                  <div className='content'>
-                    <Wrapper name='episode-header' variant='flex'>
-                      <HDiv
-                        variant='heading--h4'
-                        heading={`${episode.episode_number}. ${episode.name}`}
-                      />
-                      <BodyText text={formatRuntime(episode.runtime)} />
-                    </Wrapper>
-                    <SmallText
-                      variant='episode-date'
-                      text={formatDate(episode.air_date)}
+      <Section>
+        <Main>
+          <Article name='season-episodes'>
+            <Container>
+              <H2 heading='Episodes' />
+              <div className='episodes'>
+                {season?.episodes.map((episode) => (
+                  <div className='episode' key={episode.id}>
+                    <ImageComponent
+                      src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
+                      width={539}
+                      height={303}
+                      alt={episode.name}
+                      fallback='/images/error_1039x584.webp'
                     />
-                    <BodyText text={episode.overview} />
-                    <Wrapper name='episode-votes' variant='flex'>
-                      <StarRating rating={episode.vote_average} />
+                    <div className='content'>
+                      <Wrapper name='episode-header' variant='flex'>
+                        <HDiv
+                          variant='heading--h4'
+                          heading={`${episode.episode_number}. ${episode.name}`}
+                        />
+                        <BodyText text={formatRuntime(episode.runtime)} />
+                      </Wrapper>
                       <SmallText
-                        variant='season-vote-count'
-                        text={`${episode.vote_count} votes`}
+                        variant='episode-date'
+                        text={formatDate(episode.air_date)}
                       />
-                    </Wrapper>
+                      <BodyText text={episode.overview} />
+                      <Wrapper name='episode-votes' variant='flex'>
+                        <StarRating rating={episode.vote_average} />
+                        <SmallText
+                          variant='season-vote-count'
+                          text={`${episode.vote_count} votes`}
+                        />
+                      </Wrapper>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </Article>
-      </Main>
+                ))}
+              </div>
+            </Container>
+          </Article>
+        </Main>
+      </Section>
     </>
   );
 }

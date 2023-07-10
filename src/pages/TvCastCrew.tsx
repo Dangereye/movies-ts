@@ -15,12 +15,12 @@ import { IAggregateCrew } from '../interfaces/IAggregateCrew';
 import Navigation from '../components/navigation/Navigation';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Main from '../components/main/Main';
-import Article from '../components/articles/Article';
 import Container from '../components/container/Container';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import Header from '../components/header/Header';
 import ArticlePeople from '../components/articles/ArticlePeople';
+import Section from '../components/sections/Section';
 
 // Data
 import { tvPages } from '../data/tvPages';
@@ -113,13 +113,13 @@ export default function TvCastCrew() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <LoaderComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -136,13 +136,13 @@ export default function TvCastCrew() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <ErrorComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -163,84 +163,88 @@ export default function TvCastCrew() {
         leadTitle={`${data?.name}`}
         title='cast & crew'
       />
-      <ArticlePeople
-        variant='list'
-        name='cast'
-        heading='cast'
-        data={data?.aggregate_credits?.cast}
-        character
-        sort={(a, b) => b.total_episode_count - a.total_episode_count}
-      />
-      <ArticlePeople
-        variant='list'
-        name='art-crew'
-        heading='Art'
-        data={art}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='camera-crew'
-        heading='camera'
-        data={camera}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='costume-and-make-up-crew'
-        heading='costume & make-up'
-        data={costume}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='crew'
-        heading='crew'
-        data={crew}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='directing-crew'
-        heading='directing'
-        data={directing}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='editing-crew'
-        heading='editing'
-        data={editing}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='production-crew'
-        heading='production'
-        data={production}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='sound-crew'
-        heading='sound'
-        data={sound}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='visual-effects-crew'
-        heading='visual effects'
-        data={visualEffects}
-        crew
-      />
-      <ArticlePeople
-        variant='list'
-        name='writing-crew'
-        heading='writing'
-        data={writing}
-        crew
-      />
+      <Section>
+        <Main>
+          <ArticlePeople
+            variant='list'
+            name='cast'
+            heading='cast'
+            data={data?.aggregate_credits?.cast}
+            character
+            sort={(a, b) => b.total_episode_count - a.total_episode_count}
+          />
+          <ArticlePeople
+            variant='list'
+            name='art-crew'
+            heading='Art'
+            data={art}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='camera-crew'
+            heading='camera'
+            data={camera}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='costume-and-make-up-crew'
+            heading='costume & make-up'
+            data={costume}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='crew'
+            heading='crew'
+            data={crew}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='directing-crew'
+            heading='directing'
+            data={directing}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='editing-crew'
+            heading='editing'
+            data={editing}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='production-crew'
+            heading='production'
+            data={production}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='sound-crew'
+            heading='sound'
+            data={sound}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='visual-effects-crew'
+            heading='visual effects'
+            data={visualEffects}
+            crew
+          />
+          <ArticlePeople
+            variant='list'
+            name='writing-crew'
+            heading='writing'
+            data={writing}
+            crew
+          />
+        </Main>
+      </Section>
     </>
   );
 }
