@@ -41,6 +41,7 @@ import { moviePages } from '../data/moviePages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
+import Section from '../components/sections/Section';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -63,13 +64,13 @@ export default function MovieDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <LoaderComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -86,13 +87,13 @@ export default function MovieDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Error'>
+        <Section>
+          <Main>
             <Container>
               <ErrorComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -140,38 +141,40 @@ export default function MovieDetails() {
         <CrewJobs credits={data?.credits} />
       </Header>
       <Statistics movie={data} />
-      <Main>
-        <ArticlePeople
-          variant='scroll-x'
-          name='top-billed-cast'
-          heading='Top billed cast'
-          data={data?.credits?.cast}
-          character
-          limit
-        />
+      <Section>
+        <Main>
+          <ArticlePeople
+            variant='scroll-x'
+            name='top-billed-cast'
+            heading='Top billed cast'
+            data={data?.credits?.cast}
+            character
+            limit
+          />
 
-        <ArticleVideos data={data?.videos?.results} />
-        <ArticleImages id={movieId} data={data?.images} />
+          <ArticleVideos data={data?.videos?.results} />
+          <ArticleImages id={movieId} data={data?.images} />
 
-        <ArticleReviews data={data?.reviews?.results} />
-        <Collection
-          name={data?.belongs_to_collection?.name}
-          image={data?.belongs_to_collection?.backdrop_path}
-          id={data?.belongs_to_collection?.id}
-        />
-        <ArticleMoviesMin
-          variant='scroll-x'
-          name='recommended-movies'
-          heading='Recommended'
-          data={data?.recommendations?.results}
-        />
-        <ArticleMoviesMin
-          variant='scroll-x'
-          name='similar-movies'
-          heading='You may also enjoy...'
-          data={data?.similar?.results}
-        />
-      </Main>
+          <ArticleReviews data={data?.reviews?.results} />
+          <Collection
+            name={data?.belongs_to_collection?.name}
+            image={data?.belongs_to_collection?.backdrop_path}
+            id={data?.belongs_to_collection?.id}
+          />
+          <ArticleMoviesMin
+            variant='scroll-x'
+            name='recommended-movies'
+            heading='Recommended'
+            data={data?.recommendations?.results}
+          />
+          <ArticleMoviesMin
+            variant='scroll-x'
+            name='similar-movies'
+            heading='You may also enjoy...'
+            data={data?.similar?.results}
+          />
+        </Main>
+      </Section>
     </>
   );
 }
