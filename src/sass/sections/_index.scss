@@ -1,6 +1,9 @@
 .section {
-  border: 2px solid green;
+  border: 10px solid green;
   display: flex;
+  flex-direction: column;
+  gap: 8rem;
   justify-content: center;
+  @include vertical-padding;
   @include horizontal-padding;
 }

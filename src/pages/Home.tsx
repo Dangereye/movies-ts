@@ -1,4 +1,8 @@
 // Components
+import Header from '../components/header/Header';
+import Searchbar from '../components/searchbar/Searchbar';
+import HDiv from '../components/typography/HDiv';
+import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
 import H2 from '../components/typography/H2';
 
@@ -15,9 +19,6 @@ import useMakeQuery from '../hooks/useMakeQuery';
 import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticlePeople from '../components/articles/ArticlePeople';
 import ArticleTvMin from '../components/articles/ArticleTvMin';
-import Header from '../components/header/Header';
-import Searchbar from '../components/searchbar/Searchbar';
-import HDiv from '../components/typography/HDiv';
 
 export default function LandingPage() {
   const {
@@ -60,25 +61,27 @@ export default function LandingPage() {
         <Searchbar fixed />
       </Header>
       <Main>
-        <ArticleMoviesMin
-          variant='scroll-x'
-          name='trending-movies'
-          heading='Trending movies'
-          data={movies?.results}
-        />
-        <ArticlePeople
-          variant='scroll-x'
-          name='trending-people'
-          heading='Trending people'
-          data={people?.results}
-          department
-        />
-        <ArticleTvMin
-          variant='scroll-x'
-          name='trending-tv-shows'
-          heading='Trending TV shows'
-          data={tvshows?.results}
-        />
+        <Section>
+          <ArticleMoviesMin
+            variant='scroll-x'
+            name='trending-movies'
+            heading='Trending movies'
+            data={movies?.results}
+          />
+          <ArticlePeople
+            variant='scroll-x'
+            name='trending-people'
+            heading='Trending people'
+            data={people?.results}
+            department
+          />
+          <ArticleTvMin
+            variant='scroll-x'
+            name='trending-tv-shows'
+            heading='Trending TV shows'
+            data={tvshows?.results}
+          />
+        </Section>
       </Main>
     </>
   );
