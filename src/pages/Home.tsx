@@ -4,7 +4,6 @@ import Searchbar from '../components/searchbar/Searchbar';
 import HDiv from '../components/typography/HDiv';
 import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
-import H2 from '../components/typography/H2';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -19,8 +18,14 @@ import useMakeQuery from '../hooks/useMakeQuery';
 import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticlePeople from '../components/articles/ArticlePeople';
 import ArticleTvMin from '../components/articles/ArticleTvMin';
+import ErrorComponent from '../components/error/Error';
+import LoaderComponent from '../components/loader/Loader';
+import Container from '../components/container/Container';
 
 export default function LandingPage() {
+  const title = 'Ready to be entertained?';
+  const heading =
+    'Millions of movies, Tv shows and people to discover, explore now.';
   const {
     data: movies,
     isLoading: moviesIsLoading,
@@ -40,24 +45,53 @@ export default function LandingPage() {
   } = useMakeQuery<IPage<ITVShowMin>>('trending tvshows', 'trending/tv/week');
 
   if (moviesIsLoading || peopleIsLoading || tvshowsIsLoading) {
-    return <H2 heading='Loading' />;
+    return (
+      <>
+        <Header
+          variant='header__center'
+          title={title}
+          bgImage={movies?.results[0]?.backdrop_path}
+        >
+          <HDiv variant='heading--h2' heading={heading} />
+          <Searchbar fixed />
+        </Header>
+        <Section>
+          <Container>
+            <LoaderComponent />
+          </Container>
+        </Section>
+      </>
+    );
   }
 
   if (moviesIsError || peopleIsError || tvshowsIsError) {
-    return <H2 heading='Error' />;
+    return (
+      <>
+        <Header
+          variant='header__center'
+          title={title}
+          bgImage={movies?.results[0]?.backdrop_path}
+        >
+          <HDiv variant='heading--h2' heading={heading} />
+          <Searchbar fixed />
+        </Header>
+        <Section>
+          <Container>
+            <ErrorComponent />
+          </Container>
+        </Section>
+      </>
+    );
   }
 
   return (
     <>
       <Header
         variant='header__center'
-        title='Ready to be entertained?'
+        title={title}
         bgImage={movies?.results[0].backdrop_path}
       >
-        <HDiv
-          variant='heading--h2'
-          heading='Millions of movies, Tv shows and people to discover, explore now.'
-        />
+        <HDiv variant='heading--h2' heading={heading} />
         <Searchbar fixed />
       </Header>
       <Main>
