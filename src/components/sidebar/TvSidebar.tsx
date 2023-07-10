@@ -12,7 +12,7 @@ import useCreateCountries from '../../hooks/useCreateCountries';
 import useCreateProviders from '../../hooks/useCreateProviders';
 
 // Components
-import Section from './sections/Section';
+import SidebarSection from './sections/SidebarSection';
 import ToggleButton from '../buttons/ToggleButton';
 import CustomSelectInput from './custom_select_input/CustomSelectInput';
 import CustomSelectOption from './custom_select_input/CustomSelectOption';
@@ -60,7 +60,7 @@ export default function TvSidebar() {
 
   return (
     <>
-      <Section
+      <SidebarSection
         heading='Sort'
         expanded={state.sort.expanded}
         dispatch={handleToggleSortSection}
@@ -80,8 +80,8 @@ export default function TvSidebar() {
             />
           ))}
         </CustomSelectInput>
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='region'
         expanded={appState.region.expanded}
         dispatch={handleToggleRegionSection}
@@ -111,8 +111,8 @@ export default function TvSidebar() {
               />
             ))}
         </CustomSelectInput>
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='Providers'
         expanded={state.providers.expanded}
         dispatch={handleToggleProviders}
@@ -134,8 +134,8 @@ export default function TvSidebar() {
             />
           ))}
         </div>
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='Release types'
         expanded={state.release_types.expanded}
         dispatch={handleToggleReleaseTypes}
@@ -153,8 +153,8 @@ export default function TvSidebar() {
             onClick={() => updateTypes(t.value)}
           />
         ))}
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='Genres'
         expanded={state.genres.expanded}
         dispatch={handleToggleGenres}
@@ -172,8 +172,8 @@ export default function TvSidebar() {
             onClick={() => updateGenres(genre.id)}
           />
         ))}
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='air dates'
         expanded={state.dates.expanded}
         dispatch={handleToggleDates}
@@ -198,8 +198,8 @@ export default function TvSidebar() {
             />
           </div>
         </form>
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='User Ratings'
         expanded={state.rating.expanded}
         dispatch={handleToggleRating}
@@ -226,8 +226,8 @@ export default function TvSidebar() {
             />
           </div>
         </form>
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='User Votes'
         expanded={state.vote_count.expanded}
         dispatch={handleToggleMinimumVotes}
@@ -244,8 +244,8 @@ export default function TvSidebar() {
             />
           </div>
         </form>
-      </Section>
-      <Section
+      </SidebarSection>
+      <SidebarSection
         heading='Adult content'
         expanded={appState.adult.expanded}
         dispatch={handleToggleAdultSection}
@@ -255,7 +255,7 @@ export default function TvSidebar() {
           name={appState.adult.active ? 'Visible' : 'Hidden'}
           onClick={handleAdult}
         />
-      </Section>
+      </SidebarSection>
     </>
   );
 }

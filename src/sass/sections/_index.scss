@@ -1,0 +1,6 @@
+.section {
+  display: flex;
+  justify-content: center;
+  @include vertical-padding;
+  @include horizontal-padding;
+}

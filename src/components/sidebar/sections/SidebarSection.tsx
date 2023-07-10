@@ -15,15 +15,15 @@ type SectionProps = {
   children: ReactNode;
 };
 
-export default function Section({
+export default function SidebarSection({
   expanded,
   dispatch,
   heading,
   children,
 }: SectionProps) {
   return (
-    <div className={expanded ? 'section active' : 'section'}>
-      <div className='section__heading'>
+    <div className={expanded ? 'sidebar-section active' : 'sidebar-section'}>
+      <div className='sidebar-section__heading'>
         <HDiv variant='heading--h5' heading={heading} />
         <Button
           variant='btn--close'
@@ -32,7 +32,11 @@ export default function Section({
         />
       </div>
       <div
-        className={expanded ? 'section__content active' : 'section__content'}
+        className={
+          expanded
+            ? 'sidebar-section__content active'
+            : 'sidebar-section__content'
+        }
       >
         {children}
       </div>

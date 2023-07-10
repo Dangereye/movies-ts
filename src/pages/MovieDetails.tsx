@@ -21,6 +21,7 @@ import Container from '../components/container/Container';
 
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
+import ArticleImages from '../components/articles/ArticleImages';
 import ArticleReviews from '../components/articles/ArticleReviews';
 import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticlePeople from '../components/articles/ArticlePeople';
@@ -40,10 +41,6 @@ import { moviePages } from '../data/moviePages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
-import H2 from '../components/typography/H2';
-import ImageComponent from '../components/images/Image';
-import BodyText from '../components/typography/BodyText';
-import ArticleImages from '../components/articles/ArticleImages';
 
 export default function MovieDetails() {
   const { movieId } = useParams();

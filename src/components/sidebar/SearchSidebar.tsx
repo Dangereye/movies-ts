@@ -7,7 +7,7 @@ import { SearchFiltersContext } from '../../contexts/SearchFiltersContext';
 // Components
 import ToggleButton from '../buttons/ToggleButton';
 import Selector from './selectors/Selector';
-import Section from './sections/Section';
+import SidebarSection from './sections/SidebarSection';
 
 export default function SearchSidebar() {
   const { state: appState, dispatch: appDispatch } = useContext(AppContext);
@@ -55,7 +55,7 @@ export default function SearchSidebar() {
 
   return (
     <>
-      <Section
+      <SidebarSection
         heading='Display'
         expanded={state.display.expanded}
         dispatch={handleToggleDisplay}
@@ -78,9 +78,9 @@ export default function SearchSidebar() {
           value={state.display.results.people}
           onClick={() => handleSetMediaType('people')}
         />
-      </Section>
+      </SidebarSection>
 
-      <Section
+      <SidebarSection
         heading='Adult content'
         expanded={appState.adult.expanded}
         dispatch={handleToggleAdultSection}
@@ -90,7 +90,7 @@ export default function SearchSidebar() {
           name={appState.adult.active ? 'Visible' : 'Hidden'}
           onClick={handleAdult}
         />
-      </Section>
+      </SidebarSection>
     </>
   );
 }

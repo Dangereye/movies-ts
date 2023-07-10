@@ -1,5 +1,13 @@
+// React
 import { useState } from 'react';
+
+// React router
+import { Link } from 'react-router-dom';
+
+// Interfaces
 import { IImages } from '../../interfaces/IImages';
+
+// Components
 import Container from '../container/Container';
 import H2 from '../typography/H2';
 import Article from './Article';
@@ -7,7 +15,6 @@ import Button from '../buttons/Button';
 import Wrapper from '../wrapper/Wrapper';
 import BodyText from '../typography/BodyText';
 import ImageComponent from '../images/Image';
-import { Link } from 'react-router-dom';
 
 type ActiveProps = 'posters' | 'backdrops';
 
