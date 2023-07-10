@@ -24,6 +24,7 @@ import useMakeQuery from '../hooks/useMakeQuery';
 // Interfaces
 import { ICrew } from '../interfaces/ICrew';
 import { IMovieFull } from '../interfaces/IMovieFull';
+import Section from '../components/sections/Section';
 
 export default function MovieCastCrew() {
   const { movieId } = useParams();
@@ -114,13 +115,13 @@ export default function MovieCastCrew() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <LoaderComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -137,13 +138,13 @@ export default function MovieCastCrew() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <ErrorComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }

@@ -4,6 +4,9 @@ import Searchbar from '../components/searchbar/Searchbar';
 import HDiv from '../components/typography/HDiv';
 import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
+import ErrorComponent from '../components/error/Error';
+import LoaderComponent from '../components/loader/Loader';
+import Container from '../components/container/Container';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -18,9 +21,6 @@ import useMakeQuery from '../hooks/useMakeQuery';
 import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticlePeople from '../components/articles/ArticlePeople';
 import ArticleTvMin from '../components/articles/ArticleTvMin';
-import ErrorComponent from '../components/error/Error';
-import LoaderComponent from '../components/loader/Loader';
-import Container from '../components/container/Container';
 
 export default function LandingPage() {
   const title = 'Ready to be entertained?';
@@ -56,9 +56,11 @@ export default function LandingPage() {
           <Searchbar fixed />
         </Header>
         <Section>
-          <Container>
-            <LoaderComponent />
-          </Container>
+          <Main>
+            <Container>
+              <LoaderComponent />
+            </Container>
+          </Main>
         </Section>
       </>
     );
@@ -76,9 +78,11 @@ export default function LandingPage() {
           <Searchbar fixed />
         </Header>
         <Section>
-          <Container>
-            <ErrorComponent />
-          </Container>
+          <Main>
+            <Container>
+              <ErrorComponent />
+            </Container>
+          </Main>
         </Section>
       </>
     );
@@ -94,8 +98,8 @@ export default function LandingPage() {
         <HDiv variant='heading--h2' heading={heading} />
         <Searchbar fixed />
       </Header>
-      <Main>
-        <Section>
+      <Section>
+        <Main>
           <ArticleMoviesMin
             variant='scroll-x'
             name='trending-movies'
@@ -115,8 +119,8 @@ export default function LandingPage() {
             heading='Trending TV shows'
             data={tvshows?.results}
           />
-        </Section>
-      </Main>
+        </Main>
+      </Section>
     </>
   );
 }
