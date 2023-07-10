@@ -15,7 +15,7 @@ import { ITVShowMin } from '../interfaces/ITVShowMin';
 // Components
 import InfiniteCards from '../components/cards/InifinteCards';
 import CardContent from '../components/cards/card/CardContent';
-import ImageComponent from '../components/image/Image';
+import ImageComponent from '../components/images/Image';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import BodyText from '../components/typography/BodyText';
 import LoaderComponent from '../components/loader/Loader';

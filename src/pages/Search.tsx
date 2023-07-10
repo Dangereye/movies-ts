@@ -20,7 +20,7 @@ import { SearchFiltersContext } from '../contexts/SearchFiltersContext';
 // Components
 import BodyText from '../components/typography/BodyText';
 import InfiniteCards from '../components/cards/InifinteCards';
-import ImageComponent from '../components/image/Image';
+import ImageComponent from '../components/images/Image';
 import CardContent from '../components/cards/card/CardContent';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';

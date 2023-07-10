@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { ICredits } from "../../interfaces/ICredits";
-import ImageComponent from "../image/Image";
-import BodyText from "../typography/BodyText";
-import Wrapper from "../wrapper/Wrapper";
+import { Link } from 'react-router-dom';
+import { ICredits } from '../../interfaces/ICredits';
+import ImageComponent from '../images/Image';
+import BodyText from '../typography/BodyText';
+import Wrapper from '../wrapper/Wrapper';
 
 type CrewJobProps = {
   credits: ICredits | undefined;
@@ -16,11 +16,11 @@ export default function CrewJobs({ credits }: CrewJobProps) {
     let array: string[] = [];
     credits?.crew.forEach((person) => {
       if (
-        person.job === "Director" ||
-        person.job === "Producer" ||
-        person.job === "Screenplay" ||
-        person.job === "Story" ||
-        person.job === "Executive Producer"
+        person.job === 'Director' ||
+        person.job === 'Producer' ||
+        person.job === 'Screenplay' ||
+        person.job === 'Story' ||
+        person.job === 'Executive Producer'
       ) {
         array.push(person.name);
       }
@@ -42,7 +42,7 @@ export default function CrewJobs({ credits }: CrewJobProps) {
   };
 
   return (
-    <Wrapper name="crew" variant="flex">
+    <Wrapper name='crew' variant='flex'>
       {credits?.crew
         .sort((a, b) => b.popularity - a.popularity)
         .map((person) => {
@@ -55,11 +55,11 @@ export default function CrewJobs({ credits }: CrewJobProps) {
             ignoreList.push(person.name);
             count = count + 1;
             return (
-              <Wrapper name="profile" variant="flex" key={person.name}>
+              <Wrapper name='profile' variant='flex' key={person.name}>
                 <Link to={`/people/${person.id}`}>
                   <ImageComponent
                     src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                    fallback="/images/error_100x100.webp"
+                    fallback='/images/error_100x100.webp'
                     width={100}
                     height={100}
                     alt={person.name}
@@ -68,16 +68,16 @@ export default function CrewJobs({ credits }: CrewJobProps) {
                 <div>
                   <Link
                     to={`/people/${person.id}`}
-                    className="heading heading--h4"
+                    className='heading heading--h4'
                   >
                     {person.name}
                   </Link>
-                  <Wrapper name="jobs" variant="flex">
+                  <Wrapper name='jobs' variant='flex'>
                     {getJobs(person.name).map((job, i) => (
                       <BodyText
                         key={`${person.job}-${i}`}
                         text={job}
-                        variant="job"
+                        variant='job'
                       />
                     ))}
                   </Wrapper>

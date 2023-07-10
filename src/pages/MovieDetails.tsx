@@ -41,8 +41,9 @@ import { moviePages } from '../data/moviePages';
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
 import H2 from '../components/typography/H2';
-import ImageComponent from '../components/image/Image';
+import ImageComponent from '../components/images/Image';
 import BodyText from '../components/typography/BodyText';
+import ArticleImages from '../components/articles/ArticleImages';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -153,41 +154,8 @@ export default function MovieDetails() {
         />
 
         <ArticleVideos data={data?.videos?.results} />
-        <Article name='posters'>
-          <Container>
-            <H2 heading='Movie posters' />
-            <BodyText text={`Showing ${data?.images.posters.length} posters`} />
-            <Wrapper name='posters' variant='scroll'>
-              {data?.images.posters.map((img) => (
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
-                  fallback='/images/error_500x750.webp'
-                  width={500}
-                  height={750}
-                  alt='poster'
-                />
-              ))}
-            </Wrapper>
-          </Container>
-        </Article>
-        <Article name='backdrops'>
-          <Container>
-            <H2 heading='Movie backdrops' />
-            <BodyText
-              text={`Showing ${data?.images.backdrops.length} backdrops`}
-            />
-            <Wrapper name='posters' variant='scroll'>
-              {data?.images.backdrops.map((img) => (
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
-                  fallback='/images/error_500x750.webp'
-                  width={600}
-                  alt='poster'
-                />
-              ))}
-            </Wrapper>
-          </Container>
-        </Article>
+        <ArticleImages id={movieId} data={data?.images} />
+
         <ArticleReviews data={data?.reviews?.results} />
         <Collection
           name={data?.belongs_to_collection?.name}

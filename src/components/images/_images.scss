@@ -1,0 +1,6 @@
+.images {
+  display: flex;
+  gap: 1rem;
+
+  @include scroll-x;
+}

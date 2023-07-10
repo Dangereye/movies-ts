@@ -1,21 +1,21 @@
 // Interfaces
-import { IMovieMin } from "../../interfaces/IMovieMin";
+import { IMovieMin } from '../../interfaces/IMovieMin';
 
 // Utilities
-import { formatDate } from "../../utilities/formatDate";
-import { removeDuplicatesById } from "../../utilities/removeDuplicatesById";
+import { formatDate } from '../../utilities/formatDate';
+import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
 
 // Components
-import Article from "./Article";
-import Container from "../container/Container";
-import H2 from "../typography/H2";
-import Cards from "../cards/Cards";
-import BodyText from "../typography/BodyText";
-import ImageComponent from "../image/Image";
-import CardContent from "../cards/card/CardContent";
+import Article from './Article';
+import Container from '../container/Container';
+import H2 from '../typography/H2';
+import Cards from '../cards/Cards';
+import BodyText from '../typography/BodyText';
+import ImageComponent from '../images/Image';
+import CardContent from '../cards/card/CardContent';
 
 type ArticleMoviesMinProps = {
-  variant: "scroll-x" | "list";
+  variant: 'scroll-x' | 'list';
   name: string;
   heading: string;
   data: IMovieMin[] | undefined;
@@ -43,13 +43,13 @@ export default function ArticleMoviesMin({
               <>
                 <ImageComponent
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  fallback="/images/error_500x750.webp"
+                  fallback='/images/error_500x750.webp'
                   alt={item.title}
                 />
                 <CardContent vote={item.vote_average} heading={item.title}>
                   <BodyText
                     text={
-                      item.release_date ? formatDate(item.release_date) : "TBC"
+                      item.release_date ? formatDate(item.release_date) : 'TBC'
                     }
                   />
                 </CardContent>

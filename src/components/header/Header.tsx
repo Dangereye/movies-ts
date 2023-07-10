@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import BackgroundImage from '../background_image/BackgroundImage';
 import Container from '../container/Container';
-import ImageComponent from '../image/Image';
+import ImageComponent from '../images/Image';
 import H1 from '../typography/H1';
 import HDiv from '../typography/HDiv';
 

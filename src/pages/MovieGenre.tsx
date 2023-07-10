@@ -13,7 +13,7 @@ import useCreateGenres from '../hooks/useCreateGenres';
 
 // Components
 import CardContent from '../components/cards/card/CardContent';
-import ImageComponent from '../components/image/Image';
+import ImageComponent from '../components/images/Image';
 import BodyText from '../components/typography/BodyText';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ErrorComponent from '../components/error/Error';

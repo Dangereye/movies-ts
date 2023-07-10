@@ -11,7 +11,7 @@ import Wrapper from '../components/wrapper/Wrapper';
 import CrewJobs from '../components/header/CrewJobs';
 import Container from '../components/container/Container';
 import Article from '../components/articles/Article';
-import ImageComponent from '../components/image/Image';
+import ImageComponent from '../components/images/Image';
 import CardContent from '../components/cards/card/CardContent';
 import Statistics from '../components/statistics/Statistics';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
