@@ -1,4 +1,7 @@
 .section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   border: 10px solid green;
 
   @include vertical-padding;
