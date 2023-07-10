@@ -35,13 +35,13 @@ export default function MovieImages() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <LoaderComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -58,13 +58,13 @@ export default function MovieImages() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Error'>
+        <Section>
+          <Main>
             <Container>
               <ErrorComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
