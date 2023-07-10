@@ -1,9 +1,9 @@
 .article {
+  border: 2px solid red;
   display: flex;
   justify-content: center;
   @include vertical-padding;
-  @include horizontal-padding;
 }
 
-@import "./article-videos";
-@import "./article-reviews";
+@import './article-videos';
+@import './article-reviews';

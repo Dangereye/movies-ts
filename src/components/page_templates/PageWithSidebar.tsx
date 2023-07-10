@@ -5,6 +5,7 @@ import Header from '../header/Header';
 import Layout from '../layout/Layout';
 import Main from '../main/Main';
 import Navigation from '../navigation/Navigation';
+import Section from '../sections/Section';
 import Sidebar from '../sidebar/Sidebar';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
@@ -35,16 +36,16 @@ export default function PageWithSidebar({
         />
       </SubNavbar>
       <Header variant='header__min' leadTitle={leadTitle} title={title} />
-      <Article name={name}>
+      <Section>
         <Container>
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
-              <>{children}</>
+              <Article name={name}>{children}</Article>
             </Main>
           </Layout>
         </Container>
-      </Article>
+      </Section>
     </>
   );
 }
