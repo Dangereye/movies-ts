@@ -27,6 +27,7 @@ import MoviesNowPlaying from './pages/MoviesNowPlaying';
 import MoviesUpcoming from './pages/MoviesUpcoming';
 import MoviesTopRated from './pages/MoviesTopRated';
 import MovieDetails from './pages/MovieDetails';
+import MovieImages from './pages/MovieImages';
 import MovieCastCrew from './pages/MovieCastCrew';
 import TvPopular from './pages/TvPopular';
 import TvAiringToday from './pages/TvAiringToday';
@@ -79,6 +80,10 @@ function App() {
                       <Route
                         path='/movies/:movieId'
                         element={<MovieDetails />}
+                      />
+                      <Route
+                        path='/movies/:movieId/images'
+                        element={<MovieImages />}
                       />
                       <Route
                         path='/movies/:movieId/cast-crew'
