@@ -36,6 +36,7 @@ import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import Section from '../components/sections/Section';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -61,13 +62,13 @@ export default function TvDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='Loading'>
+        <Section>
+          <Main>
             <Container>
               <LoaderComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -84,13 +85,13 @@ export default function TvDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Main>
-          <Article name='error'>
+        <Section>
+          <Main>
             <Container>
               <ErrorComponent />
             </Container>
-          </Article>
-        </Main>
+          </Main>
+        </Section>
       </>
     );
   }
@@ -137,32 +138,34 @@ export default function TvDetails() {
         />
       </Header>
       <Statistics person={person} />
-      <Main>
-        <ArticleMoviesMin
-          variant='scroll-x'
-          name='movie-cast'
-          heading='Movie cast'
-          data={person?.movie_credits.cast}
-        />
-        <ArticleMoviesMin
-          variant='scroll-x'
-          name='movie-crew'
-          heading='Movie crew'
-          data={person?.movie_credits.crew}
-        />
-        <ArticleTvMin
-          variant='scroll-x'
-          name='tv-cast'
-          heading='TV cast'
-          data={person?.tv_credits.cast}
-        />
-        <ArticleTvMin
-          variant='scroll-x'
-          name='tv-crew'
-          heading='TV crew'
-          data={person?.tv_credits.crew}
-        />
-      </Main>
+      <Section>
+        <Main>
+          <ArticleMoviesMin
+            variant='scroll-x'
+            name='movie-cast'
+            heading='Movie cast'
+            data={person?.movie_credits.cast}
+          />
+          <ArticleMoviesMin
+            variant='scroll-x'
+            name='movie-crew'
+            heading='Movie crew'
+            data={person?.movie_credits.crew}
+          />
+          <ArticleTvMin
+            variant='scroll-x'
+            name='tv-cast'
+            heading='TV cast'
+            data={person?.tv_credits.cast}
+          />
+          <ArticleTvMin
+            variant='scroll-x'
+            name='tv-crew'
+            heading='TV crew'
+            data={person?.tv_credits.crew}
+          />
+        </Main>
+      </Section>
     </>
   );
 }
