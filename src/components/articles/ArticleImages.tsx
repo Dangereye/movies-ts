@@ -75,7 +75,7 @@ export default function ArticleImages({ id, data }: ArticleImagesProps) {
               data[active].length > 10 ? '10' : data[active].length
             } ${active}`}
           />
-          <div className='images'>
+          <div className='images__scroll'>
             {data[active].length > 0 ? (
               data[active]
                 .filter((img, i) => i < 10)

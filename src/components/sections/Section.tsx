@@ -1,7 +1,12 @@
 type SectionProps = {
+  padding?: boolean;
   children: React.ReactNode;
 };
 
-export default function Section({ children }: SectionProps) {
-  return <section className='section'>{children}</section>;
+export default function Section({ padding = false, children }: SectionProps) {
+  return (
+    <section className={`section ${padding && 'horizontal-padding'}`}>
+      {children}
+    </section>
+  );
 }

@@ -5,4 +5,8 @@
   border: 10px solid green;
 
   @include vertical-padding;
+
+  &.horizontal-padding {
+    @include horizontal-padding;
+  }
 }

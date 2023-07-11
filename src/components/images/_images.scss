@@ -1,6 +1,21 @@
 .images {
-  display: flex;
-  gap: 1rem;
+  &__scroll {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
 
-  @include scroll-x;
+    @include scroll-x;
+  }
+
+  &__list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1rem;
+
+    .image-component {
+      width: 100%;
+      height: auto;
+    }
+  }
 }

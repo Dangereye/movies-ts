@@ -2,8 +2,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  @include horizontal-padding;
   border: 2px solid red;
+
+  &.horizontal-padding {
+    @include horizontal-padding;
+  }
 }
 
 @import './article-videos';
