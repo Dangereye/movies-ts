@@ -6,7 +6,5 @@
 
   @include vertical-padding;
 
-  &.horizontal-padding {
-    @include horizontal-padding;
-  }
+  @include horizontal-padding;
 }

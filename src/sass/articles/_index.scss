@@ -3,10 +3,6 @@
   display: flex;
   justify-content: center;
   border: 2px solid red;
-
-  &.horizontal-padding {
-    @include horizontal-padding;
-  }
 }
 
 @import './article-videos';
