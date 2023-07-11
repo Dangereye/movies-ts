@@ -89,7 +89,7 @@ export default function MovieImages() {
       <Header
         variant='header__min'
         leadTitle={data?.title}
-        title='Movie images'
+        title={`Movie ${display}`}
       />
       <Section>
         <Container>
