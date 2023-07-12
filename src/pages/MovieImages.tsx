@@ -43,9 +43,17 @@ export default function MovieImages() {
             logos: data?.images.logos.length,
           },
         },
+        languages: {
+          ...state.languages,
+          data: {
+            en: data?.images[state.display.show_media_type].filter(
+              (img) => img.iso_639_1 === 'en'
+            ),
+          },
+        },
       },
     });
-  }, [data]);
+  }, [data, state.display.show_media_type]);
 
   if (isLoading) {
     return (
@@ -93,6 +101,8 @@ export default function MovieImages() {
     );
   }
 
+  console.log(state.languages.data);
+
   return (
     <>
       <SubNavbar>
@@ -116,7 +126,7 @@ export default function MovieImages() {
             <Main>
               <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {data?.images[state.display.show_media_type].map((img, i) => (
+                  {state?.languages.data?.en?.map((img, i) => (
                     <ImageComponent
                       key={img.file_path}
                       src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}

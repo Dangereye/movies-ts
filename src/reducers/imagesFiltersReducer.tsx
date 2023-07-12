@@ -10,8 +10,12 @@ export type stateType = {
       logos: number | undefined;
     };
   };
-  data: {
-    [key: string]: IImages[];
+  languages: {
+    expanded: boolean;
+    active_language: string;
+    data: {
+      [key: string]: IImages[] | undefined;
+    };
   };
 };
 
@@ -21,8 +25,12 @@ export const initialState: stateType = {
     show_media_type: 'posters',
     results: { posters: 0, backdrops: 0, logos: 0 },
   },
-  data: {
-    gb: [],
+  languages: {
+    expanded: true,
+    active_language: 'en',
+    data: {
+      en: [],
+    },
   },
 };
 

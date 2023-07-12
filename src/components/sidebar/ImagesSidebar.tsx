@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { ImagesFiltersContext } from '../../contexts/ImagesFiltersContext';
-import useCreateCountries from '../../hooks/useCreateCountries';
+import useCreateLanguages from '../../hooks/useCreateLanguages';
 import SidebarSection from './sections/SidebarSection';
 import Selector from './selectors/Selector';
 
 export default function ImagesSidebar() {
   const { state, dispatch } = useContext(ImagesFiltersContext);
-  const countries = useCreateCountries();
+  const languages = useCreateLanguages();
 
   const setMediaType = (value: 'posters' | 'backdrops' | 'logos') => {
     dispatch({
@@ -43,8 +43,13 @@ export default function ImagesSidebar() {
           onClick={() => setMediaType('logos')}
         />
       </SidebarSection>
-      <SidebarSection expanded={true} heading='Regions' dispatch={() => {}}>
-        test
+      <SidebarSection expanded={true} heading='Languages' dispatch={() => {}}>
+        <Selector
+          active={true}
+          name='English'
+          value={state?.languages?.data?.en?.length}
+          onClick={() => {}}
+        />
       </SidebarSection>
     </>
   );
