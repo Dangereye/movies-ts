@@ -17,6 +17,16 @@ export default function ImagesSidebar() {
       },
     });
   };
+
+  const setActiveLanguage = (value: string) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        languages: { ...state.languages, active_language: value },
+      },
+    });
+  };
   return (
     <>
       <SidebarSection
@@ -44,12 +54,29 @@ export default function ImagesSidebar() {
         />
       </SidebarSection>
       <SidebarSection expanded={true} heading='Languages' dispatch={() => {}}>
-        <Selector
-          active={true}
-          name='English'
-          value={state?.languages?.data?.en?.length}
-          onClick={() => {}}
-        />
+        {languages
+          .sort((a, b) => {
+            if (a.english_name > b.english_name) {
+              return 1;
+            }
+            if (a.english_name < b.english_name) {
+              return -1;
+            }
+            return 0;
+          })
+          .map((lang) => {
+            if (state.languages.posters[lang.iso_639_1]) {
+              return (
+                <Selector
+                  key={lang.iso_639_1}
+                  active={state.languages.active_language === lang.iso_639_1}
+                  name={lang.english_name}
+                  value={state?.languages?.posters[lang.iso_639_1]?.length}
+                  onClick={() => setActiveLanguage(lang.iso_639_1)}
+                />
+              );
+            }
+          })}
       </SidebarSection>
     </>
   );

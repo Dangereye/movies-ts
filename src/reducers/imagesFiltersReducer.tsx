@@ -13,7 +13,7 @@ export type stateType = {
   languages: {
     expanded: boolean;
     active_language: string;
-    data: {
+    posters: {
       [key: string]: IImages[] | undefined;
     };
   };
@@ -28,9 +28,7 @@ export const initialState: stateType = {
   languages: {
     expanded: true,
     active_language: 'en',
-    data: {
-      en: [],
-    },
+    posters: {},
   },
 };
 

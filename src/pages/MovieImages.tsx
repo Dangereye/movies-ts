@@ -18,10 +18,17 @@ import Article from '../components/articles/Article';
 import ArticleImages from '../components/articles/ArticleImages';
 import ImageComponent from '../components/images/Image';
 import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
+import useCreateLanguages from '../hooks/useCreateLanguages';
+import { IImages } from '../interfaces/IImages';
 
 export default function MovieImages() {
   const { movieId } = useParams();
   const { state, dispatch } = useContext(ImagesFiltersContext);
+  const [posters, setPosters] = useState<{ [key: string | number]: IImages[] }>(
+    {}
+  );
+  let tempPosters: { [key: string]: IImages[] } = {};
+  const languages = useCreateLanguages();
 
   const { data, isError, isLoading } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
@@ -30,29 +37,38 @@ export default function MovieImages() {
   );
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_FILTERS',
-      payload: {
-        ...state,
-        display: {
-          ...state.display,
-          results: {
-            ...state.display.results,
-            posters: data?.images.posters.length,
-            backdrops: data?.images.backdrops.length,
-            logos: data?.images.logos.length,
-          },
-        },
-        languages: {
-          ...state.languages,
-          data: {
-            en: data?.images[state.display.show_media_type].filter(
-              (img) => img.iso_639_1 === 'en'
-            ),
-          },
-        },
-      },
+    data?.images.posters.forEach((img) => {
+      if (tempPosters[img.iso_639_1]) {
+        tempPosters[img.iso_639_1].push(img);
+      } else {
+        tempPosters = { ...tempPosters, [img.iso_639_1]: [img] };
+      }
     });
+    setPosters(tempPosters);
+  }, [data, state.languages.active_language]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          display: {
+            ...state.display,
+            results: {
+              ...state.display.results,
+              posters: data?.images.posters.length,
+              backdrops: data?.images.backdrops.length,
+              logos: data?.images.logos.length,
+            },
+          },
+          languages: {
+            ...state.languages,
+            posters,
+          },
+        },
+      });
+    }
   }, [data, state.display.show_media_type]);
 
   if (isLoading) {
@@ -101,8 +117,6 @@ export default function MovieImages() {
     );
   }
 
-  console.log(state.languages.data);
-
   return (
     <>
       <SubNavbar>
@@ -126,7 +140,9 @@ export default function MovieImages() {
             <Main>
               <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {state?.languages.data?.en?.map((img, i) => (
+                  {state?.languages.posters[
+                    state.languages.active_language
+                  ]?.map((img, i) => (
                     <ImageComponent
                       key={img.file_path}
                       src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}

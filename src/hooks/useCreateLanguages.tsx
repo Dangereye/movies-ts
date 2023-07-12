@@ -2,7 +2,7 @@
 import useMakeQuery from './useMakeQuery';
 
 // Interfaces
-import { ILanguages } from '../interfaces/Ilanguages';
+import { ILanguages } from '../interfaces/ILanguages';
 
 export default function useCreateCountries() {
   let languages: ILanguages[] = [];
