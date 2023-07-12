@@ -12,23 +12,40 @@ import Header from '../components/header/Header';
 import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
 import Section from '../components/sections/Section';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import H2 from '../components/typography/H2';
 import Article from '../components/articles/Article';
 import ArticleImages from '../components/articles/ArticleImages';
 import ImageComponent from '../components/images/Image';
-
-type DisplayProps = 'posters' | 'backdrops';
+import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
 
 export default function MovieImages() {
   const { movieId } = useParams();
-  const [display, setDisplay] = useState<DisplayProps>('posters');
+  const { state, dispatch } = useContext(ImagesFiltersContext);
 
   const { data, isError, isLoading } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
     `movie/${movieId}`,
     `&append_to_response=images`
   );
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        display: {
+          ...state.display,
+          results: {
+            ...state.display.results,
+            posters: data?.images.posters.length,
+            backdrops: data?.images.backdrops.length,
+            logos: data?.images.logos.length,
+          },
+        },
+      },
+    });
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -75,6 +92,7 @@ export default function MovieImages() {
       </>
     );
   }
+
   return (
     <>
       <SubNavbar>
@@ -89,23 +107,23 @@ export default function MovieImages() {
       <Header
         variant='header__min'
         leadTitle={data?.title}
-        title={`Movie ${display}`}
+        title={`Movie ${state.display.show_media_type}`}
       />
       <Section>
         <Container>
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
-              <Article name={display}>
+              <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {data?.images[display].map((img, i) => (
+                  {data?.images[state.display.show_media_type].map((img, i) => (
                     <ImageComponent
                       key={img.file_path}
                       src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
                       fallback='/images/error_500x750.webp'
                       width={500}
                       height={750}
-                      alt={`${display}-${i}`}
+                      alt={`${state.display.show_media_type}-${i}`}
                     />
                   ))}
                 </div>

@@ -43,6 +43,7 @@ import Search from './pages/Search';
 import Collections from './pages/Collections';
 import TvGenre from './pages/TvGenre';
 import NotFound from './pages/NotFound';
+import ImagesFiltersContextComponent from './contexts/ImagesFiltersContext';
 
 const queryClient = new QueryClient();
 
@@ -54,81 +55,86 @@ function App() {
           <AppContextComponent>
             <Navbar />
             <Searchbar />
-            <MovieFiltersContextComponent>
-              <TvFiltersContextComponent>
-                <SearchFiltersContextComponent>
-                  <VideoContextComponent>
-                    <VideoPlayer />
-                    <Routes>
-                      <Route path='/' element={<Home />} />
-                      <Route
-                        path='/movies/popular'
-                        element={<MoviesPopular />}
-                      />
-                      <Route
-                        path='/movies/now-playing'
-                        element={<MoviesNowPlaying />}
-                      />
-                      <Route
-                        path='/movies/upcoming'
-                        element={<MoviesUpcoming />}
-                      />
-                      <Route
-                        path='/movies/top-rated'
-                        element={<MoviesTopRated />}
-                      />
-                      <Route
-                        path='/movies/:movieId'
-                        element={<MovieDetails />}
-                      />
-                      <Route
-                        path='/movies/:movieId/images'
-                        element={<MovieImages />}
-                      />
-                      <Route
-                        path='/movies/:movieId/cast-crew'
-                        element={<MovieCastCrew />}
-                      />
-                      <Route
-                        path='/genre/:genreId/movie'
-                        element={<MovieGenre />}
-                      />
-                      <Route path='/tv/popular' element={<TvPopular />} />
-                      <Route
-                        path='/tv/airing-today'
-                        element={<TvAiringToday />}
-                      />
-                      <Route path='/tv/on-tv' element={<TvOnTv />} />
-                      <Route path='/tv/top-rated' element={<TvTopRated />} />
-                      <Route path='/tv/:tvId' element={<TvDetails />} />
-                      <Route
-                        path='/tv/:tvId/cast-crew'
-                        element={<TvCastCrew />}
-                      />
-                      <Route
-                        path='/tv/:tvId/season/:seasonId'
-                        element={<TvSeason />}
-                      />
-                      <Route path='/genre/:genreId/tv' element={<TvGenre />} />
-                      <Route
-                        path='/people/popular'
-                        element={<PeoplePopular />}
-                      />
-                      <Route
-                        path='/people/:personId'
-                        element={<PersonDetails />}
-                      />
-                      <Route
-                        path='/collection/:collectionId'
-                        element={<Collections />}
-                      />
-                      <Route path='/search/:searchId' element={<Search />} />
-                      <Route path='*' element={<NotFound />} />
-                    </Routes>
-                  </VideoContextComponent>
-                </SearchFiltersContextComponent>
-              </TvFiltersContextComponent>
-            </MovieFiltersContextComponent>
+            <ImagesFiltersContextComponent>
+              <MovieFiltersContextComponent>
+                <TvFiltersContextComponent>
+                  <SearchFiltersContextComponent>
+                    <VideoContextComponent>
+                      <VideoPlayer />
+                      <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route
+                          path='/movies/popular'
+                          element={<MoviesPopular />}
+                        />
+                        <Route
+                          path='/movies/now-playing'
+                          element={<MoviesNowPlaying />}
+                        />
+                        <Route
+                          path='/movies/upcoming'
+                          element={<MoviesUpcoming />}
+                        />
+                        <Route
+                          path='/movies/top-rated'
+                          element={<MoviesTopRated />}
+                        />
+                        <Route
+                          path='/movies/:movieId'
+                          element={<MovieDetails />}
+                        />
+                        <Route
+                          path='/movies/:movieId/images'
+                          element={<MovieImages />}
+                        />
+                        <Route
+                          path='/movies/:movieId/cast-crew'
+                          element={<MovieCastCrew />}
+                        />
+                        <Route
+                          path='/genre/:genreId/movie'
+                          element={<MovieGenre />}
+                        />
+                        <Route path='/tv/popular' element={<TvPopular />} />
+                        <Route
+                          path='/tv/airing-today'
+                          element={<TvAiringToday />}
+                        />
+                        <Route path='/tv/on-tv' element={<TvOnTv />} />
+                        <Route path='/tv/top-rated' element={<TvTopRated />} />
+                        <Route path='/tv/:tvId' element={<TvDetails />} />
+                        <Route
+                          path='/tv/:tvId/cast-crew'
+                          element={<TvCastCrew />}
+                        />
+                        <Route
+                          path='/tv/:tvId/season/:seasonId'
+                          element={<TvSeason />}
+                        />
+                        <Route
+                          path='/genre/:genreId/tv'
+                          element={<TvGenre />}
+                        />
+                        <Route
+                          path='/people/popular'
+                          element={<PeoplePopular />}
+                        />
+                        <Route
+                          path='/people/:personId'
+                          element={<PersonDetails />}
+                        />
+                        <Route
+                          path='/collection/:collectionId'
+                          element={<Collections />}
+                        />
+                        <Route path='/search/:searchId' element={<Search />} />
+                        <Route path='*' element={<NotFound />} />
+                      </Routes>
+                    </VideoContextComponent>
+                  </SearchFiltersContextComponent>
+                </TvFiltersContextComponent>
+              </MovieFiltersContextComponent>
+            </ImagesFiltersContextComponent>
           </AppContextComponent>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
