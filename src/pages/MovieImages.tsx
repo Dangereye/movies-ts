@@ -1,9 +1,22 @@
+// React
+import { useContext, useEffect } from 'react';
+
+// React router
 import { useParams } from 'react-router-dom';
+
+// Context
+import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
+
+// Interfaces
 import { IMovieFull } from '../interfaces/IMovieFull';
+import { IImages } from '../interfaces/IImages';
+
+// Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
+
+// Components
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Navigation from '../components/navigation/Navigation';
-import { moviePages } from '../data/moviePages';
 import Main from '../components/main/Main';
 import Container from '../components/container/Container';
 import LoaderComponent from '../components/loader/Loader';
@@ -12,11 +25,12 @@ import Header from '../components/header/Header';
 import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
 import Section from '../components/sections/Section';
-import { useContext, useEffect } from 'react';
 import Article from '../components/articles/Article';
 import ImageComponent from '../components/images/Image';
-import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
-import { IImages } from '../interfaces/IImages';
+import NoResults from '../components/typography/NoResults';
+
+// Data
+import { moviePages } from '../data/moviePages';
 
 export default function MovieImages() {
   const { movieId } = useParams();
@@ -32,6 +46,7 @@ export default function MovieImages() {
     if (data) {
       let posters: { [key: string]: IImages[] } = {};
       let backdrops: { [key: string]: IImages[] } = {};
+
       data.images.posters.forEach((img) => {
         if (posters[img.iso_639_1]) {
           posters[img.iso_639_1].push(img);
@@ -39,6 +54,7 @@ export default function MovieImages() {
           posters = { ...posters, [img.iso_639_1]: [img] };
         }
       });
+
       data.images.backdrops.forEach((img) => {
         if (backdrops[img.iso_639_1]) {
           backdrops[img.iso_639_1].push(img);
@@ -139,10 +155,11 @@ export default function MovieImages() {
             <Main>
               <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {state.display.show_media_type === 'posters'
-                    ? state?.languages.posters[
-                        state.languages.active_language
-                      ]?.map((img, i) => (
+                  {state.display.show_media_type === 'posters' ? (
+                    state?.languages.posters[
+                      state.languages.active_language
+                    ]?.map((img, i) => (
+                      <div className='img'>
                         <ImageComponent
                           key={img.file_path}
                           src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
@@ -151,21 +168,25 @@ export default function MovieImages() {
                           height={750}
                           alt={`${state.display.show_media_type}-${i}`}
                         />
-                      ))
-                    : state.display.show_media_type === 'backdrops'
-                    ? state?.languages.backdrops[
-                        state.languages.active_language
-                      ]?.map((img, i) => (
+                      </div>
+                    ))
+                  ) : state.display.show_media_type === 'backdrops' ? (
+                    state?.languages.backdrops[
+                      state.languages.active_language
+                    ]?.map((img, i) => (
+                      <div className='img'>
                         <ImageComponent
                           key={img.file_path}
                           src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
                           fallback='/images/error_500x750.webp'
-                          width={500}
-                          height={750}
+                          width={1000}
                           alt={`${state.display.show_media_type}-${i}`}
                         />
-                      ))
-                    : null}
+                      </div>
+                    ))
+                  ) : (
+                    <NoResults media='items' />
+                  )}
                 </div>
               </Article>
             </Main>

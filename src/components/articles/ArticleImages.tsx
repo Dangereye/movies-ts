@@ -80,13 +80,16 @@ export default function ArticleImages({ id, data }: ArticleImagesProps) {
               data[active]
                 .filter((img, i) => i < 10)
                 .map((img, i) => (
-                  <ImageComponent
-                    key={img.file_path}
-                    src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
-                    fallback='/images/error_500x750.webp'
-                    width={img.width}
-                    alt={`${active}-${i}`}
-                  />
+                  <div className='img'>
+                    <ImageComponent
+                      key={img.file_path}
+                      src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                      fallback='/images/error_500x750.webp'
+                      width={300}
+                      height={450}
+                      alt={`${active}-${i}`}
+                    />
+                  </div>
                 ))
             ) : (
               <BodyText text={`No ${active} available.`} />

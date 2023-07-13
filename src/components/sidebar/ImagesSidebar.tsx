@@ -1,6 +1,13 @@
+// React
 import { useContext } from 'react';
+
+// Context
 import { ImagesFiltersContext } from '../../contexts/ImagesFiltersContext';
+
+// Hooks
 import useCreateLanguages from '../../hooks/useCreateLanguages';
+
+// Components
 import SidebarSection from './sections/SidebarSection';
 import Selector from './selectors/Selector';
 
@@ -8,12 +15,32 @@ export default function ImagesSidebar() {
   const { state, dispatch } = useContext(ImagesFiltersContext);
   const languages = useCreateLanguages();
 
+  const toggleMediaType = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        display: { ...state.display, expanded: !state.display.expanded },
+      },
+    });
+  };
+
   const setMediaType = (value: 'posters' | 'backdrops' | 'logos') => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
         ...state,
         display: { ...state.display, show_media_type: value },
+      },
+    });
+  };
+
+  const toggleLanguages = () => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: {
+        ...state,
+        languages: { ...state.languages, expanded: !state.languages.expanded },
       },
     });
   };
@@ -32,7 +59,7 @@ export default function ImagesSidebar() {
       <SidebarSection
         expanded={state.display.expanded}
         heading='Display'
-        dispatch={() => {}}
+        dispatch={toggleMediaType}
       >
         <Selector
           active={state.display.show_media_type === 'posters'}
@@ -47,7 +74,11 @@ export default function ImagesSidebar() {
           onClick={() => setMediaType('backdrops')}
         />
       </SidebarSection>
-      <SidebarSection expanded={true} heading='Languages' dispatch={() => {}}>
+      <SidebarSection
+        expanded={state.languages.expanded}
+        heading='Languages'
+        dispatch={toggleLanguages}
+      >
         {languages
           .sort((a, b) => {
             if (a.english_name > b.english_name) {
