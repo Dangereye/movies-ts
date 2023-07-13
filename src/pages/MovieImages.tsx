@@ -12,23 +12,15 @@ import Header from '../components/header/Header';
 import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
 import Section from '../components/sections/Section';
-import { useContext, useEffect, useState } from 'react';
-import H2 from '../components/typography/H2';
+import { useContext, useEffect } from 'react';
 import Article from '../components/articles/Article';
-import ArticleImages from '../components/articles/ArticleImages';
 import ImageComponent from '../components/images/Image';
 import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
-import useCreateLanguages from '../hooks/useCreateLanguages';
 import { IImages } from '../interfaces/IImages';
 
 export default function MovieImages() {
   const { movieId } = useParams();
   const { state, dispatch } = useContext(ImagesFiltersContext);
-  const [posters, setPosters] = useState<{ [key: string | number]: IImages[] }>(
-    {}
-  );
-  let tempPosters: { [key: string]: IImages[] } = {};
-  const languages = useCreateLanguages();
 
   const { data, isError, isLoading } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
@@ -37,18 +29,24 @@ export default function MovieImages() {
   );
 
   useEffect(() => {
-    data?.images.posters.forEach((img) => {
-      if (tempPosters[img.iso_639_1]) {
-        tempPosters[img.iso_639_1].push(img);
-      } else {
-        tempPosters = { ...tempPosters, [img.iso_639_1]: [img] };
-      }
-    });
-    setPosters(tempPosters);
-  }, [data, state.languages.active_language]);
-
-  useEffect(() => {
     if (data) {
+      let posters: { [key: string]: IImages[] } = {};
+      let backdrops: { [key: string]: IImages[] } = {};
+      data.images.posters.forEach((img) => {
+        if (posters[img.iso_639_1]) {
+          posters[img.iso_639_1].push(img);
+        } else {
+          posters = { ...posters, [img.iso_639_1]: [img] };
+        }
+      });
+      data.images.backdrops.forEach((img) => {
+        if (backdrops[img.iso_639_1]) {
+          backdrops[img.iso_639_1].push(img);
+        } else {
+          backdrops = { ...backdrops, [img.iso_639_1]: [img] };
+        }
+      });
+
       dispatch({
         type: 'SET_FILTERS',
         payload: {
@@ -59,17 +57,18 @@ export default function MovieImages() {
               ...state.display.results,
               posters: data?.images.posters.length,
               backdrops: data?.images.backdrops.length,
-              logos: data?.images.logos.length,
             },
           },
           languages: {
             ...state.languages,
             posters,
+            backdrops,
           },
         },
       });
     }
-  }, [data, state.display.show_media_type]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -140,18 +139,33 @@ export default function MovieImages() {
             <Main>
               <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {state?.languages.posters[
-                    state.languages.active_language
-                  ]?.map((img, i) => (
-                    <ImageComponent
-                      key={img.file_path}
-                      src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
-                      fallback='/images/error_500x750.webp'
-                      width={500}
-                      height={750}
-                      alt={`${state.display.show_media_type}-${i}`}
-                    />
-                  ))}
+                  {state.display.show_media_type === 'posters'
+                    ? state?.languages.posters[
+                        state.languages.active_language
+                      ]?.map((img, i) => (
+                        <ImageComponent
+                          key={img.file_path}
+                          src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                          fallback='/images/error_500x750.webp'
+                          width={500}
+                          height={750}
+                          alt={`${state.display.show_media_type}-${i}`}
+                        />
+                      ))
+                    : state.display.show_media_type === 'backdrops'
+                    ? state?.languages.backdrops[
+                        state.languages.active_language
+                      ]?.map((img, i) => (
+                        <ImageComponent
+                          key={img.file_path}
+                          src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                          fallback='/images/error_500x750.webp'
+                          width={500}
+                          height={750}
+                          alt={`${state.display.show_media_type}-${i}`}
+                        />
+                      ))
+                    : null}
                 </div>
               </Article>
             </Main>

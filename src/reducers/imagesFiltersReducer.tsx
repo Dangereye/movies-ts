@@ -7,13 +7,15 @@ export type stateType = {
     results: {
       posters: number | undefined;
       backdrops: number | undefined;
-      logos: number | undefined;
     };
   };
   languages: {
     expanded: boolean;
     active_language: string;
     posters: {
+      [key: string]: IImages[] | undefined;
+    };
+    backdrops: {
       [key: string]: IImages[] | undefined;
     };
   };
@@ -23,12 +25,13 @@ export const initialState: stateType = {
   display: {
     expanded: true,
     show_media_type: 'posters',
-    results: { posters: 0, backdrops: 0, logos: 0 },
+    results: { posters: 0, backdrops: 0 },
   },
   languages: {
     expanded: true,
     active_language: 'en',
     posters: {},
+    backdrops: {},
   },
 };
 

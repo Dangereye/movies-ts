@@ -46,12 +46,6 @@ export default function ImagesSidebar() {
           value={state.display.results.backdrops}
           onClick={() => setMediaType('backdrops')}
         />
-        <Selector
-          active={state.display.show_media_type === 'logos'}
-          name='Logos'
-          value={state.display.results.logos}
-          onClick={() => setMediaType('logos')}
-        />
       </SidebarSection>
       <SidebarSection expanded={true} heading='Languages' dispatch={() => {}}>
         {languages
@@ -65,7 +59,10 @@ export default function ImagesSidebar() {
             return 0;
           })
           .map((lang) => {
-            if (state.languages.posters[lang.iso_639_1]) {
+            if (
+              state.languages.posters[lang.iso_639_1] &&
+              state.display.show_media_type === 'posters'
+            ) {
               return (
                 <Selector
                   key={lang.iso_639_1}
@@ -76,7 +73,40 @@ export default function ImagesSidebar() {
                 />
               );
             }
+            if (
+              state.languages.backdrops[lang.iso_639_1] &&
+              state.display.show_media_type === 'backdrops'
+            ) {
+              return (
+                <Selector
+                  key={lang.iso_639_1}
+                  active={state.languages.active_language === lang.iso_639_1}
+                  name={lang.english_name}
+                  value={state?.languages?.backdrops[lang.iso_639_1]?.length}
+                  onClick={() => setActiveLanguage(lang.iso_639_1)}
+                />
+              );
+            }
+            return null;
           })}
+        {state.display.show_media_type === 'posters' &&
+          state.languages.posters['null'] && (
+            <Selector
+              active={state.languages.active_language === 'null'}
+              name='No Language'
+              value={state?.languages?.posters['null']?.length}
+              onClick={() => setActiveLanguage('null')}
+            />
+          )}
+        {state.display.show_media_type === 'backdrops' &&
+          state.languages.backdrops['null'] && (
+            <Selector
+              active={state.languages.active_language === 'null'}
+              name='No Language'
+              value={state?.languages?.backdrops['null']?.length}
+              onClick={() => setActiveLanguage('null')}
+            />
+          )}
       </SidebarSection>
     </>
   );
