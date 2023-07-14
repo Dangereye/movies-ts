@@ -31,7 +31,7 @@ import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 // Data
 import { moviePages } from '../data/moviePages';
 
-export default function MoviesNowPlaying() {
+export default function MoviesTheatricalReleases() {
   const { state, dispatch } = useContext(MovieFiltersContext);
   const { append } = useAppend();
   const initial = useRef(false);

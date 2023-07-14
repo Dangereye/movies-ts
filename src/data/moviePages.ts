@@ -5,7 +5,7 @@ export const moviePages = [
   },
   {
     name: "Theatrical",
-    link: "/movies/now-playing",
+    link: "/movies/theatrical-releases",
   },
   {
     name: "Upcoming",

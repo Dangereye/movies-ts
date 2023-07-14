@@ -23,7 +23,7 @@ import VideoPlayer from './components/videos/video_player/VideoPlayer';
 // Pages
 import Home from './pages/Home';
 import MoviesPopular from './pages/MoviesPopular';
-import MoviesNowPlaying from './pages/MoviesNowPlaying';
+import MoviesTheatricalReleases from './pages/MoviesTheatricalReleases';
 import MoviesUpcoming from './pages/MoviesUpcoming';
 import MoviesTopRated from './pages/MoviesTopRated';
 import MovieDetails from './pages/MovieDetails';
@@ -68,8 +68,8 @@ function App() {
                           element={<MoviesPopular />}
                         />
                         <Route
-                          path='/movies/now-playing'
-                          element={<MoviesNowPlaying />}
+                          path='/movies/theatrical-releases'
+                          element={<MoviesTheatricalReleases />}
                         />
                         <Route
                           path='/movies/upcoming'
