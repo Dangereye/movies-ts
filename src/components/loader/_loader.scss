@@ -1,22 +1,50 @@
 .loader {
   width: 100%;
   height: 100%;
-  text-align: center;
+
+  &__header {
+    width: 100%;
+    height: 90rem;
+    display: flex;
+    justify-content: center;
+    @include horizontal-padding;
+    @include vertical-padding;
+    background-color: $heading-text-dark;
+  }
+
+  &__skeletons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    @include column-gap;
+    row-gap: 4rem;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+
+    @media (max-width: $mobile) {
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    }
+  }
+
+  &__skeleton {
+    width: 100%;
+    aspect-ratio: 3/5;
+    background-color: $grey-color;
+    display: grid;
+    place-content: center;
+  }
 
   &__spinner {
-    width: max-content;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    width: 100%;
+    display: grid;
+    place-content: center;
     font-size: 3rem;
 
     svg {
       color: $accent-color;
       animation: 1s linear infinite forwards spin;
-    }
-
-    .body-text {
-      margin: 0;
     }
   }
 }

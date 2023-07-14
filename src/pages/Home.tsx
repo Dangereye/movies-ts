@@ -55,13 +55,7 @@ export default function LandingPage() {
           <HDiv variant='heading--h2' heading={heading} />
           <Searchbar fixed />
         </Header>
-        <Section>
-          <Main>
-            <Container>
-              <LoaderComponent />
-            </Container>
-          </Main>
-        </Section>
+        <LoaderComponent variant='section' />
       </>
     );
   }
