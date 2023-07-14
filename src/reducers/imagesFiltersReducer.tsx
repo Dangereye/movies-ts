@@ -3,7 +3,7 @@ import { IImages } from '../interfaces/IImages';
 export type stateType = {
   display: {
     expanded: boolean;
-    show_media_type: 'posters' | 'backdrops' | 'logos';
+    show_media_type: 'posters' | 'backdrops';
     results: {
       posters: number | undefined;
       backdrops: number | undefined;

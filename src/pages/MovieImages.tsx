@@ -155,7 +155,8 @@ export default function MovieImages() {
             <Main>
               <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {state.display.show_media_type === 'posters' ? (
+                  {state.display.show_media_type === 'posters' &&
+                  state.languages.posters[state.languages.active_language] ? (
                     state?.languages.posters[
                       state.languages.active_language
                     ]?.map((img, i) => (
@@ -170,7 +171,10 @@ export default function MovieImages() {
                         />
                       </div>
                     ))
-                  ) : state.display.show_media_type === 'backdrops' ? (
+                  ) : state.display.show_media_type === 'backdrops' &&
+                    state.languages.backdrops[
+                      state.languages.active_language
+                    ] ? (
                     state?.languages.backdrops[
                       state.languages.active_language
                     ]?.map((img, i) => (
@@ -185,7 +189,9 @@ export default function MovieImages() {
                       </div>
                     ))
                   ) : (
-                    <NoResults media='items' />
+                    <NoResults
+                      text={`Please select a language to display ${state.display.show_media_type}.`}
+                    />
                   )}
                 </div>
               </Article>

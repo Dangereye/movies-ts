@@ -25,7 +25,7 @@ export default function ImagesSidebar() {
     });
   };
 
-  const setMediaType = (value: 'posters' | 'backdrops' | 'logos') => {
+  const setMediaType = (value: 'posters' | 'backdrops') => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
