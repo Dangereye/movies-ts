@@ -10,7 +10,6 @@ import H2 from '../components/typography/H2';
 import Wrapper from '../components/wrapper/Wrapper';
 import CrewJobs from '../components/header/CrewJobs';
 import Container from '../components/container/Container';
-import Article from '../components/articles/Article';
 import ImageComponent from '../components/images/Image';
 import CardContent from '../components/cards/card/CardContent';
 import Statistics from '../components/statistics/Statistics';
@@ -19,7 +18,6 @@ import Certificate from '../components/header/Certificate';
 import UserScore from '../components/header/UserScore';
 import IconText from '../components/typography/IconText';
 import Cards from '../components/cards/Cards';
-import ArticleTvMin from '../components/articles/ArticleTvMin';
 import Main from '../components/main/Main';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
@@ -35,6 +33,8 @@ import { ITVShowFull } from '../interfaces/ITVShowFull';
 import { formatDate } from '../utilities/formatDate';
 
 // Articles
+import Article from '../components/articles/Article';
+import ArticleTvMin from '../components/articles/ArticleTvMin';
 import ArticleVideos from '../components/articles/ArticleVideos';
 import ArticleReviews from '../components/articles/ArticleReviews';
 import ArticlePeople from '../components/articles/ArticlePeople';
@@ -47,6 +47,7 @@ import { RxCalendar } from 'react-icons/rx';
 
 export default function TvDetails() {
   const { tvId } = useParams();
+
   const {
     data: tv,
     isError,
@@ -69,13 +70,7 @@ export default function TvDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <LoaderComponent />
-            </Container>
-          </Main>
-        </Section>
+        <LoaderComponent variant='header-full' />
       </>
     );
   }
