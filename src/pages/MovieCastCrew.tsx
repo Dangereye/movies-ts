@@ -45,19 +45,19 @@ export default function MovieCastCrew() {
   );
 
   useEffect(() => {
-    let art: ICrew[] = [];
-    let camera: ICrew[] = [];
-    let costume: ICrew[] = [];
-    let crew: ICrew[] = [];
-    let directing: ICrew[] = [];
-    let editing: ICrew[] = [];
-    let production: ICrew[] = [];
-    let sound: ICrew[] = [];
-    let visualEffects: ICrew[] = [];
-    let writing: ICrew[] = [];
+    if (data) {
+      let art: ICrew[] = [];
+      let camera: ICrew[] = [];
+      let costume: ICrew[] = [];
+      let crew: ICrew[] = [];
+      let directing: ICrew[] = [];
+      let editing: ICrew[] = [];
+      let production: ICrew[] = [];
+      let sound: ICrew[] = [];
+      let visualEffects: ICrew[] = [];
+      let writing: ICrew[] = [];
 
-    if (data?.credits?.crew?.length) {
-      data.credits.crew.map((item) => {
+      data.credits?.crew?.map((item) => {
         if (item.department.toLowerCase() === 'art') {
           art = [...art, { ...item }];
         }
