@@ -88,21 +88,23 @@ export default function Search() {
   );
 
   useEffect(() => {
-    dispatch({
-      type: 'SET_FILTERS',
-      payload: {
-        ...state,
-        display: {
-          ...state.display,
-          results: {
-            ...state.display.results,
-            movies: movies?.pages[0].total_results,
-            tv_shows: tvshows?.pages[0].total_results,
-            people: people?.pages[0].total_results,
+    if (movies && tvshows && people) {
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          display: {
+            ...state.display,
+            results: {
+              ...state.display.results,
+              movies: movies?.pages[0].total_results,
+              tv_shows: tvshows?.pages[0].total_results,
+              people: people?.pages[0].total_results,
+            },
           },
         },
-      },
-    });
+      });
+    }
   }, [movies, tvshows, people]);
 
   if (moviesLoading || tvshowsLoading || peopleLoading) {
