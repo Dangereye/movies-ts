@@ -98,13 +98,7 @@ export default function MovieImages() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <LoaderComponent />
-            </Container>
-          </Main>
-        </Section>
+        <LoaderComponent variant='header-min' />
       </>
     );
   }
