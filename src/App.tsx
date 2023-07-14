@@ -13,6 +13,7 @@ import AppContextComponent from './contexts/AppContext';
 import MovieFiltersContextComponent from './contexts/MovieFiltersContext';
 import TvFiltersContextComponent from './contexts/TvFiltersContext';
 import SearchFiltersContextComponent from './contexts/SearchFiltersContext';
+import ImagesFiltersContextComponent from './contexts/ImagesFiltersContext';
 import VideoContextComponent from './contexts/VideoContext';
 
 // Components
@@ -31,7 +32,7 @@ import MovieImages from './pages/MovieImages';
 import MovieCastCrew from './pages/MovieCastCrew';
 import TvPopular from './pages/TvPopular';
 import TvAiringToday from './pages/TvAiringToday';
-import TvOnTv from './pages/TvOnTv';
+import TvNextSevenDays from './pages/TvNextSevenDays';
 import TvTopRated from './pages/TvTopRated';
 import TvSeason from './pages/TvSeason';
 import TvDetails from './pages/TvDetails';
@@ -43,7 +44,6 @@ import Search from './pages/Search';
 import Collections from './pages/Collections';
 import TvGenre from './pages/TvGenre';
 import NotFound from './pages/NotFound';
-import ImagesFiltersContextComponent from './contexts/ImagesFiltersContext';
 
 const queryClient = new QueryClient();
 
@@ -100,7 +100,10 @@ function App() {
                           path='/tv/airing-today'
                           element={<TvAiringToday />}
                         />
-                        <Route path='/tv/on-tv' element={<TvOnTv />} />
+                        <Route
+                          path='/tv/next-seven-days'
+                          element={<TvNextSevenDays />}
+                        />
                         <Route path='/tv/top-rated' element={<TvTopRated />} />
                         <Route path='/tv/:tvId' element={<TvDetails />} />
                         <Route

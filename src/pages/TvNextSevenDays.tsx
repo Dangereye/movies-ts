@@ -31,7 +31,7 @@ import { ITVShowMin } from '../interfaces/ITVShowMin';
 // Data
 import { tvPages } from '../data/tvPages';
 
-export default function TvOnTv() {
+export default function TvNextSevenDays() {
   const { state, dispatch } = useContext(TvFiltersContext);
   const { append } = useAppendTv();
 

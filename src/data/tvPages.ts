@@ -9,7 +9,7 @@ export const tvPages = [
   },
   {
     name: "Next 7 days",
-    link: "/tv/on-tv",
+    link: "/tv/next-seven-days",
   },
   {
     name: "Top rated",
