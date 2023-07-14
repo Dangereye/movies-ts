@@ -63,7 +63,7 @@ export default function MovieDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <LoaderComponent variant='header' />
+        <LoaderComponent variant='header-full' />
       </>
     );
   }

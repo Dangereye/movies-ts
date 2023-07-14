@@ -2,14 +2,22 @@
   width: 100%;
   height: 100%;
 
-  &__header {
+  &__header-full,
+  &__header-min {
     width: 100%;
-    height: 90rem;
     display: flex;
     justify-content: center;
     @include horizontal-padding;
     @include vertical-padding;
     background-color: $heading-text-dark;
+  }
+
+  &__header-full {
+    height: 90rem;
+  }
+
+  &__header-min {
+    height: 27rem;
   }
 
   &__skeletons {

@@ -3,12 +3,12 @@ import { ImSpinner2 } from 'react-icons/im';
 
 // Components
 import Section from '../sections/Section';
-import Main from '../main/Main';
 import Container from '../container/Container';
+import Main from '../main/Main';
 import Article from '../articles/Article';
 
 type LoaderComponentProps = {
-  variant?: 'cards' | 'header' | 'section';
+  variant?: 'header-full' | 'header-min' | 'section' | 'cards';
   count?: number;
 };
 
@@ -38,18 +38,18 @@ export default function LoaderComponent({
     </Article>
   );
 
-  if (variant === 'header') {
+  if (variant === 'header-full' || variant === 'header-min') {
     return (
       <>
-        <div className='loader__header'>
+        <div className={`loader__${variant}`}>
           <div className='loader__spinner'>
             <ImSpinner2 />
           </div>
         </div>
         <Section>
-          <Main>
-            <Container>{content}</Container>
-          </Main>
+          <Container>
+            <Main>{content}</Main>
+          </Container>
         </Section>
       </>
     );
@@ -58,9 +58,9 @@ export default function LoaderComponent({
   if (variant === 'section') {
     return (
       <Section>
-        <Main>
-          <Container>{content}</Container>
-        </Main>
+        <Container>
+          <Main>{content}</Main>
+        </Container>
       </Section>
     );
   }

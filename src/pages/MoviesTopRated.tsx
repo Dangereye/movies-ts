@@ -18,9 +18,9 @@ import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/images/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
-import Loader from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import NoResults from '../components/typography/NoResults';
+import LoaderComponent from '../components/loader/Loader';
 
 // Template
 import PageWithSidebar from '../components/page_templates/PageWithSidebar';
@@ -67,7 +67,7 @@ export default function MoviesTopRated() {
         title={title}
         name={name}
       >
-        <Loader />
+        <LoaderComponent />
       </PageWithSidebar>
     );
   }
