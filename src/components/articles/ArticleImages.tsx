@@ -76,8 +76,8 @@ export default function ArticleImages({ id, data }: ArticleImagesProps) {
             } ${active}`}
           />
           <div className='images__scroll'>
-            {data[active].length > 0 ? (
-              data[active]
+            {active === 'posters' && data.posters.length > 0 ? (
+              data.posters
                 .filter((img, i) => i < 10)
                 .map((img, i) => (
                   <div className='img'>
@@ -87,6 +87,20 @@ export default function ArticleImages({ id, data }: ArticleImagesProps) {
                       fallback='/images/error_500x750.webp'
                       width={300}
                       height={450}
+                      alt={`${active}-${i}`}
+                    />
+                  </div>
+                ))
+            ) : active === 'backdrops' && data.backdrops.length > 0 ? (
+              data.backdrops
+                .filter((img, i) => i < 10)
+                .map((img, i) => (
+                  <div className='img'>
+                    <ImageComponent
+                      key={img.file_path}
+                      src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                      fallback='/images/error_500x750.webp'
+                      width={500}
                       alt={`${active}-${i}`}
                     />
                   </div>

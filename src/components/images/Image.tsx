@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 type ImageComponentProps = {
   src: string;
@@ -11,9 +11,9 @@ type ImageComponentProps = {
 export default function ImageComponent({
   src,
   fallback,
-  alt = "Image text",
+  alt = 'Image text',
   width = 300,
-  height = 450,
+  height,
 }: ImageComponentProps) {
   const [path, setPath] = useState(src);
 
@@ -25,7 +25,7 @@ export default function ImageComponent({
     <img
       src={path}
       alt={alt}
-      className="image-component"
+      className='image-component'
       width={`${width}px`}
       height={`${height}px`}
       onError={handleError}
