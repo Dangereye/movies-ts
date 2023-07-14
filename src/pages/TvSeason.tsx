@@ -37,7 +37,6 @@ import Section from '../components/sections/Section';
 
 export default function TvSeason() {
   const { tvId, seasonId } = useParams();
-  const test = true;
 
   const {
     data: season,
@@ -55,7 +54,7 @@ export default function TvSeason() {
     isLoading: tvIsLoading,
   } = useMakeQuery<ITVShowFull>(`tv-${tvId}`, `tv/${tvId}`);
 
-  if (isLoading || tvIsLoading || test) {
+  if (isLoading || tvIsLoading) {
     return (
       <>
         <SubNavbar>

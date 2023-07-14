@@ -62,13 +62,7 @@ export default function TvDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <LoaderComponent />
-            </Container>
-          </Main>
-        </Section>
+        <LoaderComponent variant='header-full' />
       </>
     );
   }
