@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // React router
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // Interfaces
 import { IImages } from '../../interfaces/IImages';
@@ -32,6 +32,7 @@ type ArticleImagesProps = {
 
 export default function ArticleImages({ id, data }: ArticleImagesProps) {
   const [active, setActive] = useState<ActiveProps>('posters');
+  const { pathname } = useLocation();
 
   const updateImages = (value: ActiveProps) => {
     setActive(value);
@@ -111,7 +112,16 @@ export default function ArticleImages({ id, data }: ArticleImagesProps) {
           </div>
           {data[active].length > 10 && (
             <div className='buttons'>
-              <Link to={`/movies/${id}/images`} className='btn btn--tertiary'>
+              <Link
+                to={
+                  pathname.includes('movie')
+                    ? `/movies/${id}/images`
+                    : pathname.includes('tv')
+                    ? `/tv/${id}/images`
+                    : `/people/${id}/images`
+                }
+                className='btn btn--tertiary'
+              >
                 view all images
               </Link>
             </div>

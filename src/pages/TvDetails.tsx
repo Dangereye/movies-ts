@@ -38,6 +38,7 @@ import ArticleTvMin from '../components/articles/ArticleTvMin';
 import ArticleVideos from '../components/articles/ArticleVideos';
 import ArticleReviews from '../components/articles/ArticleReviews';
 import ArticlePeople from '../components/articles/ArticlePeople';
+import ArticleImages from '../components/articles/ArticleImages';
 
 // Data
 import { tvPages } from '../data/tvPages';
@@ -55,7 +56,7 @@ export default function TvDetails() {
   } = useMakeQuery<ITVShowFull>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar,content_ratings`
+    `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar,content_ratings,images`
   );
 
   if (isLoading) {
@@ -147,6 +148,7 @@ export default function TvDetails() {
             limit
           />
           <ArticleVideos data={tv?.videos?.results} />
+          <ArticleImages id={tvId} data={tv?.images} />
           <ArticleReviews data={tv?.reviews?.results} />
           <Article name='tv-show-seasons'>
             <Container>

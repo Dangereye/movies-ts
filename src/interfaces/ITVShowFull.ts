@@ -1,6 +1,7 @@
 import { IAggregateCredits } from "./IAggregateCredits";
 import { ICredits } from "./ICredits";
 import { IExternalIds } from "./IExternalIds";
+import { IImages } from "./IImages";
 import { IPage } from "./IPage";
 import { IReview } from "./IReview";
 import { ITVShowContentRatings } from "./ITVShowContentRatings";
@@ -84,5 +85,11 @@ export interface ITVShowFull {
   content_ratings: {
     id: number;
     results: ITVShowContentRatings[];
+  };
+  images: {
+    id: number;
+    backdrops: IImages[];
+    logos: IImages[];
+    posters: IImages[];
   };
 }
