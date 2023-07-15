@@ -36,6 +36,7 @@ import TvNextSevenDays from './pages/TvNextSevenDays';
 import TvTopRated from './pages/TvTopRated';
 import TvSeason from './pages/TvSeason';
 import TvDetails from './pages/TvDetails';
+import TvImages from './pages/TvImages';
 import TvCastCrew from './pages/TvCastCrew';
 import PeoplePopular from './pages/PeoplePopular';
 import PersonDetails from './pages/PersonDetails';
@@ -106,6 +107,7 @@ function App() {
                         />
                         <Route path='/tv/top-rated' element={<TvTopRated />} />
                         <Route path='/tv/:tvId' element={<TvDetails />} />
+                        <Route path='/tv/:tvId/images' element={<TvImages />} />
                         <Route
                           path='/tv/:tvId/cast-crew'
                           element={<TvCastCrew />}
