@@ -7,7 +7,7 @@ import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
 import CardContent from '../cards/card/CardContent';
 import Cards from '../cards/Cards';
 import Container from '../container/Container';
-import ImageComponent from '../images/Image';
+import ImageComponent from '../image/Image';
 import BodyText from '../typography/BodyText';
 import H2 from '../typography/H2';
 import SmallText from '../typography/SmallText';

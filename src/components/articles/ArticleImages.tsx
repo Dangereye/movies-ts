@@ -14,7 +14,7 @@ import Article from './Article';
 import Button from '../buttons/Button';
 import Wrapper from '../wrapper/Wrapper';
 import BodyText from '../typography/BodyText';
-import ImageComponent from '../images/Image';
+import ImageComponent from '../image/Image';
 
 type ActiveProps = 'posters' | 'backdrops';
 
@@ -40,7 +40,7 @@ export default function ArticleImages({ id, data }: ArticleImagesProps) {
 
   if (data) {
     return (
-      <Article name='Article__images'>
+      <Article name='article__images'>
         <Container>
           <H2 heading={active} />
           <Wrapper name='image options' variant='flex'>

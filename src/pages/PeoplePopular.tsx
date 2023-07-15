@@ -7,7 +7,7 @@ import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 
 // Components
 import CardContent from '../components/cards/card/CardContent';
-import ImageComponent from '../components/images/Image';
+import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
 import InfiniteCards from '../components/cards/InifinteCards';
 import LoaderComponent from '../components/loader/Loader';

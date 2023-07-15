@@ -17,7 +17,7 @@ import Container from '../components/container/Container';
 import CrewJobs from '../components/header/CrewJobs';
 import Header from '../components/header/Header';
 import Overview from '../components/header/Overview';
-import ImageComponent from '../components/images/Image';
+import ImageComponent from '../components/image/Image';
 import Navigation from '../components/navigation/Navigation';
 import StarRating from '../components/star_rating/StarRating';
 import SubNavbar from '../components/sub_navbar/SubNavbar';

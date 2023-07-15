@@ -1,4 +1,7 @@
 @mixin scroll-x {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   flex-wrap: nowrap;

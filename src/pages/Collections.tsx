@@ -23,7 +23,7 @@ import Wrapper from '../components/wrapper/Wrapper';
 import Navigation from '../components/navigation/Navigation';
 import BodyText from '../components/typography/BodyText';
 import Cards from '../components/cards/Cards';
-import ImageComponent from '../components/images/Image';
+import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import Section from '../components/sections/Section';
 

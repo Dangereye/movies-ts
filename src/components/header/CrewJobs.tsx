@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ICredits } from '../../interfaces/ICredits';
-import ImageComponent from '../images/Image';
+import ImageComponent from '../image/Image';
 import BodyText from '../typography/BodyText';
 import Wrapper from '../wrapper/Wrapper';
 

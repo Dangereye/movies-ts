@@ -1,0 +1,26 @@
+.article__images {
+}
+
+.images {
+  &__scroll {
+    @include scroll-x;
+  }
+
+  &__list {
+    @include cards-grid;
+    gap: 1rem;
+
+    .img {
+      width: 100%;
+    }
+
+    .image-component {
+      width: 100%;
+      height: auto;
+    }
+
+    .body-text {
+      grid-column: 1/ -1;
+    }
+  }
+}

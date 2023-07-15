@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { IVideo } from '../../../interfaces/IVideo';
 import { formatDate } from '../../../utilities/formatDate';
-import ImageComponent from '../../images/Image';
+import ImageComponent from '../../image/Image';
 import BodyText from '../../typography/BodyText';
 import HDiv from '../../typography/HDiv';
 import { GoPlay } from 'react-icons/go';

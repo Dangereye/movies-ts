@@ -18,7 +18,7 @@ import { formatDate } from '../utilities/formatDate';
 // Components
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import InfiniteCards from '../components/cards/InifinteCards';
-import ImageComponent from '../components/images/Image';
+import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
 import BodyText from '../components/typography/BodyText';
 import ErrorComponent from '../components/error/Error';

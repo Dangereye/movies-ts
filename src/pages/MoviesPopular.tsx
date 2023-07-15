@@ -7,7 +7,7 @@ import useAppend from '../hooks/useAppendMovie';
 
 // Components
 import CardContent from '../components/cards/card/CardContent';
-import ImageComponent from '../components/images/Image';
+import ImageComponent from '../components/image/Image';
 import BodyText from '../components/typography/BodyText';
 import MobileSidebarControls from '../components/sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import InfiniteCards from '../components/cards/InifinteCards';

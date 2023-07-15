@@ -3,7 +3,6 @@
   @include column-gap;
 
   &__scroll-x {
-    display: flex;
     @include scroll-x;
 
     @media (max-width: $tablet) {
@@ -18,17 +17,7 @@
   }
 
   &__list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    @include cards-grid;
     row-gap: 4rem;
-
-    @media (max-width: $tablet) {
-      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    }
-
-    @media (max-width: $mobile) {
-      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-    }
   }
 }

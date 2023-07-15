@@ -26,7 +26,7 @@ import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
 import Section from '../components/sections/Section';
 import Article from '../components/articles/Article';
-import ImageComponent from '../components/images/Image';
+import ImageComponent from '../components/image/Image';
 import NoResults from '../components/typography/NoResults';
 
 // Data

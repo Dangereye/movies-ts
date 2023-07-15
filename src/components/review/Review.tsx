@@ -1,5 +1,5 @@
 // Components
-import ImageComponent from '../images/Image';
+import ImageComponent from '../image/Image';
 import SmallText from '../typography/SmallText';
 import Wrapper from '../wrapper/Wrapper';
 import StarRating from '../star_rating/StarRating';
