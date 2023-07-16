@@ -1,5 +1,5 @@
 // React router
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // Icons
 import { GiHastyGrave } from 'react-icons/gi';
@@ -37,6 +37,9 @@ import { IPerson } from '../interfaces/IPerson';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import Section from '../components/sections/Section';
+import H2 from '../components/typography/H2';
+import ImageComponent from '../components/image/Image';
+import BodyText from '../components/typography/BodyText';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -47,7 +50,7 @@ export default function TvDetails() {
   } = useMakeQuery<IPerson>(
     `person-${personId}`,
     `person/${personId}`,
-    `&append_to_response=combined_credits,movie_credits,tv_credits,external_ids`
+    `&append_to_response=combined_credits,movie_credits,tv_credits,external_ids,images`
   );
 
   if (isLoading) {
@@ -134,6 +137,44 @@ export default function TvDetails() {
       <Statistics person={person} />
       <Section>
         <Main>
+          <Article name='profile-pics'>
+            <Container>
+              <H2 heading='Profiles' />
+              <BodyText
+                text={`Showing ${
+                  person && person?.images?.profiles?.length > 10
+                    ? '10'
+                    : person?.images.profiles.length
+                } profiles`}
+              />
+              <div className='images__scroll'>
+                {person?.images.profiles
+                  .filter((img, i) => i < 10)
+                  .map((img, i) => (
+                    <div className='img'>
+                      <ImageComponent
+                        key={img.file_path}
+                        src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                        fallback='/images/error_500x750.webp'
+                        width={300}
+                        height={450}
+                        alt={`Profile-${i}`}
+                      />
+                    </div>
+                  ))}
+              </div>
+              {person && person?.images.profiles.length > 10 && (
+                <div className='buttons'>
+                  <Link
+                    to={`/people/${personId}/images`}
+                    className='btn btn--tertiary'
+                  >
+                    view all images
+                  </Link>
+                </div>
+              )}
+            </Container>
+          </Article>
           <ArticleMoviesMin
             variant='scroll-x'
             name='movie-cast'

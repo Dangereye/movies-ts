@@ -1,5 +1,6 @@
 import { ICombinedCredits } from "./ICombinedCredits";
 import { IExternalIds } from "./IExternalIds";
+import { IImages } from "./IImages";
 import { IPersonMovieCredits } from "./IPersonMovieCredits";
 import { IPersonTvCredits } from "./IPersonTvCredits";
 
@@ -22,4 +23,7 @@ export interface IPerson {
   movie_credits: IPersonMovieCredits;
   tv_credits: IPersonTvCredits;
   external_ids: IExternalIds;
+  images: {
+    profiles: IImages[];
+  };
 }
