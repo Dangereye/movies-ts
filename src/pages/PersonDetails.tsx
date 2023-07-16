@@ -40,6 +40,7 @@ import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import ArticleProfileImages from '../components/articles/ArticleProfileImages';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -137,28 +138,7 @@ export default function TvDetails() {
       <Statistics person={person} />
       <Section>
         <Main>
-          <Article name='profile-pics'>
-            <Container>
-              <H2 heading='Profiles' />
-              <BodyText
-                text={`Showing ${person?.images.profiles.length} profiles`}
-              />
-              <div className='images__scroll'>
-                {person?.images.profiles.map((img, i) => (
-                  <div className='img'>
-                    <ImageComponent
-                      key={img.file_path}
-                      src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
-                      fallback='/images/error_500x750.webp'
-                      width={300}
-                      height={450}
-                      alt={`Profile-${i}`}
-                    />
-                  </div>
-                ))}
-              </div>
-            </Container>
-          </Article>
+          <ArticleProfileImages data={person?.images.profiles} />
           <ArticleMoviesMin
             variant='scroll-x'
             name='movie-cast'
