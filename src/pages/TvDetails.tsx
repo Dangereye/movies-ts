@@ -45,6 +45,7 @@ import { tvPages } from '../data/tvPages';
 
 // Icons
 import { RxCalendar } from 'react-icons/rx';
+import useCreateImages from '../hooks/useCreateImages';
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -58,6 +59,8 @@ export default function TvDetails() {
     `tv/${tvId}`,
     `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar,content_ratings,images`
   );
+
+  const {} = useCreateImages(tvId, tv?.images);
 
   if (isLoading) {
     return (
@@ -148,7 +151,7 @@ export default function TvDetails() {
             limit
           />
           <ArticleVideos data={tv?.videos?.results} />
-          <ArticleImages id={tvId} data={tv?.images} />
+          <ArticleImages />
           <ArticleReviews data={tv?.reviews?.results} />
           <Article name='tv-show-seasons'>
             <Container>

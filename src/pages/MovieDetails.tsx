@@ -28,6 +28,7 @@ import ArticlePeople from '../components/articles/ArticlePeople';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
+import useCreateImages from '../hooks/useCreateImages';
 
 // Interfaces
 import { IMovieFull } from '../interfaces/IMovieFull';
@@ -50,6 +51,8 @@ export default function MovieDetails() {
     `movie/${movieId}`,
     `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar,reviews,images`
   );
+
+  const {} = useCreateImages(movieId, data?.images);
 
   if (isLoading) {
     return (
@@ -146,7 +149,7 @@ export default function MovieDetails() {
           />
 
           <ArticleVideos data={data?.videos?.results} />
-          <ArticleImages id={movieId} data={data?.images} />
+          <ArticleImages />
 
           <ArticleReviews data={data?.reviews?.results} />
           <Collection

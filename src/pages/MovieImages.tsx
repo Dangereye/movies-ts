@@ -42,7 +42,7 @@ export default function MovieImages() {
     `&append_to_response=images`
   );
 
-  const {} = useCreateImages(data?.images);
+  const {} = useCreateImages(movieId, data?.images);
 
   if (isLoading) {
     return (

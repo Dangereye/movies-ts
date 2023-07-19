@@ -8,6 +8,7 @@ import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
 import { IImages } from '../interfaces/IImages';
 
 export default function useCreateImages(
+  id: string | undefined,
   data:
     | {
         posters: IImages[];
@@ -43,6 +44,7 @@ export default function useCreateImages(
         type: 'SET_FILTERS',
         payload: {
           ...state,
+          id,
           display: {
             ...state.display,
             results: {

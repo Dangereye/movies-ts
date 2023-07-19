@@ -42,7 +42,7 @@ export default function TvImages() {
     `&append_to_response=images`
   );
 
-  const {} = useCreateImages(data?.images);
+  const {} = useCreateImages(tvId, data?.images);
 
   if (isLoading) {
     return (

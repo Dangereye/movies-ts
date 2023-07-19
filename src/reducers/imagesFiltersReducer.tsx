@@ -1,12 +1,13 @@
 import { IImages } from '../interfaces/IImages';
 
 export type stateType = {
+  id: string | undefined;
   display: {
     expanded: boolean;
     show_media_type: 'posters' | 'backdrops';
     results: {
-      posters: number | undefined;
-      backdrops: number | undefined;
+      posters: number;
+      backdrops: number;
     };
   };
   languages: {
@@ -26,6 +27,7 @@ export type stateType = {
 };
 
 export const initialState: stateType = {
+  id: '',
   display: {
     expanded: true,
     show_media_type: 'posters',
