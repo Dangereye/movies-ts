@@ -36,6 +36,11 @@ export default function MovieImages() {
   const { movieId } = useParams();
   const { state } = useContext(ImagesFiltersContext);
 
+  const images =
+    state.languages[state.display.show_media_type][
+      state.languages.active_language
+    ];
+
   const { data, isError, isLoading } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
     `movie/${movieId}`,
@@ -107,35 +112,14 @@ export default function MovieImages() {
             <Main>
               <Article name={state.display.show_media_type}>
                 <div className='images__list'>
-                  {state.display.show_media_type === 'posters' &&
-                  state.languages.posters[state.languages.active_language] ? (
-                    state?.languages.posters[
-                      state.languages.active_language
-                    ]?.map((img, i) => (
-                      <div className='img'>
+                  {images?.length ? (
+                    images.map((image, i) => (
+                      <div className='img' key={image.file_path}>
                         <ImageComponent
-                          key={img.file_path}
-                          src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                          key={image.file_path}
+                          src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
                           fallback='/images/error_500x750.webp'
                           width={500}
-                          height={750}
-                          alt={`${state.display.show_media_type}-${i}`}
-                        />
-                      </div>
-                    ))
-                  ) : state.display.show_media_type === 'backdrops' &&
-                    state.languages.backdrops[
-                      state.languages.active_language
-                    ] ? (
-                    state?.languages.backdrops[
-                      state.languages.active_language
-                    ]?.map((img, i) => (
-                      <div className='img'>
-                        <ImageComponent
-                          key={img.file_path}
-                          src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
-                          fallback='/images/error_500x750.webp'
-                          width={1000}
                           alt={`${state.display.show_media_type}-${i}`}
                         />
                       </div>
