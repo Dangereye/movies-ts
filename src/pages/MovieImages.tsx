@@ -1,5 +1,5 @@
 // React
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
@@ -9,10 +9,10 @@ import { ImagesFiltersContext } from '../contexts/ImagesFiltersContext';
 
 // Interfaces
 import { IMovieFull } from '../interfaces/IMovieFull';
-import { IImages } from '../interfaces/IImages';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
+import useCreateImages from '../hooks/useCreateImages';
 
 // Components
 import SubNavbar from '../components/sub_navbar/SubNavbar';
@@ -34,7 +34,7 @@ import { moviePages } from '../data/moviePages';
 
 export default function MovieImages() {
   const { movieId } = useParams();
-  const { state, dispatch } = useContext(ImagesFiltersContext);
+  const { state } = useContext(ImagesFiltersContext);
 
   const { data, isError, isLoading } = useMakeQuery<IMovieFull>(
     `movie-${movieId}`,
@@ -42,49 +42,7 @@ export default function MovieImages() {
     `&append_to_response=images`
   );
 
-  useEffect(() => {
-    if (data) {
-      let posters: { [key: string]: IImages[] } = {};
-      let backdrops: { [key: string]: IImages[] } = {};
-
-      data.images.posters.forEach((img) => {
-        if (posters[img.iso_639_1]) {
-          posters[img.iso_639_1].push(img);
-        } else {
-          posters = { ...posters, [img.iso_639_1]: [img] };
-        }
-      });
-
-      data.images.backdrops.forEach((img) => {
-        if (backdrops[img.iso_639_1]) {
-          backdrops[img.iso_639_1].push(img);
-        } else {
-          backdrops = { ...backdrops, [img.iso_639_1]: [img] };
-        }
-      });
-
-      dispatch({
-        type: 'SET_FILTERS',
-        payload: {
-          ...state,
-          display: {
-            ...state.display,
-            results: {
-              ...state.display.results,
-              posters: data?.images.posters.length,
-              backdrops: data?.images.backdrops.length,
-            },
-          },
-          languages: {
-            ...state.languages,
-            posters,
-            backdrops,
-          },
-        },
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  const {} = useCreateImages(data?.images);
 
   if (isLoading) {
     return (
