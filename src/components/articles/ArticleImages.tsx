@@ -34,6 +34,13 @@ export default function ArticleImages() {
     });
   };
 
+  const openModal = (index: number) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, modal: { is_active: true, index } },
+    });
+  };
+
   return (
     <Article name='article__images'>
       <Container>
@@ -87,7 +94,11 @@ export default function ArticleImages() {
           {images
             ?.filter((image, i) => i < 10)
             .map((image, i) => (
-              <div className='img' key={image.file_path}>
+              <div
+                className='img'
+                key={image.file_path}
+                onClick={() => openModal(i)}
+              >
                 <ImageComponent
                   key={image.file_path}
                   src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}

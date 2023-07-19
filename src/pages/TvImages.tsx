@@ -34,7 +34,7 @@ import { tvPages } from '../data/tvPages';
 
 export default function TvImages() {
   const { tvId } = useParams();
-  const { state } = useContext(ImagesFiltersContext);
+  const { state, dispatch } = useContext(ImagesFiltersContext);
 
   const images =
     state.languages[state.display.show_media_type][
@@ -48,6 +48,13 @@ export default function TvImages() {
   );
 
   const {} = useCreateImages(tvId, data?.images);
+
+  const openModal = (index: number) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, modal: { is_active: true, index } },
+    });
+  };
 
   if (isLoading) {
     return (
@@ -114,7 +121,11 @@ export default function TvImages() {
                 <div className='images__list'>
                   {images?.length ? (
                     images.map((image, i) => (
-                      <div className='img' key={image.file_path}>
+                      <div
+                        className='img'
+                        key={image.file_path}
+                        onClick={() => openModal(i)}
+                      >
                         <ImageComponent
                           key={image.file_path}
                           src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
