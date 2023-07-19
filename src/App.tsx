@@ -20,6 +20,7 @@ import VideoContextComponent from './contexts/VideoContext';
 import Navbar from './components/navbar/Navbar';
 import Searchbar from './components/searchbar/Searchbar';
 import VideoPlayer from './components/videos/video_player/VideoPlayer';
+import ImageModal from './components/image/image_modal/ImageModal';
 
 // Pages
 import Home from './pages/Home';
@@ -54,14 +55,15 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <AppContextComponent>
-            <Navbar />
-            <Searchbar />
             <ImagesFiltersContextComponent>
               <MovieFiltersContextComponent>
                 <TvFiltersContextComponent>
                   <SearchFiltersContextComponent>
                     <VideoContextComponent>
+                      <Navbar />
+                      <Searchbar />
                       <VideoPlayer />
+                      <ImageModal />
                       <Routes>
                         <Route path='/' element={<Home />} />
                         <Route

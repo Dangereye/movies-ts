@@ -9,11 +9,6 @@
       padding: 0;
       @include scrollbar-hidden;
     }
-
-    .card {
-      min-width: 30rem;
-      max-width: 30rem;
-    }
   }
 
   &__list {

@@ -27,7 +27,7 @@ export default function ImageComponent({
       alt={alt}
       className='image-component'
       width={`${width}px`}
-      height={`${height}px`}
+      height={height ? `${height}px` : 'auto'}
       onError={handleError}
     />
   );

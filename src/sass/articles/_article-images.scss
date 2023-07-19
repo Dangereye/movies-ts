@@ -1,6 +1,10 @@
 .images {
   &__scroll {
     @include scroll-x;
+
+    .img {
+      @include hover-image;
+    }
   }
 
   &__list {
@@ -9,6 +13,7 @@
 
     .img {
       width: 100%;
+      @include hover-image;
     }
 
     .image-component {

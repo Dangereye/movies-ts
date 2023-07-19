@@ -19,6 +19,10 @@ export type stateType = {
       [key: string]: IImages[] | undefined;
     };
   };
+  modal: {
+    is_active: boolean;
+    index: number;
+  };
 };
 
 export const initialState: stateType = {
@@ -32,6 +36,10 @@ export const initialState: stateType = {
     active_language: 'en',
     posters: {},
     backdrops: {},
+  },
+  modal: {
+    is_active: false,
+    index: 0,
   },
 };
 

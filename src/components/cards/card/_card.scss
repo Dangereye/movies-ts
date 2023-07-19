@@ -1,18 +1,5 @@
 .card {
-  overflow: hidden;
-  position: relative;
-
-  @media (hover: hover) {
-    &:hover img {
-      transform: scale(1.025) translateY(-0.7rem);
-    }
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    transition: all 0.3s ease-out;
-  }
+  @include hover-image;
 
   .content {
     position: relative;
