@@ -3,7 +3,12 @@ import { ReactNode } from 'react';
 type ButtonProps = {
   type?: 'button' | 'submit' | 'reset';
   active?: boolean;
-  variant?: 'btn--primary' | 'btn--secondary' | 'btn--tertiary' | 'btn--close';
+  variant?:
+    | 'btn--primary'
+    | 'btn--secondary'
+    | 'btn--tertiary'
+    | 'btn--close'
+    | 'btn--modal-close';
   name: string | ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;

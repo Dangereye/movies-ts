@@ -63,6 +63,28 @@
     }
   }
 
+  &--modal-close {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 2.4rem;
+    display: grid;
+    place-content: center;
+    color: #fff;
+    background-color: $red-color;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: darken($red-color, 15%);
+      }
+    }
+  }
+
   &__toggle-group {
     width: 100%;
     padding: 0;

@@ -5,10 +5,15 @@ import Container from '../../container/Container';
 import H2 from '../../typography/H2';
 import ImageComponent from '../Image';
 import Button from '../../buttons/Button';
+import BodyText from '../../typography/BodyText';
 
 export default function ImageModal() {
   const { state, dispatch } = useContext(ImagesFiltersContext);
-  const [index, setIndex] = useState(0);
+
+  const images =
+    state.languages[state.display.show_media_type][
+      state.languages.active_language
+    ];
 
   const closeModal = () => {
     dispatch({
@@ -22,19 +27,29 @@ export default function ImageModal() {
       className={state.modal.is_active ? 'image-modal active' : 'image-modal'}
     >
       <Container>
-        <Button name={<CgClose />} onClick={closeModal} />
-        <H2 heading='Images' />
-        <div className='image__scroll'>
-          {state.display.show_media_type === 'posters' &&
-            state.languages.posters[state.languages.active_language]?.map(
-              (img, i) => (
-                <ImageComponent
-                  src={`https://image.tmdb.org/t/p/original/${img.file_path}`}
-                  fallback=''
-                  alt={`image-${i}`}
-                />
-              )
-            )}
+        <Button
+          name={<CgClose />}
+          variant='btn--modal-close'
+          onClick={closeModal}
+        />
+
+        <div className='image-modal__content'>
+          {images?.map((image, i) => {
+            if (state.modal.index === i) {
+              return (
+                <div className='img' key={image.file_path}>
+                  <ImageComponent
+                    key={image.file_path}
+                    src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
+                    fallback='/images/error_500x750.webp'
+                    width={image.width}
+                    height={image.height}
+                    alt={`${state.display.show_media_type}-${i}`}
+                  />
+                </div>
+              );
+            }
+          })}
         </div>
       </Container>
     </div>

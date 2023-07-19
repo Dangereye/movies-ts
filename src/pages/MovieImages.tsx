@@ -1,5 +1,5 @@
 // React
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
@@ -34,7 +34,8 @@ import { moviePages } from '../data/moviePages';
 
 export default function MovieImages() {
   const { movieId } = useParams();
-  const { state } = useContext(ImagesFiltersContext);
+  const [left, setLeft] = useState(0);
+  const { state, dispatch } = useContext(ImagesFiltersContext);
 
   const images =
     state.languages[state.display.show_media_type][
@@ -89,6 +90,13 @@ export default function MovieImages() {
     );
   }
 
+  const openModal = (index: number) => {
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...state, modal: { is_active: true, index } },
+    });
+  };
+
   return (
     <>
       <SubNavbar>
@@ -114,10 +122,14 @@ export default function MovieImages() {
                 <div className='images__list'>
                   {images?.length ? (
                     images.map((image, i) => (
-                      <div className='img' key={image.file_path}>
+                      <div
+                        className='img'
+                        key={image.file_path}
+                        onClick={() => openModal(i)}
+                      >
                         <ImageComponent
                           key={image.file_path}
-                          src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                          src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
                           fallback='/images/error_500x750.webp'
                           width={500}
                           alt={`${state.display.show_media_type}-${i}`}
