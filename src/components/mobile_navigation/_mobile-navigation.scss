@@ -1,0 +1,16 @@
+.mobile-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 50rem;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 100;
+  @include horizontal-padding;
+  @include vertical-padding;
+
+  &.active {
+    left: 0;
+  }
+}

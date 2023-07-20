@@ -1,4 +1,5 @@
 export type StateType = {
+  mobile_menu: { active: boolean };
   searchbar: { expanded: boolean };
   adult: { expanded: boolean; active: boolean };
   region: {
@@ -10,6 +11,7 @@ export type StateType = {
 };
 
 export const InitialState = {
+  mobile_menu: { active: false },
   searchbar: { expanded: false },
   adult: { expanded: false, active: false },
   region: {
