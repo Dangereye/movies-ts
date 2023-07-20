@@ -7,6 +7,7 @@ type NavigationProps<T> = {
   getLink: (item: T) => string;
   renderItem: (item: T) => ReactNode;
   data: T[] | undefined;
+  onClick?: () => void;
 };
 
 export default function Navigation<T>({
@@ -15,12 +16,13 @@ export default function Navigation<T>({
   getLink,
   renderItem,
   data,
+  onClick,
 }: NavigationProps<T>) {
   return (
     <nav className='navigation'>
       <ul className={`navigation__list ${variant}`}>
         {data?.map((item) => (
-          <li key={getId(item)} className='navigation__item'>
+          <li key={getId(item)} className='navigation__item' onClick={onClick}>
             <Link to={getLink(item)} className='navigation__link'>
               {renderItem(item)}
             </Link>

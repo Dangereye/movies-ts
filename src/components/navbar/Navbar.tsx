@@ -6,7 +6,7 @@ import { pages } from '../../data/pages';
 
 // Components
 import Container from '../container/Container';
-import MobileMenuIcon from '../mobile_menu_icon/MobileMenuIcon';
+import MobileMenuIcon from './mobile_menu_icon/MobileMenuIcon';
 import Navigation from '../navigation/Navigation';
 import SearchIcon from './search_icon/SearchIcon';
 

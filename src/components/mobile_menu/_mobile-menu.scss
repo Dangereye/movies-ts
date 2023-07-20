@@ -5,7 +5,7 @@
   width: 100%;
   max-width: 50rem;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: $grey-color;
   z-index: 100;
   @include horizontal-padding;
   @include vertical-padding;
@@ -14,6 +14,31 @@
   @media (max-width: $tablet) {
     &.active {
       left: 0;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  a {
+    width: max-content;
+    transition: color 0.3s ease;
+
+    &.heading {
+      color: $heading-text-dark;
+    }
+
+    &.navigation__link {
+      color: $body-text-dark;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: $accent-color;
+      }
     }
   }
 }
