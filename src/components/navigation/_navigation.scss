@@ -9,8 +9,7 @@
       gap: 2rem;
     }
 
-    &.vertical{
-      
+    &.vertical {
     }
 
     &.comma-separated {
@@ -22,7 +21,7 @@
       .navigation__item {
         min-width: max-content;
         &:not(:last-child)::after {
-          content: ",";
+          content: ',';
           font-size: $base-font-size;
         }
       }
