@@ -1,7 +1,7 @@
-.mobile-navigation {
+.mobile-menu {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 7rem;
+  left: -100%;
   width: 100%;
   max-width: 50rem;
   height: 100%;
@@ -9,8 +9,11 @@
   z-index: 100;
   @include horizontal-padding;
   @include vertical-padding;
+  transition: left 0.3s ease-in-out;
 
-  &.active {
-    left: 0;
+  @media (max-width: $tablet) {
+    &.active {
+      left: 0;
+    }
   }
 }

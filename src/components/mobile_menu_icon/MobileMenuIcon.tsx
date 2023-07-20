@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useContext } from 'react';
+import { AppContext } from '../../contexts/AppContext';
 
 export default function MobileMenuIcon() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
 
   const toggle = () => {
-    setIsOpen(!isOpen);
+    dispatch({
+      type: 'UPDATE_APP',
+      payload: { ...state, mobile_menu: { active: !state.mobile_menu.active } },
+    });
   };
 
   return (
     <div
-      className={isOpen ? "mobile-menu-icon open" : "mobile-menu-icon"}
+      className={
+        state.mobile_menu.active
+          ? 'mobile-menu-icon active'
+          : 'mobile-menu-icon'
+      }
       onClick={toggle}
     >
       <div></div>

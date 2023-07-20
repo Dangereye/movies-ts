@@ -21,7 +21,7 @@ import Navbar from './components/navbar/Navbar';
 import Searchbar from './components/searchbar/Searchbar';
 import VideoPlayer from './components/videos/video_player/VideoPlayer';
 import ImageModal from './components/image/image_modal/ImageModal';
-import MobileNavigation from './components/mobile_navigation/MobileNavigation';
+import MobileMenu from './components/mobile_menu/MobileMenu';
 
 // Pages
 import Home from './pages/Home';
@@ -62,7 +62,7 @@ function App() {
                   <SearchFiltersContextComponent>
                     <VideoContextComponent>
                       <Navbar />
-                      <MobileNavigation />
+                      <MobileMenu />
                       <Searchbar />
                       <VideoPlayer />
                       <ImageModal />
