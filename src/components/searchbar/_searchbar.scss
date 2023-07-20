@@ -24,7 +24,7 @@
   }
 
   &.active {
-    top: 8rem;
+    top: 7rem;
     user-select: text;
   }
 
@@ -43,6 +43,7 @@
   &__form {
     display: flex;
     flex-direction: row;
+    @include horizontal-padding;
   }
 
   &__icon {
