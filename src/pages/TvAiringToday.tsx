@@ -77,7 +77,7 @@ export default function TvAiringToday() {
         navigation={tvPages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </PageWithSidebar>

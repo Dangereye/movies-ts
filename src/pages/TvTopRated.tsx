@@ -79,7 +79,7 @@ export default function TvTopRated() {
         navigation={tvPages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </PageWithSidebar>

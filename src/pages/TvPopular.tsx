@@ -79,7 +79,7 @@ export default function TvPopular() {
         navigation={tvPages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </PageWithSidebar>

@@ -117,7 +117,7 @@ export default function Search() {
 
   if (moviesError || tvshowsError || peopleError) {
     return (
-      <PageWithSidebar navigation={[]} title={title} name={name}>
+      <PageWithSidebar navigation={[]} title={title} name='article__error'>
         <ErrorComponent />
       </PageWithSidebar>
     );
