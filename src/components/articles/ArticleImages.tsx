@@ -41,90 +41,95 @@ export default function ArticleImages() {
     });
   };
 
-  return (
-    <Article name='article__images'>
-      <Container>
-        <H2 heading={state.display.show_media_type} />
-        <Wrapper name='image options' variant='flex'>
-          {state?.languages?.posters[state.languages.active_language]
-            ?.length && (
-            <Button
-              name={
-                <>
-                  <span className='name'>Posters</span>
-                  <span className='qty'>
-                    {
-                      state?.languages?.posters[state.languages.active_language]
-                        ?.length
-                    }
-                  </span>
-                </>
-              }
-              active={state.display.show_media_type === 'posters'}
-              variant='btn--tertiary'
-              onClick={() => updateImages('posters')}
-            />
-          )}
-          {state.languages.backdrops[state.languages.active_language]
-            ?.length && (
-            <Button
-              name={
-                <>
-                  <span className='name'>Backdrops</span>
-                  <span className='qty'>
-                    {
-                      state.languages.backdrops[state.languages.active_language]
-                        ?.length
-                    }
-                  </span>
-                </>
-              }
-              active={state.display.show_media_type === 'backdrops'}
-              variant='btn--tertiary'
-              onClick={() => updateImages('backdrops')}
-            />
-          )}
-        </Wrapper>
-        <BodyText
-          text={`Showing ${
-            images?.length && images.length > 10 ? '10' : images?.length
-          } ${state.display.show_media_type}`}
-        />
-        <div className='images__scroll'>
-          {images
-            ?.filter((image, i) => i < 10)
-            .map((image, i) => (
-              <div
-                className='img'
-                key={image.file_path}
-                onClick={() => openModal(i)}
-              >
-                <ImageComponent
+  if (state.languages.posters.length || state.languages.backdrops.length) {
+    return (
+      <Article name='article__images'>
+        <Container>
+          <H2 heading={state.display.show_media_type} />
+          <Wrapper name='image options' variant='flex'>
+            {state?.languages?.posters[state.languages.active_language]
+              ?.length && (
+              <Button
+                name={
+                  <>
+                    <span className='name'>Posters</span>
+                    <span className='qty'>
+                      {
+                        state?.languages?.posters[
+                          state.languages.active_language
+                        ]?.length
+                      }
+                    </span>
+                  </>
+                }
+                active={state.display.show_media_type === 'posters'}
+                variant='btn--tertiary'
+                onClick={() => updateImages('posters')}
+              />
+            )}
+            {state.languages.backdrops[state.languages.active_language]
+              ?.length && (
+              <Button
+                name={
+                  <>
+                    <span className='name'>Backdrops</span>
+                    <span className='qty'>
+                      {
+                        state.languages.backdrops[
+                          state.languages.active_language
+                        ]?.length
+                      }
+                    </span>
+                  </>
+                }
+                active={state.display.show_media_type === 'backdrops'}
+                variant='btn--tertiary'
+                onClick={() => updateImages('backdrops')}
+              />
+            )}
+          </Wrapper>
+          <BodyText
+            text={`Showing ${
+              images?.length && images.length > 10 ? '10' : images?.length
+            } ${state.display.show_media_type}`}
+          />
+          <div className='images__scroll'>
+            {images
+              ?.filter((image, i) => i < 10)
+              .map((image, i) => (
+                <div
+                  className='img'
                   key={image.file_path}
-                  src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                  fallback='/images/error_500x750.webp'
-                  width={500}
-                  alt={`${state.display.show_media_type}-${i}`}
-                />
-              </div>
-            ))}
-        </div>
-        {(state.display.results.posters > 10 ||
-          state.display.results.backdrops > 10) && (
-          <div className='buttons'>
-            <Link
-              to={
-                pathname.includes('movie')
-                  ? `/movies/${state.id}/images`
-                  : `/tv/${state.id}/images`
-              }
-              className='btn btn--tertiary'
-            >
-              view all images
-            </Link>
+                  onClick={() => openModal(i)}
+                >
+                  <ImageComponent
+                    key={image.file_path}
+                    src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                    fallback='/images/error_500x750.webp'
+                    width={500}
+                    alt={`${state.display.show_media_type}-${i}`}
+                  />
+                </div>
+              ))}
           </div>
-        )}
-      </Container>
-    </Article>
-  );
+          {(state.display.results.posters > 10 ||
+            state.display.results.backdrops > 10) && (
+            <div className='buttons'>
+              <Link
+                to={
+                  pathname.includes('movie')
+                    ? `/movies/${state.id}/images`
+                    : `/tv/${state.id}/images`
+                }
+                className='btn btn--tertiary'
+              >
+                view all images
+              </Link>
+            </div>
+          )}
+        </Container>
+      </Article>
+    );
+  }
+  return null;
 }
