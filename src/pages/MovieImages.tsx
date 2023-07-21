@@ -79,13 +79,7 @@ export default function MovieImages() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <ErrorComponent variant='section' />
       </>
     );
   }

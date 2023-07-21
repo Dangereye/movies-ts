@@ -71,14 +71,13 @@ export default function MoviesPopular() {
       </PageWithSidebar>
     );
   }
-
   if (isError) {
     return (
       <PageWithSidebar
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </PageWithSidebar>

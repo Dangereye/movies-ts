@@ -77,7 +77,7 @@ export default function MoviesUpcoming() {
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </PageWithSidebar>
