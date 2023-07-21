@@ -26,6 +26,7 @@ export default function LandingPage() {
   const title = 'Ready to be entertained?';
   const heading =
     'Millions of movies, Tv shows and people to discover, explore now.';
+
   const {
     data: movies,
     isLoading: moviesIsLoading,
@@ -61,25 +62,7 @@ export default function LandingPage() {
   }
 
   if (moviesIsError || peopleIsError || tvshowsIsError) {
-    return (
-      <>
-        <Header
-          variant='header__center'
-          title={title}
-          bgImage={movies?.results[0]?.backdrop_path}
-        >
-          <HDiv variant='heading--h2' heading={heading} />
-          <Searchbar fixed />
-        </Header>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
-      </>
-    );
+    return <ErrorComponent />;
   }
 
   return (
