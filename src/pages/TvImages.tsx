@@ -16,7 +16,6 @@ import useCreateImages from '../hooks/useCreateImages';
 
 // Components
 import SubNavbar from '../components/sub_navbar/SubNavbar';
-import Navigation from '../components/navigation/Navigation';
 import Main from '../components/main/Main';
 import Container from '../components/container/Container';
 import LoaderComponent from '../components/loader/Loader';
@@ -59,15 +58,7 @@ export default function TvImages() {
   if (isLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={tvPages} />
         <LoaderComponent variant='header-min' />
       </>
     );
@@ -76,37 +67,15 @@ export default function TvImages() {
   if (isError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <SubNavbar navigation={tvPages} />
+        <ErrorComponent variant='section' />
       </>
     );
   }
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={tvPages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={tvPages} />
       <Header
         variant='header__min'
         leadTitle={data?.name}

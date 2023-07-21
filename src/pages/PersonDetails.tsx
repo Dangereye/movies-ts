@@ -9,25 +9,20 @@ import { RiCake2Line } from 'react-icons/ri';
 // Articles
 import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
 import ArticleTvMin from '../components/articles/ArticleTvMin';
+import ArticleProfileImages from '../components/articles/ArticleProfileImages';
 
 // Components
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
-import Article from '../components/articles/Article';
-import Navigation from '../components/navigation/Navigation';
 import Statistics from '../components/statistics/Statistics';
 import ExpandableText from '../components/typography/ExpandableText';
 import HDiv from '../components/typography/HDiv';
 import IconText from '../components/typography/IconText';
 import Wrapper from '../components/wrapper/Wrapper';
 import Main from '../components/main/Main';
-import Container from '../components/container/Container';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import Section from '../components/sections/Section';
-import H2 from '../components/typography/H2';
-import ImageComponent from '../components/image/Image';
-import BodyText from '../components/typography/BodyText';
 
 // Data
 import { peoplePages } from '../data/peoplePages';
@@ -40,7 +35,6 @@ import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import ArticleProfileImages from '../components/articles/ArticleProfileImages';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -57,15 +51,7 @@ export default function TvDetails() {
   if (isLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={peoplePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={peoplePages} />
         <LoaderComponent variant='header-full' />
       </>
     );
@@ -74,37 +60,15 @@ export default function TvDetails() {
   if (isError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={peoplePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <SubNavbar navigation={peoplePages} />
+        <ErrorComponent variant='section' />
       </>
     );
   }
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={peoplePages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={peoplePages} />
       <Header
         variant='header__full'
         image={person?.profile_path}

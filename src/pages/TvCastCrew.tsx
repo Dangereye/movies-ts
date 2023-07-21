@@ -12,10 +12,8 @@ import { ITVShowFull } from '../interfaces/ITVShowFull';
 import { IAggregateCrew } from '../interfaces/IAggregateCrew';
 
 // Components
-import Navigation from '../components/navigation/Navigation';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Main from '../components/main/Main';
-import Container from '../components/container/Container';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import Header from '../components/header/Header';
@@ -104,15 +102,7 @@ export default function TvCastCrew() {
   if (isLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={tvPages} />
         <LoaderComponent variant='header-min' />
       </>
     );
@@ -121,37 +111,15 @@ export default function TvCastCrew() {
   if (isError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <SubNavbar navigation={tvPages} />
+        <ErrorComponent variant='section' />
       </>
     );
   }
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={tvPages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={tvPages} />
       <Header
         variant='header__min'
         leadTitle={`${data?.name}`}

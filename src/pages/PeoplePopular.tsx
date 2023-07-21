@@ -53,7 +53,7 @@ export default function PeoplePopular() {
         navigation={peoplePages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </Page>

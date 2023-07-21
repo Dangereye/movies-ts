@@ -1,3 +1,6 @@
+// Components
+import ErrorComponent from '../components/error/Error';
+
 export default function NotFound() {
-  return <>Not found</>;
+  return <ErrorComponent variant='section' />;
 }

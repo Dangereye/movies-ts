@@ -26,6 +26,7 @@ import H2 from '../components/typography/H2';
 import HDiv from '../components/typography/HDiv';
 import SmallText from '../components/typography/SmallText';
 import Wrapper from '../components/wrapper/Wrapper';
+import Section from '../components/sections/Section';
 
 // Data
 import { tvPages } from '../data/tvPages';
@@ -33,7 +34,6 @@ import { tvPages } from '../data/tvPages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
-import Section from '../components/sections/Section';
 
 export default function TvSeason() {
   const { tvId, seasonId } = useParams();
@@ -57,15 +57,7 @@ export default function TvSeason() {
   if (isLoading || tvIsLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={tvPages} />
         <LoaderComponent variant='header-full' />
       </>
     );
@@ -74,37 +66,15 @@ export default function TvSeason() {
   if (isError || tvIsError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <SubNavbar navigation={tvPages} />
+        <ErrorComponent variant='section' />
       </>
     );
   }
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={tvPages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={tvPages} />
       <Header
         variant='header__full'
         bgImage={tv?.backdrop_path}

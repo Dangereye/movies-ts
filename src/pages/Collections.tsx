@@ -89,15 +89,7 @@ export default function Collections() {
   if (isLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={moviePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={moviePages} />
         <LoaderComponent variant='header-full' />
       </>
     );
@@ -106,15 +98,7 @@ export default function Collections() {
   if (isError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={moviePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={moviePages} />
         <ErrorComponent variant='section' />
       </>
     );
@@ -122,15 +106,7 @@ export default function Collections() {
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={moviePages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={moviePages} />
       <Header
         variant='header__full'
         bgImage={data?.backdrop_path}

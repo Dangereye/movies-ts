@@ -25,6 +25,7 @@ import Section from '../components/sections/Section';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
+import useCreateImages from '../hooks/useCreateImages';
 
 // Interfaces
 import { ITVShowFull } from '../interfaces/ITVShowFull';
@@ -45,7 +46,6 @@ import { tvPages } from '../data/tvPages';
 
 // Icons
 import { RxCalendar } from 'react-icons/rx';
-import useCreateImages from '../hooks/useCreateImages';
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -65,15 +65,7 @@ export default function TvDetails() {
   if (isLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={tvPages} />
         <LoaderComponent variant='header-full' />
       </>
     );
@@ -82,37 +74,15 @@ export default function TvDetails() {
   if (isError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={tvPages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <SubNavbar navigation={tvPages} />
+        <ErrorComponent variant='section' />
       </>
     );
   }
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={tvPages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={tvPages} />
       <Header
         variant='header__full'
         bgImage={tv?.backdrop_path}

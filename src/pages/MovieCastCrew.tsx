@@ -104,15 +104,7 @@ export default function MovieCastCrew() {
   if (isLoading) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={moviePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={moviePages} />
         <LoaderComponent variant='header-min' />
       </>
     );
@@ -121,15 +113,7 @@ export default function MovieCastCrew() {
   if (isError) {
     return (
       <>
-        <SubNavbar>
-          <Navigation
-            data={moviePages}
-            getId={(item) => item.name}
-            getLink={(item) => item.link}
-            renderItem={(item) => item.name}
-            variant='horizontal'
-          />
-        </SubNavbar>
+        <SubNavbar navigation={moviePages} />
         <ErrorComponent variant='section' />
       </>
     );
@@ -137,15 +121,7 @@ export default function MovieCastCrew() {
 
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={moviePages}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={moviePages} />
       <Header
         variant='header__min'
         leadTitle={`${data?.title}`}

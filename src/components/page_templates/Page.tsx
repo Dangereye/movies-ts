@@ -8,7 +8,7 @@ import Section from '../sections/Section';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageProps = {
-  navigation: { name: string; link: string }[] | undefined;
+  navigation: { name: string; link: string }[];
   leadTitle?: string;
   title: string;
   name: string;
@@ -16,7 +16,7 @@ type PageProps = {
 };
 
 export default function Page({
-  navigation,
+  navigation = [],
   leadTitle,
   title,
   name,
@@ -24,15 +24,7 @@ export default function Page({
 }: PageProps) {
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={navigation}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={navigation} />
       <Header variant='header__min' leadTitle={leadTitle} title={title} />
       <Section>
         <Main>

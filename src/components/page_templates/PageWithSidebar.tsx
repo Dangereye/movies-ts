@@ -10,7 +10,7 @@ import Sidebar from '../sidebar/Sidebar';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageWithSidebarProps = {
-  navigation: { name: string; link: string }[] | undefined;
+  navigation: { name: string; link: string }[];
   leadTitle?: string;
   title: string;
   name: string;
@@ -18,7 +18,7 @@ type PageWithSidebarProps = {
 };
 
 export default function PageWithSidebar({
-  navigation,
+  navigation = [],
   leadTitle,
   title,
   name,
@@ -26,15 +26,7 @@ export default function PageWithSidebar({
 }: PageWithSidebarProps) {
   return (
     <>
-      <SubNavbar>
-        <Navigation
-          data={navigation}
-          getId={(item) => item.name}
-          getLink={(item) => item.link}
-          renderItem={(item) => item.name}
-          variant='horizontal'
-        />
-      </SubNavbar>
+      <SubNavbar navigation={navigation} />
       <Header variant='header__min' leadTitle={leadTitle} title={title} />
       <Section>
         <Container>
