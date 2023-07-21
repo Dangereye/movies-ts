@@ -79,7 +79,7 @@ export default function MovieGenre() {
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
-        name={name}
+        name='article__error'
       >
         <ErrorComponent />
       </Page>

@@ -1,6 +1,9 @@
 .article__error {
-  flex-direction: column;
-  align-items: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .body-text {
     max-width: 94ch;

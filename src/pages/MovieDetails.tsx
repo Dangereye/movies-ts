@@ -82,7 +82,7 @@ export default function MovieDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <ErrorComponent />
+        <ErrorComponent variant='section' />
       </>
     );
   }

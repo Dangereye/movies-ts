@@ -62,7 +62,7 @@ export default function LandingPage() {
   }
 
   if (moviesIsError || peopleIsError || tvshowsIsError) {
-    return <ErrorComponent />;
+    return <ErrorComponent variant='section' />;
   }
 
   return (

@@ -115,7 +115,7 @@ export default function Collections() {
             variant='horizontal'
           />
         </SubNavbar>
-        <ErrorComponent />
+        <ErrorComponent variant='section' />
       </>
     );
   }

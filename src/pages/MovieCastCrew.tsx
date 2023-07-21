@@ -130,7 +130,7 @@ export default function MovieCastCrew() {
             variant='horizontal'
           />
         </SubNavbar>
-        <ErrorComponent />
+        <ErrorComponent variant='section' />
       </>
     );
   }
