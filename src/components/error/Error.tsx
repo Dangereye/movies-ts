@@ -1,10 +1,12 @@
+// React router
 import { Link, useNavigate } from 'react-router-dom';
+
+// Components
 import H2 from '../typography/H2';
 import Button from '../buttons/Button';
 import BodyText from '../typography/BodyText';
 import Article from '../articles/Article';
 import Main from '../main/Main';
-import Container from '../container/Container';
 import Section from '../sections/Section';
 
 type ErrorComponentProps = {

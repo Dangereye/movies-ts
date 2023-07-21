@@ -98,13 +98,7 @@ export default function Collections() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <LoaderComponent />
-            </Container>
-          </Main>
-        </Section>
+        <LoaderComponent variant='header-full' />
       </>
     );
   }
@@ -121,13 +115,7 @@ export default function Collections() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <ErrorComponent />
       </>
     );
   }

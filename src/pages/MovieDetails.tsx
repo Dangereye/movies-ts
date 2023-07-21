@@ -17,7 +17,6 @@ import UserScore from '../components/header/UserScore';
 import IconText from '../components/typography/IconText';
 import Main from '../components/main/Main';
 import Section from '../components/sections/Section';
-import Container from '../components/container/Container';
 
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
@@ -83,13 +82,7 @@ export default function MovieDetails() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <ErrorComponent />
       </>
     );
   }

@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 // Components
 import ArticlePeople from '../components/articles/ArticlePeople';
-import Container from '../components/container/Container';
 import Navigation from '../components/navigation/Navigation';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
@@ -131,13 +130,7 @@ export default function MovieCastCrew() {
             variant='horizontal'
           />
         </SubNavbar>
-        <Section>
-          <Main>
-            <Container>
-              <ErrorComponent />
-            </Container>
-          </Main>
-        </Section>
+        <ErrorComponent />
       </>
     );
   }
