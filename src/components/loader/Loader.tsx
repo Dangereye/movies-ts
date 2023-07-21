@@ -26,8 +26,8 @@ export default function LoaderComponent({
     <Article name='loading'>
       <div className='loader'>
         <div className='loader__skeletons'>
-          {skeletons.map((s) => (
-            <div className='loader__skeleton'>
+          {skeletons.map((skeleton, i) => (
+            <div className='loader__skeleton' key={`skeleton-${i}`}>
               <div className='loader__spinner'>
                 <ImSpinner2 />
               </div>

@@ -41,28 +41,18 @@ export default function ArticleImages() {
     });
   };
 
-  if (
-    state.display.results.posters > 1 ||
-    state.display.results.backdrops > 0
-  ) {
+  if (images && images?.length > 1) {
     return (
       <Article name='article__images'>
         <Container>
           <H2 heading={state.display.show_media_type} />
           <Wrapper name='image options' variant='flex'>
-            {state?.languages?.posters[state.languages.active_language]
-              ?.length && (
+            {state.display.results.posters > 0 && (
               <Button
                 name={
                   <>
                     <span className='name'>Posters</span>
-                    <span className='qty'>
-                      {
-                        state?.languages?.posters[
-                          state.languages.active_language
-                        ]?.length
-                      }
-                    </span>
+                    <span className='qty'>{state.display.results.posters}</span>
                   </>
                 }
                 active={state.display.show_media_type === 'posters'}
@@ -70,18 +60,13 @@ export default function ArticleImages() {
                 onClick={() => updateImages('posters')}
               />
             )}
-            {state.languages.backdrops[state.languages.active_language]
-              ?.length && (
+            {state.display.results.backdrops > 0 && (
               <Button
                 name={
                   <>
                     <span className='name'>Backdrops</span>
                     <span className='qty'>
-                      {
-                        state.languages.backdrops[
-                          state.languages.active_language
-                        ]?.length
-                      }
+                      {state.display.results.backdrops}
                     </span>
                   </>
                 }
