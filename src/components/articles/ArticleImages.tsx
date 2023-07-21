@@ -41,7 +41,10 @@ export default function ArticleImages() {
     });
   };
 
-  if (state.languages.posters.length || state.languages.backdrops.length) {
+  if (
+    state.display.results.posters > 1 ||
+    state.display.results.backdrops > 0
+  ) {
     return (
       <Article name='article__images'>
         <Container>
@@ -90,7 +93,11 @@ export default function ArticleImages() {
           </Wrapper>
           <BodyText
             text={`Showing ${
-              images?.length && images.length > 10 ? '10' : images?.length
+              images && images.length > 10
+                ? '10'
+                : images && images.length < 10
+                ? images?.length
+                : 0
             } ${state.display.show_media_type}`}
           />
           <div className='images__scroll'>
