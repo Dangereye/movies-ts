@@ -21,6 +21,9 @@
     border-radius: 4rem;
     max-width: 80rem;
     user-select: text;
+
+    @media (max-width: $mobile) {
+    }
   }
 
   &.active {
@@ -28,11 +31,21 @@
     user-select: text;
   }
 
+  &.fixed {
+    .searchbar__form {
+      padding: 0;
+    }
+  }
+
   &.fixed,
   &.active {
+    .searchbar__form {
+      align-items: center;
+    }
     input {
       border: none;
       outline: none;
+      padding: 0;
     }
   }
 
