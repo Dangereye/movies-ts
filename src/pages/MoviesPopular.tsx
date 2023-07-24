@@ -104,7 +104,6 @@ export default function MoviesPopular() {
       title={title}
       name={name}
     >
-      <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}

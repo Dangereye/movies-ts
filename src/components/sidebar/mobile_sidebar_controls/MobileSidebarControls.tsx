@@ -1,16 +1,9 @@
-import Container from '../../container/Container';
-import { IoSettingsSharp } from 'react-icons/io5';
-import BodyText from '../../typography/BodyText';
+import Button from '../../buttons/Button';
 
 export default function MobileSidebarControls() {
   return (
     <div className='mobile-sidebar-controls'>
-      <Container>
-        <div className='mobile-sidebar-controls__settings'>
-          <IoSettingsSharp />
-          <BodyText text='Filters' />
-        </div>
-      </Container>
+      <Button name='filters' variant='btn--secondary' onClick={() => {}} />
     </div>
   );
 }

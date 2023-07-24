@@ -1,5 +1,6 @@
 // Components
 import Article from '../articles/Article';
+import Button from '../buttons/Button';
 import Container from '../container/Container';
 import Header from '../header/Header';
 import Layout from '../layout/Layout';
@@ -7,6 +8,7 @@ import Main from '../main/Main';
 import Navigation from '../navigation/Navigation';
 import Section from '../sections/Section';
 import Sidebar from '../sidebar/Sidebar';
+import MobileSidebarControls from '../sidebar/mobile_sidebar_controls/MobileSidebarControls';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageWithSidebarProps = {
@@ -34,7 +36,12 @@ export default function PageWithSidebar({
             <Sidebar />
             <Main>
               <Article name={name}>
-                <Container>{children}</Container>
+                <Container>
+                  <>
+                    <MobileSidebarControls />
+                    {children}
+                  </>
+                </Container>
               </Article>
             </Main>
           </Layout>

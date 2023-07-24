@@ -32,9 +32,15 @@
   }
 
   &--secondary {
-    border: 1px solid $accent-color;
-    background-color: transparent;
+    border: 1px solid $grey-color;
+    background-color: $grey-color;
     color: $heading-text-dark;
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: $input-border-color;
+      }
+    }
   }
 
   &--tertiary {
