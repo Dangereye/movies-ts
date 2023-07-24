@@ -33,7 +33,9 @@ export default function PageWithSidebar({
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
-              <Article name={name}>{children}</Article>
+              <Article name={name}>
+                <Container>{children}</Container>
+              </Article>
             </Main>
           </Layout>
         </Container>

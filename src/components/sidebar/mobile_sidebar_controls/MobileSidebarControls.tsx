@@ -1,5 +1,5 @@
 import Container from '../../container/Container';
-import { VscSettings } from 'react-icons/vsc';
+import { IoSettingsSharp } from 'react-icons/io5';
 import BodyText from '../../typography/BodyText';
 
 export default function MobileSidebarControls() {
@@ -7,8 +7,8 @@ export default function MobileSidebarControls() {
     <div className='mobile-sidebar-controls'>
       <Container>
         <div className='mobile-sidebar-controls__settings'>
-          <VscSettings />
-          <BodyText text='Settings' />
+          <IoSettingsSharp />
+          <BodyText text='Filters' />
         </div>
       </Container>
     </div>
