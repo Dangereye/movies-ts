@@ -8,7 +8,7 @@ import Main from '../main/Main';
 import Navigation from '../navigation/Navigation';
 import Section from '../sections/Section';
 import Sidebar from '../sidebar/Sidebar';
-import MobileSidebarControls from '../sidebar/mobile_sidebar_controls/MobileSidebarControls';
+import MobileSidebarControls from '../sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
 import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageWithSidebarProps = {

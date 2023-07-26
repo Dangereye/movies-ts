@@ -1,0 +1,11 @@
+.mobile-sidebar-filters-buttons {
+  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (min-width: 1151px) {
+    display: none;
+  }
+}

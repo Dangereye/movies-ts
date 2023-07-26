@@ -47,6 +47,7 @@ import Search from './pages/Search';
 import Collections from './pages/Collections';
 import TvGenre from './pages/TvGenre';
 import NotFound from './pages/NotFound';
+import MobileSidebarFiltersMenu from './components/sidebar/mobile_sidebar_filters_menu/MobileSidebarFiltersMenu';
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ function App() {
                     <VideoContextComponent>
                       <Navbar />
                       <MobileMenu />
+                      <MobileSidebarFiltersMenu />
                       <Searchbar />
                       <VideoPlayer />
                       <ImageModal />

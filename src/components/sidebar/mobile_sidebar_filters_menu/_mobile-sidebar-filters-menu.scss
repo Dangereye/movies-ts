@@ -1,0 +1,19 @@
+.mobile-sidebar-filters-menu {
+  position: fixed;
+  top: 7rem;
+  left: -100%;
+  width: 100%;
+  max-width: 30rem;
+  height: 100%;
+  background-color: $grey-color;
+  z-index: 100;
+  @include horizontal-padding;
+  @include vertical-padding;
+  transition: left 0.3s ease-in-out;
+
+  @media (max-width: 1150px) {
+    &.active {
+      left: 0;
+    }
+  }
+}
