@@ -17,6 +17,8 @@ export default function Searchbar() {
       payload: {
         ...state,
         searchbar: { ...state.searchbar, expanded: !state.searchbar.expanded },
+        mobile_menu: { active: false },
+        mobile_filters_menu: { active: false },
       },
     });
   };

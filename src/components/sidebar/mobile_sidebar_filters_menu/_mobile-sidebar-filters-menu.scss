@@ -22,6 +22,7 @@
   }
 
   .heading--h4 {
+    height: 3rem;
     margin: 0;
   }
 
@@ -34,7 +35,14 @@
     height: 3rem;
     border-radius: 50%;
     background-color: black;
+    border: none;
     color: #fff;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $red-color;
+      }
+    }
   }
 
   &__content {

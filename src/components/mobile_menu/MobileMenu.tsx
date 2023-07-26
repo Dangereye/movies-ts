@@ -1,9 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
-import H2 from '../typography/H2';
-import Navigation from '../navigation/Navigation';
 import { moviePages } from '../../data/moviePages';
-import { Link } from 'react-router-dom';
 import { tvPages } from '../../data/tvPages';
 import { peoplePages } from '../../data/peoplePages';
 import MobileMenuGroup from './mobile_menu_group/MobileMenuGroup';

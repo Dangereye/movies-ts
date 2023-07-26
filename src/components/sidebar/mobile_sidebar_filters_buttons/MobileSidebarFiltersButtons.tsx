@@ -8,14 +8,18 @@ export default function MobileSidebarFiltersButtons() {
   const openFiltersMenu = () => {
     dispatch({
       type: 'UPDATE_APP',
-      payload: { ...state, mobile_filters_menu: { active: true } },
+      payload: {
+        ...state,
+        mobile_filters_menu: { active: true },
+        mobile_menu: { active: false },
+      },
     });
   };
 
   return (
     <div className='mobile-sidebar-filters-buttons'>
       <Button
-        name='filters'
+        name='filter results'
         variant='btn--secondary'
         onClick={openFiltersMenu}
       />

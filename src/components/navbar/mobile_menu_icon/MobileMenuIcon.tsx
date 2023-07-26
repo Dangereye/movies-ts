@@ -7,7 +7,11 @@ export default function MobileMenuIcon() {
   const toggle = () => {
     dispatch({
       type: 'UPDATE_APP',
-      payload: { ...state, mobile_menu: { active: !state.mobile_menu.active } },
+      payload: {
+        ...state,
+        mobile_menu: { active: !state.mobile_menu.active },
+        mobile_filters_menu: { active: false },
+      },
     });
   };
 
