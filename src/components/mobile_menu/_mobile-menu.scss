@@ -4,7 +4,9 @@
   left: -100%;
   width: 100%;
   max-width: 30rem;
-  height: 100%;
+  height: calc(100vh - 7rem);
+  overflow-y: scroll;
+  @include scrollbar-hidden;
   background-color: #fff;
   z-index: 100;
   @include horizontal-padding;
