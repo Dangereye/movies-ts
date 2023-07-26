@@ -1,6 +1,9 @@
 .sidebar {
   width: 100%;
   max-width: 30rem;
+  height: calc(100vh - 7rem);
+  overflow-y: scroll;
+  @include scrollbar-hidden;
 
   .heading--h4 {
     margin: 0;
