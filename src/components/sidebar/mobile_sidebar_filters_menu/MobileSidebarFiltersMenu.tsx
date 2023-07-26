@@ -1,18 +1,75 @@
 import { useContext } from 'react';
 import { AppContext } from '../../../contexts/AppContext';
-import H2 from '../../typography/H2';
+import HDiv from '../../typography/HDiv';
+import SearchSidebar from '../SearchSidebar';
+import MovieSidebar from '../MovieSidebar';
+import TvSidebar from '../TvSidebar';
+import { useLocation } from 'react-router-dom';
+import ImagesSidebar from '../ImagesSidebar';
+import Button from '../../buttons/Button';
 
 export default function MobileSidebarFiltersMenu() {
   const { state, dispatch } = useContext(AppContext);
-  return (
-    <div
-      className={
-        state.mobile_filters_menu.active
-          ? 'mobile-sidebar-filters-menu active'
-          : 'mobile-sidebar-filters-menu'
+  const { pathname } = useLocation();
+
+  const filterRoutes = [
+    'movies/popular',
+    'tv/popular',
+    'theatrical-releases',
+    'upcoming',
+    'top-rated',
+    'airing-today',
+    'next-seven-days',
+    'search',
+    'images',
+  ];
+
+  const checkPathname = () => {
+    let result = false;
+    filterRoutes.forEach((item) => {
+      if (pathname.includes(item)) {
+        result = true;
       }
-    >
-      <H2 heading='Filter results' />
-    </div>
-  );
+    });
+    return result;
+  };
+
+  const closeMobileFiltersMenu = () => {
+    dispatch({
+      type: 'UPDATE_APP',
+      payload: { ...state, mobile_filters_menu: { active: false } },
+    });
+  };
+
+  if (checkPathname()) {
+    return (
+      <div
+        className={
+          state.mobile_filters_menu.active
+            ? 'mobile-sidebar-filters-menu active'
+            : 'mobile-sidebar-filters-menu'
+        }
+      >
+        <Button
+          name='X'
+          variant='btn--secondary'
+          onClick={closeMobileFiltersMenu}
+        />
+        <div className='mobile-sidebar-filters-menu__content'>
+          <HDiv variant='heading--h4' heading='Filter results' />
+          {pathname.includes('search') && !pathname.includes('images') ? (
+            <SearchSidebar />
+          ) : pathname.includes('movie') && !pathname.includes('images') ? (
+            <MovieSidebar />
+          ) : pathname.includes('tv') && !pathname.includes('images') ? (
+            <TvSidebar />
+          ) : (
+            <ImagesSidebar />
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }
