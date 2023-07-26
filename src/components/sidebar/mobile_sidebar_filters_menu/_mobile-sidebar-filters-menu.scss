@@ -26,6 +26,15 @@
     margin: 0;
   }
 
+  .btn--close {
+    border: 1px solid $grey-color;
+    @media (hover: hover) {
+      &:hover {
+        border-color: $input-border-color;
+      }
+    }
+  }
+
   .btn--secondary {
     position: absolute;
     top: 4rem;

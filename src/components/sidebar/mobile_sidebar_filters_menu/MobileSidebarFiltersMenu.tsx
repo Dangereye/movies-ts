@@ -1,12 +1,22 @@
+// React
 import { useContext } from 'react';
+
+// React router
+import { useLocation } from 'react-router-dom';
+
+// Contexts
 import { AppContext } from '../../../contexts/AppContext';
+
+// Components
 import HDiv from '../../typography/HDiv';
 import SearchSidebar from '../SearchSidebar';
 import MovieSidebar from '../MovieSidebar';
 import TvSidebar from '../TvSidebar';
-import { useLocation } from 'react-router-dom';
 import ImagesSidebar from '../ImagesSidebar';
 import Button from '../../buttons/Button';
+
+// Icons
+import { CgClose } from 'react-icons/cg';
 
 export default function MobileSidebarFiltersMenu() {
   const { state, dispatch } = useContext(AppContext);
@@ -51,7 +61,7 @@ export default function MobileSidebarFiltersMenu() {
         }
       >
         <Button
-          name='X'
+          name={<CgClose />}
           variant='btn--secondary'
           onClick={closeMobileFiltersMenu}
         />
