@@ -128,7 +128,7 @@ export default function ArticlePeople<
                   to={`${pathname}/cast-crew`}
                   className='btn btn--tertiary'
                 >
-                  Full cast & crew
+                  View all cast & crew
                 </Link>
               </div>
             )}
