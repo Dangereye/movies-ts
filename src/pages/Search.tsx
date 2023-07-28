@@ -41,7 +41,8 @@ export default function Search() {
   const { searchId } = useParams();
   const { state, dispatch } = useContext(SearchFiltersContext);
   const append = useAppendSearch();
-  const title = `${state.display.show_media_type} matching: ${searchId}`;
+  const leadTitle = state.display.show_media_type;
+  const title = `Matching ${searchId}`;
   const name = 'search-results';
 
   const moviesGetNextPageParam = (page: IPage<IMovieMin>) =>
@@ -130,6 +131,7 @@ export default function Search() {
     return (
       <PageWithSidebar
         navigation={moviePages}
+        leadTitle={leadTitle}
         title={title}
         name='search-results-movie'
       >
@@ -163,6 +165,7 @@ export default function Search() {
     return (
       <PageWithSidebar
         navigation={tvPages}
+        leadTitle={leadTitle}
         title={title}
         name='search-results-tv'
       >
@@ -196,6 +199,7 @@ export default function Search() {
     return (
       <PageWithSidebar
         navigation={peoplePages}
+        leadTitle={leadTitle}
         title={title}
         name='search-results-people'
       >
@@ -223,7 +227,12 @@ export default function Search() {
   }
 
   return (
-    <PageWithSidebar navigation={[]} title={title} name={name}>
+    <PageWithSidebar
+      navigation={[]}
+      leadTitle={leadTitle}
+      title={title}
+      name={name}
+    >
       <NoResults media='items' />
     </PageWithSidebar>
   );
