@@ -16,7 +16,6 @@ import { ITVShowMin } from '../interfaces/ITVShowMin';
 import InfiniteCards from '../components/cards/InifinteCards';
 import CardContent from '../components/cards/card/CardContent';
 import ImageComponent from '../components/image/Image';
-import MobileSidebarControls from '../components/sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
 import BodyText from '../components/typography/BodyText';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
@@ -106,7 +105,6 @@ export default function TvPopular() {
       title={title}
       name={name}
     >
-      <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/tv/${item.id}`}
