@@ -12,7 +12,6 @@ import useAppend from '../hooks/useAppendMovie';
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 
 // Components
-import MobileSidebarControls from '../components/sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
 import InfiniteCards from '../components/cards/InifinteCards';
 import ImageComponent from '../components/image/Image';
 import CardContent from '../components/cards/card/CardContent';
@@ -104,7 +103,6 @@ export default function MoviesUpcoming() {
       title={title}
       name={name}
     >
-      <MobileSidebarControls />
       <InfiniteCards
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}

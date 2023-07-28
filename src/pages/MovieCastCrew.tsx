@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 // Components
 import ArticlePeople from '../components/articles/ArticlePeople';
-import Navigation from '../components/navigation/Navigation';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
 import Main from '../components/main/Main';

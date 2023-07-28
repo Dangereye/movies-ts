@@ -1,5 +1,5 @@
 // React
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
@@ -16,7 +16,6 @@ import useCreateImages from '../hooks/useCreateImages';
 
 // Components
 import SubNavbar from '../components/sub_navbar/SubNavbar';
-import Navigation from '../components/navigation/Navigation';
 import Main from '../components/main/Main';
 import Container from '../components/container/Container';
 import LoaderComponent from '../components/loader/Loader';
@@ -34,7 +33,6 @@ import { moviePages } from '../data/moviePages';
 
 export default function MovieImages() {
   const { movieId } = useParams();
-  const [left, setLeft] = useState(0);
   const { state, dispatch } = useContext(ImagesFiltersContext);
 
   const images =
