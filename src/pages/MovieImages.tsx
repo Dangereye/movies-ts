@@ -27,6 +27,7 @@ import Section from '../components/sections/Section';
 import Article from '../components/articles/Article';
 import ImageComponent from '../components/image/Image';
 import NoResults from '../components/typography/NoResults';
+import MobileSidebarFiltersButtons from '../components/sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
 
 // Data
 import { moviePages } from '../data/moviePages';
@@ -87,29 +88,32 @@ export default function MovieImages() {
             <Sidebar />
             <Main>
               <Article name={state.display.show_media_type}>
-                <div className='images__list'>
-                  {images?.length ? (
-                    images.map((image, i) => (
-                      <div
-                        className='img'
-                        key={image.file_path}
-                        onClick={() => openModal(i)}
-                      >
-                        <ImageComponent
+                <Container>
+                  <MobileSidebarFiltersButtons />
+                  <div className='images__list'>
+                    {images?.length ? (
+                      images.map((image, i) => (
+                        <div
+                          className='img'
                           key={image.file_path}
-                          src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
-                          fallback='/images/error_500x750.webp'
-                          width={500}
-                          alt={`${state.display.show_media_type}-${i}`}
-                        />
-                      </div>
-                    ))
-                  ) : (
-                    <NoResults
-                      text={`Please select a language to display ${state.display.show_media_type}.`}
-                    />
-                  )}
-                </div>
+                          onClick={() => openModal(i)}
+                        >
+                          <ImageComponent
+                            key={image.file_path}
+                            src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
+                            fallback='/images/error_500x750.webp'
+                            width={500}
+                            alt={`${state.display.show_media_type}-${i}`}
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <NoResults
+                        text={`Please select a language to display ${state.display.show_media_type}.`}
+                      />
+                    )}
+                  </div>
+                </Container>
               </Article>
             </Main>
           </Layout>
