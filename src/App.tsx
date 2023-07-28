@@ -23,6 +23,7 @@ import VideoPlayer from './components/videos/video_player/VideoPlayer';
 import ImageModal from './components/image/image_modal/ImageModal';
 import MobileMenu from './components/mobile_menu/MobileMenu';
 import AppContentWrapper from './components/AppContentWrapper';
+import Footer from './components/footer/Footer';
 
 // Pages
 import Home from './pages/Home';
@@ -152,6 +153,7 @@ function App() {
                           />
                           <Route path='*' element={<NotFound />} />
                         </Routes>
+                        <Footer />
                       </VideoContextComponent>
                     </SearchFiltersContextComponent>
                   </TvFiltersContextComponent>

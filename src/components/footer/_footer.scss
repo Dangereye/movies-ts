@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+  @include horizontal-padding;
+  background-color: $primary-color;
+  color: #fff;
+
+  .body-text {
+    margin: 0;
+  }
+}

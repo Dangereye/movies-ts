@@ -9,13 +9,17 @@ import Container from '../container/Container';
 import MobileMenuIcon from './mobile_menu_icon/MobileMenuIcon';
 import Navigation from '../navigation/Navigation';
 import SearchIcon from './search_icon/SearchIcon';
+import Logo from '../svg/Logo';
 
 export default function Navbar() {
   return (
     <div className='navbar'>
       <Container>
         <Link to='/' className='navbar__logo'>
-          Movies
+          <span>
+            <Logo />
+          </span>
+          <span>Movies</span>
         </Link>
         <div className='controls'>
           <Navigation
