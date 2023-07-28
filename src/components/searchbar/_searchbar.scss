@@ -49,6 +49,10 @@
     }
   }
 
+  &.active {
+    @include horizontal-padding;
+  }
+
   .container {
     position: relative;
   }
@@ -56,7 +60,6 @@
   &__form {
     display: flex;
     flex-direction: row;
-    @include horizontal-padding;
   }
 
   &__icon {
