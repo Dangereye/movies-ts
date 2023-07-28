@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 
 // Icons
-import { MdArrowBackIos } from 'react-icons/md';
+import { HiChevronLeft } from 'react-icons/hi';
 
 // Components
 import Container from '../container/Container';
@@ -27,8 +27,8 @@ export default function SubNavbar({ navigation = [] }: SubNavbarProps) {
     <div className='sub-navbar'>
       <Container>
         <Button
-          variant='btn--tertiary'
-          name={<MdArrowBackIos />}
+          variant='btn--secondary'
+          name={<HiChevronLeft />}
           onClick={handleClick}
         />
         <Navigation
