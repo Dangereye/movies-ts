@@ -6,7 +6,6 @@ import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
 import ErrorComponent from '../components/error/Error';
 import LoaderComponent from '../components/loader/Loader';
-import Container from '../components/container/Container';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -83,18 +82,18 @@ export default function LandingPage() {
             heading='Trending movies'
             data={movies?.results}
           />
+          <ArticleTvMin
+            variant='scroll-x'
+            name='trending-tv-shows'
+            heading='Trending TV shows'
+            data={tvshows?.results}
+          />
           <ArticlePeople
             variant='scroll-x'
             name='trending-people'
             heading='Trending people'
             data={people?.results}
             department
-          />
-          <ArticleTvMin
-            variant='scroll-x'
-            name='trending-tv-shows'
-            heading='Trending TV shows'
-            data={tvshows?.results}
           />
         </Main>
       </Section>
