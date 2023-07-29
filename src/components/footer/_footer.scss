@@ -6,17 +6,18 @@
 
   .heading {
     color: $heading-text-light;
+    margin-bottom: 1rem;
   }
 
   .body-text,
-  .small-text {
+  .small-text,
+  a {
     color: $body-text-light;
   }
 
   &__columns {
     border-bottom: 1px solid lighten($primary-color, 3%);
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    @include vertical-padding;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     column-gap: 8rem;
@@ -36,7 +37,6 @@
 
       a {
         font-size: $base-font-size;
-        color: #fff;
 
         @media (hover: hover) {
           &:hover {
