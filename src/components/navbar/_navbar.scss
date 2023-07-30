@@ -7,8 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 2rem 0;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   @include horizontal-padding;
   z-index: 100;
 
