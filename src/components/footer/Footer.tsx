@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
-import Container from '../container/Container';
+// Components
 import Logo from '../svg/Logo';
+import Container from '../container/Container';
 import BodyText from '../typography/BodyText';
 import HDiv from '../typography/HDiv';
 import SmallText from '../typography/SmallText';
-import { moviePages } from '../../data/moviePages';
 import FooterList from './FooterList';
+
+// Data
+import { moviePages } from '../../data/moviePages';
 import { tvPages } from '../../data/tvPages';
 import { peoplePages } from '../../data/peoplePages';
 
