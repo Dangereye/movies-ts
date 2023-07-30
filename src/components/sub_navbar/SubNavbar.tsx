@@ -30,6 +30,7 @@ export default function SubNavbar({ navigation = [] }: SubNavbarProps) {
           variant='btn--secondary'
           name={<HiChevronLeft />}
           onClick={handleClick}
+          ariaLabel='Go back'
         />
         <Navigation
           data={navigation}

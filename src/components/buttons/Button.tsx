@@ -12,6 +12,7 @@ type ButtonProps = {
   name: string | ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
+  ariaLabel?: string;
 };
 
 export default function Button({
@@ -21,6 +22,7 @@ export default function Button({
   onClick,
   type = 'button',
   disabled = false,
+  ariaLabel,
 }: ButtonProps) {
   return (
     <button
@@ -28,6 +30,7 @@ export default function Button({
       className={`btn ${variant} ${active ? 'active' : ''}`}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
     >
       {name}
     </button>
