@@ -1,14 +1,25 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 type SocialIconProps = {
   anchor: string | null | undefined;
+  ariaLabel: string;
   icon: ReactNode;
 };
 
-export default function SocialIcon({ anchor, icon }: SocialIconProps) {
+export default function SocialIcon({
+  anchor,
+  ariaLabel,
+  icon,
+}: SocialIconProps) {
   if (anchor && icon) {
     return (
-      <a className="social-icon" href={anchor} rel="noreferrer" target="_blank">
+      <a
+        className='social-icon'
+        aria-label={ariaLabel}
+        href={anchor}
+        rel='noreferrer'
+        target='_blank'
+      >
         {icon}
       </a>
     );

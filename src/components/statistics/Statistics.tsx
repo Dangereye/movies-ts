@@ -45,6 +45,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.facebook.com/${movie.external_ids.facebook_id}`
                   : null
               }
+              ariaLabel='facebook'
               icon={<BsFacebook />}
             />
             <SocialIcon
@@ -53,6 +54,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.twitter.com/${movie.external_ids.twitter_id}`
                   : null
               }
+              ariaLabel='twitter'
               icon={<BsTwitter />}
             />
             <SocialIcon
@@ -61,9 +63,14 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.instagram.com/${movie.external_ids.instagram_id}`
                   : null
               }
+              ariaLabel='instagram'
               icon={<BsInstagram />}
             />
-            <SocialIcon anchor={movie?.homepage} icon={<BsGlobe />} />
+            <SocialIcon
+              anchor={movie?.homepage}
+              ariaLabel='website'
+              icon={<BsGlobe />}
+            />
           </Wrapper>
         </Container>
       </div>
@@ -86,6 +93,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.facebook.com/${tv.external_ids.facebook_id}`
                   : null
               }
+              ariaLabel='facebook'
               icon={<BsFacebook />}
             />
             <SocialIcon
@@ -94,6 +102,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.twitter.com/${tv.external_ids.twitter_id}`
                   : null
               }
+              ariaLabel='twitter'
               icon={<BsTwitter />}
             />
             <SocialIcon
@@ -102,9 +111,14 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.instagram.com/${tv.external_ids.instagram_id}`
                   : null
               }
+              ariaLabel='instagram'
               icon={<BsInstagram />}
             />
-            <SocialIcon anchor={tv?.homepage} icon={<BsGlobe />} />
+            <SocialIcon
+              anchor={tv?.homepage}
+              ariaLabel='website'
+              icon={<BsGlobe />}
+            />
           </Wrapper>
         </Container>
       </div>
@@ -144,6 +158,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.facebook.com/${person.external_ids.facebook_id}`
                   : null
               }
+              ariaLabel='facebook'
               icon={<BsFacebook />}
             />
             <SocialIcon
@@ -152,6 +167,7 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.twitter.com/${person.external_ids.twitter_id}`
                   : null
               }
+              ariaLabel='twitter'
               icon={<BsTwitter />}
             />
             <SocialIcon
@@ -160,9 +176,14 @@ export default function Statistics({ movie, tv, person }: StatisticsProps) {
                   ? `https://www.instagram.com/${person.external_ids.instagram_id}`
                   : null
               }
+              ariaLabel='instagram'
               icon={<BsInstagram />}
             />
-            <SocialIcon anchor={person?.homepage} icon={<BsGlobe />} />
+            <SocialIcon
+              anchor={person?.homepage}
+              ariaLabel='website'
+              icon={<BsGlobe />}
+            />
           </Wrapper>
         </Container>
       </div>
