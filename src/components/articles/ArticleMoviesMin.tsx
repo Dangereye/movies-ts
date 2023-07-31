@@ -45,7 +45,7 @@ export default function ArticleMoviesMin({
                   src={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                      : 'error_500x750.webp'
+                      : '/images/error_500x750.webp'
                   }
                   fallback='/images/error_500x750.webp'
                   alt={item.title}
