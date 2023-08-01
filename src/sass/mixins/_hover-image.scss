@@ -5,8 +5,7 @@
 
   img {
     width: 100%;
-    height: auto;
-    min-height: 258px;
+    aspect-ratio: 2/3;
 
     transition: all 0.3s ease-out;
   }
