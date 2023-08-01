@@ -133,7 +133,11 @@ export default function TvDetails() {
                 renderContent={(item) => (
                   <>
                     <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                      src={
+                        item.poster_path
+                          ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
+                          : '/images/error_500x750.webp'
+                      }
                       fallback='/images/error_500x750.webp'
                       alt={item.name}
                     />

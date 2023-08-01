@@ -104,7 +104,11 @@ export default function TvSeason() {
                 {season?.episodes.map((episode) => (
                   <div className='episode' key={episode.id}>
                     <ImageComponent
-                      src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
+                      src={
+                        episode.still_path
+                          ? `https://image.tmdb.org/t/p/w500/${episode.still_path}`
+                          : '/images/error_1039x584.webp'
+                      }
                       width={539}
                       height={303}
                       alt={episode.name}
