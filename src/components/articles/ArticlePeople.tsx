@@ -70,7 +70,11 @@ export default function ArticlePeople<
             renderContent={(item) => (
               <>
                 <ImageComponent
-                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  src={
+                    item.profile_path
+                      ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
+                      : '/images/error_500x750.webp'
+                  }
                   fallback='/images/error_500x750.webp'
                   alt={item.name}
                 />

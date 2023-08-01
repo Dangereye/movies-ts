@@ -96,7 +96,11 @@ export default function ArticleImages() {
                 >
                   <ImageComponent
                     key={image.file_path}
-                    src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                    src={
+                      image.file_path
+                        ? `https://image.tmdb.org/t/p/w500/${image.file_path}`
+                        : '/images/error_500x750.webp'
+                    }
                     fallback='/images/error_500x750.webp'
                     width={500}
                     alt={`${state.display.show_media_type}-${i}`}

@@ -23,7 +23,11 @@ export default function ArticleProfileImages({
               <div className='img'>
                 <ImageComponent
                   key={img.file_path}
-                  src={`https://image.tmdb.org/t/p/w500/${img.file_path}`}
+                  src={
+                    img.file_path
+                      ? `https://image.tmdb.org/t/p/w500/${img.file_path}`
+                      : '/images/error_500x750.webp'
+                  }
                   fallback='/images/error_500x750.webp'
                   width={300}
                   height={450}
