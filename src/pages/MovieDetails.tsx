@@ -17,13 +17,12 @@ import UserScore from '../components/header/UserScore';
 import IconText from '../components/typography/IconText';
 import Main from '../components/main/Main';
 import Section from '../components/sections/Section';
+import Cards from '../components/cards/Cards';
 
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
 import ArticleImages from '../components/articles/ArticleImages';
 import ArticleReviews from '../components/articles/ArticleReviews';
-import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
-import ArticlePeople from '../components/articles/ArticlePeople';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
@@ -108,13 +107,20 @@ export default function MovieDetails() {
       <Statistics movie={data} />
       <Section>
         <Main>
-          <ArticlePeople
-            variant='scroll-x'
-            name='top-billed-cast'
-            heading='Top billed cast'
-            data={data?.credits?.cast}
-            character
+          <Cards
+            article
+            heading='top billed cast'
+            media_type='people'
             limit
+            variant='scroll-x'
+            data={data?.credits.cast}
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.known_for_department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
 
           <ArticleVideos data={data?.videos?.results} />
@@ -126,17 +132,33 @@ export default function MovieDetails() {
             image={data?.belongs_to_collection?.backdrop_path}
             id={data?.belongs_to_collection?.id}
           />
-          <ArticleMoviesMin
+          <Cards
+            article
+            heading='recommended'
+            media_type='movies'
             variant='scroll-x'
-            name='recommended-movies'
-            heading='Recommended'
-            data={data?.recommendations?.results}
+            data={data?.recommendations.results}
+            getId={(item) => item.id}
+            getLink={(item) => `/movies/${item.id}`}
+            getHeading={(item) => item.title}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticleMoviesMin
+          <Cards
+            article
+            heading='you may also enjoy'
+            media_type='movies'
             variant='scroll-x'
-            name='similar-movies'
-            heading='You may also enjoy...'
-            data={data?.similar?.results}
+            data={data?.similar.results}
+            getId={(item) => item.id}
+            getLink={(item) => `/movies/${item.id}`}
+            getHeading={(item) => item.title}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>
       </Section>
