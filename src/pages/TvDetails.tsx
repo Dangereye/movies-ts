@@ -5,13 +5,8 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/header/Header';
 import Overview from '../components/header/Overview';
 import Navigation from '../components/navigation/Navigation';
-import BodyText from '../components/typography/BodyText';
-import H2 from '../components/typography/H2';
 import Wrapper from '../components/wrapper/Wrapper';
 import CrewJobs from '../components/header/CrewJobs';
-import Container from '../components/container/Container';
-import ImageComponent from '../components/image/Image';
-import CardContent from '../components/cards/card/CardContent';
 import Statistics from '../components/statistics/Statistics';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Certificate from '../components/header/Certificate';
@@ -34,11 +29,8 @@ import { ITVShowFull } from '../interfaces/ITVShowFull';
 import { formatDate } from '../utilities/formatDate';
 
 // Articles
-import Article from '../components/articles/Article';
-import ArticleTvMin from '../components/articles/ArticleTvMin';
 import ArticleVideos from '../components/articles/ArticleVideos';
 import ArticleReviews from '../components/articles/ArticleReviews';
-import ArticlePeople from '../components/articles/ArticlePeople';
 import ArticleImages from '../components/articles/ArticleImages';
 
 // Data
@@ -112,61 +104,70 @@ export default function TvDetails() {
       <Statistics tv={tv} />
       <Section>
         <Main>
-          <ArticlePeople
-            variant='scroll-x'
-            name='tv-show-top-billed-cast'
-            heading='Top billed cast'
-            data={tv?.aggregate_credits?.cast}
-            character
+          <Cards
+            article
+            heading='top billed cast'
+            media_type='TV shows'
             limit
+            variant='scroll-x'
+            data={tv?.aggregate_credits.cast}
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.roles[0].character}
+            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
           />
+
           <ArticleVideos data={tv?.videos?.results} />
           <ArticleImages />
           <ArticleReviews data={tv?.reviews?.results} />
-          <Article name='tv-show-seasons'>
-            <Container>
-              <H2 heading='Seasons' />
-              <Cards
-                variant='scroll-x'
-                getId={(item) => item.id}
-                getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={
-                        item.poster_path
-                          ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                          : '/images/error_500x750.webp'
-                      }
-                      fallback='/images/error_500x750.webp'
-                      alt={item.name}
-                    />
-                    <CardContent heading={item.name}>
-                      <BodyText
-                        text={item.air_date ? formatDate(item.air_date) : 'TBC'}
-                      />
-                    </CardContent>
-                  </>
-                )}
-                data={tv?.seasons}
-                sort={(a, b) =>
-                  (b.air_date ? +new Date(b.air_date) : 0) -
-                  (a.air_date ? +new Date(a.air_date) : 0)
-                }
-              />
-            </Container>
-          </Article>
-          <ArticleTvMin
+          <Cards
+            article
+            heading='seasons'
+            media_type='TV shows'
+            limit
             variant='scroll-x'
-            name='recommended-tv-shows'
-            heading='Recommended'
-            data={tv?.recommendations?.results}
+            data={tv?.seasons}
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.air_date}
+            sortItems={(a, b) =>
+              (b.air_date ? +new Date(b.air_date) : 0) -
+              (a.air_date ? +new Date(a.air_date) : 0)
+            }
           />
-          <ArticleTvMin
+          <Cards
+            article
+            heading='recommended'
+            media_type='TV shows'
             variant='scroll-x'
-            name='similar-tv-shows'
-            heading='You may also enjoy...'
-            data={tv?.similar?.results}
+            data={tv?.recommendations.results}
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
+          />
+          <Cards
+            article
+            heading='you may also enjoy...'
+            media_type='TV shows'
+            variant='scroll-x'
+            data={tv?.similar.results}
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>
       </Section>
