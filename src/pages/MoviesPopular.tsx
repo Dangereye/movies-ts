@@ -6,13 +6,10 @@ import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
 import useAppend from '../hooks/useAppendMovie';
 
 // Components
-import CardContent from '../components/cards/card/CardContent';
-import ImageComponent from '../components/image/Image';
-import BodyText from '../components/typography/BodyText';
-import InfiniteCards from '../components/cards/InifinteCards';
-import ErrorComponent from '../components/error/Error';
-import NoResults from '../components/typography/NoResults';
 import LoaderComponent from '../components/loader/Loader';
+import ErrorComponent from '../components/error/Error';
+import CardsInfiniteScroll from '../components/cards/CardsInfiniteScroll';
+import NoResults from '../components/typography/NoResults';
 
 // Template
 import PageWithSidebar from '../components/page_templates/PageWithSidebar';
@@ -103,27 +100,14 @@ export default function MoviesPopular() {
       title={title}
       name={name}
     >
-      <InfiniteCards
+      <CardsInfiniteScroll
+        data={data.pages}
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}
-        renderContent={(item) => (
-          <>
-            <ImageComponent
-              key={item.title}
-              src={
-                item.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                  : '/images/error_500x750.webp'
-              }
-              fallback='/images/error_500x750.webp'
-              alt={item.title}
-            />
-            <CardContent heading={item.title} vote={item.vote_average}>
-              <BodyText text={`${formatDate(item.release_date)}`} />
-            </CardContent>
-          </>
-        )}
-        data={data.pages}
+        getHeading={(item) => item.title}
+        getImage={(item) => item.poster_path}
+        getVotes={(item) => item.vote_average}
+        getBodyText={(item) => `${formatDate(item.release_date)}`}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
