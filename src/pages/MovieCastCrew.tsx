@@ -148,7 +148,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={art}
-            getId={(item) => item.id}
+            getId={(item) => `art-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -162,7 +162,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={camera}
-            getId={(item) => item.id}
+            getId={(item) => `camera-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -176,7 +176,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={costume}
-            getId={(item) => item.id}
+            getId={(item) => `costume-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -190,7 +190,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={crew}
-            getId={(item) => item.id}
+            getId={(item) => `crew-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -204,7 +204,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={directing}
-            getId={(item) => item.id}
+            getId={(item) => `directing-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -218,7 +218,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={editing}
-            getId={(item) => item.id}
+            getId={(item) => `editing-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -232,7 +232,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={production}
-            getId={(item) => item.id}
+            getId={(item) => `production-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -246,7 +246,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={sound}
-            getId={(item) => item.id}
+            getId={(item) => `sound-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -260,7 +260,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={visualEffects}
-            getId={(item) => item.id}
+            getId={(item) => `visual-effects-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
@@ -274,7 +274,7 @@ export default function MovieCastCrew() {
             media_type='people'
             variant='list'
             data={writing}
-            getId={(item) => item.id}
+            getId={(item) => `writing-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}

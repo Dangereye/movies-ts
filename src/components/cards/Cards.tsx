@@ -16,7 +16,7 @@ type CardsProps<T> = {
   limit?: boolean;
   variant: 'scroll-x' | 'list';
   data: T[] | undefined;
-  getId: (item: T) => number;
+  getId: (item: T) => number | string;
   getLink: (item: T) => string;
   getHeading: (item: T) => string;
   getImage: (item: T) => string | null;
