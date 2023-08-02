@@ -7,8 +7,6 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { RiCake2Line } from 'react-icons/ri';
 
 // Articles
-import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
-import ArticleTvMin from '../components/articles/ArticleTvMin';
 import ArticleProfileImages from '../components/articles/ArticleProfileImages';
 
 // Components
@@ -23,6 +21,7 @@ import Main from '../components/main/Main';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import Section from '../components/sections/Section';
+import Cards from '../components/cards/Cards';
 
 // Data
 import { peoplePages } from '../data/peoplePages';
@@ -103,29 +102,61 @@ export default function TvDetails() {
       <Section>
         <Main>
           <ArticleProfileImages data={person?.images.profiles} />
-          <ArticleMoviesMin
+          <Cards
+            article
+            heading='movie cast'
+            media_type='movies'
             variant='scroll-x'
-            name='movie-cast'
-            heading='Movie cast'
             data={person?.movie_credits.cast}
+            getId={(item) => item.id}
+            getLink={(item) => `/movies/${item.id}`}
+            getHeading={(item) => item.title}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticleMoviesMin
+          <Cards
+            article
+            heading='movie crew'
+            media_type='movies'
             variant='scroll-x'
-            name='movie-crew'
-            heading='Movie crew'
             data={person?.movie_credits.crew}
+            getId={(item) => item.id}
+            getLink={(item) => `/movies/${item.id}`}
+            getHeading={(item) => item.title}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticleTvMin
+          <Cards
+            article
+            heading='TV show cast'
+            media_type='TV shows'
             variant='scroll-x'
-            name='tv-cast'
-            heading='TV cast'
             data={person?.tv_credits.cast}
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticleTvMin
+          <Cards
+            article
+            heading='TV show crew'
+            media_type='TV shows'
             variant='scroll-x'
-            name='tv-crew'
-            heading='TV crew'
             data={person?.tv_credits.crew}
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>
       </Section>
