@@ -23,8 +23,6 @@ import Wrapper from '../components/wrapper/Wrapper';
 import Navigation from '../components/navigation/Navigation';
 import BodyText from '../components/typography/BodyText';
 import Cards from '../components/cards/Cards';
-import ImageComponent from '../components/image/Image';
-import CardContent from '../components/cards/card/CardContent';
 import Section from '../components/sections/Section';
 
 // Interfaces
@@ -133,33 +131,16 @@ export default function Collections() {
               <H2 heading='Movies in collection' />
               <BodyText text={`Showing ${data?.parts.length} movies`} />
               <Cards
+                media_type='movies'
                 variant='list'
                 data={data?.parts}
                 getId={(item) => item.id}
                 getLink={(item) => `/movies/${item.id}`}
-                renderContent={(item) => (
-                  <>
-                    <ImageComponent
-                      src={
-                        item.poster_path
-                          ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                          : '/images/error_500x750.webp'
-                      }
-                      fallback='/images/error_500x750.webp'
-                      alt={item.title}
-                    />
-                    <CardContent vote={item.vote_average} heading={item.title}>
-                      <BodyText
-                        text={
-                          item.release_date
-                            ? formatDate(item.release_date)
-                            : 'TBC'
-                        }
-                      />
-                    </CardContent>
-                  </>
-                )}
-                sort={(a, b) =>
+                getHeading={(item) => item.title}
+                getImage={(item) => item.poster_path}
+                getVotes={(item) => item.vote_average}
+                getBodyText={(item) => `${formatDate(item.release_date)}`}
+                sortItems={(a, b) =>
                   (b.release_date ? +new Date(b.release_date) : 0) -
                   (a.release_date ? +new Date(a.release_date) : 0)
                 }
