@@ -18,13 +18,10 @@ import { IPerson } from '../interfaces/IPerson';
 import { SearchFiltersContext } from '../contexts/SearchFiltersContext';
 
 // Components
-import BodyText from '../components/typography/BodyText';
-import InfiniteCards from '../components/cards/InifinteCards';
-import ImageComponent from '../components/image/Image';
-import CardContent from '../components/cards/card/CardContent';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import NoResults from '../components/typography/NoResults';
+import CardsInfiniteScroll from '../components/cards/CardsInfiniteScroll';
 
 // Template
 import PageWithSidebar from '../components/page_templates/PageWithSidebar';
@@ -135,26 +132,14 @@ export default function Search() {
         title={title}
         name='search-results-movie'
       >
-        <InfiniteCards
+        <CardsInfiniteScroll
+          data={movies.pages}
           getId={(item) => item.id}
           getLink={(item) => `/movies/${item.id}`}
-          renderContent={(item) => (
-            <>
-              <ImageComponent
-                src={
-                  item.poster_path
-                    ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                    : '/images/error_500x750.webp'
-                }
-                fallback='/images/error_500x750.webp'
-                alt={item.title}
-              />
-              <CardContent heading={item.title} vote={item.vote_average}>
-                <BodyText text={`${formatDate(item.release_date)}`} />
-              </CardContent>
-            </>
-          )}
-          data={movies.pages}
+          getHeading={(item) => item.title}
+          getImage={(item) => item.poster_path}
+          getVotes={(item) => item.vote_average}
+          getBodyText={(item) => `${formatDate(item.release_date)}`}
           hasNextPage={moviesHasNextPage}
           fetchNextPage={moviesFetchNextPage}
         />
@@ -173,26 +158,14 @@ export default function Search() {
         title={title}
         name='search-results-tv'
       >
-        <InfiniteCards
+        <CardsInfiniteScroll
+          data={tvshows.pages}
           getId={(item) => item.id}
           getLink={(item) => `/tv/${item.id}`}
-          renderContent={(item) => (
-            <>
-              <ImageComponent
-                src={
-                  item.poster_path
-                    ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                    : '/images/error_500x750.webp'
-                }
-                fallback='/images/error_500x750.webp'
-                alt={item.name}
-              />
-              <CardContent heading={item.name} vote={item.vote_average}>
-                <BodyText text={`${formatDate(item.first_air_date)}`} />
-              </CardContent>
-            </>
-          )}
-          data={tvshows.pages}
+          getHeading={(item) => item.name}
+          getImage={(item) => item.poster_path}
+          getVotes={(item) => item.vote_average}
+          getBodyText={(item) => `${formatDate(item.first_air_date)}`}
           hasNextPage={tvshowsHasNextPage}
           fetchNextPage={tvshowsFetchNextPage}
         />
@@ -211,26 +184,14 @@ export default function Search() {
         title={title}
         name='search-results-people'
       >
-        <InfiniteCards
+        <CardsInfiniteScroll
+          data={people.pages}
           getId={(item) => item.id}
           getLink={(item) => `/people/${item.id}`}
-          renderContent={(item) => (
-            <>
-              <ImageComponent
-                src={
-                  item.profile_path
-                    ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
-                    : '/images/error_500x750.webp'
-                }
-                fallback='/images/error_500x750.webp'
-                alt={item.name}
-              />
-              <CardContent heading={item.name}>
-                <BodyText text={item.known_for_department} />
-              </CardContent>
-            </>
-          )}
-          data={people.pages}
+          getHeading={(item) => item.name}
+          getImage={(item) => item.profile_path}
+          getVotes={(item) => undefined}
+          getBodyText={(item) => item.known_for_department}
           hasNextPage={peopleHasNextPage}
           fetchNextPage={peopleFetchNextPage}
         />
