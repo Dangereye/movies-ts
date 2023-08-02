@@ -17,8 +17,8 @@ import Main from '../components/main/Main';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import Header from '../components/header/Header';
-import ArticlePeople from '../components/articles/ArticlePeople';
 import Section from '../components/sections/Section';
+import Cards from '../components/cards/Cards';
 
 // Data
 import { tvPages } from '../data/tvPages';
@@ -127,83 +127,159 @@ export default function TvCastCrew() {
       />
       <Section>
         <Main>
-          <ArticlePeople
-            variant='list'
-            name='cast'
+          <Cards
+            article
             heading='cast'
-            data={data?.aggregate_credits?.cast}
-            character
-            sort={(a, b) => b.total_episode_count - a.total_episode_count}
-          />
-          <ArticlePeople
+            media_type='people'
             variant='list'
-            name='art-crew'
-            heading='Art'
+            data={data?.credits.cast}
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.character}
+            sortItems={(a, b) => b.popularity - a.popularity}
+          />
+          <Cards
+            article
+            heading='art'
+            media_type='people'
+            variant='list'
             data={art}
-            crew
+            getId={(item) => `art-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
+          <Cards
+            article
+            heading='camera crew'
+            media_type='people'
             variant='list'
-            name='camera-crew'
-            heading='camera'
             data={camera}
-            crew
+            getId={(item) => `camera-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='costume-and-make-up-crew'
+          <Cards
+            article
             heading='costume & make-up'
+            media_type='people'
+            variant='list'
             data={costume}
-            crew
+            getId={(item) => `costume-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='crew'
+          <Cards
+            article
             heading='crew'
+            media_type='people'
+            variant='list'
             data={crew}
-            crew
+            getId={(item) => `crew-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='directing-crew'
+          <Cards
+            article
             heading='directing'
+            media_type='people'
+            variant='list'
             data={directing}
-            crew
+            getId={(item) => `directing-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='editing-crew'
+          <Cards
+            article
             heading='editing'
+            media_type='people'
+            variant='list'
             data={editing}
-            crew
+            getId={(item) => `editing-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='production-crew'
+          <Cards
+            article
             heading='production'
+            media_type='people'
+            variant='list'
             data={production}
-            crew
+            getId={(item) => `production-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='sound-crew'
+          <Cards
+            article
             heading='sound'
+            media_type='people'
+            variant='list'
             data={sound}
-            crew
+            getId={(item) => `sound-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
-            variant='list'
-            name='visual-effects-crew'
+          <Cards
+            article
             heading='visual effects'
-            data={visualEffects}
-            crew
-          />
-          <ArticlePeople
+            media_type='people'
             variant='list'
-            name='writing-crew'
+            data={visualEffects}
+            getId={(item) => `visual-effects-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
+          />
+          <Cards
+            article
             heading='writing'
+            media_type='people'
+            variant='list'
             data={writing}
-            crew
+            getId={(item) => `writing-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>
       </Section>
