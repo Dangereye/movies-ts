@@ -13,13 +13,10 @@ import { IPage } from '../interfaces/IPage';
 import { IMovieMin } from '../interfaces/IMovieMin';
 
 // Components
-import InfiniteCards from '../components/cards/InifinteCards';
-import ImageComponent from '../components/image/Image';
-import CardContent from '../components/cards/card/CardContent';
-import BodyText from '../components/typography/BodyText';
+import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import NoResults from '../components/typography/NoResults';
-import LoaderComponent from '../components/loader/Loader';
+import CardsInfiniteScroll from '../components/cards/CardsInfiniteScroll';
 
 // Template
 import PageWithSidebar from '../components/page_templates/PageWithSidebar';
@@ -104,26 +101,14 @@ export default function MoviesTopRated() {
       title={title}
       name={name}
     >
-      <InfiniteCards
+      <CardsInfiniteScroll
+        data={data.pages}
         getId={(item) => item.id}
         getLink={(item) => `/movies/${item.id}`}
-        renderContent={(item) => (
-          <>
-            <ImageComponent
-              src={
-                item.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                  : '/images/error_500x750.webp'
-              }
-              fallback='/images/error_500x750.webp'
-              alt={item.title}
-            />
-            <CardContent heading={item.title} vote={item.vote_average}>
-              <BodyText text={`${formatDate(item.release_date)}`} />
-            </CardContent>
-          </>
-        )}
-        data={data.pages}
+        getHeading={(item) => item.title}
+        getImage={(item) => item.poster_path}
+        getVotes={(item) => item.vote_average}
+        getBodyText={(item) => `${formatDate(item.release_date)}`}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
