@@ -19,10 +19,7 @@ import useCreateGenres from '../hooks/useCreateGenres';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import NoResults from '../components/typography/NoResults';
-import InfiniteCards from '../components/cards/InifinteCards';
-import ImageComponent from '../components/image/Image';
-import CardContent from '../components/cards/card/CardContent';
-import BodyText from '../components/typography/BodyText';
+import CardsInfiniteScroll from '../components/cards/CardsInfiniteScroll';
 
 // Templates
 import Page from '../components/page_templates/Page';
@@ -85,26 +82,14 @@ export default function TvGenre() {
 
   return (
     <Page navigation={tvPages} title={title} name={name}>
-      <InfiniteCards
+      <CardsInfiniteScroll
+        data={data.pages}
         getId={(item) => item.id}
         getLink={(item) => `/tv/${item.id}`}
-        renderContent={(item) => (
-          <>
-            <ImageComponent
-              src={
-                item.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                  : '/images/error_500x750.webp'
-              }
-              fallback='/images/error_500x750.webp'
-              alt={item.name}
-            />
-            <CardContent heading={item.name} vote={item.vote_average}>
-              <BodyText text={`${formatDate(item.first_air_date)}`} />
-            </CardContent>
-          </>
-        )}
-        data={data.pages}
+        getHeading={(item) => item.name}
+        getImage={(item) => item.poster_path}
+        getVotes={(item) => item.vote_average}
+        getBodyText={(item) => `${formatDate(item.first_air_date)}`}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
