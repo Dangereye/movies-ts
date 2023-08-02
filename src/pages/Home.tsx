@@ -6,6 +6,7 @@ import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
 import ErrorComponent from '../components/error/Error';
 import LoaderComponent from '../components/loader/Loader';
+import Cards from '../components/cards/Cards';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -16,10 +17,8 @@ import { ITVShowMin } from '../interfaces/ITVShowMin';
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
 
-// Articles
-import ArticleMoviesMin from '../components/articles/ArticleMoviesMin';
-import ArticlePeople from '../components/articles/ArticlePeople';
-import ArticleTvMin from '../components/articles/ArticleTvMin';
+// Utilities
+import { formatDate } from '../utilities/formatDate';
 
 export default function LandingPage() {
   const title = 'Ready to be entertained?';
@@ -33,25 +32,21 @@ export default function LandingPage() {
   } = useMakeQuery<IPage<IMovieMin>>('trending movies', 'trending/movie/week');
 
   const {
-    data: people,
-    isLoading: peopleIsLoading,
-    isError: peopleIsError,
-  } = useMakeQuery<IPage<IPerson>>('trending people', 'trending/person/week');
-
-  const {
     data: tvshows,
     isLoading: tvshowsIsLoading,
     isError: tvshowsIsError,
   } = useMakeQuery<IPage<ITVShowMin>>('trending tvshows', 'trending/tv/week');
 
-  if (moviesIsLoading || peopleIsLoading || tvshowsIsLoading) {
+  const {
+    data: people,
+    isLoading: peopleIsLoading,
+    isError: peopleIsError,
+  } = useMakeQuery<IPage<IPerson>>('trending people', 'trending/person/week');
+
+  if (moviesIsLoading || tvshowsIsLoading || peopleIsLoading) {
     return (
       <>
-        <Header
-          variant='header__center'
-          title={title}
-          bgImage={movies?.results[0]?.backdrop_path}
-        >
+        <Header variant='header__center' title={title}>
           <HDiv variant='heading--h2' heading={heading} />
           <Searchbar fixed />
         </Header>
@@ -60,7 +55,7 @@ export default function LandingPage() {
     );
   }
 
-  if (moviesIsError || peopleIsError || tvshowsIsError) {
+  if (moviesIsError || tvshowsIsError || peopleIsError) {
     return <ErrorComponent variant='section' />;
   }
 
@@ -76,24 +71,47 @@ export default function LandingPage() {
       </Header>
       <Section>
         <Main>
-          <ArticleMoviesMin
+          <Cards
+            article
+            heading='trending movies'
+            media_type='movies'
             variant='scroll-x'
-            name='trending-movies'
-            heading='Trending movies'
             data={movies?.results}
+            getId={(item) => item.id}
+            getLink={(item) => `/movies/${item.id}`}
+            getHeading={(item) => item.title}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticleTvMin
+          <Cards
+            article
+            heading='trending TV shows'
+            media_type='TV shows'
             variant='scroll-x'
-            name='trending-tv-shows'
-            heading='Trending TV shows'
             data={tvshows?.results}
+            getId={(item) => item.id}
+            getLink={(item) => `/tv/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
-          <ArticlePeople
+          <Cards
+            article
+            heading='trending people'
+            media_type='people'
             variant='scroll-x'
-            name='trending-people'
-            heading='Trending people'
             data={people?.results}
-            department
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getVotes={(item) => undefined}
+            getBodyText={(item) => item.known_for_department}
+            sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>
       </Section>

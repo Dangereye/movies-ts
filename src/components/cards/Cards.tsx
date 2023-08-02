@@ -1,45 +1,80 @@
-import { ReactNode } from 'react';
-
+// React router
 import { Link } from 'react-router-dom';
-import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
+
+// Components
+import ImageComponent from '../image/Image';
+import CardContent from './card/CardContent';
+import BodyText from '../typography/BodyText';
+import Article from '../articles/Article';
+import Container from '../container/Container';
+import H2 from '../typography/H2';
 
 type CardsProps<T> = {
+  article?: boolean;
+  heading?: string;
+  media_type: 'movies' | 'TV shows' | 'people';
   variant: 'scroll-x' | 'list';
+  data: T[] | undefined;
   getId: (item: T) => number;
   getLink: (item: T) => string;
-  renderContent: (item: T) => ReactNode;
-  data: T[] | undefined;
-  sort?: (a: T, b: T) => number;
-  limit?: boolean;
+  getHeading: (item: T) => string;
+  getImage: (item: T) => string | null;
+  getVotes: (item: T) => number | undefined;
+  getBodyText: (item: T) => string;
+  sortItems: (a: T, b: T) => number;
 };
 
-export default function Cards<T extends { id: number }>({
+export default function Cards<T>({
+  article = false,
+  heading = 'article heading',
+  media_type,
   variant,
+  data,
   getId,
   getLink,
-  renderContent,
-  data,
-  sort,
-  limit,
+  getHeading,
+  getImage,
+  getVotes,
+  getBodyText,
+  sortItems,
 }: CardsProps<T>) {
-  if (data && sort) {
-    data = data.sort(sort);
-  }
+  const content = (
+    <div className={`cards cards__${variant}`}>
+      {data?.sort(sortItems).map((item) => (
+        <Link key={getId(item)} to={getLink(item)} className='card'>
+          <ImageComponent
+            key={getHeading(item)}
+            src={
+              getImage(item)
+                ? `https://image.tmdb.org/t/p/w500/${getImage(item)}`
+                : '/images/error_500x750.webp'
+            }
+            fallback='/images/error_500x750.webp'
+            alt={getHeading(item)}
+          />
+          <CardContent heading={getHeading(item)} vote={getVotes(item)}>
+            <BodyText text={getBodyText(item)} />
+          </CardContent>
+        </Link>
+      ))}
+    </div>
+  );
 
-  if (data && data.length > 9 && limit) {
-    data = data.slice(0, 10);
-  }
-  if (data && data.length > 0) {
-    const filtered = removeDuplicatesById(data);
+  if (data && data.length > 0 && article) {
     return (
-      <div className={`cards cards__${variant}`}>
-        {filtered.map((item) => (
-          <Link key={getId(item)} to={getLink(item)} className='card'>
-            {renderContent(item)}
-          </Link>
-        ))}
-      </div>
+      <Article name={heading}>
+        <Container>
+          <H2 heading={heading} />
+          <BodyText text={`Showing ${data?.length} ${media_type}`} />
+          {content}
+        </Container>
+      </Article>
     );
   }
+
+  if (data && data.length > 0) {
+    return content;
+  }
+
   return null;
 }
