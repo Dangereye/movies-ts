@@ -146,7 +146,7 @@ export default function TvDetails() {
             heading='recommended'
             media_type='TV shows'
             variant='scroll-x'
-            data={tv?.recommendations.results}
+            data={tv?.recommendations?.results}
             getId={(item) => item.id}
             getLink={(item) => `/tv/${item.id}`}
             getHeading={(item) => item.name}
@@ -160,7 +160,7 @@ export default function TvDetails() {
             heading='you may also enjoy...'
             media_type='TV shows'
             variant='scroll-x'
-            data={tv?.similar.results}
+            data={tv?.similar?.results}
             getId={(item) => item.id}
             getLink={(item) => `/tv/${item.id}`}
             getHeading={(item) => item.name}
