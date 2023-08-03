@@ -133,7 +133,6 @@ export default function TvDetails() {
             article
             heading='seasons'
             media_type='TV shows'
-            limit
             variant='scroll-x'
             data={tv?.seasons}
             getId={(item) => item.id}
@@ -141,7 +140,7 @@ export default function TvDetails() {
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
             getVotes={(item) => undefined}
-            getBodyText={(item) => item.air_date}
+            getBodyText={(item) => `${formatDate(item.air_date)}`}
             sortItems={(a, b) =>
               (b.air_date ? +new Date(b.air_date) : 0) -
               (a.air_date ? +new Date(a.air_date) : 0)
@@ -158,7 +157,7 @@ export default function TvDetails() {
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            getBodyText={(item) => formatDate(item.first_air_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards

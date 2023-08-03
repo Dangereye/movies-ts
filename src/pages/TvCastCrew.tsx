@@ -38,7 +38,7 @@ export default function TvCastCrew() {
   const { data, isError, isLoading } = useMakeQuery<ITVShowFull>(
     `tv-${tvId}`,
     `tv/${tvId}`,
-    `&append_to_response=aggregate_credits`
+    `&append_to_response=credits,aggregate_credits`
   );
 
   useEffect(() => {
@@ -132,7 +132,7 @@ export default function TvCastCrew() {
             heading='cast'
             media_type='people'
             variant='list'
-            data={data?.credits.cast}
+            data={data?.credits?.cast}
             getId={(item) => item.id}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}

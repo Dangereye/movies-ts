@@ -21,7 +21,7 @@ type CardsProps<T> = {
   getHeading: (item: T) => string;
   getImage: (item: T) => string | null;
   getVotes: (item: T) => number | undefined;
-  getBodyText: (item: T) => string;
+  getBodyText: (item: T) => string | null;
   sortItems: (a: T, b: T) => number;
   children?: React.ReactNode;
 };
