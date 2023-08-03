@@ -23,6 +23,7 @@ type CardsProps<T> = {
   getVotes: (item: T) => number | undefined;
   getBodyText: (item: T) => string;
   sortItems: (a: T, b: T) => number;
+  children?: React.ReactNode;
 };
 
 export default function Cards<T>({
@@ -39,6 +40,7 @@ export default function Cards<T>({
   getVotes,
   getBodyText,
   sortItems,
+  children,
 }: CardsProps<T>) {
   const { pathname } = useLocation();
   const content = (
@@ -75,18 +77,7 @@ export default function Cards<T>({
             text={`Showing ${limit ? '10' : data?.length} ${media_type}`}
           />
           {content}
-          {media_type === 'people' &&
-            (pathname.includes('movies') || pathname.includes('tv')) &&
-            !pathname.includes('cast-crew') && (
-              <div className='buttons'>
-                <Link
-                  to={`${pathname}/cast-crew`}
-                  className='btn btn--tertiary'
-                >
-                  View all cast & crew
-                </Link>
-              </div>
-            )}
+          {children}
         </Container>
       </Article>
     );
