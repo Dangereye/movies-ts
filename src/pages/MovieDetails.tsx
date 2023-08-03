@@ -113,13 +113,13 @@ export default function MovieDetails() {
             media_type='people'
             limit
             variant='scroll-x'
-            data={data?.credits.cast}
+            data={data?.credits?.cast}
             getId={(item) => item.id}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
             getVotes={(item) => undefined}
-            getBodyText={(item) => item.known_for_department}
+            getBodyText={(item) => item.character}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
 
@@ -137,7 +137,7 @@ export default function MovieDetails() {
             heading='recommended'
             media_type='movies'
             variant='scroll-x'
-            data={data?.recommendations.results}
+            data={data?.recommendations?.results}
             getId={(item) => item.id}
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
@@ -151,7 +151,7 @@ export default function MovieDetails() {
             heading='you may also enjoy'
             media_type='movies'
             variant='scroll-x'
-            data={data?.similar.results}
+            data={data?.similar?.results}
             getId={(item) => item.id}
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}

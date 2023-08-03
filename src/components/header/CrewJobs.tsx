@@ -58,7 +58,11 @@ export default function CrewJobs({ credits }: CrewJobProps) {
               <Wrapper name='profile' variant='flex' key={person.name}>
                 <Link to={`/people/${person.id}`}>
                   <ImageComponent
-                    src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                    src={
+                      person.profile_path
+                        ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+                        : '/images/error_100x100.webp'
+                    }
                     fallback='/images/error_100x100.webp'
                     width={100}
                     height={100}
