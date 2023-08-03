@@ -75,7 +75,8 @@ export default function Cards<T>({
             text={`Showing ${limit ? '10' : data?.length} ${media_type}`}
           />
           {content}
-          {(pathname.includes('movies') || pathname.includes('tv')) &&
+          {media_type === 'people' &&
+            (pathname.includes('movies') || pathname.includes('tv')) &&
             !pathname.includes('cast-crew') && (
               <div className='buttons'>
                 <Link
