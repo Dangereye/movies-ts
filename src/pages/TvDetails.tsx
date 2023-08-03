@@ -1,5 +1,5 @@
 // React router
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // Components
 import Header from '../components/header/Header';
@@ -118,7 +118,13 @@ export default function TvDetails() {
             getVotes={(item) => undefined}
             getBodyText={(item) => item.roles[0].character}
             sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
-          />
+          >
+            <div className='buttons'>
+              <Link to={`/tv/${tvId}/cast-crew`} className='btn btn--tertiary'>
+                View all cast & crew
+              </Link>
+            </div>
+          </Cards>
 
           <ArticleVideos data={tv?.videos?.results} />
           <ArticleImages />

@@ -1,5 +1,5 @@
 // React router
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // Components
 import LoaderComponent from '../components/loader/Loader';
@@ -121,7 +121,16 @@ export default function MovieDetails() {
             getVotes={(item) => undefined}
             getBodyText={(item) => item.character}
             sortItems={(a, b) => b.popularity - a.popularity}
-          />
+          >
+            <div className='buttons'>
+              <Link
+                to={`/movies/${movieId}/cast-crew`}
+                className='btn btn--tertiary'
+              >
+                View all cast & crew
+              </Link>
+            </div>
+          </Cards>
 
           <ArticleVideos data={data?.videos?.results} />
           <ArticleImages />
