@@ -38,6 +38,7 @@ import { tvPages } from '../data/tvPages';
 
 // Icons
 import { RxCalendar } from 'react-icons/rx';
+import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -110,13 +111,15 @@ export default function TvDetails() {
             media_type='TV shows'
             limit
             variant='scroll-x'
-            data={tv?.aggregate_credits.cast}
+            data={tv?.aggregate_credits?.cast}
             getId={(item) => item.id}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
             getBodyText={(item) => item.roles[0].character}
+            getSmallText={(item) =>
+              formatEpisodeCount(item.total_episode_count)
+            }
             sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
           >
             <div className='buttons'>
@@ -139,8 +142,8 @@ export default function TvDetails() {
             getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => `${formatDate(item.air_date)}`}
+            getBodyText={(item) => formatDate(item.air_date)}
+            getSmallText={(item) => formatEpisodeCount(item.episode_count)}
             sortItems={(a, b) =>
               (b.air_date ? +new Date(b.air_date) : 0) -
               (a.air_date ? +new Date(a.air_date) : 0)
@@ -171,7 +174,7 @@ export default function TvDetails() {
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
+            getBodyText={(item) => formatDate(item.first_air_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>

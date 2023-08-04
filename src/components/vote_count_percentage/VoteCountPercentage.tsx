@@ -1,5 +1,5 @@
 type VoteCountPercentageProps = {
-  vote: number | undefined;
+  vote: number | null | undefined;
   large?: boolean;
 };
 
@@ -29,8 +29,8 @@ export default function VoteCountPercentage({
         <div
           className={
             large
-              ? "vote-count-percentage vote-count-percentage__large"
-              : "vote-count-percentage"
+              ? 'vote-count-percentage vote-count-percentage__large'
+              : 'vote-count-percentage'
           }
         >
           <svg>
@@ -42,10 +42,10 @@ export default function VoteCountPercentage({
               style={{
                 stroke:
                   vote >= 7
-                    ? "green"
+                    ? 'green'
                     : vote < 7 && vote > 5.1
-                    ? "orange"
-                    : "red",
+                    ? 'orange'
+                    : 'red',
                 strokeDasharray: strokeDashArray,
                 strokeDashoffset:
                   strokeDashArray -
@@ -53,7 +53,7 @@ export default function VoteCountPercentage({
               }}
             />
           </svg>
-          <div className="number">
+          <div className='number'>
             {formatAvgVotePercentage(vote)}
             <sup>%</sup>
           </div>
@@ -62,8 +62,8 @@ export default function VoteCountPercentage({
         <div
           className={
             large
-              ? "vote-count-percentage vote-count-percentage__large"
-              : "vote-count-percentage"
+              ? 'vote-count-percentage vote-count-percentage__large'
+              : 'vote-count-percentage'
           }
         >
           <svg>
@@ -73,13 +73,13 @@ export default function VoteCountPercentage({
               cy={cy}
               r={r}
               style={{
-                stroke: "#f2f2f2",
+                stroke: '#f2f2f2',
                 strokeDasharray: strokeDashArray,
                 strokeDashoffset: 0,
               }}
             />
           </svg>
-          <div className="number">NR</div>
+          <div className='number'>NR</div>
         </div>
       ) : null}
     </>

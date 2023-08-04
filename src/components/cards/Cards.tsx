@@ -8,6 +8,7 @@ import BodyText from '../typography/BodyText';
 import Article from '../articles/Article';
 import Container from '../container/Container';
 import H2 from '../typography/H2';
+import SmallText from '../typography/SmallText';
 
 type CardsProps<T> = {
   article?: boolean;
@@ -20,8 +21,9 @@ type CardsProps<T> = {
   getLink: (item: T) => string;
   getHeading: (item: T) => string;
   getImage: (item: T) => string | null;
-  getVotes: (item: T) => number | undefined;
+  getVotes?: (item: T) => number | null | undefined;
   getBodyText: (item: T) => string | null;
+  getSmallText?: (item: T) => string | null;
   sortItems: (a: T, b: T) => number;
   children?: React.ReactNode;
 };
@@ -39,6 +41,7 @@ export default function Cards<T>({
   getImage,
   getVotes,
   getBodyText,
+  getSmallText,
   sortItems,
   children,
 }: CardsProps<T>) {
@@ -60,8 +63,12 @@ export default function Cards<T>({
               fallback='/images/error_500x750.webp'
               alt={getHeading(item)}
             />
-            <CardContent heading={getHeading(item)} vote={getVotes(item)}>
+            <CardContent
+              heading={getHeading(item)}
+              vote={getVotes && getVotes(item)}
+            >
               <BodyText text={getBodyText(item)} />
+              <SmallText text={getSmallText && getSmallText(item)} />
             </CardContent>
           </Link>
         ))}
