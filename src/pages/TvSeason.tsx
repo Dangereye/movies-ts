@@ -12,28 +12,30 @@ import { ISeason } from '../interfaces/ISeason';
 import Main from '../components/main/Main';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
-import Article from '../components/articles/Article';
-import Container from '../components/container/Container';
 import CrewJobs from '../components/header/CrewJobs';
 import Header from '../components/header/Header';
 import Overview from '../components/header/Overview';
-import ImageComponent from '../components/image/Image';
 import Navigation from '../components/navigation/Navigation';
-import StarRating from '../components/star_rating/StarRating';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
-import BodyText from '../components/typography/BodyText';
-import H2 from '../components/typography/H2';
-import HDiv from '../components/typography/HDiv';
-import SmallText from '../components/typography/SmallText';
 import Wrapper from '../components/wrapper/Wrapper';
 import Section from '../components/sections/Section';
+import Cards from '../components/cards/Cards';
+import IconText from '../components/typography/IconText';
+import Certificate from '../components/header/Certificate';
+
+// Articles
+import ArticleVideos from '../components/articles/ArticleVideos';
+import ArticleSeasonEpisodes from '../components/articles/ArticleSeasonEpisodes';
 
 // Data
 import { tvPages } from '../data/tvPages';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
-import { formatRuntime } from '../utilities/formatRuntime';
+import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
+
+// Icons
+import { RxCalendar } from 'react-icons/rx';
 
 export default function TvSeason() {
   const { tvId, seasonId } = useParams();
@@ -45,14 +47,18 @@ export default function TvSeason() {
   } = useMakeQuery<ISeason>(
     `season-${tvId}-${seasonId}`,
     `tv/${tvId}/season/${seasonId}`,
-    `&append_to_response=credits,aggregate_credits`
+    `&append_to_response=credits,aggregate_credits,videos`
   );
 
   const {
     data: tv,
     isError: tvIsError,
     isLoading: tvIsLoading,
-  } = useMakeQuery<ITVShowFull>(`tv-${tvId}`, `tv/${tvId}`);
+  } = useMakeQuery<ITVShowFull>(
+    `tv-${tvId}`,
+    `tv/${tvId}`,
+    `&append_to_response=content_ratings`
+  );
 
   if (isLoading || tvIsLoading) {
     return (
@@ -83,7 +89,7 @@ export default function TvSeason() {
         title={season?.name}
       >
         <Wrapper name='info-bar' variant='flex'>
-          <BodyText text={formatDate(season?.air_date)} />
+          <Certificate tv={tv?.content_ratings?.results} />
           <Navigation
             data={tv?.genres}
             getId={(item) => item.id}
@@ -91,55 +97,52 @@ export default function TvSeason() {
             renderItem={(item) => item.name}
             variant='comma-separated'
           />
+          <IconText
+            name='first-air-date'
+            icon={<RxCalendar />}
+            text={formatDate(season?.air_date)}
+          />
         </Wrapper>
         <Overview text={season?.overview} />
         <CrewJobs credits={season?.credits} />
       </Header>
       <Section>
         <Main>
-          <Article name='season-episodes'>
-            <Container>
-              <H2 heading='Episodes' />
-              <div className='episodes'>
-                {season?.episodes.map((episode) => (
-                  <div className='episode' key={episode.id}>
-                    <ImageComponent
-                      src={
-                        episode.still_path
-                          ? `https://image.tmdb.org/t/p/w500/${episode.still_path}`
-                          : '/images/error_1039x584.webp'
-                      }
-                      width={539}
-                      height={303}
-                      alt={episode.name}
-                      fallback='/images/error_1039x584.webp'
-                    />
-                    <div className='content'>
-                      <Wrapper name='episode-header' variant='flex'>
-                        <HDiv
-                          variant='heading--h4'
-                          heading={`${episode.episode_number}. ${episode.name}`}
-                        />
-                        <BodyText text={formatRuntime(episode.runtime)} />
-                      </Wrapper>
-                      <SmallText
-                        variant='episode-date'
-                        text={formatDate(episode.air_date)}
-                      />
-                      <BodyText text={episode.overview} />
-                      <Wrapper name='episode-votes' variant='flex'>
-                        <StarRating rating={episode.vote_average} />
-                        <SmallText
-                          variant='season-vote-count'
-                          text={`${episode.vote_count} votes`}
-                        />
-                      </Wrapper>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Container>
-          </Article>
+          <Cards
+            article
+            heading='season cast'
+            media_type='people'
+            variant='scroll-x'
+            data={season?.aggregate_credits?.cast}
+            getId={(item) => item.id}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getBodyText={(item) => item.roles[0].character}
+            getSmallText={(item) =>
+              formatEpisodeCount(item.total_episode_count)
+            }
+            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
+          />
+          <Cards
+            article
+            heading='season crew'
+            media_type='people'
+            variant='scroll-x'
+            data={season?.aggregate_credits?.crew}
+            getId={(item) => `${item.department}-${item.id}`}
+            getLink={(item) => `/people/${item.id}`}
+            getHeading={(item) => item.name}
+            getImage={(item) => item.profile_path}
+            getBodyText={(item) => item.department}
+            getSmallText={(item) =>
+              formatEpisodeCount(item.total_episode_count)
+            }
+            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
+          />
+
+          <ArticleVideos data={season?.videos?.results} />
+          <ArticleSeasonEpisodes data={season?.episodes} />
         </Main>
       </Section>
     </>

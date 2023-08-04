@@ -1,6 +1,8 @@
-import { IAggregateCredits } from "./IAggregateCredits";
-import { ICredits } from "./ICredits";
-import { IEpisodes } from "./IEpisodes";
+// Interfaces
+import { IAggregateCredits } from './IAggregateCredits';
+import { ICredits } from './ICredits';
+import { IEpisodes } from './IEpisodes';
+import { IVideo } from './IVideo';
 
 export interface ISeason {
   _id: string;
@@ -13,4 +15,8 @@ export interface ISeason {
   season_number: number;
   credits: ICredits;
   aggregate_credits: IAggregateCredits;
+  videos: {
+    id: number;
+    results: IVideo[];
+  };
 }
