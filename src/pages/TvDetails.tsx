@@ -38,7 +38,10 @@ import { tvPages } from '../data/tvPages';
 
 // Icons
 import { RxCalendar } from 'react-icons/rx';
+
+// Utilities
 import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
+import { stringToDate } from '../utilities/stringToDate';
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -145,8 +148,7 @@ export default function TvDetails() {
             getBodyText={(item) => formatDate(item.air_date)}
             getSmallText={(item) => formatEpisodeCount(item.episode_count)}
             sortItems={(a, b) =>
-              (b.air_date ? +new Date(b.air_date) : 0) -
-              (a.air_date ? +new Date(a.air_date) : 0)
+              stringToDate(b.air_date) - stringToDate(a.air_date)
             }
           />
           <Cards
