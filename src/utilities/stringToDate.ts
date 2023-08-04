@@ -1,3 +1,7 @@
-export const stringToDate = (string: string) => 
-    (string ? +new Date(string) : 0)
-
+export const stringToDate = (string: string | null | undefined) => {
+  if (string) {
+    return +new Date(string);
+  }
+  
+  return 0;
+};
