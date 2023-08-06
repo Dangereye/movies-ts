@@ -1,5 +1,5 @@
 // React router
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
@@ -113,9 +113,10 @@ export default function TvSeason() {
         <Main>
           <Cards
             article
-            heading='season cast'
+            heading='top billed cast'
             media_type='people'
             variant='scroll-x'
+            limit
             data={season?.aggregate_credits?.cast}
             getId={(item) => item.id}
             getLink={(item) => `/people/${item.id}`}
@@ -125,25 +126,17 @@ export default function TvSeason() {
             getSmallText={(item) =>
               formatEpisodeCount(item.total_episode_count)
             }
-            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
-          />
-
-          <Cards
-            article
-            heading='season crew'
-            media_type='people'
-            variant='scroll-x'
-            data={season?.aggregate_credits?.crew}
-            getId={(item) => `${item.department}-${item.id}`}
-            getLink={(item) => `/people/${item.id}`}
-            getHeading={(item) => item.name}
-            getImage={(item) => item.profile_path}
-            getBodyText={(item) => item.department}
-            getSmallText={(item) =>
-              formatEpisodeCount(item.total_episode_count)
-            }
-            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
-          />
+            sortItems={(a, b) => b.popularity - a.popularity}
+          >
+            <div className='buttons'>
+              <Link
+                to={`/tv/${tvId}/season/${seasonId}/cast-crew`}
+                className='btn btn--tertiary'
+              >
+                View all cast & crew
+              </Link>
+            </div>
+          </Cards>
 
           <ArticleVideos data={season?.videos?.results} />
           <ArticleSeasonEpisodes data={season?.episodes} />

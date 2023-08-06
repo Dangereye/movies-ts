@@ -39,6 +39,7 @@ import TvAiringToday from './pages/TvAiringToday';
 import TvNextSevenDays from './pages/TvNextSevenDays';
 import TvTopRated from './pages/TvTopRated';
 import TvSeason from './pages/TvSeason';
+import TvSeasonCastCrew from './pages/TvSeasonCastCrew';
 import TvDetails from './pages/TvDetails';
 import TvImages from './pages/TvImages';
 import TvCastCrew from './pages/TvCastCrew';
@@ -130,6 +131,10 @@ function App() {
                           <Route
                             path='/tv/:tvId/season/:seasonId'
                             element={<TvSeason />}
+                          />
+                          <Route
+                            path='/tv/:tvId/season/:seasonId/cast-crew'
+                            element={<TvSeasonCastCrew />}
                           />
                           <Route
                             path='/genre/:genreId/tv'
