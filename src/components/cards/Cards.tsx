@@ -1,5 +1,5 @@
 // React router
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Components
 import ImageComponent from '../image/Image';
@@ -22,7 +22,10 @@ type CardsProps<T> = {
   getHeading: (item: T) => string;
   getImage: (item: T) => string | null;
   getVotes?: (item: T) => number | null | undefined;
-  getBodyText: (item: T) => string | null;
+  getBodyText?: (item: T) => string | null;
+  getJobs?: (
+    item: T
+  ) => { credit_id: string; job: string; episode_count: number }[];
   getSmallText?: (item: T) => string | null;
   sortItems: (a: T, b: T) => number;
   children?: React.ReactNode;
@@ -41,11 +44,11 @@ export default function Cards<T>({
   getImage,
   getVotes,
   getBodyText,
+  getJobs,
   getSmallText,
   sortItems,
   children,
 }: CardsProps<T>) {
-  const { pathname } = useLocation();
   const content = (
     <div className={`cards cards__${variant}`}>
       {data
@@ -67,7 +70,15 @@ export default function Cards<T>({
               heading={getHeading(item)}
               vote={getVotes && getVotes(item)}
             >
-              <BodyText text={getBodyText(item)} />
+              <BodyText text={getBodyText && getBodyText(item)} />
+              {getJobs && (
+                <div className='jobs'>
+                  {getJobs(item).map((job) => (
+                    <BodyText key={job.credit_id} text={job.job} />
+                  ))}
+                </div>
+              )}
+
               <SmallText text={getSmallText && getSmallText(item)} />
             </CardContent>
           </Link>
