@@ -1,8 +1,12 @@
+// React router
 import { Link } from 'react-router-dom';
-import Wrapper from '../../wrapper/Wrapper';
+
+// Components
 import ImageComponent from '../../image/Image';
 import HDiv from '../../typography/HDiv';
 import SmallText from '../../typography/SmallText';
+
+// Interfaces
 import { IAggregateCrew } from '../../../interfaces/IAggregateCrew';
 
 type TopBilledCastProps = {
@@ -54,5 +58,6 @@ export default function TopBilledCrew({ data }: TopBilledCastProps) {
       </div>
     );
   }
+
   return null;
 }
