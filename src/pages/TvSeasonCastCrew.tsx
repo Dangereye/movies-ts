@@ -1,42 +1,30 @@
-// React
-import { useEffect, useState } from 'react';
-
 // React router
 import { useParams } from 'react-router-dom';
 
 // Hooks
 import useMakeQuery from '../hooks/useMakeQuery';
+import useAggregateCrew from '../hooks/useAggregateCrew';
 
 // Interfaces
 import { ISeason } from '../interfaces/ISeason';
-import { IAggregateCrew } from '../interfaces/IAggregateCrew';
 
 // Components
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
-
-// Data
-import { tvPages } from '../data/tvPages';
 import Header from '../components/header/Header';
 import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
 import Cards from '../components/cards/Cards';
+
+// Data
+import { tvPages } from '../data/tvPages';
+
+// Utilities
 import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
 
 export default function TvSeasonCastCrew() {
   const { tvId, seasonId } = useParams();
-
-  const [art, setArt] = useState<IAggregateCrew[]>([]);
-  const [camera, setCamera] = useState<IAggregateCrew[]>([]);
-  const [costume, setCostume] = useState<IAggregateCrew[]>([]);
-  const [crew, setCrew] = useState<IAggregateCrew[]>([]);
-  const [directing, setDirecting] = useState<IAggregateCrew[]>([]);
-  const [editing, setEditing] = useState<IAggregateCrew[]>([]);
-  const [production, setProduction] = useState<IAggregateCrew[]>([]);
-  const [sound, setSound] = useState<IAggregateCrew[]>([]);
-  const [visualEffects, setVisualEffects] = useState<IAggregateCrew[]>([]);
-  const [writing, setWriting] = useState<IAggregateCrew[]>([]);
 
   const { data, isError, isLoading } = useMakeQuery<ISeason>(
     `season-${tvId}-${seasonId}`,
@@ -44,63 +32,18 @@ export default function TvSeasonCastCrew() {
     `&append_to_response=aggregate_credits`
   );
 
-  useEffect(() => {
-    let art: IAggregateCrew[] = [];
-    let camera: IAggregateCrew[] = [];
-    let costume: IAggregateCrew[] = [];
-    let crew: IAggregateCrew[] = [];
-    let directing: IAggregateCrew[] = [];
-    let editing: IAggregateCrew[] = [];
-    let production: IAggregateCrew[] = [];
-    let sound: IAggregateCrew[] = [];
-    let visualEffects: IAggregateCrew[] = [];
-    let writing: IAggregateCrew[] = [];
-
-    if (data?.aggregate_credits?.crew?.length) {
-      data.aggregate_credits.crew.map((item) => {
-        if (item.department.toLowerCase() === 'art') {
-          art = [...art, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'camera') {
-          camera = [...camera, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'costume & make-up') {
-          costume = [...costume, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'crew') {
-          crew = [...crew, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'directing') {
-          directing = [...directing, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'editing') {
-          editing = [...editing, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'production') {
-          production = [...production, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'sound') {
-          sound = [...sound, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'visual effects') {
-          visualEffects = [...visualEffects, { ...item }];
-        }
-        if (item.department.toLowerCase() === 'writing') {
-          writing = [...writing, { ...item }];
-        }
-      });
-      setArt(art);
-      setCamera(camera);
-      setCostume(costume);
-      setCrew(crew);
-      setDirecting(directing);
-      setEditing(editing);
-      setProduction(production);
-      setSound(sound);
-      setVisualEffects(visualEffects);
-      setWriting(writing);
-    }
-  }, [data]);
+  const {
+    art,
+    camera,
+    costume,
+    crew,
+    directing,
+    editing,
+    production,
+    sound,
+    visualEffects,
+    writing,
+  } = useAggregateCrew(data?.aggregate_credits?.crew);
 
   if (isLoading) {
     return (
