@@ -26,7 +26,7 @@ export default function useAggregateCrew(data: IAggregateCrew[] | undefined) {
     let writing: IAggregateCrew[] = [];
 
     if (data) {
-      data.map((item) => {
+      data.forEach((item) => {
         if (item.department.toLowerCase() === 'art') {
           art = [...art, { ...item }];
         }
