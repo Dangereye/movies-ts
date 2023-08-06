@@ -15,4 +15,15 @@
     @include cards-grid;
     row-gap: 4rem;
   }
+
+  .jobs,
+  .roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    > *:not(:last-child)::after {
+      content: ',';
+    }
+  }
 }

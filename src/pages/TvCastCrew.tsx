@@ -22,6 +22,7 @@ import Cards from '../components/cards/Cards';
 
 // Data
 import { tvPages } from '../data/tvPages';
+import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
 
 export default function TvCastCrew() {
   const { tvId } = useParams();
@@ -137,9 +138,11 @@ export default function TvCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.roles[0].character}
-            sortItems={(a, b) => b.popularity - a.popularity}
+            getRoles={(item) => item.roles}
+            getSmallText={(item) =>
+              formatEpisodeCount(item.total_episode_count)
+            }
+            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
           />
           <Cards
             article
@@ -147,12 +150,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={art}
-            getId={(item) => `art-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -161,12 +163,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={camera}
-            getId={(item) => `camera-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -175,12 +176,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={costume}
-            getId={(item) => `costume-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -189,12 +189,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={crew}
-            getId={(item) => `crew-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -203,12 +202,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={directing}
-            getId={(item) => `directing-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -217,12 +215,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={editing}
-            getId={(item) => `editing-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -231,12 +228,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={production}
-            getId={(item) => `production-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -245,12 +241,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={sound}
-            getId={(item) => `sound-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -259,12 +254,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={visualEffects}
-            getId={(item) => `visual-effects-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -273,12 +267,11 @@ export default function TvCastCrew() {
             media_type='people'
             variant='list'
             data={writing}
-            getId={(item) => `writing-${item.id}`}
+            getId={(item) => `${item.department}-${item.id}`}
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
-            getBodyText={(item) => item.department}
+            getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>

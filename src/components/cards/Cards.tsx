@@ -26,6 +26,9 @@ type CardsProps<T> = {
   getJobs?: (
     item: T
   ) => { credit_id: string; job: string; episode_count: number }[];
+  getRoles?: (
+    item: T
+  ) => { credit_id: string; character: string; episode_count: number }[];
   getSmallText?: (item: T) => string | null;
   sortItems: (a: T, b: T) => number;
   children?: React.ReactNode;
@@ -45,6 +48,7 @@ export default function Cards<T>({
   getVotes,
   getBodyText,
   getJobs,
+  getRoles,
   getSmallText,
   sortItems,
   children,
@@ -75,6 +79,13 @@ export default function Cards<T>({
                 <div className='jobs'>
                   {getJobs(item).map((job) => (
                     <BodyText key={job.credit_id} text={job.job} />
+                  ))}
+                </div>
+              )}
+              {getRoles && (
+                <div className='roles'>
+                  {getRoles(item).map((role) => (
+                    <BodyText key={role.credit_id} text={role.character} />
                   ))}
                 </div>
               )}
