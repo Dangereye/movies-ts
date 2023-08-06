@@ -1,0 +1,45 @@
+.top-billed-crew {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  gap: 3rem;
+
+  .crew-member {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__image {
+      width: 7.5rem;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      overflow: hidden;
+
+      .image-component {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      .heading {
+        margin: 0;
+      }
+    }
+
+    &__jobs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3px;
+
+      > *:not(:last-child)::after {
+        content: ',';
+      }
+    }
+  }
+}

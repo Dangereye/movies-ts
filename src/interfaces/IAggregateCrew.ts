@@ -7,7 +7,7 @@ export interface IAggregateCrew {
   original_name: string;
   popularity: number;
   profile_path: string | null;
-  jobs: { credit_id: string; job: string; episode_count: number }[];
+  jobs: { credit_id: string; job: string; episode_count: number }[]; 
   department: string;
   total_episode_count: number;
 }

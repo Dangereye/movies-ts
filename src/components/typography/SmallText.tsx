@@ -3,7 +3,7 @@ type SmallTextProps = {
   text: string | null | undefined;
 };
 
-export default function SmallText({ variant = "", text }: SmallTextProps) {
+export default function SmallText({ variant = '', text }: SmallTextProps) {
   if (text) {
     return <p className={`small-text ${variant}`}>{text}</p>;
   }

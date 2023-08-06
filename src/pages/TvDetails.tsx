@@ -56,7 +56,7 @@ export default function TvDetails() {
     `&append_to_response=credits,aggregate_credits,external_ids,videos,reviews,recommendations,similar,content_ratings,images`
   );
 
-  const {} = useCreateImages(tvId, tv?.images);
+  useCreateImages(tvId, tv?.images);
 
   if (isLoading) {
     return (

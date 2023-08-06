@@ -12,7 +12,6 @@ import { ISeason } from '../interfaces/ISeason';
 import Main from '../components/main/Main';
 import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
-import CrewJobs from '../components/header/CrewJobs';
 import Header from '../components/header/Header';
 import Overview from '../components/header/Overview';
 import Navigation from '../components/navigation/Navigation';
@@ -22,6 +21,7 @@ import Section from '../components/sections/Section';
 import Cards from '../components/cards/Cards';
 import IconText from '../components/typography/IconText';
 import Certificate from '../components/header/Certificate';
+import TopBilledCrew from '../components/header/top_billed_crew/TopBilledCrew';
 
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
@@ -33,6 +33,7 @@ import { tvPages } from '../data/tvPages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
+import { topBilledAggregateCrew } from '../utilities/topBilledAggregateCrew';
 
 // Icons
 import { RxCalendar } from 'react-icons/rx';
@@ -104,7 +105,9 @@ export default function TvSeason() {
           />
         </Wrapper>
         <Overview text={season?.overview} />
-        <CrewJobs credits={season?.credits} />
+        <TopBilledCrew
+          data={topBilledAggregateCrew(season?.aggregate_credits?.crew)}
+        />
       </Header>
       <Section>
         <Main>
@@ -124,6 +127,7 @@ export default function TvSeason() {
             }
             sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
           />
+
           <Cards
             article
             heading='season crew'

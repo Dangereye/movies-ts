@@ -123,63 +123,6 @@
     }
   }
 
-  .crew {
-    margin-top: 8rem;
-    align-items: flex-start;
-
-    .profile {
-      max-width: 35rem;
-      margin: 0;
-      align-items: flex-start;
-      gap: 1rem;
-
-      @media (max-width: 900px) {
-        max-width: 30rem;
-      }
-
-      a.heading {
-        margin-bottom: 1rem;
-        transition: color 0.3s ease-out;
-
-        @media (hover: hover) {
-          &:hover {
-            color: $accent-color;
-          }
-        }
-      }
-
-      .body-text {
-        font-size: $small-font-size;
-        line-height: 1.2;
-      }
-
-      .jobs {
-        max-width: 25rem;
-        margin: 0;
-        gap: 5px;
-
-        @media (max-width: 900px) {
-          max-width: 20rem;
-        }
-
-        .body-text {
-          margin: 0;
-        }
-
-        > *:not(:last-child)::after {
-          content: ',';
-        }
-      }
-    }
-
-    .image-component {
-      width: 5rem;
-      height: 5rem;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-  }
-
   .btn--tertiary {
     color: $heading-text-light;
   }
