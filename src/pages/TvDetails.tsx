@@ -3,14 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 
 // Components
 import Header from '../components/header/Header';
-import Overview from '../components/header/Overview';
-import Navigation from '../components/navigation/Navigation';
-import Wrapper from '../components/wrapper/Wrapper';
-import CrewJobs from '../components/header/CrewJobs';
-import Statistics from '../components/statistics/Statistics';
-import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Certificate from '../components/header/Certificate';
 import UserScore from '../components/header/UserScore';
+import Overview from '../components/header/Overview';
+import TopBilledCrew from '../components/header/top_billed_crew/TopBilledCrew';
+import Navigation from '../components/navigation/Navigation';
+import Wrapper from '../components/wrapper/Wrapper';
+import Statistics from '../components/statistics/Statistics';
+import SubNavbar from '../components/sub_navbar/SubNavbar';
 import IconText from '../components/typography/IconText';
 import Cards from '../components/cards/Cards';
 import Main from '../components/main/Main';
@@ -42,6 +42,7 @@ import { RxCalendar } from 'react-icons/rx';
 // Utilities
 import { formatEpisodeCount } from '../utilities/formatEpisodeCount';
 import { stringToDate } from '../utilities/stringToDate';
+import { topBilledAggregateCrew } from '../utilities/topBilledAggregateCrew';
 
 export default function TvDetails() {
   const { tvId } = useParams();
@@ -103,7 +104,9 @@ export default function TvDetails() {
         </Wrapper>
         <UserScore rating={tv?.vote_average} />
         <Overview caption={tv?.tagline} text={tv?.overview} />
-        <CrewJobs credits={tv?.credits} />
+        <TopBilledCrew
+          data={topBilledAggregateCrew(tv?.aggregate_credits?.crew)}
+        />
       </Header>
       <Statistics tv={tv} />
       <Section>
@@ -123,7 +126,7 @@ export default function TvDetails() {
             getSmallText={(item) =>
               formatEpisodeCount(item.total_episode_count)
             }
-            sortItems={(a, b) => b.total_episode_count - a.total_episode_count}
+            sortItems={(a, b) => b.popularity - a.popularity}
           >
             <div className='buttons'>
               <Link to={`/tv/${tvId}/cast-crew`} className='btn btn--tertiary'>
@@ -167,7 +170,7 @@ export default function TvDetails() {
           />
           <Cards
             article
-            heading='you may also enjoy...'
+            heading='you may also enjoy'
             media_type='TV shows'
             variant='scroll-x'
             data={tv?.similar?.results}
