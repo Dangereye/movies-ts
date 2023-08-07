@@ -6,10 +6,10 @@ import LoaderComponent from '../components/loader/Loader';
 import ErrorComponent from '../components/error/Error';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
+import TopBilledCrew from '../components/header/top_billed_crew/TopBilledCrew';
 import Overview from '../components/header/Overview';
 import Navigation from '../components/navigation/Navigation';
 import Wrapper from '../components/wrapper/Wrapper';
-import CrewJobs from '../components/header/CrewJobs';
 import Statistics from '../components/statistics/Statistics';
 import Collection from '../components/collection/Collection';
 import Certificate from '../components/header/Certificate';
@@ -40,8 +40,6 @@ import { moviePages } from '../data/moviePages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
-import TopBilledCrew from '../components/header/top_billed_crew/TopBilledCrew';
-import { topBilledAggregateCrew } from '../utilities/topBilledAggregateCrew';
 import { topBilledCrew } from '../utilities/topBilledcrew';
 
 export default function MovieDetails() {

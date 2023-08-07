@@ -103,7 +103,15 @@ export default function Cards<T>({
         <Container>
           <H2 heading={heading} />
           <BodyText
-            text={`Showing ${limit ? '10' : data?.length} ${media_type}`}
+            text={`Showing ${limit ? '10' : data?.length} ${
+              data.length > 1
+                ? media_type
+                : data.length === 1 && media_type === 'movies'
+                ? 'movie'
+                : data.length === 1 && media_type === 'TV shows'
+                ? 'TV show'
+                : 'person'
+            }`}
           />
           {content}
           {children}
