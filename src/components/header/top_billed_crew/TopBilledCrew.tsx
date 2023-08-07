@@ -7,10 +7,10 @@ import HDiv from '../../typography/HDiv';
 import SmallText from '../../typography/SmallText';
 
 // Interfaces
-import { IAggregateCrew } from '../../../interfaces/IAggregateCrew';
+import { ITopBilledCrew } from '../../../interfaces/ITopBilledCrew';
 
 type TopBilledCastProps = {
-  data: IAggregateCrew[] | undefined;
+  data: ITopBilledCrew[] | undefined;
 };
 
 export default function TopBilledCrew({ data }: TopBilledCastProps) {

@@ -40,6 +40,9 @@ import { moviePages } from '../data/moviePages';
 // Utilities
 import { formatDate } from '../utilities/formatDate';
 import { formatRuntime } from '../utilities/formatRuntime';
+import TopBilledCrew from '../components/header/top_billed_crew/TopBilledCrew';
+import { topBilledAggregateCrew } from '../utilities/topBilledAggregateCrew';
+import { topBilledCrew } from '../utilities/topBilledcrew';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -102,7 +105,7 @@ export default function MovieDetails() {
         </Wrapper>
         <UserScore rating={data?.vote_average} />
         <Overview caption={data?.tagline} text={data?.overview} />
-        <CrewJobs credits={data?.credits} />
+        <TopBilledCrew data={topBilledCrew(data?.credits?.crew)} />
       </Header>
       <Statistics movie={data} />
       <Section>
