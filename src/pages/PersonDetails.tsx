@@ -34,6 +34,7 @@ import { IPerson } from '../interfaces/IPerson';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import { stringToDate } from '../utilities/stringToDate';
 
 export default function TvDetails() {
   const { personId } = useParams();
@@ -74,6 +75,7 @@ export default function TvDetails() {
         bgImage={person?.movie_credits?.cast[0]?.backdrop_path}
         alt={person?.name}
         title={person?.name}
+        leadTitle='People'
       >
         <Wrapper name='info-bar' variant='flex'>
           <IconText
@@ -101,20 +103,22 @@ export default function TvDetails() {
       <Statistics person={person} />
       <Section>
         <Main>
-          <ArticleProfileImages data={person?.images.profiles} />
+          <ArticleProfileImages data={person?.images?.profiles} />
           <Cards
             article
             heading='movie cast'
             media_type='movies'
             variant='scroll-x'
-            data={person?.movie_credits.cast}
+            data={person?.movie_credits?.cast}
             getId={(item) => item.id}
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.release_date)}`}
-            sortItems={(a, b) => b.popularity - a.popularity}
+            getBodyText={(item) => formatDate(item.release_date)}
+            sortItems={(a, b) =>
+              stringToDate(b.release_date) - stringToDate(a.release_date)
+            }
           />
           <Cards
             article
@@ -127,8 +131,10 @@ export default function TvDetails() {
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.release_date)}`}
-            sortItems={(a, b) => b.popularity - a.popularity}
+            getBodyText={(item) => formatDate(item.release_date)}
+            sortItems={(a, b) =>
+              stringToDate(b.release_date) - stringToDate(a.release_date)
+            }
           />
           <Cards
             article
@@ -141,8 +147,10 @@ export default function TvDetails() {
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
-            sortItems={(a, b) => b.popularity - a.popularity}
+            getBodyText={(item) => formatDate(item.first_air_date)}
+            sortItems={(a, b) =>
+              stringToDate(b.first_air_date) - stringToDate(a.first_air_date)
+            }
           />
           <Cards
             article
@@ -155,8 +163,10 @@ export default function TvDetails() {
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.first_air_date)}`}
-            sortItems={(a, b) => b.popularity - a.popularity}
+            getBodyText={(item) => formatDate(item.first_air_date)}
+            sortItems={(a, b) =>
+              stringToDate(b.first_air_date) - stringToDate(a.first_air_date)
+            }
           />
         </Main>
       </Section>
