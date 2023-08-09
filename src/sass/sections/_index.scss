@@ -1,5 +1,6 @@
 .section {
   width: 100%;
+  min-height: calc(100vh - 7rem);
   display: flex;
   justify-content: center;
   // border: 10px solid green;

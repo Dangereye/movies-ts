@@ -1,6 +1,3 @@
-// React
-import { useCallback, useMemo } from 'react';
-
 // React router
 import { Link } from 'react-router-dom';
 
