@@ -66,7 +66,7 @@ export default function TvGenre() {
 
   if (isError) {
     return (
-      <Page navigation={tvPages} title={title} name='article__error'>
+      <Page navigation={tvPages} title={title} name='error'>
         <ErrorComponent />
       </Page>
     );

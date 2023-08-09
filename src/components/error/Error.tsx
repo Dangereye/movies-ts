@@ -44,7 +44,7 @@ export default function ErrorComponent({
     return (
       <Section>
         <Main>
-          <Article name='article__error'>{content}</Article>
+          <Article name='error'>{content}</Article>
         </Main>
       </Section>
     );

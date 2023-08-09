@@ -74,7 +74,7 @@ export default function MoviesTheatricalReleases() {
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
-        name='article__error'
+        name='error'
       >
         <ErrorComponent />
       </PageWithSidebar>
