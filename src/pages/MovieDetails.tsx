@@ -80,6 +80,7 @@ export default function MovieDetails() {
         image={data?.poster_path}
         alt={data?.title}
         title={data?.title}
+        leadTitle='Movies'
       >
         <Wrapper name='info-bar' variant='flex'>
           <Certificate movie={data?.release_dates?.results} />
@@ -119,7 +120,6 @@ export default function MovieDetails() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
             getBodyText={(item) => item.character}
             sortItems={(a, b) => b.popularity - a.popularity}
           >
@@ -153,7 +153,7 @@ export default function MovieDetails() {
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
           <Cards
@@ -167,7 +167,7 @@ export default function MovieDetails() {
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
             getVotes={(item) => item.vote_average}
-            getBodyText={(item) => `${formatDate(item.release_date)}`}
+            getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
         </Main>
