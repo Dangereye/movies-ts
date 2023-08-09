@@ -86,6 +86,7 @@ export default function TvDetails() {
         image={tv?.poster_path}
         alt={tv?.name}
         title={tv?.name}
+        leadTitle='TV Shows'
       >
         <Wrapper name='info-bar' variant='flex'>
           <Certificate tv={tv?.content_ratings?.results} />
@@ -122,7 +123,7 @@ export default function TvDetails() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getBodyText={(item) => item.roles[0].character}
+            getRoles={(item) => item.roles}
             getSmallText={(item) =>
               formatEpisodeCount(item.total_episode_count)
             }
