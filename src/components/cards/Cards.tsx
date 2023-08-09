@@ -1,3 +1,6 @@
+// React
+import { useCallback, useMemo } from 'react';
+
 // React router
 import { Link } from 'react-router-dom';
 
@@ -9,6 +12,7 @@ import Article from '../articles/Article';
 import Container from '../container/Container';
 import H2 from '../typography/H2';
 import SmallText from '../typography/SmallText';
+import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
 
 type CardsProps<T> = {
   article?: boolean;
@@ -34,7 +38,7 @@ type CardsProps<T> = {
   children?: React.ReactNode;
 };
 
-export default function Cards<T>({
+export default function Cards<T extends { id: number }>({
   article = false,
   heading = 'article heading',
   media_type,
@@ -53,47 +57,48 @@ export default function Cards<T>({
   sortItems,
   children,
 }: CardsProps<T>) {
+  const filtered = removeDuplicatesById(data)
+    ?.sort(sortItems)
+    .filter((item, i) => (limit ? i < 10 : true));
+
   const content = (
     <div className={`cards cards__${variant}`}>
-      {data
-        ?.sort(sortItems)
-        .filter((item, i) => (limit ? i < 10 : true))
-        .map((item) => (
-          <Link key={getId(item)} to={getLink(item)} className='card'>
-            <ImageComponent
-              key={getHeading(item)}
-              src={
-                getImage(item)
-                  ? `https://image.tmdb.org/t/p/w500/${getImage(item)}`
-                  : '/images/error_500x750.webp'
-              }
-              fallback='/images/error_500x750.webp'
-              alt={getHeading(item)}
-            />
-            <CardContent
-              heading={getHeading(item)}
-              vote={getVotes && getVotes(item)}
-            >
-              <BodyText text={getBodyText && getBodyText(item)} />
-              {getJobs && (
-                <div className='jobs'>
-                  {getJobs(item).map((job) => (
-                    <BodyText key={job.credit_id} text={job.job} />
-                  ))}
-                </div>
-              )}
-              {getRoles && (
-                <div className='roles'>
-                  {getRoles(item).map((role) => (
-                    <BodyText key={role.credit_id} text={role.character} />
-                  ))}
-                </div>
-              )}
+      {filtered?.map((item) => (
+        <Link key={getId(item)} to={getLink(item)} className='card'>
+          <ImageComponent
+            key={getHeading(item)}
+            src={
+              getImage(item)
+                ? `https://image.tmdb.org/t/p/w500/${getImage(item)}`
+                : '/images/error_500x750.webp'
+            }
+            fallback='/images/error_500x750.webp'
+            alt={getHeading(item)}
+          />
+          <CardContent
+            heading={getHeading(item)}
+            vote={getVotes && getVotes(item)}
+          >
+            <BodyText text={getBodyText && getBodyText(item)} />
+            {getJobs && (
+              <div className='jobs'>
+                {getJobs(item).map((job) => (
+                  <BodyText key={job.credit_id} text={job.job} />
+                ))}
+              </div>
+            )}
+            {getRoles && (
+              <div className='roles'>
+                {getRoles(item).map((role) => (
+                  <BodyText key={role.credit_id} text={role.character} />
+                ))}
+              </div>
+            )}
 
-              <SmallText text={getSmallText && getSmallText(item)} />
-            </CardContent>
-          </Link>
-        ))}
+            <SmallText text={getSmallText && getSmallText(item)} />
+          </CardContent>
+        </Link>
+      ))}
     </div>
   );
 

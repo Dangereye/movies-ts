@@ -1,5 +1,18 @@
-export const removeDuplicatesById = <T extends { id: number }>(data: T[]) => {
-  const ids = data?.map((item) => item.id);
-  const filtered = data?.filter(({ id }, i) => !ids?.includes(id, i + 1));
+export const removeDuplicatesById = <T extends{id:number}>(
+  data: T[] | undefined
+) => {
+  let filtered: T[] = [];
+
+  if (data) {
+    filtered = data?.filter((item, index) => {
+      return (
+        index ===
+        data.findIndex((obj) => {
+          return item.id === obj.id;
+        })
+      );
+    });
+  }
+
   return filtered;
 };
