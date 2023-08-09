@@ -12,6 +12,8 @@ export default function Article({
   children,
 }: ArticleProps) {
   return (
-    <article className={`article  ${name} ${variant}`}>{children}</article>
+    <article className={`article article__${name} ${variant}`}>
+      {children}
+    </article>
   );
 }

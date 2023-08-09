@@ -33,6 +33,7 @@ import { moviePages } from '../data/moviePages';
 
 // Utilities
 import { formatDate } from '../utilities/formatDate';
+import { stringToDate } from '../utilities/stringToDate';
 
 export default function Collections() {
   const { collectionId } = useParams();
@@ -111,6 +112,7 @@ export default function Collections() {
         image={data?.poster_path}
         alt={data?.name}
         title={data?.name}
+        leadTitle='Movies'
       >
         <Wrapper name='info-bar' variant='flex'>
           <Navigation
@@ -126,27 +128,22 @@ export default function Collections() {
       </Header>
       <Section>
         <Main>
-          <Article name='Collection movies'>
-            <Container>
-              <H2 heading='Movies in collection' />
-              <BodyText text={`Showing ${data?.parts.length} movies`} />
-              <Cards
-                media_type='movies'
-                variant='list'
-                data={data?.parts}
-                getId={(item) => item.id}
-                getLink={(item) => `/movies/${item.id}`}
-                getHeading={(item) => item.title}
-                getImage={(item) => item.poster_path}
-                getVotes={(item) => item.vote_average}
-                getBodyText={(item) => `${formatDate(item.release_date)}`}
-                sortItems={(a, b) =>
-                  (b.release_date ? +new Date(b.release_date) : 0) -
-                  (a.release_date ? +new Date(a.release_date) : 0)
-                }
-              />
-            </Container>
-          </Article>
+          <Cards
+            article
+            heading='movies in collection'
+            media_type='movies'
+            variant='list'
+            data={data?.parts}
+            getId={(item) => item.id}
+            getLink={(item) => `/movies/${item.id}`}
+            getHeading={(item) => item.title}
+            getImage={(item) => item.poster_path}
+            getVotes={(item) => item.vote_average}
+            getBodyText={(item) => formatDate(item.release_date)}
+            sortItems={(a, b) =>
+              stringToDate(b.release_date) - stringToDate(a.release_date)
+            }
+          />
         </Main>
       </Section>
     </>

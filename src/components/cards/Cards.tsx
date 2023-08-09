@@ -101,7 +101,7 @@ export default function Cards<T extends { id: number }>({
 
   if (data && data.length > 0 && article) {
     return (
-      <Article name={heading}>
+      <Article name={heading.replaceAll(' ', '-').toLowerCase()}>
         <Container>
           <H2 heading={heading} />
           <BodyText
