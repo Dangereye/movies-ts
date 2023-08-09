@@ -27,7 +27,7 @@ type CardsInfiniteScrollProps<T> = {
   getHeading: (item: T) => string;
   getImage: (item: T) => string | null;
   getVotes: (item: T) => number | undefined;
-  getBodyText: (item: T) => string;
+  getBodyText: (item: T) => string | null | undefined;
   data: IPage<T>[];
   hasNextPage: boolean | undefined;
   fetchNextPage: (

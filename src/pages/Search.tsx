@@ -139,7 +139,7 @@ export default function Search() {
           getHeading={(item) => item.title}
           getImage={(item) => item.poster_path}
           getVotes={(item) => item.vote_average}
-          getBodyText={(item) => `${formatDate(item.release_date)}`}
+          getBodyText={(item) => formatDate(item.release_date)}
           hasNextPage={moviesHasNextPage}
           fetchNextPage={moviesFetchNextPage}
         />
