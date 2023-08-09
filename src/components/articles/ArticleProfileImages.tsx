@@ -1,9 +1,12 @@
-import { IImages } from '../../interfaces/IImages';
+// Components
 import Container from '../container/Container';
 import ImageComponent from '../image/Image';
 import BodyText from '../typography/BodyText';
 import H2 from '../typography/H2';
 import Article from './Article';
+
+// Interfaces
+import { IImages } from '../../interfaces/IImages';
 
 type ArticleProfileImagesProps = {
   data: IImages[] | undefined;
@@ -20,7 +23,7 @@ export default function ArticleProfileImages({
           <BodyText text={`Showing ${data.length} profiles `} />
           <div className='images__scroll'>
             {data?.map((img, i) => (
-              <div className='img'>
+              <div key={`wrapper-${img.file_path}`} className='img'>
                 <ImageComponent
                   key={img.file_path}
                   src={
