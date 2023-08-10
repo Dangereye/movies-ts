@@ -11,6 +11,7 @@ import Article from './Article';
 
 // Interfaces
 import { IVideo } from '../../interfaces/IVideo';
+import { stringToDate } from '../../utilities/stringToDate';
 
 type ActiveProps =
   | 'trailer'
@@ -191,11 +192,10 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
           <div className='videos'>
             {videos[active].length > 0 ? (
               videos[active]
-                .sort(function (a, b) {
-                  return (
-                    Date.parse(a.published_at) - Date.parse(b.published_at)
-                  );
-                })
+                .sort(
+                  (a, b) =>
+                    stringToDate(a.published_at) - stringToDate(b.published_at)
+                )
                 .map((video) => <Video key={video.id} data={video} />)
             ) : (
               <BodyText

@@ -6,6 +6,7 @@ type ImageComponentProps = {
   alt: string | undefined;
   width?: number;
   height?: number;
+  aspectRatio?: 'aspect-ratio-2-3' | 'aspect-ratio-16-9';
 };
 
 export default function ImageComponent({
@@ -14,6 +15,7 @@ export default function ImageComponent({
   alt = 'Image text',
   width = 300,
   height,
+  aspectRatio = 'aspect-ratio-2-3',
 }: ImageComponentProps) {
   const [path, setPath] = useState(src);
 
@@ -25,7 +27,7 @@ export default function ImageComponent({
     <img
       src={path}
       alt={alt}
-      className='image-component'
+      className={`image-component ${aspectRatio}`}
       width={`${width}px`}
       height={height ? `${height}px` : 'auto'}
       onError={handleError}

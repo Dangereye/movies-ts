@@ -14,14 +14,10 @@ import ErrorComponent from '../components/error/Error';
 import SubNavbar from '../components/sub_navbar/SubNavbar';
 import Header from '../components/header/Header';
 import Main from '../components/main/Main';
-import Article from '../components/articles/Article';
-import Container from '../components/container/Container';
-import H2 from '../components/typography/H2';
 import Overview from '../components/header/Overview';
 import UserScore from '../components/header/UserScore';
 import Wrapper from '../components/wrapper/Wrapper';
 import Navigation from '../components/navigation/Navigation';
-import BodyText from '../components/typography/BodyText';
 import Cards from '../components/cards/Cards';
 import Section from '../components/sections/Section';
 
