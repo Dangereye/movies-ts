@@ -43,19 +43,21 @@ export default function ArticleImages() {
 
   if (images && images?.length > 1) {
     return (
-      <Article name='article__images'>
+      <Article name='images'>
         <Container>
-          <H2 heading={state.display.show_media_type} />
+          <H2 heading={state?.display?.show_media_type} />
           <Wrapper name='image options' variant='flex'>
-            {state.display.results.posters > 0 && (
+            {state?.display?.results?.posters > 0 && (
               <Button
                 name={
                   <>
                     <span className='name'>Posters</span>
-                    <span className='qty'>{state.display.results.posters}</span>
+                    <span className='qty'>
+                      {state?.display?.results?.posters}
+                    </span>
                   </>
                 }
-                active={state.display.show_media_type === 'posters'}
+                active={state?.display?.show_media_type === 'posters'}
                 variant='btn--tertiary'
                 onClick={() => updateImages('posters')}
               />
@@ -66,11 +68,11 @@ export default function ArticleImages() {
                   <>
                     <span className='name'>Backdrops</span>
                     <span className='qty'>
-                      {state.display.results.backdrops}
+                      {state?.display?.results?.backdrops}
                     </span>
                   </>
                 }
-                active={state.display.show_media_type === 'backdrops'}
+                active={state?.display?.show_media_type === 'backdrops'}
                 variant='btn--tertiary'
                 onClick={() => updateImages('backdrops')}
               />
@@ -78,12 +80,12 @@ export default function ArticleImages() {
           </Wrapper>
           <BodyText
             text={`Showing ${
-              images && images.length > 10
+              images?.length > 10
                 ? '10'
-                : images && images.length < 10
+                : images?.length < 10
                 ? images?.length
                 : 0
-            } ${state.display.show_media_type}`}
+            } ${state?.display?.show_media_type}`}
           />
           <div className='images__scroll'>
             {images
@@ -103,13 +105,13 @@ export default function ArticleImages() {
                     }
                     fallback='/images/error_500x750.webp'
                     width={500}
-                    alt={`${state.display.show_media_type}-${i}`}
+                    alt={`${state?.display?.show_media_type}-${i}`}
                   />
                 </div>
               ))}
           </div>
-          {(state.display.results.posters > 10 ||
-            state.display.results.backdrops > 10) && (
+          {(state?.display?.results?.posters > 10 ||
+            state?.display?.results?.backdrops > 10) && (
             <div className='buttons'>
               <Link
                 to={

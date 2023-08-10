@@ -1,3 +1,4 @@
+// React
 import { useState } from 'react';
 
 // Components
@@ -28,7 +29,7 @@ export default function ArticleReviews({ data }: ArticlesReviewsProps) {
 
   if (data && data.length > 0) {
     return (
-      <Article name='article__reviews'>
+      <Article name='reviews'>
         <Container>
           <H2 heading='Reviews' />
           <div className='reviews'>

@@ -1,4 +1,8 @@
+// React
 import { useState, useEffect } from 'react';
+
+// Interfaces
+import { IVideo } from '../../interfaces/IVideo';
 
 // Components
 import Button from '../buttons/Button';
@@ -9,8 +13,7 @@ import Video from '../videos/video/Video';
 import Wrapper from '../wrapper/Wrapper';
 import Article from './Article';
 
-// Interfaces
-import { IVideo } from '../../interfaces/IVideo';
+// Utilities
 import { stringToDate } from '../../utilities/stringToDate';
 
 type ActiveProps =
@@ -77,6 +80,7 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
         if (video.type === 'Featurette') {
           featurette.push(video);
         }
+
         obj = {
           trailer,
           teaser,
@@ -85,9 +89,11 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
           blooper,
           featurette,
         };
+
         return obj;
       });
     };
+
     organiseVideos();
     setVideos(obj);
   }, [data]);
@@ -102,9 +108,10 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
   const updateVideos = (value: ActiveProps) => {
     setActive(value);
   };
+
   if (data && data.length > 0) {
     return (
-      <Article name='article__videos'>
+      <Article name='videos'>
         <Container>
           <H2 heading={makePlural(active)} />
           <Wrapper name='video-options' variant='flex'>
