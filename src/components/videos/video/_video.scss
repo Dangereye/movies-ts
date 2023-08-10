@@ -1,6 +1,7 @@
 .video {
   width: 100%;
   min-width: 60rem;
+  max-width: 60rem;
 
   @media (max-width: $laptop) {
     min-width: 40rem;

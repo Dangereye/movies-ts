@@ -107,6 +107,11 @@ export default function TvImages() {
                             }
                             fallback='/images/error_500x750.webp'
                             width={500}
+                            aspectRatio={
+                              state.display.show_media_type === 'backdrops'
+                                ? 'aspect-ratio-16-9'
+                                : 'aspect-ratio-2-3'
+                            }
                             alt={`${state.display.show_media_type}-${i}`}
                           />
                         </div>
