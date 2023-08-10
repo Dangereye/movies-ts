@@ -33,7 +33,6 @@ export default function ArticleProfileImages({
                   }
                   fallback='/images/error_500x750.webp'
                   width={300}
-                  height={450}
                   alt={`Profile-${i}`}
                 />
               </div>
