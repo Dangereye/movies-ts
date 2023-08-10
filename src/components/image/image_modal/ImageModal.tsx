@@ -43,7 +43,11 @@ export default function ImageModal() {
                     src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
                     fallback='/images/error_500x750.webp'
                     width={image.width}
-                    height={image.height}
+                    aspectRatio={
+                      state.display.show_media_type === 'backdrops'
+                        ? 'aspect-ratio-16-9'
+                        : 'aspect-ratio-2-3'
+                    }
                     alt={`${state.display.show_media_type}-${i}`}
                   />
                 </div>

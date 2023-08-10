@@ -6,7 +6,6 @@
   scroll-snap-type: x mandatory;
   flex-wrap: nowrap;
   @include scrollbar;
-
   .img,
   .card {
     min-width: 30rem;
@@ -15,6 +14,16 @@
     @media (max-width: $mobile) {
       min-width: 20rem;
       max-width: 20rem;
+    }
+  }
+
+  .img {
+    &.aspect-ratio-2-3 {
+      aspect-ratio: 2/3;
+    }
+
+    &.aspect-ratio-16-9 {
+      aspect-ratio: 16/9;
     }
   }
 

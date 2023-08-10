@@ -92,7 +92,11 @@ export default function ArticleImages() {
               ?.filter((image, i) => i < 10)
               .map((image, i) => (
                 <div
-                  className='img'
+                  className={`img ${
+                    state.display.show_media_type === 'backdrops'
+                      ? 'aspect-ratio-16-9'
+                      : 'aspect-ratio-2-3'
+                  }`}
                   key={image.file_path}
                   onClick={() => openModal(i)}
                 >
@@ -105,6 +109,11 @@ export default function ArticleImages() {
                     }
                     fallback='/images/error_500x750.webp'
                     width={500}
+                    aspectRatio={
+                      state.display.show_media_type === 'backdrops'
+                        ? 'aspect-ratio-16-9'
+                        : 'aspect-ratio-2-3'
+                    }
                     alt={`${state?.display?.show_media_type}-${i}`}
                   />
                 </div>
