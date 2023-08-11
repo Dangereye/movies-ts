@@ -1,19 +1,9 @@
 .image-wrapper {
-  // width: 100%;
+  width: 100%;
 
   .image-component {
     width: 100%;
-
-    &.aspect-ratio-1-1 {
-      aspect-ratio: 1/1;
-    }
-
-    &.aspect-ratio-2-3 {
-      aspect-ratio: 2/3;
-    }
-
-    &.aspect-ratio-16-9 {
-      aspect-ratio: 16/9;
-    }
+    height: 100%;
+    object-fit: cover;
   }
 }
