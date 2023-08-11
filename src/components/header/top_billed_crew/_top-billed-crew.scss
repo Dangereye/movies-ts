@@ -1,11 +1,12 @@
 .top-billed-crew {
   margin-top: 8rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 3rem;
 
   .crew-member {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
 
@@ -27,6 +28,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+
       .heading {
         margin: 0;
       }
