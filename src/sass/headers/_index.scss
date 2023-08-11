@@ -33,13 +33,29 @@
 
   &__full {
     .container {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(25rem, 50rem) minmax(35rem, 1fr);
+      grid-template-columns: minmax(25rem, 50rem) minmax(45rem, 1fr);
       align-items: flex-start;
       gap: 4rem;
 
-      @media (max-width: 900px) {
+      .image-wrapper {
+        position: sticky;
+        top: 8.5rem;
+        display: flex;
+        justify-content: center;
+
+        .image-component {
+          max-width: 50rem;
+        }
+      }
+
+      @media (max-width: 850px) {
         grid-template-columns: 1fr;
+
+        .image-wrapper {
+          position: static;
+        }
       }
     }
   }
@@ -66,13 +82,6 @@
       align-items: center;
       text-align: center;
     }
-  }
-
-  .image-component {
-    justify-self: center;
-    width: 100%;
-    max-width: 50rem;
-    height: auto;
   }
 
   .info-bar {

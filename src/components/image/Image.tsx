@@ -33,7 +33,7 @@ export default function ImageComponent({
       <img
         src={imageUrl}
         alt={alt}
-        className='image-component'
+        className={`image-component ${aspect_ratio}`}
         width={`${width}px`}
         onError={handleError}
       />

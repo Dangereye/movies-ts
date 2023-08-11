@@ -23,17 +23,15 @@ export default function ArticleProfileImages({
           <BodyText text={`Showing ${data.length} profiles `} />
           <div className='images__scroll'>
             {data?.map((img, i) => (
-              <div key={`wrapper-${img.file_path}`} className='img'>
-                <ImageComponent
-                  key={img.file_path}
-                  file_path='https://image.tmdb.org/t/p/w500/'
-                  filename={img.file_path}
-                  fallback='/images/error_500x750.webp'
-                  width={300}
-                  aspect_ratio='aspect-ratio-2-3'
-                  alt={`Profile-${i}`}
-                />
-              </div>
+              <ImageComponent
+                key={img.file_path}
+                file_path='https://image.tmdb.org/t/p/w500/'
+                filename={img.file_path}
+                fallback='/images/error_500x750.webp'
+                width={300}
+                aspect_ratio='aspect-ratio-2-3'
+                alt={`Profile-${i}`}
+              />
             ))}
           </div>
         </Container>

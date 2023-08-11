@@ -6,25 +6,44 @@
   scroll-snap-type: x mandatory;
   flex-wrap: nowrap;
   @include scrollbar;
-  .img,
-  .card {
-    min-width: 30rem;
-    max-width: 30rem;
-
-    @media (max-width: $mobile) {
-      min-width: 20rem;
-      max-width: 20rem;
+  .image-wrapper {
+    &.aspect-ratio-1-1 {
+      aspect-ratio: 1/1;
     }
-  }
 
-  .img {
     &.aspect-ratio-2-3 {
       aspect-ratio: 2/3;
+
+      min-width: 25rem;
+      max-width: 100%;
     }
 
     &.aspect-ratio-16-9 {
       aspect-ratio: 16/9;
+
+      min-width: 50rem;
+      max-width: 50rem;
+
+      @media (max-width: $laptop) {
+        min-width: 40rem;
+        max-width: 40rem;
+      }
+
+      @media (max-width: $tablet) {
+        min-width: 30rem;
+        max-width: 30rem;
+      }
+
+      @media (max-width: $mobile) {
+        min-width: 25rem;
+        max-width: 25rem;
+      }
     }
+  }
+
+  .card {
+    min-width: 25rem;
+    max-width: 25rem;
   }
 
   & > * {

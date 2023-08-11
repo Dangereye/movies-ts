@@ -91,15 +91,7 @@ export default function ArticleImages() {
             {images
               ?.filter((image, i) => i < 10)
               .map((image, i) => (
-                <div
-                  className={`img ${
-                    state.display.show_media_type === 'backdrops'
-                      ? 'aspect-ratio-16-9'
-                      : 'aspect-ratio-2-3'
-                  }`}
-                  key={image.file_path}
-                  onClick={() => openModal(i)}
-                >
+                <div key={image.file_path} onClick={() => openModal(i)}>
                   <ImageComponent
                     key={image.file_path}
                     filename={image.file_path}
