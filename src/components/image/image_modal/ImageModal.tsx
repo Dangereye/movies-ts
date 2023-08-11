@@ -40,10 +40,11 @@ export default function ImageModal() {
                 <div className='img' key={image.file_path}>
                   <ImageComponent
                     key={image.file_path}
-                    src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
+                    file_path='https://image.tmdb.org/t/p/original/'
+                    filename={image.file_path}
                     fallback='/images/error_500x750.webp'
                     width={image.width}
-                    aspectRatio={
+                    aspect_ratio={
                       state.display.show_media_type === 'backdrops'
                         ? 'aspect-ratio-16-9'
                         : 'aspect-ratio-2-3'

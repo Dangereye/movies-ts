@@ -32,15 +32,14 @@ export default function Video({ data }: VideoProps) {
     <div className='video'>
       <div className='video-image' onClick={openPlayer}>
         <ImageComponent
-          width={600}
-          src={
-            data.key
-              ? `https://i.ytimg.com/vi/${data.key}/hqdefault.jpg`
-              : '/images/error_600x450.webp'
+          file_path={null}
+          filename={
+            data.key ? `https://i.ytimg.com/vi/${data.key}/hqdefault.jpg` : null
           }
           fallback='/images/error_600x450.webp'
+          width={600}
+          aspect_ratio='aspect-ratio-16-9'
           alt={data.name}
-          aspectRatio='aspect-ratio-16-9'
         />
         <div className='play-icon__bg'></div>
         <GoPlay className='play-icon' />

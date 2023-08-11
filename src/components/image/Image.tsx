@@ -1,36 +1,42 @@
 import { useState } from 'react';
 
 type ImageComponentProps = {
-  src: string;
+  file_path:
+    | 'https://image.tmdb.org/t/p/w500/'
+    | 'https://image.tmdb.org/t/p/original/'
+    | null;
+  filename: string | null | undefined;
   fallback: string;
   alt: string | undefined;
-  width?: number;
-  height?: number;
-  aspectRatio?: 'aspect-ratio-2-3' | 'aspect-ratio-16-9';
+  width: number;
+  aspect_ratio: 'aspect-ratio-1-1' | 'aspect-ratio-2-3' | 'aspect-ratio-16-9';
 };
 
 export default function ImageComponent({
-  src,
+  file_path,
+  filename,
   fallback,
-  alt = 'Image text',
-  width = 300,
-  height,
-  aspectRatio = 'aspect-ratio-2-3',
+  alt,
+  width,
+  aspect_ratio,
 }: ImageComponentProps) {
-  const [path, setPath] = useState(src);
+  const [imageUrl, setImageUrl] = useState(
+    filename ? `${file_path ? file_path : ''}${filename}` : fallback
+  );
 
   const handleError = () => {
-    setPath(fallback);
+    setImageUrl(fallback);
   };
 
   return (
-    <img
-      src={path}
-      alt={alt}
-      className={`image-component ${aspectRatio}`}
-      width={`${width}px`}
-      height={height ? `${height}px` : 'auto'}
-      onError={handleError}
-    />
+    <div className={`image-wrapper ${aspect_ratio}`}>
+      <img
+        src={imageUrl}
+        alt={alt}
+        className='image-component'
+        width={`${width}px`}
+        onError={handleError}
+      />
+    </div>
   );
 }

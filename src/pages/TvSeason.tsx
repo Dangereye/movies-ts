@@ -88,6 +88,7 @@ export default function TvSeason() {
         image={season?.poster_path}
         alt={season?.name}
         title={season?.name}
+        leadTitle='TV Shows'
       >
         <Wrapper name='info-bar' variant='flex'>
           <Certificate tv={tv?.content_ratings?.results} />

@@ -26,13 +26,11 @@ export default function ArticleProfileImages({
               <div key={`wrapper-${img.file_path}`} className='img'>
                 <ImageComponent
                   key={img.file_path}
-                  src={
-                    img.file_path
-                      ? `https://image.tmdb.org/t/p/w500/${img.file_path}`
-                      : '/images/error_500x750.webp'
-                  }
+                  file_path='https://image.tmdb.org/t/p/w500/'
+                  filename={img.file_path}
                   fallback='/images/error_500x750.webp'
                   width={300}
+                  aspect_ratio='aspect-ratio-2-3'
                   alt={`Profile-${i}`}
                 />
               </div>

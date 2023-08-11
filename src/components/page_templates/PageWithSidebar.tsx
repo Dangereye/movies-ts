@@ -11,7 +11,7 @@ import SubNavbar from '../sub_navbar/SubNavbar';
 
 type PageWithSidebarProps = {
   navigation: { name: string; link: string }[];
-  leadTitle?: string;
+  leadTitle?: string | undefined;
   title: string;
   name: string;
   children: React.ReactNode;

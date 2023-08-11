@@ -88,12 +88,11 @@ export default function CardsInfiniteScroll<T>({
                 >
                   <ImageComponent
                     key={getHeading(item)}
-                    src={
-                      getImage(item)
-                        ? `https://image.tmdb.org/t/p/w500/${getImage(item)}`
-                        : '/images/error_500x750.webp'
-                    }
+                    file_path='https://image.tmdb.org/t/p/w500/'
+                    filename={getImage(item)}
                     fallback='/images/error_500x750.webp'
+                    width={500}
+                    aspect_ratio='aspect-ratio-2-3'
                     alt={getHeading(item)}
                   />
                   <CardContent heading={getHeading(item)} vote={getVotes(item)}>
@@ -106,12 +105,11 @@ export default function CardsInfiniteScroll<T>({
                 <Link key={getId(item)} to={getLink(item)} className='card'>
                   <ImageComponent
                     key={getHeading(item)}
-                    src={
-                      getImage(item)
-                        ? `https://image.tmdb.org/t/p/w500/${getImage(item)}`
-                        : '/images/error_500x750.webp'
-                    }
+                    file_path='https://image.tmdb.org/t/p/w500/'
+                    filename={getImage(item)}
                     fallback='/images/error_500x750.webp'
+                    width={500}
+                    aspect_ratio='aspect-ratio-2-3'
                     alt={getHeading(item)}
                   />
                   <CardContent heading={getHeading(item)} vote={getVotes(item)}>

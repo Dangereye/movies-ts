@@ -9,9 +9,9 @@ type HeaderProps = {
   variant: 'header__full' | 'header__min' | 'header__center';
   bgImage?: string | null | undefined;
   image?: string | null | undefined;
-  alt?: string | null | undefined;
-  leadTitle?: string;
-  title: string | null | undefined;
+  alt?: string | undefined;
+  leadTitle?: string | undefined;
+  title: string | undefined;
   children?: ReactNode;
 };
 
@@ -35,10 +35,11 @@ export default function Header({
         {variant === 'header__full' && (
           <ImageComponent
             key={title}
-            src={`https://image.tmdb.org/t/p/w500/${image}`}
+            file_path='https://image.tmdb.org/t/p/w500/'
+            filename={image}
             fallback='/images/error_500x750.webp'
             width={500}
-            height={750}
+            aspect_ratio='aspect-ratio-2-3'
             alt={alt ? alt : 'Product image'}
           />
         )}

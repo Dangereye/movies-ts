@@ -22,19 +22,19 @@ export default function Review({ data }: ReviewProps) {
       <Wrapper name='review-heading' variant='flex'>
         <div className='avatar'>
           <ImageComponent
-            src={
-              data?.author_details?.avatar_path
-                ? `${
-                    data.author_details.avatar_path.includes('https')
-                      ? ''
-                      : 'https://image.tmdb.org/t/p/w500/'
-                  }${data.author_details.avatar_path}`
-                : '/images/error_100x100.webp'
+            file_path={null}
+            filename={
+              data?.author_details?.avatar_path &&
+              `${
+                data.author_details.avatar_path.includes('https')
+                  ? ''
+                  : 'https://image.tmdb.org/t/p/w500/'
+              }${data.author_details.avatar_path}`
             }
             fallback='/images/error_100x100.webp'
-            alt={data.author}
             width={60}
-            height={60}
+            aspect_ratio='aspect-ratio-1-1'
+            alt={data.author}
           />
         </div>
         <div>

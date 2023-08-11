@@ -9,11 +9,13 @@ import Article from '../articles/Article';
 import Container from '../container/Container';
 import H2 from '../typography/H2';
 import SmallText from '../typography/SmallText';
+
+// Utilities
 import { removeDuplicatesById } from '../../utilities/removeDuplicatesById';
 
 type CardsProps<T> = {
   article?: boolean;
-  heading?: string;
+  heading: string;
   media_type: 'movies' | 'TV shows' | 'people';
   limit?: boolean;
   variant: 'scroll-x' | 'list';
@@ -37,7 +39,7 @@ type CardsProps<T> = {
 
 export default function Cards<T extends { id: number }>({
   article = false,
-  heading = 'article heading',
+  heading,
   media_type,
   limit = false,
   variant,
@@ -64,12 +66,11 @@ export default function Cards<T extends { id: number }>({
         <Link key={getId(item)} to={getLink(item)} className='card'>
           <ImageComponent
             key={getHeading(item)}
-            src={
-              getImage(item)
-                ? `https://image.tmdb.org/t/p/w500/${getImage(item)}`
-                : '/images/error_500x750.webp'
-            }
+            file_path='https://image.tmdb.org/t/p/w500/'
+            filename={getImage(item)}
             fallback='/images/error_500x750.webp'
+            width={500}
+            aspect_ratio='aspect-ratio-2-3'
             alt={getHeading(item)}
           />
           <CardContent
