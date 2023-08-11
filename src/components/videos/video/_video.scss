@@ -1,22 +1,6 @@
 .video {
   width: 100%;
-  min-width: 50rem;
-  max-width: 50rem;
-
-  @media (max-width: $laptop) {
-    min-width: 40rem;
-    max-width: 40rem;
-  }
-
-  @media (max-width: $tablet) {
-    min-width: 30rem;
-    max-width: 30rem;
-  }
-
-  @media (max-width: $mobile) {
-    min-width: 25rem;
-    max-width: 100%;
-  }
+  @include landscape-media-queries;
 
   .video-image {
     position: relative;

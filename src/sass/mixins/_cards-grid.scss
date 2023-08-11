@@ -1,5 +1,13 @@
 @mixin cards-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+
+  @media (max-width: $mobile) {
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  }
+
+  @media (max-width: $small-mobile) {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  }
 }

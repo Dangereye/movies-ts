@@ -1,0 +1,14 @@
+@mixin portrait-media-queries {
+  min-width: 30rem;
+  max-width: 30rem;
+
+  @media (max-width: $mobile) {
+    min-width: 25rem;
+    max-width: 25rem;
+  }
+
+  @media (max-width: $small-mobile) {
+    min-width: 20rem;
+    max-width: 20rem;
+  }
+}
