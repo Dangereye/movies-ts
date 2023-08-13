@@ -33,15 +33,17 @@ export default function Header({
       )}
       <Container>
         {variant === 'header__full' && (
-          <ImageComponent
-            key={title}
-            file_path='https://image.tmdb.org/t/p/w500/'
-            filename={image}
-            fallback='/images/error_500x750.webp'
-            width={500}
-            aspect_ratio='aspect-ratio-2-3'
-            alt={alt ? alt : 'Product image'}
-          />
+          <div className='header__image'>
+            <ImageComponent
+              key={title}
+              file_path='https://image.tmdb.org/t/p/w500/'
+              filename={image}
+              fallback='/images/error_500x750.webp'
+              width={500}
+              aspect_ratio='aspect-ratio-2-3'
+              alt={alt ? alt : 'Product image'}
+            />
+          </div>
         )}
         <div className='header__content'>
           <div>
