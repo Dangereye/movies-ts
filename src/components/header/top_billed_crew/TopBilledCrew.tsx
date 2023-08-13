@@ -27,17 +27,15 @@ export default function TopBilledCrew({ data }: TopBilledCastProps) {
               to={`/people/${person.id}`}
             >
               <div className='crew-member'>
-                <div className='crew-member__image'>
-                  <ImageComponent
-                    key={`image-${person.id}`}
-                    file_path='https://image.tmdb.org/t/p/w500/'
-                    filename={person.profile_path}
-                    fallback='/images/error_100x100.webp'
-                    width={100}
-                    aspect_ratio='aspect-ratio-1-1'
-                    alt={person.name}
-                  />
-                </div>
+                <ImageComponent
+                  key={`image-${person.id}`}
+                  file_path='https://image.tmdb.org/t/p/w500/'
+                  filename={person.profile_path}
+                  fallback='/images/error_100x100.webp'
+                  width={75}
+                  aspect_ratio='aspect-ratio-1-1'
+                  alt={person.name}
+                />
                 <div className='crew-member__info'>
                   <HDiv heading={person.name} variant='heading--h4' />
                   <div className='crew-member__jobs'>

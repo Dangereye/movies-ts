@@ -10,23 +10,8 @@
 
   .crew-member {
     display: flex;
-
     align-items: center;
     gap: 1rem;
-
-    &__image {
-      width: 7.5rem;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      display: grid;
-      place-content: center;
-      overflow: hidden;
-
-      .image-component {
-        width: 100%;
-        height: auto;
-      }
-    }
 
     &__info {
       display: flex;
