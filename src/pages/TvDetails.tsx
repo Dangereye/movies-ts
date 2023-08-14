@@ -109,7 +109,7 @@ export default function TvDetails() {
           data={topBilledAggregateCrew(tv?.aggregate_credits?.crew)}
         />
       </Header>
-      <Statistics tv={tv} />
+      <Statistics data={tv} />
       <Section>
         <Main>
           <Cards

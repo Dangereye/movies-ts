@@ -106,7 +106,7 @@ export default function MovieDetails() {
         <Overview caption={data?.tagline} text={data?.overview} />
         <TopBilledCrew data={topBilledCrew(data?.credits?.crew)} />
       </Header>
-      <Statistics movie={data} />
+      <Statistics data={data} />
       <Section>
         <Main>
           <Cards

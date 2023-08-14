@@ -11,7 +11,7 @@ export default function SocialIcon({
   ariaLabel,
   icon,
 }: SocialIconProps) {
-  if (anchor && icon) {
+  if (anchor) {
     return (
       <a
         className='social-icon'

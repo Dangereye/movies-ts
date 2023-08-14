@@ -100,7 +100,7 @@ export default function TvDetails() {
           lines={8}
         />
       </Header>
-      <Statistics person={person} />
+      <Statistics data={person} />
       <Section>
         <Main>
           <ArticleProfileImages data={person?.images?.profiles} />

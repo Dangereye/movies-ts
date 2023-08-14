@@ -1,194 +1,103 @@
-// Icons
-import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from 'react-icons/bs';
-
 // Interfaces
-import { IMovieFull } from '../../interfaces/IMovieFull';
-import { IPerson } from '../../interfaces/IPerson';
-import { ITVShowFull } from '../../interfaces/ITVShowFull';
+import { IPersonMovieCast } from '../../interfaces/IPersonMovieCast';
+import { IPersonMovieCrew } from '../../interfaces/IPersonMovieCrew';
+import { IPersonTvCrew } from '../../interfaces/IPersonTvCrew';
+import { IPersonTvCast } from '../../interfaces/IPersonTvCast';
 
 // Components
 import Container from '../container/Container';
 import Wrapper from '../wrapper/Wrapper';
-import SocialIcon from './social_icon/SocialIcon';
 import Statistic from './Statistic/Statistic';
+import SocialIcon from './social_icon/SocialIcon';
 
-type StatisticsProps = {
-  movie?: IMovieFull;
-  tv?: ITVShowFull;
-  person?: IPerson;
+// Icons
+import { BsFacebook, BsGlobe, BsInstagram, BsTwitter } from 'react-icons/bs';
+
+// Utilities
+import { toDollars } from '../../utilities/toDollars';
+import { toCommaSeperatedNumber } from '../../utilities/toCommaSeperatedNumber';
+
+type StatisticsProps<T> = {
+  data: T | undefined;
 };
 
-export default function Statistics({ movie, tv, person }: StatisticsProps) {
-  if (movie) {
-    return (
-      <div className='statistics'>
-        <Container>
-          <Wrapper name='stats' variant='flex'>
-            <Statistic heading={movie?.status} text='Status' />
-            <Statistic
-              heading={
-                movie?.budget ? `$${movie?.budget.toLocaleString()}` : null
-              }
-              text='Budget'
-            />
-            <Statistic
-              heading={
-                movie?.revenue ? `$${movie?.revenue.toLocaleString()}` : null
-              }
-              text='Revenue'
-            />
-          </Wrapper>
-          <Wrapper name='social-icons' variant='flex'>
-            <SocialIcon
-              anchor={
-                movie?.external_ids?.facebook_id
-                  ? `https://www.facebook.com/${movie.external_ids.facebook_id}`
-                  : null
-              }
-              ariaLabel='facebook'
-              icon={<BsFacebook />}
-            />
-            <SocialIcon
-              anchor={
-                movie?.external_ids?.twitter_id
-                  ? `https://www.twitter.com/${movie.external_ids.twitter_id}`
-                  : null
-              }
-              ariaLabel='twitter'
-              icon={<BsTwitter />}
-            />
-            <SocialIcon
-              anchor={
-                movie?.external_ids?.instagram_id
-                  ? `https://www.instagram.com/${movie.external_ids.instagram_id}`
-                  : null
-              }
-              ariaLabel='instagram'
-              icon={<BsInstagram />}
-            />
-            <SocialIcon
-              anchor={movie?.homepage}
-              ariaLabel='website'
-              icon={<BsGlobe />}
-            />
-          </Wrapper>
-        </Container>
-      </div>
-    );
+export default function Statistics<
+  T extends {
+    status?: string;
+    budget?: number;
+    revenue?: number;
+    number_of_seasons?: number;
+    number_of_episodes?: number;
+    known_for_department?: string;
+    movie_credits?: { cast?: IPersonMovieCast[]; crew?: IPersonMovieCrew[] };
+    tv_credits?: { cast?: IPersonTvCast[]; crew?: IPersonTvCrew[] };
+    external_ids?: {
+      facebook_id?: string | null;
+      twitter_id?: string | null;
+      instagram_id?: string | null;
+    };
+    homepage?: string | null;
   }
-
-  if (tv) {
-    return (
-      <div className='statistics'>
-        <Container>
-          <Wrapper name='stats' variant='flex'>
-            <Statistic heading={tv?.status} text='Status' />
-            <Statistic heading={tv?.number_of_seasons} text='Seasons' />
-            <Statistic heading={tv?.number_of_episodes} text='Episodes' />
-          </Wrapper>
-          <Wrapper name='social-icons' variant='flex'>
-            <SocialIcon
-              anchor={
-                tv?.external_ids?.facebook_id
-                  ? `https://www.facebook.com/${tv.external_ids.facebook_id}`
-                  : null
-              }
-              ariaLabel='facebook'
-              icon={<BsFacebook />}
-            />
-            <SocialIcon
-              anchor={
-                tv?.external_ids?.twitter_id
-                  ? `https://www.twitter.com/${tv.external_ids.twitter_id}`
-                  : null
-              }
-              ariaLabel='twitter'
-              icon={<BsTwitter />}
-            />
-            <SocialIcon
-              anchor={
-                tv?.external_ids?.instagram_id
-                  ? `https://www.instagram.com/${tv.external_ids.instagram_id}`
-                  : null
-              }
-              ariaLabel='instagram'
-              icon={<BsInstagram />}
-            />
-            <SocialIcon
-              anchor={tv?.homepage}
-              ariaLabel='website'
-              icon={<BsGlobe />}
-            />
-          </Wrapper>
-        </Container>
-      </div>
-    );
-  }
-
-  if (person) {
-    return (
-      <div className='statistics'>
-        <Container>
-          <Wrapper name='stats' variant='flex'>
-            <Statistic
-              heading={person?.known_for_department}
-              text='Known for'
-            />
-            <Statistic
-              heading={person?.movie_credits?.cast?.length}
-              text='Movie cast'
-            />
-            <Statistic
-              heading={person?.movie_credits?.crew?.length}
-              text='Movie crew'
-            />
-            <Statistic
-              heading={person?.tv_credits?.cast?.length}
-              text='TV cast'
-            />
-            <Statistic
-              heading={person?.tv_credits?.crew?.length}
-              text='TV crew'
-            />
-          </Wrapper>
-          <Wrapper name='social-icons' variant='flex'>
-            <SocialIcon
-              anchor={
-                person?.external_ids?.facebook_id
-                  ? `https://www.facebook.com/${person.external_ids.facebook_id}`
-                  : null
-              }
-              ariaLabel='facebook'
-              icon={<BsFacebook />}
-            />
-            <SocialIcon
-              anchor={
-                person?.external_ids?.twitter_id
-                  ? `https://www.twitter.com/${person.external_ids.twitter_id}`
-                  : null
-              }
-              ariaLabel='twitter'
-              icon={<BsTwitter />}
-            />
-            <SocialIcon
-              anchor={
-                person?.external_ids?.instagram_id
-                  ? `https://www.instagram.com/${person.external_ids.instagram_id}`
-                  : null
-              }
-              ariaLabel='instagram'
-              icon={<BsInstagram />}
-            />
-            <SocialIcon
-              anchor={person?.homepage}
-              ariaLabel='website'
-              icon={<BsGlobe />}
-            />
-          </Wrapper>
-        </Container>
-      </div>
-    );
-  }
-
-  return null;
+>({ data }: StatisticsProps<T>) {
+  return (
+    <div className='statistics'>
+      <Container>
+        <Wrapper name='stats' variant='flex'>
+          <Statistic heading={data?.status} text='Status' />
+          <Statistic heading={toDollars(data?.budget)} text='Budget' />
+          <Statistic heading={toDollars(data?.revenue)} text='Revenue' />
+          <Statistic heading={data?.number_of_seasons} text='Seasons' />
+          <Statistic
+            heading={toCommaSeperatedNumber(data?.number_of_episodes)}
+            text='Episodes'
+          />
+          <Statistic heading={data?.known_for_department} text='Known for' />
+          <Statistic
+            heading={data?.movie_credits?.cast?.length}
+            text='Movie cast'
+          />
+          <Statistic
+            heading={data?.movie_credits?.crew?.length}
+            text='Movie crew'
+          />
+          <Statistic heading={data?.tv_credits?.cast?.length} text='TV cast' />
+          <Statistic heading={data?.tv_credits?.crew?.length} text='TV crew' />
+        </Wrapper>
+        <Wrapper name='social-icons' variant='flex'>
+          <SocialIcon
+            anchor={
+              data?.external_ids?.facebook_id
+                ? `https://www.facebook.com/${data.external_ids.facebook_id}`
+                : null
+            }
+            ariaLabel='facebook'
+            icon={<BsFacebook />}
+          />
+          <SocialIcon
+            anchor={
+              data?.external_ids?.twitter_id
+                ? `https://www.twitter.com/${data.external_ids.twitter_id}`
+                : null
+            }
+            ariaLabel='twitter'
+            icon={<BsTwitter />}
+          />
+          <SocialIcon
+            anchor={
+              data?.external_ids?.instagram_id
+                ? `https://www.instagram.com/${data.external_ids.instagram_id}`
+                : null
+            }
+            ariaLabel='instagram'
+            icon={<BsInstagram />}
+          />
+          <SocialIcon
+            anchor={data?.homepage}
+            ariaLabel='website'
+            icon={<BsGlobe />}
+          />
+        </Wrapper>
+      </Container>
+    </div>
+  );
 }
