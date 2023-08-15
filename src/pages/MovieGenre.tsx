@@ -54,6 +54,7 @@ export default function MovieGenre() {
       if (`${g.id}` === genreId) {
         setGenre(g.name);
       }
+      return null;
     });
   }, [genreId, genres, genre]);
 
