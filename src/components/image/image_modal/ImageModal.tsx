@@ -1,11 +1,16 @@
-import { useContext, useState } from 'react';
+// React
+import { useContext } from 'react';
+
+// Context
 import { ImagesFiltersContext } from '../../../contexts/ImagesFiltersContext';
+
+// Icons
 import { CgClose } from 'react-icons/cg';
+
+// Components
 import Container from '../../container/Container';
-import H2 from '../../typography/H2';
 import ImageComponent from '../Image';
 import Button from '../../buttons/Button';
-import BodyText from '../../typography/BodyText';
 
 export default function ImageModal() {
   const { state, dispatch } = useContext(ImagesFiltersContext);
@@ -54,6 +59,7 @@ export default function ImageModal() {
                 </div>
               );
             }
+            return null;
           })}
         </div>
       </Container>
