@@ -53,6 +53,7 @@ export default function TvGenre() {
       if (`${g.id}` === genreId) {
         setGenre(g.name);
       }
+      return null;
     });
   }, [genreId, genres, genre]);
 
