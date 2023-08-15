@@ -55,7 +55,7 @@ export default function MovieCastCrew() {
       let visualEffects: ICrew[] = [];
       let writing: ICrew[] = [];
 
-      data.credits?.crew?.map((item) => {
+      data.credits?.crew?.forEach((item) => {
         if (item.department.toLowerCase() === 'art') {
           art = [...art, { ...item }];
         }
