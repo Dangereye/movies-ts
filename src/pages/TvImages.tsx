@@ -47,7 +47,7 @@ export default function TvImages() {
     `&append_to_response=images`
   );
 
-  const {} = useCreateImages(tvId, data?.images);
+  useCreateImages(tvId, data?.images);
 
   const openModal = (index: number) => {
     dispatch({
