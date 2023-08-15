@@ -103,6 +103,8 @@ export default function Search() {
         },
       });
     }
+
+    // eslint-disable-next-line
   }, [movies, tvshows, people]);
 
   if (moviesLoading || tvshowsLoading || peopleLoading) {
