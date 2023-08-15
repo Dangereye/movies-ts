@@ -55,7 +55,7 @@ export default function Searchbar({ fixed }: SearchbarProps) {
             <FiSearch />
           </div>
           <input
-            id='searchbar'
+            id={fixed ? 'searchbar-fixed' : 'searchbar'}
             ref={input}
             className='searchbar__input'
             type='text'

@@ -51,7 +51,7 @@ export default function MovieDetails() {
     `&append_to_response=release_dates,credits,videos,external_ids,recommendations,similar,reviews,images`
   );
 
-  const {} = useCreateImages(movieId, data?.images);
+  useCreateImages(movieId, data?.images);
 
   if (isLoading) {
     return (
