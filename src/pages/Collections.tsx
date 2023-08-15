@@ -37,10 +37,6 @@ export default function Collections() {
   const [votes, setVotes] = useState(0);
 
   const allGenres = useCreateGenres('genre-list', 'genre/movie/list');
-  let collectionGenresNumbers: number[] = [];
-  let collectionGenres: { id: number; name: string }[] = [];
-  let vote_averages: number[] = [];
-  let vote_average = 0;
 
   const { data, isLoading, isError } = useMakeQuery<ICollections>(
     'Collection',
@@ -48,8 +44,12 @@ export default function Collections() {
   );
 
   useMemo(() => {
+    let collectionGenresNumbers: number[] = [];
+    let collectionGenres: { id: number; name: string }[] = [];
+    let vote_averages: number[] = [];
+    let vote_average = 0;
     if (data) {
-      data.parts.map((item) => {
+      data.parts.forEach((item) => {
         if (item.vote_average > 0) {
           vote_averages = [...vote_averages, item.vote_average];
         }
@@ -74,11 +74,14 @@ export default function Collections() {
               { id: genre.id, name: genre.name },
             ];
           }
+          return null;
         });
       });
     }
     setVotes(vote_average);
     setGenres(collectionGenres);
+
+    // eslint-disable-next-line
   }, [data]);
 
   if (isLoading) {
