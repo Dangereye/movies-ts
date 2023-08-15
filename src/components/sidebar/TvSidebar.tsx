@@ -182,6 +182,7 @@ export default function TvSidebar() {
           <div className='form__group'>
             <label htmlFor='date-from'>From</label>
             <input
+              id='date-from'
               type='date'
               name='date-from'
               value={state.dates.date_from}
@@ -191,6 +192,7 @@ export default function TvSidebar() {
           <div className='form__group'>
             <label htmlFor='date-to'>To</label>
             <input
+              id='date-to'
               type='date'
               name='date-to'
               value={state.dates.date_to}
@@ -208,20 +210,20 @@ export default function TvSidebar() {
           <div className='form__group'>
             <label htmlFor='min-rating'>Min</label>
             <NumberInput
+              id='min-rating'
               init={state.rating.min_rating}
               min={0}
               max={9}
-              id='min-rating'
               func={handleMinRating}
             />
           </div>
           <div className='form__group'>
             <label htmlFor='max-rating'>Max</label>
             <NumberInput
+              id='max-rating'
               init={state.rating.max_rating}
               min={1}
               max={10}
-              id='max-rating'
               func={handleMaxRating}
             />
           </div>
@@ -236,10 +238,10 @@ export default function TvSidebar() {
           <div className='form__group'>
             <label htmlFor='min-votes'>Min</label>
             <NumberInput
+              id='min-votes'
               init={state.vote_count.count}
               min={0}
               max={500}
-              id='min-votes'
               func={handleVoteCount}
             />
           </div>
