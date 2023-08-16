@@ -7,7 +7,7 @@ export default function useMakeQuery<T>(
 ) {
   const fetchData = async (endpoint: string | undefined, append = '') => {
     const res = await fetch(
-      `https://api.themoviedb.org/3/${endpoint}?api_key=2f965fedbcdec55779f7e2e60eb62e59${append}`
+      `https://api.themoviedb.org/3/${endpoint}?api_key=${process.env.REACT_APP_API_KEY}${append}`
     );
     return res.json();
   };
