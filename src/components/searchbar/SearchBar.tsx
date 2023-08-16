@@ -4,7 +4,7 @@ import { useState, useRef, useContext } from 'react';
 // React router
 import { useNavigate } from 'react-router-dom';
 
-// Context
+// Contexts
 import { AppContext } from '../../contexts/AppContext';
 
 // Components
