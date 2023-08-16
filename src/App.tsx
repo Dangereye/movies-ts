@@ -18,7 +18,7 @@ import VideoContextComponent from './contexts/VideoContext';
 
 // Components
 import Navbar from './components/navbar/Navbar';
-import Searchbar from './components/searchbar/Searchbar';
+import Searchbar from './components/searchbar/SearchbarComponent';
 import VideoPlayer from './components/videos/video_player/VideoPlayer';
 import ImageModal from './components/image/image_modal/ImageModal';
 import MobileMenu from './components/mobile_menu/MobileMenu';

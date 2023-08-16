@@ -1,6 +1,6 @@
 // Components
 import Header from '../components/header/Header';
-import Searchbar from '../components/searchbar/Searchbar';
+import Searchbar from '../components/searchbar/SearchbarComponent';
 import HDiv from '../components/typography/HDiv';
 import Section from '../components/sections/Section';
 import Main from '../components/main/Main';
