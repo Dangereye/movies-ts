@@ -1,5 +1,5 @@
 // React
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useEffect, useMemo, useRef } from 'react';
 
 // React router
 import { Link } from 'react-router-dom';
@@ -63,13 +63,18 @@ export default function CardsInfiniteScroll<T>({
 
   const options = { rootMargin: '400px', threshold: 0.1 };
 
-  const observer = new IntersectionObserver(callBack, options);
+  const observer = useMemo(
+    () => new IntersectionObserver(callBack, options),
+    // eslint-disable-next-line
+    [lastCard.current]
+  );
 
   useEffect(() => {
-    if (lastCard.current) observer.observe(lastCard.current);
+    const card = lastCard.current;
+    if (card) observer.observe(card);
 
     return () => {
-      if (lastCard.current) observer.unobserve(lastCard.current);
+      if (card) observer.unobserve(card);
     };
   }, [data, observer]);
 
