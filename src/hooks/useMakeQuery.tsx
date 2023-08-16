@@ -1,3 +1,4 @@
+// React query
 import { useQuery } from '@tanstack/react-query';
 
 export default function useMakeQuery<T>(
@@ -6,8 +7,9 @@ export default function useMakeQuery<T>(
   append?: string
 ) {
   const fetchData = async (endpoint: string | undefined, append = '') => {
+    const apiKey = process.env.REACT_APP_KEY;
     const res = await fetch(
-      `https://api.themoviedb.org/3/${endpoint}?api_key=${process.env.REACT_APP_API_KEY}${append}`
+      `https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}${append}`
     );
     return res.json();
   };
