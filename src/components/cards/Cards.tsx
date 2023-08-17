@@ -36,6 +36,9 @@ type CardsProps<T> = {
   sortItems: (a: T, b: T) => number;
   children?: React.ReactNode;
   imageLoading?: 'lazy' | undefined;
+  poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
+  profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
+  still_sizes?: 'w92' | 'w185' | 'w300' | 'original' | '';
 };
 
 export default function Cards<T extends { id: number }>({
@@ -57,6 +60,9 @@ export default function Cards<T extends { id: number }>({
   sortItems,
   children,
   imageLoading,
+  poster_sizes,
+  profile_sizes,
+  still_sizes,
 }: CardsProps<T>) {
   const filtered = removeDuplicatesById(data)
     ?.sort(sortItems)
@@ -68,7 +74,10 @@ export default function Cards<T extends { id: number }>({
         <Link key={getId(item)} to={getLink(item)} className='card'>
           <ImageComponent
             key={getHeading(item)}
-            file_path='https://image.tmdb.org/t/p/w500/'
+            base_url='https://image.tmdb.org/t/p/'
+            poster_sizes={poster_sizes}
+            profile_sizes={profile_sizes}
+            still_sizes={still_sizes}
             filename={getImage(item)}
             fallback='/images/error_500x750.webp'
             width={500}
