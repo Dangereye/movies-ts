@@ -98,6 +98,7 @@ export default function LandingPage() {
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => `${formatDate(item.first_air_date)}`}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -109,9 +110,9 @@ export default function LandingPage() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
             getBodyText={(item) => item.known_for_department}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
         </Main>
       </Section>

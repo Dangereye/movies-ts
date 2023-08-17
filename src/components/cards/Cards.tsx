@@ -35,6 +35,7 @@ type CardsProps<T> = {
   getSmallText?: (item: T) => string | null;
   sortItems: (a: T, b: T) => number;
   children?: React.ReactNode;
+  imageLoading?: 'lazy' | undefined;
 };
 
 export default function Cards<T extends { id: number }>({
@@ -55,6 +56,7 @@ export default function Cards<T extends { id: number }>({
   getSmallText,
   sortItems,
   children,
+  imageLoading,
 }: CardsProps<T>) {
   const filtered = removeDuplicatesById(data)
     ?.sort(sortItems)
@@ -72,6 +74,7 @@ export default function Cards<T extends { id: number }>({
             width={500}
             aspect_ratio='aspect-ratio-2-3'
             alt={getHeading(item)}
+            loading={imageLoading}
           />
           <CardContent
             heading={getHeading(item)}

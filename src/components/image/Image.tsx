@@ -10,6 +10,7 @@ type ImageComponentProps = {
   alt: string | undefined;
   width: number;
   aspect_ratio: 'aspect-ratio-1-1' | 'aspect-ratio-2-3' | 'aspect-ratio-16-9';
+  loading?: 'lazy' | undefined;
 };
 
 export default function ImageComponent({
@@ -19,6 +20,7 @@ export default function ImageComponent({
   alt,
   width,
   aspect_ratio,
+  loading,
 }: ImageComponentProps) {
   const [imageUrl, setImageUrl] = useState(
     filename ? `${file_path ? file_path : ''}${filename}` : fallback
@@ -36,6 +38,7 @@ export default function ImageComponent({
         className='image-component'
         width={`${width}px`}
         onError={handleError}
+        loading={loading}
       />
     </div>
   );
