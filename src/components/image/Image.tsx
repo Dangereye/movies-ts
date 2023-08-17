@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 type ImageComponentProps = {
-  file_path:
-    | 'https://image.tmdb.org/t/p/w500/'
-    | 'https://image.tmdb.org/t/p/original/'
-    | null;
+  base_url?: 'https://image.tmdb.org/t/p/' | '';
+  poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
+  profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
+  still_sizes?: 'w92' | 'w185' | 'w300' | 'original' | '';
   filename: string | null | undefined;
   fallback: string;
   alt: string | undefined;
@@ -14,7 +14,10 @@ type ImageComponentProps = {
 };
 
 export default function ImageComponent({
-  file_path,
+  base_url = '',
+  poster_sizes = '',
+  profile_sizes = '',
+  still_sizes = '',
   filename,
   fallback,
   alt,
@@ -23,7 +26,9 @@ export default function ImageComponent({
   loading,
 }: ImageComponentProps) {
   const [imageUrl, setImageUrl] = useState(
-    filename ? `${file_path ? file_path : ''}${filename}` : fallback
+    filename
+      ? `${base_url}${poster_sizes}${profile_sizes}${still_sizes}${filename}`
+      : fallback
   );
 
   const handleError = () => {
