@@ -45,9 +45,23 @@ export default function ImageModal() {
                 <div className='img' key={image.file_path}>
                   <ImageComponent
                     key={image.file_path}
-                    file_path='https://image.tmdb.org/t/p/original/'
+                    base_url='https://image.tmdb.org/t/p/'
+                    poster_sizes={
+                      state.display.show_media_type === 'posters'
+                        ? 'original'
+                        : ''
+                    }
+                    backdrop_sizes={
+                      state.display.show_media_type === 'backdrops'
+                        ? 'original'
+                        : ''
+                    }
                     filename={image.file_path}
-                    fallback='/images/error_500x750.webp'
+                    fallback={
+                      state.display.show_media_type === 'posters'
+                        ? '/images/error_500x750.webp'
+                        : '/images/error_500x281.webp'
+                    }
                     width={image.width}
                     aspect_ratio={
                       state.display.show_media_type === 'backdrops'
