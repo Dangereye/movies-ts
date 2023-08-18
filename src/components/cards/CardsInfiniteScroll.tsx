@@ -26,6 +26,8 @@ type CardsInfiniteScrollProps<T> = {
   getLink: (item: T) => string;
   getHeading: (item: T) => string;
   getImage: (item: T) => string | null;
+  poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
+  profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
   getVotes: (item: T) => number | undefined;
   getBodyText: (item: T) => string | null | undefined;
   data: IPage<T>[];
@@ -46,6 +48,8 @@ export default function CardsInfiniteScroll<T>({
   getLink,
   getHeading,
   getImage,
+  poster_sizes = '',
+  profile_sizes = '',
   getVotes,
   getBodyText,
   hasNextPage,
@@ -93,10 +97,12 @@ export default function CardsInfiniteScroll<T>({
                 >
                   <ImageComponent
                     key={getHeading(item)}
-                    file_path='https://image.tmdb.org/t/p/w500/'
+                    base_url='https://image.tmdb.org/t/p/'
+                    profile_sizes={profile_sizes}
+                    poster_sizes={poster_sizes}
                     filename={getImage(item)}
-                    fallback='/images/error_500x750.webp'
-                    width={500}
+                    fallback='/images/error_300x450.webp'
+                    width={300}
                     aspect_ratio='aspect-ratio-2-3'
                     alt={getHeading(item)}
                   />
@@ -110,10 +116,12 @@ export default function CardsInfiniteScroll<T>({
                 <Link key={getId(item)} to={getLink(item)} className='card'>
                   <ImageComponent
                     key={getHeading(item)}
-                    file_path='https://image.tmdb.org/t/p/w500/'
+                    base_url='https://image.tmdb.org/t/p/'
+                    profile_sizes={profile_sizes}
+                    poster_sizes={poster_sizes}
                     filename={getImage(item)}
-                    fallback='/images/error_500x750.webp'
-                    width={500}
+                    fallback='/images/error_300x450.webp'
+                    width={300}
                     aspect_ratio='aspect-ratio-2-3'
                     alt={getHeading(item)}
                   />
