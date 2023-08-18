@@ -24,15 +24,12 @@ import Header from '../components/header/Header';
 import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
 import Section from '../components/sections/Section';
-import Article from '../components/articles/Article';
-import ImageComponent from '../components/image/Image';
-import NoResults from '../components/typography/NoResults';
-import MobileSidebarFiltersButtons from '../components/sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
+
+// Articles
+import ArticleImageList from '../components/articles/ArticleImageList';
 
 // Data
 import { moviePages } from '../data/moviePages';
-import ImageList from '../components/articles/ArticleImageList';
-import ArticleImageList from '../components/articles/ArticleImageList';
 
 export default function MovieImages() {
   const { movieId } = useParams();
