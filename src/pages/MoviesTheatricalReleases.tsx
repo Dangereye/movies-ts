@@ -107,6 +107,7 @@ export default function MoviesTheatricalReleases() {
         getLink={(item) => `/movies/${item.id}`}
         getHeading={(item) => item.title}
         getImage={(item) => item.poster_path}
+        poster_sizes='w300'
         getVotes={(item) => item.vote_average}
         getBodyText={(item) => `${formatDate(item.release_date)}`}
         hasNextPage={hasNextPage}

@@ -109,6 +109,7 @@ export default function Collections() {
         variant='header__full'
         bgImage={data?.backdrop_path}
         image={data?.poster_path}
+        poster_sizes='w500'
         alt={data?.name}
         title={data?.name}
         leadTitle='Movies'
@@ -137,6 +138,7 @@ export default function Collections() {
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) =>

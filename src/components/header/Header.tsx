@@ -38,6 +38,7 @@ export default function Header({
           <div className='header__image'>
             <ImageComponent
               key={title}
+              base_url='https://image.tmdb.org/t/p/'
               filename={image}
               poster_sizes={poster_sizes}
               profile_sizes={profile_sizes}

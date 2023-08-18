@@ -78,6 +78,7 @@ export default function MovieDetails() {
         variant='header__full'
         bgImage={data?.backdrop_path}
         image={data?.poster_path}
+        poster_sizes='w500'
         alt={data?.title}
         title={data?.title}
         leadTitle='Movies'
@@ -120,8 +121,10 @@ export default function MovieDetails() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getBodyText={(item) => item.character}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           >
             <div className='buttons'>
               <Link
@@ -152,9 +155,11 @@ export default function MovieDetails() {
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -166,9 +171,11 @@ export default function MovieDetails() {
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
+            poster_sizes='w500'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
         </Main>
       </Section>

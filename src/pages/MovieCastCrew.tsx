@@ -138,7 +138,7 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.character}
             sortItems={(a, b) => b.popularity - a.popularity}
           />
@@ -152,9 +152,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -166,9 +167,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -180,9 +182,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -194,9 +197,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -208,9 +212,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -222,9 +227,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -236,9 +242,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -250,9 +257,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -264,9 +272,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -278,9 +287,10 @@ export default function MovieCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
-            getVotes={(item) => undefined}
+            profile_sizes='h632'
             getBodyText={(item) => item.job}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
         </Main>
       </Section>
