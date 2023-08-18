@@ -100,14 +100,32 @@ export default function MovieImages() {
                         >
                           <ImageComponent
                             key={image.file_path}
-                            file_path='https://image.tmdb.org/t/p/w500/'
+                            base_url='https://image.tmdb.org/t/p/'
                             filename={image.file_path}
-                            fallback='/images/error_500x750.webp'
-                            width={500}
+                            poster_sizes={
+                              state.display.show_media_type === 'posters'
+                                ? 'w300'
+                                : ''
+                            }
+                            backdrop_sizes={
+                              state.display.show_media_type === 'posters'
+                                ? ''
+                                : 'w780'
+                            }
+                            fallback={
+                              state.display.show_media_type === 'posters'
+                                ? '/images/error_300x450.webp'
+                                : '/images/error_500x281.webp'
+                            }
+                            width={
+                              state.display.show_media_type === 'posters'
+                                ? 300
+                                : 500
+                            }
                             aspect_ratio={
-                              state.display.show_media_type === 'backdrops'
-                                ? 'aspect-ratio-16-9'
-                                : 'aspect-ratio-2-3'
+                              state.display.show_media_type === 'posters'
+                                ? 'aspect-ratio-2-3'
+                                : 'aspect-ratio-16-9'
                             }
                             alt={`${state.display.show_media_type}-${i}`}
                           />
