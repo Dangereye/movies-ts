@@ -99,6 +99,7 @@ export default function LandingPage() {
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => `${formatDate(item.first_air_date)}`}
             sortItems={(a, b) => b.popularity - a.popularity}
+            poster_sizes='w300'
             imageLoading='lazy'
           />
           <Cards
@@ -113,6 +114,7 @@ export default function LandingPage() {
             getImage={(item) => item.profile_path}
             getBodyText={(item) => item.known_for_department}
             sortItems={(a, b) => b.popularity - a.popularity}
+            profile_sizes='h632'
             imageLoading='lazy'
           />
         </Main>
