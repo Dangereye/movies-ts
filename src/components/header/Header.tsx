@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+// Components
 import BackgroundImage from '../background_image/BackgroundImage';
 import Container from '../container/Container';
 import ImageComponent from '../image/Image';
@@ -8,17 +8,23 @@ import HDiv from '../typography/HDiv';
 type HeaderProps = {
   variant: 'header__full' | 'header__min' | 'header__center';
   bgImage?: string | null | undefined;
+  backdrop_sizes?: 'w300' | 'w780' | 'w1280' | 'original';
   image?: string | null | undefined;
+  poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
+  profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
   alt?: string | undefined;
   leadTitle?: string | undefined;
   title: string | undefined;
-  children?: ReactNode;
+  children?: React.ReactNode;
 };
 
 export default function Header({
   variant,
   bgImage,
+  backdrop_sizes,
   image,
+  poster_sizes = '',
+  profile_sizes = '',
   alt,
   leadTitle,
   title,
@@ -26,18 +32,15 @@ export default function Header({
 }: HeaderProps) {
   return (
     <header className={`header ${variant}`}>
-      {bgImage && (
-        <BackgroundImage
-          path={`https://image.tmdb.org/t/p/original/${bgImage}`}
-        />
-      )}
+      <BackgroundImage backdrop_sizes={backdrop_sizes} filename={bgImage} />
       <Container>
         {variant === 'header__full' && (
           <div className='header__image'>
             <ImageComponent
               key={title}
-              file_path='https://image.tmdb.org/t/p/w500/'
               filename={image}
+              poster_sizes={poster_sizes}
+              profile_sizes={profile_sizes}
               fallback='/images/error_500x750.webp'
               width={500}
               aspect_ratio='aspect-ratio-2-3'

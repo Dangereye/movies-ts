@@ -76,17 +76,17 @@ export default function Cards<T extends { id: number }>({
         <Link key={getId(item)} to={getLink(item)} className='card'>
           <ImageComponent
             key={getHeading(item)}
+            loading={imageLoading}
             base_url='https://image.tmdb.org/t/p/'
-            poster_sizes={poster_sizes}
             backdrop_sizes={backdrop_sizes}
+            poster_sizes={poster_sizes}
             profile_sizes={profile_sizes}
             still_sizes={still_sizes}
             filename={getImage(item)}
             fallback='/images/error_500x750.webp'
-            width={500}
+            width={300}
             aspect_ratio='aspect-ratio-2-3'
             alt={getHeading(item)}
-            loading={imageLoading}
           />
           <CardContent
             heading={getHeading(item)}
