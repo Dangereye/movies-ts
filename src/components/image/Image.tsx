@@ -28,7 +28,7 @@ export default function ImageComponent({
   loading,
 }: ImageComponentProps) {
   const [imageUrl, setImageUrl] = useState(
-    filename
+    filename && (backdrop_sizes || poster_sizes || profile_sizes || still_sizes)
       ? `${base_url}${poster_sizes}${profile_sizes}${still_sizes}${backdrop_sizes}/${filename}`
       : fallback
   );
