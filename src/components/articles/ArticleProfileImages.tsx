@@ -25,12 +25,14 @@ export default function ArticleProfileImages({
             {data?.map((img, i) => (
               <ImageComponent
                 key={img.file_path}
-                file_path='https://image.tmdb.org/t/p/w500/'
+                base_url='https://image.tmdb.org/t/p/'
+                profile_sizes='h632'
                 filename={img.file_path}
-                fallback='/images/error_500x750.webp'
+                fallback='/images/error_300x450.webp'
                 width={300}
                 aspect_ratio='aspect-ratio-2-3'
                 alt={`Profile-${i}`}
+                loading='lazy'
               />
             ))}
           </div>
