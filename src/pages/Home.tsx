@@ -84,6 +84,7 @@ export default function LandingPage() {
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => `${formatDate(item.release_date)}`}
             sortItems={(a, b) => b.popularity - a.popularity}
+            poster_sizes='w300'
           />
           <Cards
             article
