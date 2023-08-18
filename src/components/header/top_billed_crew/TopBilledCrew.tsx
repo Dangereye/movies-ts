@@ -29,8 +29,9 @@ export default function TopBilledCrew({ data }: TopBilledCastProps) {
               <div className='crew-member'>
                 <ImageComponent
                   key={`image-${person.id}`}
-                  file_path='https://image.tmdb.org/t/p/w500/'
+                  base_url='https://image.tmdb.org/t/p/'
                   filename={person.profile_path}
+                  profile_sizes='w185'
                   fallback='/images/error_100x100.webp'
                   width={75}
                   aspect_ratio='aspect-ratio-1-1'
