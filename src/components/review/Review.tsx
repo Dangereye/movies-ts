@@ -21,14 +21,14 @@ export default function Review({ data }: ReviewProps) {
     <div className='review'>
       <Wrapper name='review-heading' variant='flex'>
         <ImageComponent
-          file_path={null}
-          filename={
-            data?.author_details?.avatar_path &&
-            `${
-              data.author_details.avatar_path.includes('https')
-                ? ''
-                : 'https://image.tmdb.org/t/p/w500/'
-            }${data.author_details.avatar_path}`
+          base_url={
+            data.author_details.avatar_path?.includes('https')
+              ? ''
+              : 'https://image.tmdb.org/t/p/'
+          }
+          filename={data.author_details.avatar_path}
+          profile_sizes={
+            data.author_details.avatar_path?.includes('https') ? '' : 'w185'
           }
           fallback='/images/error_100x100.webp'
           width={75}
