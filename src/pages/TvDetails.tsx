@@ -31,7 +31,7 @@ import { formatDate } from '../utilities/formatDate';
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
 import ArticleReviews from '../components/articles/ArticleReviews';
-import ArticleImages from '../components/articles/ArticleImages';
+import ArticleImagesScrollX from '../components/articles/ArticleImagesScrollX';
 
 // Data
 import { tvPages } from '../data/tvPages';
@@ -137,7 +137,7 @@ export default function TvDetails() {
           </Cards>
 
           <ArticleVideos data={tv?.videos?.results} />
-          <ArticleImages />
+          <ArticleImagesScrollX />
           <ArticleReviews data={tv?.reviews?.results} />
           <Cards
             article

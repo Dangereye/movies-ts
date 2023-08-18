@@ -31,6 +31,8 @@ import MobileSidebarFiltersButtons from '../components/sidebar/mobile_sidebar_fi
 
 // Data
 import { moviePages } from '../data/moviePages';
+import ImageList from '../components/articles/ArticleImageList';
+import ArticleImageList from '../components/articles/ArticleImageList';
 
 export default function MovieImages() {
   const { movieId } = useParams();
@@ -87,58 +89,7 @@ export default function MovieImages() {
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
-              <Article name={state.display.show_media_type}>
-                <Container>
-                  <MobileSidebarFiltersButtons />
-                  <div className='images__list'>
-                    {images?.length ? (
-                      images.map((image, i) => (
-                        <div
-                          className='img'
-                          key={image.file_path}
-                          onClick={() => openModal(i)}
-                        >
-                          <ImageComponent
-                            key={image.file_path}
-                            base_url='https://image.tmdb.org/t/p/'
-                            filename={image.file_path}
-                            poster_sizes={
-                              state.display.show_media_type === 'posters'
-                                ? 'w300'
-                                : ''
-                            }
-                            backdrop_sizes={
-                              state.display.show_media_type === 'posters'
-                                ? ''
-                                : 'w780'
-                            }
-                            fallback={
-                              state.display.show_media_type === 'posters'
-                                ? '/images/error_300x450.webp'
-                                : '/images/error_500x281.webp'
-                            }
-                            width={
-                              state.display.show_media_type === 'posters'
-                                ? 300
-                                : 500
-                            }
-                            aspect_ratio={
-                              state.display.show_media_type === 'posters'
-                                ? 'aspect-ratio-2-3'
-                                : 'aspect-ratio-16-9'
-                            }
-                            alt={`${state.display.show_media_type}-${i}`}
-                          />
-                        </div>
-                      ))
-                    ) : (
-                      <NoResults
-                        text={`Please select a language to display ${state.display.show_media_type}.`}
-                      />
-                    )}
-                  </div>
-                </Container>
-              </Article>
+              <ArticleImageList images={images} openModal={openModal} />
             </Main>
           </Layout>
         </Container>

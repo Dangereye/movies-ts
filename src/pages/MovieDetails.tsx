@@ -21,7 +21,7 @@ import Cards from '../components/cards/Cards';
 
 // Articles
 import ArticleVideos from '../components/articles/ArticleVideos';
-import ArticleImages from '../components/articles/ArticleImages';
+import ArticleImagesScrollX from '../components/articles/ArticleImagesScrollX';
 import ArticleReviews from '../components/articles/ArticleReviews';
 
 // Hooks
@@ -134,7 +134,7 @@ export default function MovieDetails() {
           </Cards>
 
           <ArticleVideos data={data?.videos?.results} />
-          <ArticleImages />
+          <ArticleImagesScrollX />
 
           <ArticleReviews data={data?.reviews?.results} />
           <Collection

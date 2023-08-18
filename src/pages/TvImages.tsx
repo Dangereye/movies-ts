@@ -24,13 +24,12 @@ import Header from '../components/header/Header';
 import Layout from '../components/layout/Layout';
 import Sidebar from '../components/sidebar/Sidebar';
 import Section from '../components/sections/Section';
-import Article from '../components/articles/Article';
-import ImageComponent from '../components/image/Image';
-import NoResults from '../components/typography/NoResults';
+
+// Articles
+import ArticleImageList from '../components/articles/ArticleImageList';
 
 // Data
 import { tvPages } from '../data/tvPages';
-import MobileSidebarFiltersButtons from '../components/sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
 
 export default function TvImages() {
   const { tvId } = useParams();
@@ -87,40 +86,7 @@ export default function TvImages() {
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
-              <Article name={state.display.show_media_type}>
-                <Container>
-                  <MobileSidebarFiltersButtons />
-                  <div className='images__list'>
-                    {images?.length ? (
-                      images.map((image, i) => (
-                        <div
-                          className='img'
-                          key={image.file_path}
-                          onClick={() => openModal(i)}
-                        >
-                          <ImageComponent
-                            key={image.file_path}
-                            file_path='https://image.tmdb.org/t/p/w500/'
-                            filename={image.file_path}
-                            fallback='/images/error_500x750.webp'
-                            width={500}
-                            aspect_ratio={
-                              state.display.show_media_type === 'backdrops'
-                                ? 'aspect-ratio-16-9'
-                                : 'aspect-ratio-2-3'
-                            }
-                            alt={`${state.display.show_media_type}-${i}`}
-                          />
-                        </div>
-                      ))
-                    ) : (
-                      <NoResults
-                        text={`Please select a language to display ${state.display.show_media_type}.`}
-                      />
-                    )}
-                  </div>
-                </Container>
-              </Article>
+              <ArticleImageList images={images} openModal={openModal} />
             </Main>
           </Layout>
         </Container>
