@@ -25,12 +25,14 @@ export default function ProvidersIcon({
     >
       <div className='providers__status'>{<TiTick />}</div>
       <ImageComponent
-        file_path='https://image.tmdb.org/t/p/w500/'
+        base_url='https://image.tmdb.org/t/p/'
         filename={logo}
+        logo_sizes='w92'
         fallback=''
-        width={500}
+        width={55}
         aspect_ratio='aspect-ratio-1-1'
         alt={name}
+        loading='lazy'
       />
     </div>
   );

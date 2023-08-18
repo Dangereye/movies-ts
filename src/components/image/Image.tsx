@@ -3,6 +3,15 @@ import { useState } from 'react';
 type ImageComponentProps = {
   base_url?: 'https://image.tmdb.org/t/p/' | '';
   backdrop_sizes?: 'w300' | 'w780' | 'w1280' | 'original' | '';
+  logo_sizes?:
+    | 'w45'
+    | 'w92'
+    | 'w154'
+    | 'w185'
+    | 'w300'
+    | 'w500'
+    | 'original'
+    | '';
   poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
   profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
   still_sizes?: 'w92' | 'w185' | 'w300' | 'original' | '';
@@ -17,6 +26,7 @@ type ImageComponentProps = {
 export default function ImageComponent({
   base_url = '',
   backdrop_sizes = '',
+  logo_sizes = '',
   poster_sizes = '',
   profile_sizes = '',
   still_sizes = '',
@@ -28,8 +38,13 @@ export default function ImageComponent({
   loading,
 }: ImageComponentProps) {
   const [imageUrl, setImageUrl] = useState(
-    filename && (backdrop_sizes || poster_sizes || profile_sizes || still_sizes)
-      ? `${base_url}${poster_sizes}${profile_sizes}${still_sizes}${backdrop_sizes}/${filename}`
+    filename &&
+      (backdrop_sizes ||
+        logo_sizes ||
+        poster_sizes ||
+        profile_sizes ||
+        still_sizes)
+      ? `${base_url}${poster_sizes}${profile_sizes}${still_sizes}${backdrop_sizes}${logo_sizes}/${filename}`
       : fallback
   );
 

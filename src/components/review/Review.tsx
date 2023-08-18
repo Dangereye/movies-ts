@@ -4,13 +4,13 @@ import SmallText from '../typography/SmallText';
 import Wrapper from '../wrapper/Wrapper';
 import StarRating from '../star_rating/StarRating';
 import ExpandableText from '../typography/ExpandableText';
+import HDiv from '../typography/HDiv';
 
 // Interfaces
 import { IReview } from '../../interfaces/IReview';
 
 // Utilities
 import { formatDate } from '../../utilities/formatDate';
-import HDiv from '../typography/HDiv';
 
 type ReviewProps = {
   data: IReview;
@@ -34,6 +34,7 @@ export default function Review({ data }: ReviewProps) {
           width={75}
           aspect_ratio='aspect-ratio-1-1'
           alt={data.author}
+          loading='lazy'
         />
         <div>
           <HDiv variant='heading--h3' heading={`${data.author}`} />
