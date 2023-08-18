@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 type ImageComponentProps = {
-  base_url?: 'https://image.tmdb.org/t/p/' | '';
+  base_url?: 'https://image.tmdb.org/t/p/' | 'https://i.ytimg.com/vi' | '';
   backdrop_sizes?: 'w300' | 'w780' | 'w1280' | 'original' | '';
   logo_sizes?:
     | 'w45'
@@ -15,6 +15,7 @@ type ImageComponentProps = {
   poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
   profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
   still_sizes?: 'w92' | 'w185' | 'w300' | 'original' | '';
+  youTube?: '/hqdefault.jpg' | '';
   filename: string | null | undefined;
   fallback: string;
   alt: string | undefined;
@@ -30,6 +31,7 @@ export default function ImageComponent({
   poster_sizes = '',
   profile_sizes = '',
   still_sizes = '',
+  youTube = '',
   filename,
   fallback,
   alt,
@@ -43,8 +45,9 @@ export default function ImageComponent({
         logo_sizes ||
         poster_sizes ||
         profile_sizes ||
-        still_sizes)
-      ? `${base_url}${poster_sizes}${profile_sizes}${still_sizes}${backdrop_sizes}${logo_sizes}/${filename}`
+        still_sizes ||
+        youTube)
+      ? `${base_url}${poster_sizes}${profile_sizes}${still_sizes}${backdrop_sizes}${logo_sizes}/${filename}${youTube}`
       : fallback
   );
 
