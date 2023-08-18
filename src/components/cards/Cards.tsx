@@ -83,7 +83,7 @@ export default function Cards<T extends { id: number }>({
             profile_sizes={profile_sizes}
             still_sizes={still_sizes}
             filename={getImage(item)}
-            fallback='/images/error_500x750.webp'
+            fallback='/images/error_300x450.webp'
             width={300}
             aspect_ratio='aspect-ratio-2-3'
             alt={getHeading(item)}
