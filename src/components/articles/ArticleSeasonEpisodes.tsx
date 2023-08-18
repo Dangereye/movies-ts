@@ -27,12 +27,14 @@ export default function ArticleSeasonEpisodes({
             {data.map((episode) => (
               <div className='episode' key={episode.id}>
                 <ImageComponent
-                  file_path='https://image.tmdb.org/t/p/w500/'
+                  base_url='https://image.tmdb.org/t/p/'
+                  still_sizes='original'
                   filename={episode.still_path}
-                  width={500}
+                  width={600}
                   aspect_ratio='aspect-ratio-16-9'
                   alt={episode.name}
-                  fallback='/images/error_600x338.webp'
+                  fallback='/images/error_1040x585.webp'
+                  loading='lazy'
                 />
                 <div className='content'>
                   <Wrapper name='episode-header' variant='flex'>

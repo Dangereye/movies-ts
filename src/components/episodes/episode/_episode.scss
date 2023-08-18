@@ -1,6 +1,4 @@
 .episode {
-  box-shadow: 0 0 20px rgba(#000, 0.1);
-
   .wrapper {
     margin: 0;
   }
@@ -13,6 +11,7 @@
   .content {
     padding: 2rem;
   }
+
   .episode-header {
     justify-content: space-between;
     row-gap: 0;
@@ -21,13 +20,16 @@
       margin-bottom: 1rem;
     }
   }
+
   .heading {
     color: $heading-text-dark;
   }
+
   .body-text,
   .small-text {
     color: $body-text-dark;
   }
+
   .episode-date {
     margin-bottom: 4rem;
   }
