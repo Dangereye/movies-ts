@@ -82,6 +82,7 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getBodyText={(item) => item.roles[0].character}
             getSmallText={(item) =>
               formatEpisodeCount(item.total_episode_count)
@@ -98,8 +99,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -111,8 +114,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -124,8 +129,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -137,8 +144,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -150,8 +159,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -163,8 +174,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -176,8 +189,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -189,8 +204,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -202,8 +219,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -215,8 +234,10 @@ export default function TvSeasonCastCrew() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getJobs={(item) => item.jobs}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
         </Main>
       </Section>

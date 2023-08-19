@@ -84,6 +84,7 @@ export default function TvDetails() {
         variant='header__full'
         bgImage={tv?.backdrop_path}
         image={tv?.poster_path}
+        poster_sizes='w500'
         alt={tv?.name}
         title={tv?.name}
         leadTitle='TV Shows'
@@ -123,11 +124,13 @@ export default function TvDetails() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getRoles={(item) => item.roles}
             getSmallText={(item) =>
               formatEpisodeCount(item.total_episode_count)
             }
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           >
             <div className='buttons'>
               <Link to={`/tv/${tvId}/cast-crew`} className='btn btn--tertiary'>
@@ -149,11 +152,13 @@ export default function TvDetails() {
             getLink={(item) => `/tv/${tvId}/season/${item.season_number}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getBodyText={(item) => formatDate(item.air_date)}
             getSmallText={(item) => formatEpisodeCount(item.episode_count)}
             sortItems={(a, b) =>
               stringToDate(b.air_date) - stringToDate(a.air_date)
             }
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -165,9 +170,11 @@ export default function TvDetails() {
             getLink={(item) => `/tv/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.first_air_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -179,9 +186,11 @@ export default function TvDetails() {
             getLink={(item) => `/tv/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.first_air_date)}
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           />
         </Main>
       </Section>

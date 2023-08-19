@@ -108,6 +108,7 @@ export default function TvPopular() {
         getLink={(item) => `/tv/${item.id}`}
         getHeading={(item) => item.name}
         getImage={(item) => item.poster_path}
+        poster_sizes='w300'
         getVotes={(item) => item.vote_average}
         getBodyText={(item) => `${formatDate(item.first_air_date)}`}
         hasNextPage={hasNextPage}

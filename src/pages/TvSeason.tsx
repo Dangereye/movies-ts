@@ -86,6 +86,7 @@ export default function TvSeason() {
         variant='header__full'
         bgImage={tv?.backdrop_path}
         image={season?.poster_path}
+        poster_sizes='w500'
         alt={season?.name}
         title={season?.name}
         leadTitle='TV Shows'
@@ -123,11 +124,13 @@ export default function TvSeason() {
             getLink={(item) => `/people/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.profile_path}
+            profile_sizes='h632'
             getBodyText={(item) => item.roles[0].character}
             getSmallText={(item) =>
               formatEpisodeCount(item.total_episode_count)
             }
             sortItems={(a, b) => b.popularity - a.popularity}
+            imageLoading='lazy'
           >
             <div className='buttons'>
               <Link
