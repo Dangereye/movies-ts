@@ -36,8 +36,8 @@ export default function Video({ data }: VideoProps) {
           filename={data.key}
           youTube='/hqdefault.jpg'
           fallback='/images/error_600x450.webp'
-          width={600}
-          aspect_ratio='aspect-ratio-16-9'
+          width={500}
+          aspect_ratio='aspect-ratio-4-3'
           alt={data.name}
           loading='lazy'
         />

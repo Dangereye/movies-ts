@@ -20,7 +20,11 @@ type ImageComponentProps = {
   fallback: string;
   alt: string | undefined;
   width: number;
-  aspect_ratio: 'aspect-ratio-1-1' | 'aspect-ratio-2-3' | 'aspect-ratio-16-9';
+  aspect_ratio:
+    | 'aspect-ratio-1-1'
+    | 'aspect-ratio-2-3'
+    | 'aspect-ratio-4-3'
+    | 'aspect-ratio-16-9';
   loading?: 'lazy' | undefined;
 };
 
