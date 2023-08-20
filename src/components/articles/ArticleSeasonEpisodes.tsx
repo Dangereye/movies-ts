@@ -14,7 +14,7 @@ type ArticleSeasonEpisodesProps = {
 export default function ArticleSeasonEpisodes({
   data,
 }: ArticleSeasonEpisodesProps) {
-  if (data) {
+  if (data?.length) {
     return (
       <Article name='season-episodes'>
         <Container>
