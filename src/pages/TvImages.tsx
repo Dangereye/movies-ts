@@ -86,7 +86,7 @@ export default function TvImages() {
           <Layout variant='grid grid--sidebar'>
             <Sidebar />
             <Main>
-              <ArticleImageList images={images} openModal={openModal} />
+              <ArticleImageList data={images} openModal={openModal} />
             </Main>
           </Layout>
         </Container>

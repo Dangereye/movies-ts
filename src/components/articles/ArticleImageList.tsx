@@ -15,64 +15,68 @@ import Container from '../container/Container';
 import MobileSidebarFiltersButtons from '../sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
 
 type ArticleImageListProps = {
-  images: IImages[] | undefined;
+  data: IImages[] | undefined;
   openModal: (index: number) => void;
 };
 
 export default function ArticleImageList({
-  images,
+  data,
   openModal,
 }: ArticleImageListProps) {
   const { state } = useContext(ImagesFiltersContext);
-  if (images && images.length > 0) {
-    return (
-      <Article name={state.display.show_media_type}>
-        <Container>
-          <MobileSidebarFiltersButtons />
-          <div className='images__list'>
-            {images?.length ? (
-              images.map((image, i) => (
-                <div
-                  className='img'
-                  key={image.file_path}
-                  onClick={() => openModal(i)}
-                >
-                  <ImageComponent
-                    key={image.file_path}
-                    base_url='https://image.tmdb.org/t/p/'
-                    filename={image.file_path}
-                    poster_sizes={
-                      state.display.show_media_type === 'posters' ? 'w300' : ''
-                    }
-                    backdrop_sizes={
-                      state.display.show_media_type === 'posters' ? '' : 'w780'
-                    }
-                    fallback={
-                      state.display.show_media_type === 'posters'
-                        ? '/images/error_300x450.webp'
-                        : '/images/error_500x281.webp'
-                    }
-                    width={
-                      state.display.show_media_type === 'posters' ? 300 : 500
-                    }
-                    aspect_ratio={
-                      state.display.show_media_type === 'posters'
-                        ? 'aspect-ratio-2-3'
-                        : 'aspect-ratio-16-9'
-                    }
-                    alt={`${state.display.show_media_type}-${i}`}
-                  />
-                </div>
-              ))
-            ) : (
-              <NoResults
-                text={`Please select a language to display ${state.display.show_media_type}.`}
+
+  const images =
+    state.languages[state.display.show_media_type][
+      state.languages.active_language
+    ];
+
+  const content =
+    images && images?.length > 0 ? (
+      <>
+        <MobileSidebarFiltersButtons />
+        <div className='images__list'>
+          {images.map((image, i) => (
+            <div
+              className='img'
+              key={image.file_path}
+              onClick={() => openModal(i)}
+            >
+              <ImageComponent
+                key={image.file_path}
+                base_url='https://image.tmdb.org/t/p/'
+                filename={image.file_path}
+                poster_sizes={
+                  state.display.show_media_type === 'posters' ? 'w300' : ''
+                }
+                backdrop_sizes={
+                  state.display.show_media_type === 'posters' ? '' : 'w780'
+                }
+                fallback={
+                  state.display.show_media_type === 'posters'
+                    ? '/images/error_300x450.webp'
+                    : '/images/error_500x281.webp'
+                }
+                width={state.display.show_media_type === 'posters' ? 300 : 500}
+                aspect_ratio={
+                  state.display.show_media_type === 'posters'
+                    ? 'aspect-ratio-2-3'
+                    : 'aspect-ratio-16-9'
+                }
+                alt={`${state.display.show_media_type}-${i}`}
               />
-            )}
-          </div>
-        </Container>
-      </Article>
+            </div>
+          ))}
+        </div>
+      </>
+    ) : (
+      <NoResults
+        text={`Please select a ${state.display.show_media_type} language.`}
+      />
     );
-  }
-  return null;
+
+  return (
+    <Article name={state.display.show_media_type}>
+      <Container>{content}</Container>
+    </Article>
+  );
 }
