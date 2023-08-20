@@ -19,7 +19,7 @@ type SearchbarProps = {
 
 export default function Searchbar({ fixed }: SearchbarProps) {
   const [query, setQuery] = useState('');
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   const input = useRef<HTMLInputElement>(null);
 
@@ -36,6 +36,10 @@ export default function Searchbar({ fixed }: SearchbarProps) {
       navigate(`/search/${query}`);
       setQuery('');
       input.current?.blur();
+      dispatch({
+        type: 'UPDATE_APP',
+        payload: { ...state, searchbar: { expanded: false } },
+      });
     }
   };
 

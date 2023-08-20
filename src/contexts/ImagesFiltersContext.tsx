@@ -23,7 +23,6 @@ export default function ImagesFiltersContextComponent({
   children,
 }: FiltersContextProps) {
   const [state, dispatch] = useReducer(imagesFiltersReducer, initialState);
-  // console.log('Image Filters: ', state);
   return (
     <ImagesFiltersContext.Provider value={{ state, dispatch }}>
       {children}

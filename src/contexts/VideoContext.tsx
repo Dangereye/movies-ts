@@ -1,8 +1,8 @@
-import { useState, createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode } from 'react';
 
 const initial = {
   isOpen: false,
-  key: "",
+  key: '',
 };
 
 type VideoContextType = {

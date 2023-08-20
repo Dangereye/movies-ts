@@ -23,7 +23,6 @@ export default function SearchFiltersContextComponent({
   children,
 }: FiltersContextProps) {
   const [state, dispatch] = useReducer(searchFiltersReducer, initialState);
-  // console.log('Search Filters: ', state);
   return (
     <SearchFiltersContext.Provider value={{ state, dispatch }}>
       {children}
