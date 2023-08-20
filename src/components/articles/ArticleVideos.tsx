@@ -115,87 +115,79 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
         <Container>
           <H2 heading={makePlural(active)} />
           <Wrapper name='video-options' variant='flex'>
-            {videos.trailer.length > 0 && (
-              <Button
-                name={
-                  <>
-                    <span className='name'>Trailers</span>
-                    <span className='qty'>{videos.trailer.length}</span>
-                  </>
-                }
-                active={active === 'trailer'}
-                variant='btn--tertiary'
-                onClick={(e) => updateVideos('trailer')}
-              />
-            )}
-            {videos.teaser.length > 0 && (
-              <Button
-                name={
-                  <>
-                    <span className='name'>Teasers</span>
-                    <span className='qty'>{videos.teaser.length}</span>
-                  </>
-                }
-                active={active === 'teaser'}
-                variant='btn--tertiary'
-                onClick={(e) => updateVideos('teaser')}
-              />
-            )}
-            {videos.clip.length > 0 && (
-              <Button
-                name={
-                  <>
-                    <span className='name'>Clips</span>
-                    <span className='qty'>{videos.clip.length}</span>
-                  </>
-                }
-                active={active === 'clip'}
-                variant='btn--tertiary'
-                onClick={(e) => updateVideos('clip')}
-              />
-            )}
-            {videos.behind_the_scenes.length > 0 && (
-              <Button
-                name={
-                  <>
-                    <span className='name'>Behind the Scenes</span>
-                    <span className='qty'>
-                      {videos.behind_the_scenes.length}
-                    </span>
-                  </>
-                }
-                active={active === 'behind_the_scenes'}
-                variant='btn--tertiary'
-                onClick={(e) => updateVideos('behind_the_scenes')}
-              />
-            )}
-            {videos.blooper.length > 0 && (
-              <Button
-                name={
-                  <>
-                    <span className='name'>Bloopers</span>
-                    <span className='qty'>{videos.blooper.length}</span>
-                  </>
-                }
-                active={active === 'blooper'}
-                variant='btn--tertiary'
-                onClick={(e) => updateVideos('blooper')}
-              />
-            )}
-            {videos.featurette.length > 0 && (
-              <Button
-                name={
-                  <>
-                    <span className='name'>Featurettes</span>
-                    <span className='qty'>{videos.featurette.length}</span>
-                  </>
-                }
-                active={active === 'featurette'}
-                variant='btn--tertiary'
-                onClick={(e) => updateVideos('featurette')}
-              />
-            )}
+            <Button
+              name={
+                <>
+                  <span className='name'>Trailers</span>
+                  <span className='qty'>{videos.trailer.length}</span>
+                </>
+              }
+              active={active === 'trailer'}
+              variant='btn--tertiary'
+              onClick={(e) => updateVideos('trailer')}
+            />
+
+            <Button
+              name={
+                <>
+                  <span className='name'>Teasers</span>
+                  <span className='qty'>{videos.teaser.length}</span>
+                </>
+              }
+              active={active === 'teaser'}
+              variant='btn--tertiary'
+              onClick={(e) => updateVideos('teaser')}
+            />
+
+            <Button
+              name={
+                <>
+                  <span className='name'>Clips</span>
+                  <span className='qty'>{videos.clip.length}</span>
+                </>
+              }
+              active={active === 'clip'}
+              variant='btn--tertiary'
+              onClick={(e) => updateVideos('clip')}
+            />
+
+            <Button
+              name={
+                <>
+                  <span className='name'>Behind the Scenes</span>
+                  <span className='qty'>{videos.behind_the_scenes.length}</span>
+                </>
+              }
+              active={active === 'behind_the_scenes'}
+              variant='btn--tertiary'
+              onClick={(e) => updateVideos('behind_the_scenes')}
+            />
+
+            <Button
+              name={
+                <>
+                  <span className='name'>Bloopers</span>
+                  <span className='qty'>{videos.blooper.length}</span>
+                </>
+              }
+              active={active === 'blooper'}
+              variant='btn--tertiary'
+              onClick={(e) => updateVideos('blooper')}
+            />
+
+            <Button
+              name={
+                <>
+                  <span className='name'>Featurettes</span>
+                  <span className='qty'>{videos.featurette.length}</span>
+                </>
+              }
+              active={active === 'featurette'}
+              variant='btn--tertiary'
+              onClick={(e) => updateVideos('featurette')}
+            />
           </Wrapper>
+
           <div className='videos'>
             {videos[active].length > 0 ? (
               videos[active]
@@ -205,9 +197,14 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
                 )
                 .map((video) => <Video key={video.id} data={video} />)
             ) : (
-              <BodyText
-                text={`We don't seem to have any ${active} videos at this time.`}
-              />
+              <>
+                <BodyText
+                  text={`Sorry, it looks like there are no ${active.replaceAll(
+                    '_',
+                    ' '
+                  )} videos available at the moment.`}
+                />
+              </>
             )}
           </div>
         </Container>
