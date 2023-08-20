@@ -29,6 +29,7 @@ export default function SidebarSection({
           variant='btn--close'
           name={<HiChevronDown />}
           onClick={dispatch}
+          ariaLabel={`Toggle ${heading}`}
         />
       </div>
       <div
