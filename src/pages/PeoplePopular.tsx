@@ -70,7 +70,7 @@ export default function PeoplePopular() {
         getLink={(item) => `/people/${item.id}`}
         getHeading={(item) => item.name}
         getImage={(item) => item.profile_path}
-        getVotes={(item) => undefined}
+        profile_sizes='h632'
         getBodyText={(item) => item.known_for_department}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}

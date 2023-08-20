@@ -72,6 +72,7 @@ export default function TvDetails() {
       <Header
         variant='header__full'
         image={person?.profile_path}
+        profile_sizes='h632'
         bgImage={person?.movie_credits?.cast[0]?.backdrop_path}
         alt={person?.name}
         title={person?.name}
@@ -114,11 +115,13 @@ export default function TvDetails() {
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) =>
               stringToDate(b.release_date) - stringToDate(a.release_date)
             }
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -130,11 +133,13 @@ export default function TvDetails() {
             getLink={(item) => `/movies/${item.id}`}
             getHeading={(item) => item.title}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.release_date)}
             sortItems={(a, b) =>
               stringToDate(b.release_date) - stringToDate(a.release_date)
             }
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -146,11 +151,13 @@ export default function TvDetails() {
             getLink={(item) => `/tv/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.first_air_date)}
             sortItems={(a, b) =>
               stringToDate(b.first_air_date) - stringToDate(a.first_air_date)
             }
+            imageLoading='lazy'
           />
           <Cards
             article
@@ -162,11 +169,13 @@ export default function TvDetails() {
             getLink={(item) => `/tv/${item.id}`}
             getHeading={(item) => item.name}
             getImage={(item) => item.poster_path}
+            poster_sizes='w300'
             getVotes={(item) => item.vote_average}
             getBodyText={(item) => formatDate(item.first_air_date)}
             sortItems={(a, b) =>
               stringToDate(b.first_air_date) - stringToDate(a.first_air_date)
             }
+            imageLoading='lazy'
           />
         </Main>
       </Section>

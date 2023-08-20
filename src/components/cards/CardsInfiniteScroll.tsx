@@ -28,7 +28,7 @@ type CardsInfiniteScrollProps<T> = {
   getImage: (item: T) => string | null;
   poster_sizes?: 'w92' | 'w154' | 'w185' | 'w300' | 'w500' | 'original' | '';
   profile_sizes?: 'w45' | 'w185' | 'h632' | 'original' | '';
-  getVotes: (item: T) => number | undefined;
+  getVotes?: (item: T) => number | undefined;
   getBodyText: (item: T) => string | null | undefined;
   data: IPage<T>[];
   hasNextPage: boolean | undefined;
@@ -106,7 +106,10 @@ export default function CardsInfiniteScroll<T>({
                     aspect_ratio='aspect-ratio-2-3'
                     alt={getHeading(item)}
                   />
-                  <CardContent heading={getHeading(item)} vote={getVotes(item)}>
+                  <CardContent
+                    heading={getHeading(item)}
+                    vote={getVotes && getVotes(item)}
+                  >
                     <BodyText text={getBodyText(item)} />
                   </CardContent>
                 </Link>
@@ -125,7 +128,10 @@ export default function CardsInfiniteScroll<T>({
                     aspect_ratio='aspect-ratio-2-3'
                     alt={getHeading(item)}
                   />
-                  <CardContent heading={getHeading(item)} vote={getVotes(item)}>
+                  <CardContent
+                    heading={getHeading(item)}
+                    vote={getVotes && getVotes(item)}
+                  >
                     <BodyText text={getBodyText(item)} />
                   </CardContent>
                 </Link>
