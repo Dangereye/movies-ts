@@ -64,6 +64,7 @@ export default function MobileSidebarFiltersMenu() {
           name={<CgClose />}
           variant='btn--secondary'
           onClick={closeMobileFiltersMenu}
+          ariaLabel='Close menu'
         />
         <div className='mobile-sidebar-filters-menu__content'>
           <HDiv variant='heading--h4' heading='Filter results' />
