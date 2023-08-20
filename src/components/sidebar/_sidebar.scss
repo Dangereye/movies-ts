@@ -27,10 +27,12 @@
   }
 
   &__content {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 3rem;
   }
+
   @media (min-width: 1151px) {
     &__content {
       padding: 3rem 2rem;
