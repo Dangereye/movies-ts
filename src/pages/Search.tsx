@@ -140,6 +140,7 @@ export default function Search() {
           getLink={(item) => `/movies/${item.id}`}
           getHeading={(item) => item.title}
           getImage={(item) => item.poster_path}
+          poster_sizes='w300'
           getVotes={(item) => item.vote_average}
           getBodyText={(item) => formatDate(item.release_date)}
           hasNextPage={moviesHasNextPage}
@@ -166,6 +167,7 @@ export default function Search() {
           getLink={(item) => `/tv/${item.id}`}
           getHeading={(item) => item.name}
           getImage={(item) => item.poster_path}
+          poster_sizes='w300'
           getVotes={(item) => item.vote_average}
           getBodyText={(item) => `${formatDate(item.first_air_date)}`}
           hasNextPage={tvshowsHasNextPage}
@@ -192,7 +194,7 @@ export default function Search() {
           getLink={(item) => `/people/${item.id}`}
           getHeading={(item) => item.name}
           getImage={(item) => item.profile_path}
-          getVotes={(item) => undefined}
+          profile_sizes='h632'
           getBodyText={(item) => item.known_for_department}
           hasNextPage={peopleHasNextPage}
           fetchNextPage={peopleFetchNextPage}

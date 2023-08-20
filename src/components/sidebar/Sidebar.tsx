@@ -1,5 +1,11 @@
+// React
+import { useContext } from 'react';
+
 // React router
 import { useLocation } from 'react-router-dom';
+
+// Context
+import { AppContext } from '../../contexts/AppContext';
 
 // Components
 import MovieSidebar from './MovieSidebar';
@@ -8,9 +14,9 @@ import SearchSidebar from './SearchSidebar';
 import HDiv from '../typography/HDiv';
 import ImagesSidebar from './ImagesSidebar';
 import Button from '../buttons/Button';
+
+// Icons
 import { CgClose } from 'react-icons/cg';
-import { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
 
 export default function Sidebar() {
   const { state, dispatch } = useContext(AppContext);
