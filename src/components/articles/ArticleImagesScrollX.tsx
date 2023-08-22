@@ -52,7 +52,7 @@ export default function ArticleImages() {
     if (language?.english_name) {
       return language?.english_name;
     }
-    return 'international';
+    return '';
   };
 
   if (
