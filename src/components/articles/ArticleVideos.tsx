@@ -199,10 +199,7 @@ export default function ArticleVideos({ data }: VideoArticleProps) {
             ) : (
               <>
                 <BodyText
-                  text={`Sorry, it looks like there are no ${active.replaceAll(
-                    '_',
-                    ' '
-                  )} videos available at the moment.`}
+                  text={`No ${active.replaceAll('_', ' ')} videos available.`}
                 />
               </>
             )}
