@@ -1,6 +1,9 @@
 // React
 import { useContext } from 'react';
 
+// Hooks
+import useCreateLanguages from '../../hooks/useCreateLanguages';
+
 // Context
 import { ImagesFiltersContext } from '../../contexts/ImagesFiltersContext';
 
@@ -13,6 +16,7 @@ import ImageComponent from '../image/Image';
 import Article from './Article';
 import Container from '../container/Container';
 import MobileSidebarFiltersButtons from '../sidebar/mobile_sidebar_filters_buttons/MobileSidebarFiltersButtons';
+import BodyText from '../typography/BodyText';
 
 type ArticleImageListProps = {
   data: IImages[] | undefined;
@@ -30,10 +34,24 @@ export default function ArticleImageList({
       state.languages.active_language
     ];
 
+  const languages = useCreateLanguages();
+
+  const getLanguageName = (iso_639_1: string) => {
+    const language = languages.find((lang) => lang.iso_639_1 === iso_639_1);
+    if (language?.english_name) {
+      return language?.english_name;
+    }
+    return '';
+  };
+
   const content =
     images && images?.length > 0 ? (
       <>
-        <MobileSidebarFiltersButtons />
+        <BodyText
+          text={`Showing ${images.length} ${getLanguageName(
+            state.languages.active_language
+          )} ${state.display.show_media_type}`}
+        />
         <div className='images__list'>
           {images.map((image, i) => (
             <div
@@ -76,7 +94,10 @@ export default function ArticleImageList({
 
   return (
     <Article name={state.display.show_media_type}>
-      <Container>{content}</Container>
+      <Container>
+        <MobileSidebarFiltersButtons />
+        {content}
+      </Container>
     </Article>
   );
 }
