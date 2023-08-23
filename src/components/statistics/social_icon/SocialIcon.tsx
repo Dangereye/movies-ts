@@ -1,9 +1,7 @@
-import { ReactNode } from 'react';
-
 type SocialIconProps = {
   anchor: string | null | undefined;
   ariaLabel: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
 };
 
 export default function SocialIcon({

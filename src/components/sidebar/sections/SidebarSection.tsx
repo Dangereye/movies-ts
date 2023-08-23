@@ -1,6 +1,3 @@
-// React
-import { ReactNode } from 'react';
-
 // Components
 import Button from '../../buttons/Button';
 import HDiv from '../../typography/HDiv';
@@ -12,7 +9,7 @@ type SectionProps = {
   expanded: boolean;
   dispatch: () => void;
   heading: string;
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export default function SidebarSection({

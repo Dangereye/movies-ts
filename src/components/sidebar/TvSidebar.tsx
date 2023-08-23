@@ -1,4 +1,4 @@
-// react
+// React
 import { useContext } from 'react';
 
 // Context

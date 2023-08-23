@@ -1,4 +1,7 @@
+// React router
 import { Link } from 'react-router-dom';
+
+// Components
 import Navigation from '../../navigation/Navigation';
 
 type MobilemenuGroupProps = {

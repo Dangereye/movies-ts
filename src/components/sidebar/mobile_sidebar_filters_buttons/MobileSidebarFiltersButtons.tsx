@@ -1,5 +1,10 @@
+// React
 import { useContext } from 'react';
+
+// Contexts
 import { AppContext } from '../../../contexts/AppContext';
+
+// Component
 import Button from '../../buttons/Button';
 
 export default function MobileSidebarFiltersButtons() {

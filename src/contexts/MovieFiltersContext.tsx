@@ -1,4 +1,7 @@
+// React
 import { createContext, ReactNode, useReducer } from 'react';
+
+// Reducers
 import moviefiltersReducer, {
   stateType,
   initialState,

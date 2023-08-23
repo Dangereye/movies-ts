@@ -1,3 +1,4 @@
+// Interfaces
 import { IPage } from './IPage';
 import { IMovieMin } from './IMovieMin';
 import { ICredits } from './ICredits';

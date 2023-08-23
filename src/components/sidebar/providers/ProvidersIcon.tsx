@@ -1,5 +1,7 @@
+// Components
 import ImageComponent from '../../image/Image';
 
+// Icons
 import { TiTick } from 'react-icons/ti';
 
 type ProvidersIconProps = {
@@ -25,6 +27,7 @@ export default function ProvidersIcon({
     >
       <div className='providers__status'>{<TiTick />}</div>
       <ImageComponent
+        key={id}
         base_url='https://image.tmdb.org/t/p/'
         filename={logo}
         logo_sizes='w92'

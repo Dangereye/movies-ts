@@ -1,4 +1,7 @@
+// React
 import { createContext, useReducer } from 'react';
+
+// Reducers
 import appReducer, {
   StateType,
   ActionType,

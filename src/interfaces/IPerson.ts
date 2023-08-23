@@ -1,3 +1,4 @@
+// Interfaces
 import { ICombinedCredits } from "./ICombinedCredits";
 import { IExternalIds } from "./IExternalIds";
 import { IImages } from "./IImages";

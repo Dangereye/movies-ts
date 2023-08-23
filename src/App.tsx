@@ -2,7 +2,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-// React Router Dom
+// React router
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Sass

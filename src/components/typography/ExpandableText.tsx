@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-import Button from "../buttons/Button";
+// React
+import { useState, useEffect, useRef } from 'react';
+
+// Components
+import Button from '../buttons/Button';
 
 type ExpandableTextProps = {
   text: string | undefined;
@@ -30,15 +33,15 @@ export default function ExpandableText({ text, lines }: ExpandableTextProps) {
       <>
         <p
           ref={element}
-          className={expanded ? "expandable-text active" : "expandable-text"}
+          className={expanded ? 'expandable-text active' : 'expandable-text'}
           style={{ WebkitLineClamp: lines, lineClamp: lines }}
         >
           {text}
         </p>
         {showButton && (
           <Button
-            name={expanded ? "Read Less" : "Read More"}
-            variant={"btn--tertiary"}
+            name={expanded ? 'Read Less' : 'Read More'}
+            variant={'btn--tertiary'}
             onClick={toggleExpanded}
           />
         )}

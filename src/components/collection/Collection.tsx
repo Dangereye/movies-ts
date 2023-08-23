@@ -1,5 +1,7 @@
-// Components
+// React router
 import { Link } from 'react-router-dom';
+
+// Components
 import BackgroundImage from '../background_image/BackgroundImage';
 import Container from '../container/Container';
 import HDiv from '../typography/HDiv';

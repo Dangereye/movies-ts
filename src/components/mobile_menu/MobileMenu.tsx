@@ -1,9 +1,16 @@
+// React
 import { useContext } from 'react';
+
+// Contexts
 import { AppContext } from '../../contexts/AppContext';
+
+// Components
+import MobileMenuGroup from './mobile_menu_group/MobileMenuGroup';
+
+// Data
 import { moviePages } from '../../data/moviePages';
 import { tvPages } from '../../data/tvPages';
 import { peoplePages } from '../../data/peoplePages';
-import MobileMenuGroup from './mobile_menu_group/MobileMenuGroup';
 
 export default function MobileMenu() {
   const { state, dispatch } = useContext(AppContext);

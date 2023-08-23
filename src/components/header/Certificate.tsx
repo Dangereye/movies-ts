@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+// React
+import { useState, useEffect } from 'react';
 
 // Interfaces
-import { IMovieReleaseDates } from "../../interfaces/IMovieReleaseDates";
-import { ITVShowContentRatings } from "../../interfaces/ITVShowContentRatings";
+import { IMovieReleaseDates } from '../../interfaces/IMovieReleaseDates';
+import { ITVShowContentRatings } from '../../interfaces/ITVShowContentRatings';
 
 type CertificateProps = {
   movie?: IMovieReleaseDates[] | undefined;
@@ -15,7 +16,7 @@ export default function Certificate({ movie, tv }: CertificateProps) {
   useEffect(() => {
     if (movie) {
       movie.forEach((item) => {
-        if (item.iso_3166_1 === "GB") {
+        if (item.iso_3166_1 === 'GB') {
           item.release_dates.forEach((item) => {
             if (item.type === 3) {
               setCertificate(item.certification);
@@ -31,7 +32,7 @@ export default function Certificate({ movie, tv }: CertificateProps) {
 
     if (tv) {
       tv.forEach((item) => {
-        if (item.iso_3166_1 === "GB") {
+        if (item.iso_3166_1 === 'GB') {
           setCertificate(item.rating);
         }
       });
@@ -39,7 +40,7 @@ export default function Certificate({ movie, tv }: CertificateProps) {
   }, [movie, tv]);
 
   if (certificate) {
-    return <div className="certificate">{certificate}</div>;
+    return <div className='certificate'>{certificate}</div>;
   }
   return null;
 }

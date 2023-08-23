@@ -1,6 +1,13 @@
+// React
 import { useContext } from 'react';
+
+// Contexts
 import { VideoContext } from '../../../contexts/VideoContext';
+
+// Components
 import Button from '../../buttons/Button';
+
+// Icons
 import { CgClose } from 'react-icons/cg';
 
 export default function VideoPlayer() {

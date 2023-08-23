@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
+// React
+import { ReactNode } from 'react';
 
 type LayoutProps = {
-  variant?: "grid grid--sidebar";
+  variant?: 'grid grid--sidebar';
   children: ReactNode;
 };
 

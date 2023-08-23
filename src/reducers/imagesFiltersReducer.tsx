@@ -1,3 +1,4 @@
+// Interfaces
 import { IImages } from '../interfaces/IImages';
 
 export type stateType = {

@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+// React router
 import { Link } from 'react-router-dom';
 
 type NavigationProps<T> = {
   variant: 'horizontal' | 'vertical' | 'comma-separated';
   getId: (item: T) => string | number;
   getLink: (item: T) => string;
-  renderItem: (item: T) => ReactNode;
+  renderItem: (item: T) => React.ReactNode;
   data: T[] | undefined;
   onClick?: () => void;
 };
