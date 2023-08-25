@@ -1,6 +1,9 @@
 // React
 import { useContext } from 'react';
 
+// React router
+import { useLocation } from 'react-router-dom';
+
 // Context
 import { AppContext } from '../../contexts/AppContext';
 import { TvFiltersContext } from '../../contexts/TvFiltersContext';
@@ -26,6 +29,7 @@ import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
 export default function TvSidebar() {
   const { state: appState } = useContext(AppContext);
   const { state } = useContext(TvFiltersContext);
+  const { pathname } = useLocation();
   const genres = useCreateGenres('tv-genres', 'genre/tv/list');
   const providers = useCreateProviders('tv-providers', 'watch/providers/tv');
   const countries = useCreateCountries();
@@ -154,25 +158,27 @@ export default function TvSidebar() {
           />
         ))}
       </SidebarSection>
-      <SidebarSection
-        heading='Genres'
-        expanded={state.genres.expanded}
-        dispatch={handleToggleGenres}
-      >
-        <ToggleButton
-          active={state.genres.types.length === 0}
-          name='All'
-          onClick={clearGenres}
-        />
-        {genres.map((genre) => (
+      {!pathname.includes('genre') && (
+        <SidebarSection
+          heading='Genres'
+          expanded={state.genres.expanded}
+          dispatch={handleToggleGenres}
+        >
           <ToggleButton
-            key={genre.id}
-            active={state.genres.types.includes(genre.id)}
-            name={genre.name}
-            onClick={() => updateGenres(genre.id)}
+            active={state.genres.types.length === 0}
+            name='All'
+            onClick={clearGenres}
           />
-        ))}
-      </SidebarSection>
+          {genres.map((genre) => (
+            <ToggleButton
+              key={genre.id}
+              active={state.genres.types.includes(genre.id)}
+              name={genre.name}
+              onClick={() => updateGenres(genre.id)}
+            />
+          ))}
+        </SidebarSection>
+      )}
       <SidebarSection
         heading='air dates'
         expanded={state.dates.expanded}
