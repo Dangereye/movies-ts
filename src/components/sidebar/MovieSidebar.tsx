@@ -1,6 +1,9 @@
 // React
 import { useContext } from 'react';
 
+// React router
+import { useLocation } from 'react-router-dom';
+
 // Context
 import { AppContext } from '../../contexts/AppContext';
 import { MovieFiltersContext } from '../../contexts/MovieFiltersContext';
@@ -27,6 +30,7 @@ import { movieReleaseTypes } from '../../data/movieReleaseTypes';
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
   const { state: appState } = useContext(AppContext);
+  const { pathname } = useLocation();
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
   const countries = useCreateCountries();
   const providers = useCreateProviders(
@@ -149,25 +153,27 @@ export default function MovieSidebar() {
         </div>
       </SidebarSection>
 
-      <SidebarSection
-        heading='Genres'
-        expanded={state.genres.expanded}
-        dispatch={handleToggleGenres}
-      >
-        <ToggleButton
-          active={state.genres.types.length === 0}
-          name='All'
-          onClick={clearGenres}
-        />
-        {genres.map((genre) => (
+      {!pathname.includes('genre') && (
+        <SidebarSection
+          heading='Genres'
+          expanded={state.genres.expanded}
+          dispatch={handleToggleGenres}
+        >
           <ToggleButton
-            key={genre.id}
-            active={state.genres.types.includes(genre.id)}
-            name={genre.name}
-            onClick={() => updateGenres(genre.id)}
+            active={state.genres.types.length === 0}
+            name='All'
+            onClick={clearGenres}
           />
-        ))}
-      </SidebarSection>
+          {genres.map((genre) => (
+            <ToggleButton
+              key={genre.id}
+              active={state.genres.types.includes(genre.id)}
+              name={genre.name}
+              onClick={() => updateGenres(genre.id)}
+            />
+          ))}
+        </SidebarSection>
+      )}
 
       <SidebarSection
         heading='Certifications'

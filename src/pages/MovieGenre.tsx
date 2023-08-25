@@ -1,14 +1,15 @@
 // React
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 
 // React router
 import { useParams } from 'react-router-dom';
 
 // Context
-import { AppContext } from '../contexts/AppContext';
+import { MovieFiltersContext } from '../contexts/MovieFiltersContext';
 
 // Hooks
 import useMakeInfiniteQuery from '../hooks/useMakeInfiniteQuery';
+import useAppend from '../hooks/useAppendMovie';
 import useCreateGenres from '../hooks/useCreateGenres';
 
 // Components
@@ -18,7 +19,7 @@ import NoResults from '../components/typography/NoResults';
 import CardsInfiniteScroll from '../components/cards/CardsInfiniteScroll';
 
 // Templates
-import Page from '../components/page_templates/Page';
+import PageWithSidebar from '../components/page_templates/PageWithSidebar';
 
 // Interfaces
 import { IPage } from '../interfaces/IPage';
@@ -31,9 +32,11 @@ import { moviePages } from '../data/moviePages';
 import { formatDate } from '../utilities/formatDate';
 
 export default function MovieGenre() {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(MovieFiltersContext);
   const [genre, setGenre] = useState('');
   const { genreId } = useParams();
+  const { append } = useAppend();
+  const initial = useRef(false);
   const leadTitle = 'Movies';
   const title = `${genre}`;
   const name = 'movies-by-genre';
@@ -43,11 +46,24 @@ export default function MovieGenre() {
   const { data, isError, isLoading, hasNextPage, fetchNextPage } =
     useMakeInfiniteQuery<IPage<IMovieMin>>(
       'discover/movie',
-      `&sort_by=popularity.desc&with_genres=${genreId}&region=${state.region.value}&include_adult=${state.adult.active}`,
+      append,
       GetNextPageParam
     );
 
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
+
+  useEffect(() => {
+    if (!initial.current && genreId) {
+      initial.current = true;
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          ...state,
+          genres: { ...state.genres, types: [+genreId] },
+        },
+      });
+    }
+  });
 
   useEffect(() => {
     genres?.find((g) => {
@@ -60,45 +76,44 @@ export default function MovieGenre() {
 
   if (isLoading) {
     return (
-      <Page
+      <PageWithSidebar
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
         name={name}
       >
         <LoaderComponent />
-      </Page>
+      </PageWithSidebar>
     );
   }
-
   if (isError) {
     return (
-      <Page
+      <PageWithSidebar
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
         name='error'
       >
         <ErrorComponent />
-      </Page>
+      </PageWithSidebar>
     );
   }
 
   if (data.pages[0].total_results === 0) {
     return (
-      <Page
+      <PageWithSidebar
         navigation={moviePages}
         leadTitle={leadTitle}
         title={title}
         name={name}
       >
         <NoResults media='movies' />
-      </Page>
+      </PageWithSidebar>
     );
   }
 
   return (
-    <Page
+    <PageWithSidebar
       navigation={moviePages}
       leadTitle={leadTitle}
       title={title}
@@ -116,6 +131,6 @@ export default function MovieGenre() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
       />
-    </Page>
+    </PageWithSidebar>
   );
 }

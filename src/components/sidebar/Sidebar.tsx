@@ -25,6 +25,7 @@ export default function Sidebar() {
   const filterRoutes = [
     'movies/popular',
     'tv/popular',
+    'genre',
     'theatrical-releases',
     'upcoming',
     'top-rated',
