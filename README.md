@@ -149,7 +149,7 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 - React
 - React query
 
-## Apis
+## APIs
 
 - [TMDB](https://developer.themoviedb.org/docs)
 - Fetch
@@ -160,4 +160,4 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 - [YouTube](https://www.youtube.com/)
 - [React icons](https://react-icons.github.io/react-icons)
 - [React router](https://reactrouter.com/en/main)
-- [React Query](https://tanstack.com/query/latest/docs/react/overview)
+- [React query](https://tanstack.com/query/latest/docs/react/overview)
