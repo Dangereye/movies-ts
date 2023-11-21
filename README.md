@@ -11,14 +11,14 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 - Responsive layout & images
 - Mobile navigation - able to be toggled to save space on smaller screens
 - Bespoke SVG icons
-- Search: movies, TV shows & people
+- Search: movies, Tv shows & people
 - Trending movies
 - Trending Tv shows
 - Trending people
 
 ### Movies
 
-- Quick navigation: popular, theatrical, upcoming & top-rated
+- Quick navigation: popular, theatrical, upcoming & top rated
 - Sort: popularity, rating, revenue & release date
 - Filter results: region, providers, genres, certifications, release type, release dates, user ratings, user votes, adult content
 - Poster
@@ -51,7 +51,7 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 
 ### Tv Shows
 
-- Quick navigation: popular, airing today, next 7 days & top-rated
+- Quick navigation: popular, airing today, next 7 days & top rated
 - Sort: popularity, rating, revenue & release date
 - Filter results: region, providers, release type, genres, air dates, user ratings, user votes, adult content
 - Poster
@@ -123,7 +123,7 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 - Birth place
 - Death date
 - Biography
-- Stats: known for, movie cast, movie crew , TV show cast, Tv show crew
+- Stats: known for, movie cast, movie crew , Tv show cast, Tv show crew
 - Linked social icons
 - Profile images
 - Movie cast
