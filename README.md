@@ -9,6 +9,7 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 ## Features
 
 - Responsive layout & images
+- Infinite scroll data loading
 - Mobile navigation - able to be toggled to save space on smaller screens
 - Bespoke SVG icons
 - Search: movies, Tv shows & people
@@ -161,3 +162,8 @@ A revamped version of themoviedb.org featuring both noticeable and nuanced modif
 - [React icons](https://react-icons.github.io/react-icons)
 - [React router](https://reactrouter.com/en/main)
 - [React query](https://tanstack.com/query/latest/docs/react/overview)
+
+## Design tools
+
+- Adobe Photoshop
+- Adobe Illustrator
