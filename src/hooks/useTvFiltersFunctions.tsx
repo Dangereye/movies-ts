@@ -263,22 +263,12 @@ export default function useTvFiltersFunctions() {
     });
   };
 
-  const handleMinRating = (value: number) => {
+  const handleUserRating = (min: number, max: number) => {
     dispatch({
       type: 'SET_FILTERS',
       payload: {
         ...state,
-        rating: { ...state.rating, min_rating: value },
-      },
-    });
-  };
-
-  const handleMaxRating = (value: number) => {
-    dispatch({
-      type: 'SET_FILTERS',
-      payload: {
-        ...state,
-        rating: { ...state.rating, max_rating: value },
+        rating: { ...state.rating, min_rating: min, max_rating: max },
       },
     });
   };
@@ -350,8 +340,7 @@ export default function useTvFiltersFunctions() {
     clearTypes,
     updateTypes,
     handleToggleRating,
-    handleMinRating,
-    handleMaxRating,
+    handleUserRating,
     handleToggleMinimumVotes,
     handleVoteCount,
     handleToggleAdultSection,

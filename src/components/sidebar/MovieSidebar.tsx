@@ -1,5 +1,5 @@
 // React
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 // React router
 import { useLocation } from 'react-router-dom';
@@ -26,11 +26,20 @@ import ProvidersIcon from './providers/ProvidersIcon';
 // Data
 import { sortOptions } from '../../data/sortOptions';
 import { movieReleaseTypes } from '../../data/movieReleaseTypes';
+import useUserRating from '../../hooks/useUserRating';
 
 export default function MovieSidebar() {
   const { state } = useContext(MovieFiltersContext);
   const { state: appState } = useContext(AppContext);
+  const [minUserVotes, setMinUserVotes] = useState(state.vote_count.count);
   const { pathname } = useLocation();
+  const {
+    minUserRating,
+    setMinUserRating,
+    maxUserRating,
+    setMaxUserRating,
+    updateUserRating,
+  } = useUserRating('movie');
   const genres = useCreateGenres('movie-genres', 'genre/movie/list');
   const countries = useCreateCountries();
   const providers = useCreateProviders(
@@ -65,8 +74,6 @@ export default function MovieSidebar() {
     updateTypes,
     handleToggleAdultSection,
     handleToggleRating,
-    handleMinRating,
-    handleMaxRating,
     handleToggleMinimumVotes,
     handleVoteCount,
     handleAdult,
@@ -254,20 +261,22 @@ export default function MovieSidebar() {
             <label htmlFor='min-rating'>Min</label>
             <NumberInput
               id='min-rating'
-              init={state.rating.min_rating}
               min={0}
               max={9}
-              func={handleMinRating}
+              value={minUserRating}
+              onChange={setMinUserRating}
+              onBlur={() => updateUserRating(minUserRating, maxUserRating)}
             />
           </div>
           <div className='form__group'>
             <label htmlFor='max-rating'>Max</label>
             <NumberInput
               id='max-rating'
-              init={state.rating.max_rating}
               min={1}
               max={10}
-              func={handleMaxRating}
+              value={maxUserRating}
+              onChange={setMaxUserRating}
+              onBlur={() => updateUserRating(minUserRating, maxUserRating)}
             />
           </div>
         </form>
@@ -283,10 +292,11 @@ export default function MovieSidebar() {
             <label htmlFor='min-votes'>Min</label>
             <NumberInput
               id='min-votes'
-              init={state.vote_count.count}
               min={0}
               max={500}
-              func={handleVoteCount}
+              value={minUserVotes}
+              onChange={setMinUserVotes}
+              onBlur={() => handleVoteCount(minUserVotes)}
             />
           </div>
         </form>

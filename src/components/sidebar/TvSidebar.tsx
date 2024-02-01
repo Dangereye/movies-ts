@@ -1,5 +1,5 @@
 // React
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 // React router
 import { useLocation } from 'react-router-dom';
@@ -13,6 +13,7 @@ import useCreateGenres from '../../hooks/useCreateGenres';
 import useTvFiltersFunctions from '../../hooks/useTvFiltersFunctions';
 import useCreateCountries from '../../hooks/useCreateCountries';
 import useCreateProviders from '../../hooks/useCreateProviders';
+import useUserRating from '../../hooks/useUserRating';
 
 // Components
 import SidebarSection from './sections/SidebarSection';
@@ -29,7 +30,15 @@ import { tvMonetizationTypes } from '../../data/tvMonetizationTypes';
 export default function TvSidebar() {
   const { state: appState } = useContext(AppContext);
   const { state } = useContext(TvFiltersContext);
+  const [minUserVotes, setMinUserVotes] = useState(state.vote_count.count);
   const { pathname } = useLocation();
+  const {
+    minUserRating,
+    setMinUserRating,
+    maxUserRating,
+    setMaxUserRating,
+    updateUserRating,
+  } = useUserRating('tv');
   const genres = useCreateGenres('tv-genres', 'genre/tv/list');
   const providers = useCreateProviders('tv-providers', 'watch/providers/tv');
   const countries = useCreateCountries();
@@ -53,8 +62,7 @@ export default function TvSidebar() {
     clearTypes,
     updateTypes,
     handleToggleRating,
-    handleMinRating,
-    handleMaxRating,
+    handleUserRating,
     handleToggleMinimumVotes,
     handleVoteCount,
     handleToggleAdultSection,
@@ -217,20 +225,22 @@ export default function TvSidebar() {
             <label htmlFor='min-rating'>Min</label>
             <NumberInput
               id='min-rating'
-              init={state.rating.min_rating}
               min={0}
               max={9}
-              func={handleMinRating}
+              value={minUserRating}
+              onChange={setMinUserRating}
+              onBlur={() => updateUserRating(minUserRating, maxUserRating)}
             />
           </div>
           <div className='form__group'>
             <label htmlFor='max-rating'>Max</label>
             <NumberInput
               id='max-rating'
-              init={state.rating.max_rating}
               min={1}
               max={10}
-              func={handleMaxRating}
+              value={maxUserRating}
+              onChange={setMaxUserRating}
+              onBlur={() => updateUserRating(minUserRating, maxUserRating)}
             />
           </div>
         </form>
@@ -245,10 +255,11 @@ export default function TvSidebar() {
             <label htmlFor='min-votes'>Min</label>
             <NumberInput
               id='min-votes'
-              init={state.vote_count.count}
               min={0}
               max={500}
-              func={handleVoteCount}
+              value={minUserVotes}
+              onChange={setMinUserVotes}
+              onBlur={() => handleVoteCount(minUserVotes)}
             />
           </div>
         </form>
