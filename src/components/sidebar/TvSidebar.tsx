@@ -62,7 +62,6 @@ export default function TvSidebar() {
     clearTypes,
     updateTypes,
     handleToggleRating,
-    handleUserRating,
     handleToggleMinimumVotes,
     handleVoteCount,
     handleToggleAdultSection,
