@@ -108,7 +108,11 @@ export default function ArticleImages() {
               images
                 ?.filter((image, i) => i < 10)
                 .map((image, i) => (
-                  <div key={image.file_path} onClick={() => openModal(i)}>
+                  <div
+                    className={`img-${state.display.show_media_type}`}
+                    key={image.file_path}
+                    onClick={() => openModal(i)}
+                  >
                     <ImageComponent
                       key={image.file_path}
                       base_url='https://image.tmdb.org/t/p/'

@@ -2,7 +2,16 @@
   &__scroll {
     @include scroll-x;
 
-    .img {
+    .img-posters {
+      min-width: 30rem;
+    }
+
+    .img-backdrops {
+      min-width: 50rem;
+    }
+
+    .img-posters,
+    .img-backdrops {
       @include hover-image;
     }
   }
