@@ -5,6 +5,7 @@
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.9.4-blue)
 ![SCSS](https://img.shields.io/badge/SCSS-1.57.0-cc6699)
+![React Query](https://img.shields.io/badge/React_Query-%5Ev4.0-red?logo=reactquery&logoColor=white)
 ![TMDB API](https://img.shields.io/badge/API-TMDB-green)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/89f29c7f-2718-4883-a13d-2002982e40cc/deploy-status)](https://app.netlify.com/sites/pux-movies/deploys)
 ![Repo size](https://img.shields.io/github/repo-size/Dangereye/movies)
