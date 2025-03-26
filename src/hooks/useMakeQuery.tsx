@@ -7,9 +7,10 @@ export default function useMakeQuery<T>(
   append?: string
 ) {
   const fetchData = async (endpoint: string | undefined, append = '') => {
-    const apiKey = process.env.REACT_APP_KEY;
     const res = await fetch(
-      `https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}${append}`
+      `/.netlify/functions/tmdbProxy?endpoint=${endpoint}&append=${encodeURIComponent(
+        append
+      )}`
     );
     return res.json();
   };

@@ -2,10 +2,12 @@
 import { QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query';
 
 const fetchData = async ({ queryKey, pageParam = 1 }: QueryFunctionContext) => {
-  const apiKey = process.env.REACT_APP_KEY;
-  const [endPoint, append] = queryKey;
+  const [endpoint, append] = queryKey as [string, string];
+
   const res = await fetch(
-    `https://api.themoviedb.org/3/${endPoint}?api_key=${apiKey}&page=${pageParam}${append}`
+    `/.netlify/functions/tmdbProxy?endpoint=${endpoint}&append=${encodeURIComponent(
+      append
+    )}&page=${pageParam}`
   );
   return res.json();
 };
